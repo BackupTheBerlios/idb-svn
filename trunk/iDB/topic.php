@@ -9,14 +9,9 @@
     Revised BSD License for more details.
 
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
-    Copyright 2004-2007 Game Maker 2k - http://cooldude2k.phpnet.us/
+    Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 */
 require('preindex.php');
-if($_SERVER['PATH_INFO']!=null) {
-if($_GET['act']==null&&$urlvars[1]!=null) {
-	$_GET['act']=$urlvars[1]; }
-if($_GET['id']==null&&$urlvars[2]!=null) {
-	$_GET['id']=$urlvars[2]; } }
 $usefileext = $Settings['file_ext'];
 if($usefileext=="noext") { $usefileext = ""; }
 $filewpath = $exfile['topic'].$usefileext.$_SERVER['PATH_INFO'];

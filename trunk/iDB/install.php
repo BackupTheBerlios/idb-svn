@@ -9,15 +9,18 @@
     Revised BSD License for more details.
 
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
-    Copyright 2004-2007 Game Maker 2k - http://cooldude2k.phpnet.us/
-    iDB Installer made by Game Maker 2k - http://cooldude2k.phpnet.us/
+    Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
+    iDB Installer made by Game Maker 2k - http://upload.idb.s1.jcink.com/
 */
-@error_reporting(E_ALL ^ E_NOTICE);
-$preact['idb'] = "installing"; 
-if ($_GET['act']==null) { $_GET['act']="Part1"; }
-if ($_POST['act']==null) { $_POST['act']="Part1"; }
+@error_reporting(E_ALL ^ E_NOTICE); unset($preact['idb']);
+if ($_GET['act']!="Part4"&&$_POST['act']!="Part4") {
+	$preact['idb'] = "installing";	}
+if ($_GET['act']==null||$_GET['act']=="view") { $_GET['act']="Part1"; }
+if ($_POST['act']==null||$_POST['act']=="view") { $_POST['act']="Part1"; }
 require('preindex.php');
-require('setup/convert/info.php');
+$SetupDir['setup'] = "setup/"; $SetupDir['convert'] = "setup/convert/";
+$ConvertDir['setup'] = "setup/"; $ConvertDir['convert'] = "setup/convert/";
+require($SetupDir['convert'].'info.php');
 unset($Error); ?>
 
 <title> <?php echo "Installing ".version_info("iDB",$VER1,$VER3)." on ".$OSType2; ?> </title>
@@ -31,7 +34,7 @@ unset($Error); ?>
 &nbsp;<a href="Install.php">Install <?php echo version_info("iDB",$VER1,$VER3)." on ".$OSType2; ?> </a></span>
 <span style="float: right;">&nbsp;</span></td>
 </tr>
-<tr class="TableRow2">
+<tr class="TableRow2" colspan="2">
 <th class="TableRow2" style="width: 100%; text-align: left;">
 <span style="float: left;">&nbsp;Inert your install info: </span>
 <span style="float: right;">&nbsp;</span>
@@ -53,17 +56,24 @@ function sql_list_dbs() {
    } return $array; }
 if ($_GET['act']!="Part2"&&$_POST['act']!="Part2") {
 if ($_GET['act']!="Part3"&&$_POST['act']!="Part3") {
-   require('setup/presetup.php'); } }
+if ($_GET['act']!="Part4"&&$_POST['act']!="Part4") {
+   require($SetupDir['setup'].'license.php'); } } }
+if ($_GET['act']=="Part2"&&$_POST['act']=="Part2") {
+if ($_GET['act']!="Part3"&&$_POST['act']!="Part3") {
+if ($_GET['act']!="Part4"&&$_POST['act']!="Part4") {
+   require($SetupDir['setup'].'presetup.php'); } } }
 if($_POST['SetupType']=="convert") {
 	require($ConvertInfo['ConvertFile']); }
 if($_POST['SetupType']=="install") {
-if ($_GET['act']=="Part2"&&$_POST['act']=="Part2") {
-if ($_GET['act']!="Part3"&&$_POST['act']!="Part3") {
-   require('setup/setup.php'); } } }
-if($_POST['SetupType']=="install") {
 if ($_GET['act']!="Part2"&&$_POST['act']!="Part2") {
 if ($_GET['act']=="Part3"&&$_POST['act']=="Part3") {
-   require('setup/mkconfig.php'); } } }
+if ($_GET['act']!="Part4"&&$_POST['act']!="Part4") {
+   require($SetupDir['setup'].'setup.php'); } } } }
+if($_POST['SetupType']=="install") {
+if ($_GET['act']!="Part2"&&$_POST['act']!="Part2") {
+if ($_GET['act']!="Part3"&&$_POST['act']!="Part3") {
+if ($_GET['act']=="Part4"&&$_POST['act']=="Part4") {
+   require($SetupDir['setup'].'/mkconfig.php'); } } } }
 if ($Error=="Yes") { ?>
 <br />Install Failed with errors. <a href="install.php?act=view">Click here</a> to restart install. &lt;_&lt;
 <br /><br />

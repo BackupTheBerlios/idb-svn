@@ -1,24 +1,27 @@
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-//                               Internet Discussion Boards
-//                                  Made by Game Maker 2k: 
-//                          Cool Dude 2k ( CoolDude2k@gmail.com )
-//                         Help to make Internet Discussion Boards
-//                              Jcink ( jcink2k@gmail.com )
-//			     Dubbs Rules ( dubbs2005@gmail.com )
-//                              Renee S ( renee2k@gmail.com )
-//			            deat ( unknown email )
-//                                SSS ( sss2004@gmail.com )
-//			          Jonathan ( unknown email )
-//                                czambran ( unknown email )
-//                               (c) 2004-2007 Game Maker 2k     
+//                       __________________________________________
+//                      //        Internet Discussion Boards      \\
+//                      ||          Made by Game Maker 2k:         ||
+//                      ||  Cool Dude 2k ( http://idb.berlios.de ) ||
+//                      || Help to make Internet Discussion Boards ||
+//                      ||        Jcink ( http://jcink2k.com/ )    ||
+//                      ||           Dubbs Rules ( unknown )       ||
+//                      ||            Renee S ( unknown )          ||
+//                      ||    deat ( http://www.gprogress.com/ )   ||
+//                      ||   SSS ( http://sss2005.s1.jcink.com/ )  ||
+//                      ||    SeanJ ( http://seanj.jcink.com/ )    ||
+//                      ||            Jonathan ( unknown )         ||
+//                      ||            czambran ( unknown )         ||
+//                      \\       (c) 2004-2007 Game Maker 2k      //
+//                       """"""""""""""""""""""""""""""""""""""""""
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 // Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
-// Copyright 2004-2007 Game Maker 2k - http://cooldude2k.phpnet.us/
-//	              http://idb.id.funpic.org/  http://cooldude2k.id.funpic.org/
-// 			Game Maker 2k Copyright 2000-2007 Cool Dude 2k (René Johnson)
+// Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/ 
+// http://s1.jcink.com/s/host/idb/  http://idb.everywebhost.com/  http://cooldude2k.id.funpic.org/
+//  	        Game Maker 2k Copyright 2000-2007 Cool Dude 2k (René Johnson)
 // Emoticons made by Jcink for TextfileBB (http://tfbb.jcink.com/) Under TFBB License
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-// iDB Installer made by Game Maker 2k - http://cooldude2k.phpnet.us/
+// iDB Installer made by Game Maker 2k - http://upload.idb.s1.jcink.com/
 // How to delete installer if error happens:
 // Delete install.php file and the setup folder/dir and everyting inside it also.
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -31,8 +34,10 @@
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 //                         ______________________________________
 //                        //     Also Get PHP-Quick-Arcade      \\
+//                        ||          And TextFileBB             ||
 //                        ||Website: http://quickarcade.jcink.com||
-//                        ||   by: Jcink ( jcink2k@gmail.com )   ||
+//                        ||Website: http://tfbb.jcink.com       ||
+//                        ||  by: Jcink ( http://jcink2k.com/ )  ||
 //                        ||         (c) 2007 Jcink              ||
 //                        \\                                    //
 //                         """"""""""""""""""""""""""""""""""""""
@@ -61,7 +66,7 @@
 // study how it works, improve it, and share it with others.
 // For more information, visit the Free Software Foundation.(http://www.fsf.org/)
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-// List Can be fond at http://cooldude2k.phpnet.us/smf/?topic=103
+// List Can be fond at http://upload.idb.s1.jcink.com/index.php/topic,103.0.html
 // Free WebHosts
 // Hosts that iDB Works on
 //     * http://freejcinkhosting.afraid.org:81/

@@ -9,12 +9,9 @@
     Revised BSD License for more details.
 
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
-    Copyright 2004-2007 Game Maker 2k - http://cooldude2k.phpnet.us/
+    Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 */
 require('preindex.php');
-if($_SERVER['PATH_INFO']!=null) {
-if($_GET['act']==null&&$urlvars[1]!=null) {
-	$_GET['act']=$urlvars[1]; } }
 $usefileext = $Settings['file_ext'];
 if($usefileext=="noext") { $usefileext = ""; }
 $filewpath = $exfile['profile'].$usefileext.$_SERVER['PATH_INFO'];
@@ -25,7 +22,7 @@ $filewpath = $exfile['profile'].$usefileext.$_SERVER['PATH_INFO'];
 <body>
 <?php require($SettDir['inc'].'navbar.php');
 if($_SESSION['UserGroup']==$Settings['GuestGroup']) {
-redirect("location",$basedir.url_maker($exfile['index'],$Settings['file_ext'],array("act"),array("view"),$Settings['qstr'],$Settings['qsep'],$exqstr['index'],FALSE)); }
+redirect("location",$basedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)); }
 if($_GET['act']==null||$_GET['act']=="notepad")
 { $_GET['act']="view"; }
 if($_GET['act']=="view"||

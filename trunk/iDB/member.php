@@ -9,20 +9,9 @@
     Revised BSD License for more details.
 
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
-    Copyright 2004-2007 Game Maker 2k - http://cooldude2k.phpnet.us/
+    Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 */
 require('preindex.php');
-if($_SERVER['PATH_INFO']!=null) {
-if($_GET['act']==null&&$urlvars[1]!=null) {
-	$_GET['act']=$urlvars[1]; } 
-if($_GET['act']=="view") {
-if($_GET['id']==null&&$urlvars[2]!=null) {
-	$_GET['id']=$urlvars[2]; } }
-if($_GET['act']=="list") {
-if($_GET['orderby']==null&&$urlvars[2]!=null) {
-	$_GET['orderby']=$urlvars[2]; }
-if($_GET['ordertype']==null&&$urlvars[3]!=null) {
-	$_GET['ordertype']=$urlvars[3]; } } }
 $filewpath = $exfile['member'].$Settings['file_ext'].$_SERVER['PATH_INFO'];
 if($_GET['act']==null) { $_GET['act'] = "login"; }
 ?>
@@ -31,7 +20,7 @@ if($_GET['act']==null) { $_GET['act'] = "login"; }
 </head>
 <body>
 <?php if($_GET['act']==null)
-{ $_GET['act']="view"; }
+{ $_GET['act']="loginmember"; }
 if(!is_numeric($_GET['id']))
 { $_GET['id']="1"; }
 require($SettDir['inc'].'navbar.php');

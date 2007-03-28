@@ -9,7 +9,7 @@
     Revised BSD License for more details.
 
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
-    Copyright 2004-2007 Game Maker 2k - http://cooldude2k.phpnet.us/
+    Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 */
 @error_reporting(E_ALL ^ E_NOTICE);
 if(@ini_get("register_globals")) {
@@ -21,15 +21,6 @@ if($SettDir['rss']==null) { $SettDir['rss'] = "inc/rss/"; }
 if($SettDir['admin']==null) { $SettDir['admin'] = "inc/admin/"; }
 if($SettDir['mod']==null) { $SettDir['mod'] = "inc/mod/"; }
 if($SettDir['themes']==null) { $SettDir['themes'] = "themes/"; }
-if($urlvars==null) {
-if($_SERVER['PATH_INFO']==null) {
-	if(getenv('PATH_INFO')!=null) {
-$_SERVER['PATH_INFO'] = getenv('PATH_INFO'); } }
-if($_SERVER['PATH_INFO']!=null) {
-$urlvars = explode("/",$_SERVER['PATH_INFO']); } }
-if($_SERVER['PATH_INFO']!=null) {
-if($_GET['act']==null&&$urlvars[1]!=null) {
-	$_GET['act']=$urlvars[1]; } }
 if($_GET['act']==null)
 {	$_GET['act']="boardrss";	}
 if($_GET['act']==null)

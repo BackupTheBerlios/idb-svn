@@ -9,19 +9,16 @@
     Revised BSD License for more details.
 
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
-    Copyright 2004-2007 Game Maker 2k - http://cooldude2k.phpnet.us/
+    Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 */
 require('preindex.php');
-if($_SERVER['PATH_INFO']!=null) {
-if($_GET['act']==null&&$urlvars[1]!=null) {
-	$_GET['act']=$urlvars[1]; } }
 $usefileext = $Settings['file_ext'];
 if($usefileext=="noext") { $usefileext = ""; }
 $filewpath = $exfile['calendar'].$usefileext.$_SERVER['PATH_INFO'];
 if($Settings['html_type']=="html4") { ?>
-<link rel="alternate" type="application/rss+xml" title="Event RSS Feed" href="<?php echo url_maker($exfile['rss'],$Settings['rss_ext'],array("act"),array("eventrss"),$Settings['qstr'],$Settings['qsep'],$exqstr['rss']); ?>">
+<link rel="alternate" type="application/rss+xml" title="Event RSS Feed" href="<?php echo url_maker($exfile['rss'],$Settings['rss_ext'],"act=eventrss",$Settings['qstr'],$Settings['qsep'],$prexqstr['rss'],$exqstr['rss']); ?>">
 <?php } if($Settings['html_type']!="html4") { ?>
-<link rel="alternate" type="application/rss+xml" title="Event RSS Feed" href="<?php echo url_maker($exfile['rss'],$Settings['rss_ext'],array("act"),array("eventrss"),$Settings['qstr'],$Settings['qsep'],$exqstr['rss']); ?>" />
+<link rel="alternate" type="application/rss+xml" title="Event RSS Feed" href="<?php echo url_maker($exfile['rss'],$Settings['rss_ext'],"act=eventrss",$Settings['qstr'],$Settings['qsep'],$prexqstr['rss'],$exqstr['rss']); ?>" />
 <?php } echo "\n"; ?>
 <title> <?php echo $Settings['board_name'].$idbpowertitle; ?> </title>
 </head>

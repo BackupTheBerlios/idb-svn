@@ -318,17 +318,14 @@ $i=0;
 $YourPassTry=mysql_result($resultlog,$i,"Password");
 $HashType=mysql_result($resultlog,$i,"HashType");
 $JoinedPass=mysql_result($resultlog,$i,"Joined");
+$HashSalt=mysql_result($resultlog,$i,"Salt");
 $UpdateHash = false;
 if($HashType=="ODFH") { 
-	$YourPassword = sha1(md5($_POST['userpass']));
-	$NewPassword = hmac($_POST['userpass'],$JoinedPass,"sha1");
-	$UpdateHash = true; }
+	$YourPassword = sha1(md5($_POST['userpass'])); }
 if($HashType=="DF4H") { 
-	$YourPassword = hmac($_POST['userpass'],$JoinedPass,"sha1");
-	$UpdateHash = true; }
+	$YourPassword = b64e_hmac($_POST['userpass'],$JoinedPass,$HashSalt,"sha1"); }
 if($HashType=="iDBH"||$UpdateHash!=true) { 
-	$YourPassword = hmac($_POST['userpass'],$JoinedPass,"sha1");
-	$UpdateHash = false; }
+	$YourPassword = b64e_hmac($_POST['userpass'],$JoinedPass,$HashSalt,"sha1"); }
 if($YourPassword==$YourPassTry) { 
 $passright = false;
 } if($YourPassword==$YourPassTry) {
@@ -345,14 +342,11 @@ $YourTimeZoneM=mysql_result($resultlog,$i,"TimeZone");
 $YourDSTM=mysql_result($resultlog,$i,"DST");
 $JoinedDate=mysql_result($resultlog,$i,"Joined");
 $UseTheme=mysql_result($resultlog,$i,"UseTheme");
-$NewPassword = hmac($_POST['userpass'],$JoinedDate,"sha1");
+$NewHashSalt = salt_hmac();
+$NewPassword = b64e_hmac($_POST['userpass'],$JoinedPass,$NewHashSalt,"sha1");
 $NewDay=GMTimeStamp();
 $NewIP=$_SERVER['REMOTE_ADDR'];
-if($UpdateHash!=true) {
-$queryup = query("update ".$Settings['sqltable']."members set LastActive='%s',IP='%s' WHERE id=%i", array($NewDay,$NewIP,$YourIDM)); }
-if($UpdateHash==true) {
-$YourPassM = $NewPassword;
-$queryup = query("update ".$Settings['sqltable']."members set Password='%s',HashType='iDBH',LastActive='%s',IP='%s' WHERE id=%i", array($YourPassM,$NewDay,$NewIP,$YourIDM)); } 
+$queryup = query("update ".$Settings['sqltable']."members set Password='%s',HashType='iDBH',LastActive='%s',IP='%s',Salt='%s' WHERE id=%i", array($NewPassword,$NewDay,$NewIP,$NewHashSalt,$YourIDM));
 mysql_query($queryup);
 @mysql_free_result($resultlog); @mysql_free_result($queryup);
 //session_regenerate_id();
@@ -365,11 +359,11 @@ $_SESSION['UserDST']=$YourDSTM;
 if($_POST['storecookie']==true) {
 setcookie("MemberName", $YourNameM, time() + (7 * 86400), $basedir);
 setcookie("UserID", $YourIDM, time() + (7 * 86400), $basedir);
-setcookie("SessPass", $YourPassM, time() + (7 * 86400), $basedir); }
+setcookie("SessPass", $NewPassword, time() + (7 * 86400), $basedir); }
 } } if($numlog<=0) {
 //echo "Password was not right or user not found!! <_< ";
 } ?>
-<?php if($passright>=true) {
+<?php if($passright==true) {
 @redirect("refresh",$basedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false),"3"); ?>
 <tr>
 	<td><span class="TableMessage">
@@ -377,7 +371,7 @@ setcookie("SessPass", $YourPassM, time() + (7 * 86400), $basedir); }
 	Click <a href="<?php echo url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); ?>">here</a> to continue to board.<br />&nbsp;
 	</span></td>
 </tr>
-<?php } if($passright<=false) { ?>
+<?php } if($passright==false) { ?>
 <tr>
 	<td><span class="TableMessage">
 	<br />Password was not right or user not found!! &lt;_&lt;<br />
@@ -592,7 +586,8 @@ if($Settings['AdminValidate']==true||$Settings['AdminValidate']!=false)
 { $ValidateStats="no"; $yourgroup=$Settings['ValidateGroup']; }
 if($Settings['AdminValidate']==false)
 { $ValidateStats="yes"; $yourgroup=$Settings['MemberGroup']; }
-$NewPassword = hmac($_POST['Password'],$_POST['Joined'],"sha1");
+$HashSalt = salt_hmac(); 
+$NewPassword = b64e_hmac($_POST['Password'],$_POST['Joined'],$HashSalt,"sha1");
 $_GET['YourPost'] = $_POST['Signature'];
 //require( './'.$SettDir['misc'].'HTMLTags.php');
 $_GET['YourPost'] = htmlspecialchars($_GET['YourPost'], ENT_QUOTES);
@@ -614,7 +609,7 @@ $yourid = getnextid($Settings['sqltable'],"members");
 $_POST['Interests'] = @remove_spaces($_POST['Interests']);
 $_POST['Title'] = @remove_spaces($_POST['Title']);
 $_POST['Email'] = @remove_spaces($_POST['Email']);
-$query = query("insert into ".$Settings['sqltable']."members values (".$yourid.",'%s','%s','%s','%s','%s','%s','%i','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','')", array($Name,$NewPassword,"iDBH",$_POST['Email'],$yourgroup,$ValidateStats,"0",$_POST['Interests'],$_POST['Title'],$_POST['Joined'],$_POST['LastActive'],"0",$NewSignature,'Your Notes',$Avatar,"100x100",$Website,$_POST['YourGender'],$_POST['PostCount'],$_POST['YourOffSet'],$_POST['DST'],$Settings['DefaultTheme'],$_POST['UserIP']));
+$query = query("insert into ".$Settings['sqltable']."members values (".$yourid.",'%s','%s','%s','%s','%s','%s','%i','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", array($Name,$NewPassword,"iDBH",$_POST['Email'],$yourgroup,$ValidateStats,"0",$_POST['Interests'],$_POST['Title'],$_POST['Joined'],$_POST['LastActive'],"0",$NewSignature,'Your Notes',$Avatar,"100x100",$Website,$_POST['YourGender'],$_POST['PostCount'],$_POST['YourOffSet'],$_POST['DST'],$Settings['DefaultTheme'],$_POST['UserIP'],$HashSalt));
 mysql_query($query);
 $querylogr = query("select * from ".$Settings['sqltable']."members where Name='%s' AND Password='%s'", array($Name,$NewPassword));
 $resultlogr=mysql_query($querylogr);

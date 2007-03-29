@@ -60,6 +60,7 @@ if($_POST['WebURL']=="https://localhost/"||$_POST['WebURL']=="https://localhost"
 	$_POST['WebURL'] = "localhost"; }
 $_POST['BoardURL'] = addslashes($_POST['BoardURL']);
 $YourDate = GMTimeStamp();
+$GSalt = salt_hmac(); $YourSalt = salt_hmac();
 /* Fix The User Info for iDB */
 $_POST['NewBoardName'] = htmlentities($_POST['NewBoardName'], ENT_QUOTES);
 $_POST['NewBoardName'] = fixbamps($_POST['NewBoardName']);
@@ -97,7 +98,7 @@ $query = "INSERT INTO ".$_POST['tableprefix']."topics VALUES (1,1,1,-1,'Cool Dud
 mysql_query($query);
 $query = "INSERT INTO ".$_POST['tableprefix']."posts VALUES (1,1,1,1,-1,'Cool Dude 2k',".$YourDate.",".$YourDate.",0,'Welcome to Your Message Board. :) ','Install was Successful','127.0.0.1')"; 
 mysql_query($query);
-$NewPassword = hmac($_POST['AdminPasswords'],$YourDate,"sha1");
+$NewPassword = b64e_hmac($_POST['AdminPasswords'],$YourDate,$YourSalt,"sha1");
 //$Name = stripcslashes(htmlspecialchars($AdminUser, ENT_QUOTES));
 $YourWebsite = "http://".$_SERVER['HTTP_HOST'].$this_dir."index.php?act=view";
 $UserIP = $_SERVER['REMOTE_ADDR'];
@@ -112,12 +113,12 @@ if($csrand!=1&&$csrand!=2&&$csrand!=3) { $csrand=1; }
 if($csrand==1) { $gpass .= chr(rand(48,57)); }
 if($csrand==2) { $gpass .= chr(rand(65,90)); }
 if($csrand==3) { $gpass .= chr(rand(97,122)); }
-++$i; } $GuestPassword = hmac($gpass,$YourDate,"sha1");
+++$i; } $GuestPassword = b64e_hmac($gpass,$YourDate,$GSalt,"sha1");
 $url_this_dir = "http://".$_SERVER['HTTP_HOST'].$this_dir."index.php?act=view";
 $YourIP = $_SERVER['REMOTE_ADDR'];
-$query = "INSERT INTO ".$_POST['tableprefix']."members VALUES (-1,'Guest','".$GuestPassword."','iDBH','".$GEmail."',4,'no',0,'Guest Account','Guest',".$YourDate.",".$YourDate.",'0','[B]Test[/B] :)','Your Notes','http://','100x100','http://".$_SERVER['HTTP_HOST']."/','UnKnow',2,'".$AdminTime."','".$AdminDST."','iDB','127.0.0.1','')";
+$query = "INSERT INTO ".$_POST['tableprefix']."members VALUES (-1,'Guest','".$GuestPassword."','iDBH','".$GEmail."',4,'no',0,'Guest Account','Guest',".$YourDate.",".$YourDate.",'0','[B]Test[/B] :)','Your Notes','http://','100x100','http://".$_SERVER['HTTP_HOST']."/','UnKnow',2,'".$AdminTime."','".$AdminDST."','iDB','127.0.0.1','".$GSalt."')";
 mysql_query($query);
-$query = "INSERT INTO ".$_POST['tableprefix']."members VALUES (1,'".$_POST['AdminUser']."','".$NewPassword."','iDBH','".$Email."',1,'yes',0,'".$Interests."','Admin',".$YourDate.",".$YourDate.",'0','".$NewSignature."','Your Notes','".$Avatar."','100x100','".$YourWebsite."','UnKnow',0,'".$AdminTime."','".$AdminDST."','iDB','".$UserIP."','')";
+$query = "INSERT INTO ".$_POST['tableprefix']."members VALUES (1,'".$_POST['AdminUser']."','".$NewPassword."','iDBH','".$Email."',1,'yes',0,'".$Interests."','Admin',".$YourDate.",".$YourDate.",'0','".$NewSignature."','Your Notes','".$Avatar."','100x100','".$YourWebsite."','UnKnow',0,'".$AdminTime."','".$AdminDST."','iDB','".$UserIP."','".$YourSalt."')";
 mysql_query($query);
 $query = "INSERT INTO ".$_POST['tableprefix']."messenger VALUES (1,-1,1,'Cool Dude 2k','Test','Hello Welcome to your board.\n\rThis is a Test PM. :P ','Hello Welcome',".$YourDate.",0)";
 mysql_query($query);
@@ -129,11 +130,11 @@ $settbakcheck = "\$File1Name = dirname(\$_SERVER['SCRIPT_NAME']).\"/\";\n\$File2
 $pretextbak = $pretext.$settbakcheck; $pretext = $pretext.$settcheck;
 $BoardSettings=$pretext2[0]."\n\$Settings['sqlhost'] = '".$_POST['DatabaseHost']."';\n\$Settings['sqldb'] = '".$_POST['DatabaseName']."';\n\$Settings['sqltable'] = '".$_POST['tableprefix']."';\n\$Settings['sqluser'] = '".$_POST['DatabaseUserName']."';\n\$Settings['sqlpass'] = '".$_POST['DatabasePassword']."';\n\$Settings['board_name'] = '".$_POST['NewBoardName']."';\n\$Settings['idbdir'] = '".$idbdir."';\n\$Settings['idburl'] = '".$_POST['BoardURL']."';\n\$Settings['weburl'] = '".$_POST['WebURL']."';\n\$Settings['use_gzip'] = ".$_POST['GZip'].";\n\$Settings['html_type'] = '".$_POST['HTMLType']."';\n\$Settings['html_level'] = '".$_POST['HTMLLevel']."';\n\$Settings['output_type'] = '".$_POST['OutPutType']."';\n\$Settings['GuestGroup'] = 'Guest';\n\$Settings['MemberGroup'] = 'Member';\n\$Settings['ValidateGroup'] = 'Validate';\n\$Settings['AdminValidate'] = false;\n\$Settings['TestReferer'] = ".$_POST['TestReferer'].";\n\$Settings['DefaultTheme'] = 'iDB';\n\$Settings['DefaultTimeZone'] = '".$AdminTime."';\n\$Settings['DefaultDST'] = '".$AdminDST."';\n\$Settings['charset'] = 'iso-8859-15';\n\$Settings['add_power_by'] = false;\n\$Settings['send_pagesize'] = false;\n\$Settings['max_posts'] = '10';\n\$Settings['max_topics'] = '10';\n\$Settings['hot_topic_num'] = '15';\n\$Settings['qstr'] = '&';\n\$Settings['qsep'] = '=';\n\$Settings['file_ext'] = '.php';\n\$Settings['rss_ext'] = '.php';\n\$Settings['js_ext'] = '.js';\n\$Settings['showverinfo'] = true;\n\$Settings['fixpathinfo'] = false;\n\$Settings['fixbasedir'] = false;\n\$Settings['rssurl'] = false;\n".$pretext2[1]."\n\$SettInfo['board_name'] = '".$_POST['NewBoardName']."';\n\$SettInfo['Author'] = '".$_POST['AdminUser']."';\n\$SettInfo['Keywords'] = '".$_POST['NewBoardName'].",".$_POST['AdminUser']."';\n\$SettInfo['Description'] = '".$_POST['NewBoardName'].",".$_POST['AdminUser']."';\n".$pretext2[2]."\n\$SettDir['maindir'] = '".$idbdir."';\n\$SettDir['inc'] = 'inc/';\n\$SettDir['misc'] = 'inc/misc/';\n\$SettDir['rss'] = 'inc/rss/';\n\$SettDir['admin'] = 'inc/admin/';\n\$SettDir['mod'] = 'inc/mod/';\n\$SettDir['themes'] = 'themes/';\n".$pretext2[3]."\n?>";
 $BoardSettingsBak = $pretextbak.$BoardSettings; $BoardSettings = $pretext.$BoardSettings;
-$fp = fopen("./settings.php","w+");
+$fp = fopen("settings.php","w+");
 fwrite($fp, $BoardSettings);
 fclose($fp);
 //	@cp("settings.php","settingsbak.php");
-$fp = fopen("./settingsbak.php","w+");
+$fp = fopen("settingsbak.php","w+");
 fwrite($fp, $BoardSettingsBak);
 fclose($fp);
 $_SESSION['MemberName']=$_POST['AdminUser'];

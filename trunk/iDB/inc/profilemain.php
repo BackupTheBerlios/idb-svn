@@ -473,19 +473,17 @@ if($_POST['act']=="userinfo"&&
 	$OldPassword=mysql_result($result,$i,"Password");
 	$OldHashType=mysql_result($result,$i,"HashType");
 	$OldJoined=mysql_result($result,$i,"Joined");
-	$UpdateHash = false;
+	$OldSalt=mysql_result($result,$i,"Salt");
+	$UpdateHash = false; $NewSalt = salt_hmac(); 
 if($OldHashType=="ODFH") { 
 	$YourPassword = sha1(md5($_POST['OldPass']));
-	$NewPassword = hmac($_POST['Password'],$OldJoined,"sha1");
-	$UpdateHash = true; }
+	$NewPassword = b64e_hmac($_POST['Password'],$OldJoined,$NewSalt,"sha1"); }
 if($OldHashType=="DF4H") { 
-	$YourPassword = hmac($_POST['OldPass'],$OldJoined,"sha1");
-	$NewPassword = hmac($_POST['Password'],$OldJoined,"sha1");
-	$UpdateHash = true; }
+	$YourPassword = b64e_hmac($_POST['OldPass'],$OldJoined,$OldSalt,"sha1");
+	$NewPassword = b64e_hmac($_POST['Password'],$OldJoined,$NewSalt,"sha1"); }
 if($OldHashType=="iDBH"&&$UpdateHash!=true) { 
-	$YourPassword = hmac($_POST['OldPass'],$OldJoined,"sha1");
-	$NewPassword = hmac($_POST['Password'],$OldJoined,"sha1");
-	$UpdateHash = false; }
+	$YourPassword = b64e_hmac($_POST['OldPass'],$OldJoined,$OldSalt,"sha1");
+	$NewPassword = b64e_hmac($_POST['Password'],$OldJoined,$NewSalt,"sha1"); }
 if($YourPassword!=$OldPassword) { $Error="Yes"; ?>
 <div class="TableMessage">Your old Password did not match.<br />&nbsp;</div>
 <?php } if(strlen($_POST['Password'])=="30") { $Error="Yes"; ?>
@@ -498,8 +496,9 @@ if($YourPassword!=$OldPassword) { $Error="Yes"; ?>
 	$NewDay=GMTimeStamp();
 	$NewIP=$_SERVER['REMOTE_ADDR'];
 	if ($Error!="Yes") {
+	setcookie("SessPass", $NewPassword, time() + (7 * 86400), $basedir);
 	$_POST['Email'] = @remove_spaces($_POST['Email']);
-	$querynewuserinfo = query("update ".$Settings['sqltable']."members set Password='%s',Email='%s',LastActive='%s',IP='%s' WHERE id=%i", array($NewPassword,$_POST['Email'],$NewDay,$NewIP,$_SESSION['UserID']));
+	$querynewuserinfo = query("update ".$Settings['sqltable']."members set Password='%s',HashType='iDBH',Email='%s',LastActive='%s',IP='%s',Salt='%s' WHERE id=%i", array($NewPassword,$_POST['Email'],$NewDay,$NewIP,$NewSalt,$_SESSION['UserID']));
 	mysql_query($querynewuserinfo); } } } }
 ?>
 <?php if($_POST['update']=="now"&&$_GET['act']!=null) {

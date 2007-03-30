@@ -329,14 +329,21 @@ if($hspsrand!=1&&$hspsrand!=2) { $hspsrand=1; }
 if($hspsrand==1) { $hpass .= chr(rand(48,57)); }
 if($hspsrand==2) { $hpass .= chr(rand(65,70)); }
 ++$i; } return $hpass; }
+/* is_empty by M at http://us2.php.net/manual/en/function.empty.php#74093 */
+function is_empty($var) {
+    if (((is_null($var) || rtrim($var) == "") &&
+		$var !== false) || (is_array($var) && empty($var))) {
+        return true; } else {
+        return false; } }
 function PassHash2x($Text) {
 $Text = md5($Text);
 $Text = sha1($Text);
 return $Text; }
-function PassHash2x2($data,$key) {
-$Text = hmac($data,$key,"md5");
-$Text = hmac($Text,$key,"sha1");
-return $Text; }
+function PassHash2x2($data,$key,$extdata,$blocksize=64) {
+$extdata2 = hexdec($extdata); $key = $key.$extdata2;
+$Text = hmac($data,$key,"md5").$extdata; 
+$Text = hmac($Text,$key,"sha1").$extdata;
+return base64_encode($Text); }
 function cp($infile,$outfile,$mode="w") { 
    $contents = file_get_contents($infile);
    $cpfp = fopen($outfile,$mode);

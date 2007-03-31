@@ -33,7 +33,7 @@ if ($File3Name==$FileName||$File3Name=="/".$FileName) {
 	return true; } }
 CheckFile("functions.php");
 require($SettDir['misc']."compression.php");
-function version_info($proname,$prever,$subver=null,$withver=null) {
+function version_info($proname,$prever,$subver=null,$withver=null,$svnver=null) {
 if($subver!=null) { 
 	if($withver!=null) {
 		return $proname." ".$withver." ".$prever." ".$subver; }
@@ -52,7 +52,7 @@ $iDBURL1 = "<a href=\"http://idb.berlios.de/\" onclick=\"window.open(this.href);
 $DF2kURL1 = "<a href=\"http://df2k.berlios.de/\" onclick=\"window.open(this.href);return false;\">"; $DF2kURL2 = $DF2kURL1.$DF2k."</a>";
 $GM2kURL = "<a href=\"http://upload.idb.s1.jcink.com/\" title=\"".$GM2k."\" onclick=\"window.open(this.href);return false;\">".$GM2k."</a>";
 $iDBURL3 = "<a href=\"http://idb.everywebhost.com/\" title=\"".$iDB."\" onclick=\"window.open(this.href);return false;\">".$iDB."</a>";
-$PHPQA = "PHP-Quick-Arcade"; $VER1 = "0.1.4"; $VER2 = "Pre-Alpha 4"; $VER3 = "PA 4"; 
+$PHPQA = "PHP-Quick-Arcade"; $VER1 = "0.1.4"; $VER2 = "Pre-Alpha 4"; $VER3 = "PA 4"; $SubVerN = "29";
 $PHPV1 = @phpversion(); $PHPV2 = "PHP ".$PHPV1; $OSType = PHP_OS;
 if($OSType=="WINNT") { $OSType="Windows NT"; } if($OSType=="WIN32") { $OSType="Windows 9x"; }
 $OSType2 = $PHPV2." / ".$OSType; $ZENDV1 = @zend_version(); $ZENDV2 = "Zend engine ".$ZENDV1;
@@ -302,6 +302,12 @@ function file_get_source($filename,$return = FALSE) {
 // Acts like highlight_file();
 $phpsrc = file_get_contents($filename);
 $phpsrcs = highlight_string($phpsrc,$return);
+return $phpsrcs; }
+function valid_get_source($filename) {
+$phpsrcs = file_get_source($filename,TRUE);
+// Change font tag to span tag for valid xhtml
+$phpsrcs = preg_replace("/\<font color=\"(.*?)\"\>/i", "<span style=\"color: \\1;\">", $phpsrcs);
+$phpsrcs = preg_replace("/\<\/font>/i", "</span>", $phpsrcs);
 return $phpsrcs; }
 function GetUserName($idu,$sqlt) {
 $gunquery = query("select * from ".$sqlt."members where id=%i", array($idu));

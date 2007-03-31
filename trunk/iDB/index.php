@@ -13,7 +13,7 @@
 */
 require('preindex.php');
 $usefileext = $Settings['file_ext'];
-if($usefileext=="noext") { $usefileext = ""; }
+if($ext=="noext"||$ext=="no ext"||$ext=="no+ext") { $usefileext = ""; }
 $filewpath = $exfile['index'].$usefileext.$_SERVER['PATH_INFO'];
 if($Settings['html_type']=="html4") { ?>
 <link rel="alternate" type="application/rss+xml" title="Board RSS Feed" href="<?php echo url_maker($exfile['rss'],$Settings['rss_ext'],"act=boardrss",$Settings['qstr'],$Settings['qsep'],$prexqstr['rss'],$exqstr['rss']); ?>">

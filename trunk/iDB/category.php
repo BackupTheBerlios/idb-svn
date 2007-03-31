@@ -13,7 +13,7 @@
 */
 require('preindex.php');
 $usefileext = $Settings['file_ext'];
-if($usefileext=="noext") { $usefileext = ""; }
+if($ext=="noext"||$ext=="no ext"||$ext=="no+ext") { $usefileext = ""; }
 $filewpath = $exfile['category'].$usefileext.$_SERVER['PATH_INFO'];
 if(!is_numeric($_GET['id']))
 { $_GET['id']="1"; }

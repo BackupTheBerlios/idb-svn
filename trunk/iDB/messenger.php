@@ -13,7 +13,7 @@
 */
 require('preindex.php');
 $usefileext = $Settings['file_ext'];
-if($usefileext=="noext") { $usefileext = ""; }
+if($ext=="noext"||$ext=="no ext"||$ext=="no+ext") { $usefileext = ""; }
 $filewpath = $exfile['messenger'].$usefileext.$_SERVER['PATH_INFO'];
 ?>
 

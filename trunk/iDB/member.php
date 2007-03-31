@@ -12,6 +12,8 @@
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 */
 require('preindex.php');
+$usefileext = $Settings['file_ext'];
+if($ext=="noext"||$ext=="no ext"||$ext=="no+ext") { $usefileext = ""; }
 $filewpath = $exfile['member'].$Settings['file_ext'].$_SERVER['PATH_INFO'];
 if($_GET['act']==null) { $_GET['act'] = "login"; }
 ?>

@@ -36,10 +36,7 @@ require($SettDir['misc']."compression.php");
 function version_info($proname,$prever,$subver=null,$withver=null,$svnver=null) {
 if($subver!=null) { 
 	if($withver!=null) {
-		if($svnver!=null) {
-			return $proname." ".$withver." ".$prever." ".$subver; }
-		if($withver!=null) {
-			return $proname." ".$withver." ".$prever." ".$subver; }
+		return $proname." ".$withver." ".$prever." ".$subver; }
 	if($withver==null) {
 		return $proname." ".$prever." ".$subver; } }
 if($subver==null) { 
@@ -55,7 +52,7 @@ $iDBURL1 = "<a href=\"http://idb.berlios.de/\" onclick=\"window.open(this.href);
 $DF2kURL1 = "<a href=\"http://df2k.berlios.de/\" onclick=\"window.open(this.href);return false;\">"; $DF2kURL2 = $DF2kURL1.$DF2k."</a>";
 $GM2kURL = "<a href=\"http://upload.idb.s1.jcink.com/\" title=\"".$GM2k."\" onclick=\"window.open(this.href);return false;\">".$GM2k."</a>";
 $iDBURL3 = "<a href=\"http://idb.everywebhost.com/\" title=\"".$iDB."\" onclick=\"window.open(this.href);return false;\">".$iDB."</a>";
-$PHPQA = "PHP-Quick-Arcade"; $VER1 = "0.1.4"; $VER2 = "Pre-Alpha SVN 30"; $VER3 = "PA SVN 30"; $SubVerN = "30";
+$PHPQA = "PHP-Quick-Arcade"; $VER1 = "0.1.4"; $VER2 = "Pre-Alpha SVN 31"; $VER3 = "PA SVN 31"; $SubVerN = "31";
 $PHPV1 = @phpversion(); $PHPV2 = "PHP ".$PHPV1; $OSType = PHP_OS;
 if($OSType=="WINNT") { $OSType="Windows NT"; } if($OSType=="WIN32") { $OSType="Windows 9x"; }
 $OSType2 = $PHPV2." / ".$OSType; $ZENDV1 = @zend_version(); $ZENDV2 = "Zend engine ".$ZENDV1;

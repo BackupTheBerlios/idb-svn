@@ -37,7 +37,7 @@ require_once($SettDir['inc'].'filename.php');
 require_once($SettDir['inc'].'function.php');
 @mrstring(); // Change Path info to Get Vars :P
 require_once($SettDir['misc'].'setcheck.php');
-/* Change Some PHP Settings Fix the & to &amp; */
+@ini_set("default_charset",$Settings['charset']);
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
 $File3Name=str_replace($File1Name, null, $File2Name);

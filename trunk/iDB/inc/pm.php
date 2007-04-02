@@ -22,7 +22,7 @@ if ($File3Name=="pm.php"||$File3Name=="/pm.php") {
 <tr style="width: 100%; vertical-align: top;">
 	<td style="width: 15%; vertical-align: top;">
 	<div class="Table1Border">
-	<table class="Table1" style="width: 100%; float: left; vertical-align: top;">
+	<table id="MessengerLinks" class="Table1" style="width: 100%; float: left; vertical-align: top;">
 <tr class="TableRow1">
 <td class="TableRow1"><?php echo $ThemeSet['TitleIcon'] ?>Messenger</td>
 </tr><tr class="TableRow2">

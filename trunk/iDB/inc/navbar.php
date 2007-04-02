@@ -28,15 +28,15 @@ $SentPMNumber=mysql_num_rows($pmresult2);
 @mysql_free_result($pmresult2); }
 ?>
 <div class="NavBorder">
-<table class="NavBar1">
+<table id="NavBarTable" class="NavBar1">
 <tr class="NavBar2">
-<td class="NavBar2"><?php echo $ThemeSet['PreLogo']; ?>
+<td id="NavBarLogo" class="NavBar2"><?php echo $ThemeSet['PreLogo']; ?>
 <a title="<?php echo $Settings['board_name'].$idbpowertitle; ?>" href="<?php echo url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); ?>">
 <?php echo $ThemeSet['Logo']; ?></a>
 <?php echo $ThemeSet['SubLogo']; ?></td>
 </tr>
 <tr class="NavBar3">
-<td class="NavBar3"><span style="float: left;">&nbsp;<?php if($_SESSION['UserGroup']==$Settings['GuestGroup']) {?>Welcome Guest ( <a href="<?php echo url_maker($exfile['member'],$Settings['file_ext'],"act=login",$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); ?>">Log in</a><?php echo $ThemeSet['LineDivider']; ?><a href="<?php echo url_maker($exfile['member'],$Settings['file_ext'],"act=signup",$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); ?>">Register</a> )<?php } if($_SESSION['UserGroup']!=$Settings['GuestGroup']) { ?>Logged as: <a href="<?php echo url_maker($exfile['member'],$Settings['file_ext'],"act=view&id=".$_SESSION['UserID'],$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); ?>"><?php echo $_SESSION['MemberName']; ?></a> ( <a href="<?php echo url_maker($exfile['member'],$Settings['file_ext'],"act=logout",$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); ?>">Log out</a> )<?php } ?></span>
+<td id="NavBarLinks" class="NavBar3"><span style="float: left;">&nbsp;<?php if($_SESSION['UserGroup']==$Settings['GuestGroup']) {?>Welcome Guest ( <a href="<?php echo url_maker($exfile['member'],$Settings['file_ext'],"act=login",$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); ?>">Log in</a><?php echo $ThemeSet['LineDivider']; ?><a href="<?php echo url_maker($exfile['member'],$Settings['file_ext'],"act=signup",$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); ?>">Register</a> )<?php } if($_SESSION['UserGroup']!=$Settings['GuestGroup']) { ?>Logged as: <a href="<?php echo url_maker($exfile['member'],$Settings['file_ext'],"act=view&id=".$_SESSION['UserID'],$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); ?>"><?php echo $_SESSION['MemberName']; ?></a> ( <a href="<?php echo url_maker($exfile['member'],$Settings['file_ext'],"act=logout",$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); ?>">Log out</a> )<?php } ?></span>
 <span style="float: right;"><?php if($_SESSION['UserGroup']!=$Settings['GuestGroup']) { ?><a href="<?php echo url_maker($exfile['profile'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['profile'],$exqstr['profile']); ?>">Profile</a><?php echo $ThemeSet['LineDivider']; ?><a href="<?php echo url_maker($exfile['messenger'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['messenger'],$exqstr['messenger']); ?>">MailBox(<?php echo $PMNumber; ?>)</a><?php echo $ThemeSet['LineDivider']; ?><?php } ?><a href="<?php echo url_maker($exfile['member'],$Settings['file_ext'],"act=list",$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); ?>">Members</a><?php echo $ThemeSet['LineDivider']; ?><a href="<?php echo url_maker($exfile['calendar'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['calendar'],$exqstr['calendar']); ?>">Calendar</a>&nbsp;</span></td>
 </tr>
 </table></div>

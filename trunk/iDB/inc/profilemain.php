@@ -21,7 +21,7 @@ if ($File3Name=="profilemain.php"||$File3Name=="/profilemain.php") {
 <table class="Table3">
 <tr style="width: 100%; vertical-align: top;">
 	<td style="width: 15%; vertical-align: top;">
-	<table class="Table1" style="width: 100%; float: left; vertical-align: top;">
+	<table id="ProfileLinks" class="Table1" style="width: 100%; float: left; vertical-align: top;">
 <tr class="TableRow1">
 <td class="TableRow1"><?php echo $ThemeSet['TitleIcon'] ?>Profile Settings</td>
 </tr><tr class="TableRow2">

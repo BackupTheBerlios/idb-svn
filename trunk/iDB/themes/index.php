@@ -10,6 +10,8 @@
 
     Copyright 2004-2006 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2006 Game Maker 2k - http://cooldude2k.co.funpic.org/
+
+    $FileInfo: index.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
 */
 header('Location: ../index.php');
 ?>

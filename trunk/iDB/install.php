@@ -11,6 +11,8 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
     iDB Installer made by Game Maker 2k - http://upload.idb.s1.jcink.com/
+
+    $FileInfo: install.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
 */
 @error_reporting(E_ALL ^ E_NOTICE); unset($preact['idb']);
 if ($_GET['act']!="Part4"&&$_POST['act']!="Part4") {
@@ -23,7 +25,7 @@ $ConvertDir['setup'] = "setup/"; $ConvertDir['convert'] = "setup/convert/";
 require($SetupDir['convert'].'info.php');
 unset($Error); ?>
 
-<title> <?php echo "Installing ".version_info("iDB",$VER1,$VER3)." on ".$OSType2; ?> </title>
+<title> <?php echo "Installing ".$VerInfo['iDB_Ver_Show']." on ".$OSType2; ?> </title>
 </head>
 <body>
 <?php require($SettDir['inc'].'navbar.php'); ?>
@@ -31,7 +33,7 @@ unset($Error); ?>
 <table class="Table1">
 <tr class="TableRow1">
 <td class="TableRow1" colspan="2"><span style="float: left;">
-&nbsp;<a href="Install.php">Install <?php echo version_info("iDB",$VER1,$VER3)." on ".$OSType2; ?> </a></span>
+&nbsp;<a href="Install.php">Install <?php echo $VerInfo['iDB_Ver_Show']." on ".$OSType2; ?> </a></span>
 <span style="float: right;">&nbsp;</span></td>
 </tr>
 <tr class="TableRow2" colspan="2">

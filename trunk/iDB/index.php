@@ -10,18 +10,16 @@
 
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
+
+    $FileInfo: index.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
 */
 require('preindex.php');
 $usefileext = $Settings['file_ext'];
 if($ext=="noext"||$ext=="no ext"||$ext=="no+ext") { $usefileext = ""; }
 $filewpath = $exfile['index'].$usefileext.$_SERVER['PATH_INFO'];
-if($Settings['html_type']=="html4") { ?>
-<link rel="alternate" type="application/rss+xml" title="Board RSS Feed" href="<?php echo url_maker($exfile['rss'],$Settings['rss_ext'],"act=boardrss",$Settings['qstr'],$Settings['qsep'],$prexqstr['rss'],$exqstr['rss']); ?>">
-<link rel="alternate" type="application/rss+xml" title="Category RSS Feed" href="<?php echo url_maker($exfile['rss'],$Settings['rss_ext'],"act=categoryrss&subid=0",$Settings['qstr'],$Settings['qsep'],$prexqstr['rss'],$exqstr['rss']); ?>">
-<?php } if($Settings['html_type']!="html4") { ?>
+?>
 <link rel="alternate" type="application/rss+xml" title="Board RSS Feed" href="<?php echo url_maker($exfile['rss'],$Settings['rss_ext'],"act=boardrss",$Settings['qstr'],$Settings['qsep'],$prexqstr['rss'],$exqstr['rss']); ?>" />
 <link rel="alternate" type="application/rss+xml" title="Category RSS Feed" href="<?php echo url_maker($exfile['rss'],$Settings['rss_ext'],"act=categoryrss&subid=0",$Settings['qstr'],$Settings['qsep'],$prexqstr['rss'],$exqstr['rss']); ?>" />
-<?php } echo "\n"; ?>
 <title> <?php echo $Settings['board_name'].$idbpowertitle; ?> </title>
 </head>
 <body>

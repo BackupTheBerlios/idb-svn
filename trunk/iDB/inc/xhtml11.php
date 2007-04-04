@@ -10,11 +10,13 @@
 
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
+
+    $FileInfo: xhtml11.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
 $File3Name=str_replace($File1Name, null, $File2Name);
-if ($File3Name=="html4.php"||$File3Name=="/html4.php") {
+if ($File3Name=="xhtml11.php"||$File3Name=="/xhtml11.php") {
 	require('index.php');
 	exit(); }
 if($Settings['output_type']!="xhtml") {
@@ -41,7 +43,7 @@ if($Settings['output_type']!="xhtml") {
 if($Settings['showverinfo']!=true) {
 $iDBURL1 = "<a href=\"http://idb.berlios.de/\" title=\"".$iDB."\" onclick=\"window.open(this.href);return false;\">"; }
 if($Settings['showverinfo']!=false) {
-$iDBURL1 = "<a href=\"http://idb.berlios.de/\" title=\"".version_info("iDB",$VER1,$VER3,"v.")."\" onclick=\"window.open(this.href);return false;\">"; }
+$iDBURL1 = "<a href=\"http://idb.berlios.de/\" title=\"".$VerInfo['iDB_Ver_Show']."\" onclick=\"window.open(this.href);return false;\">"; }
 $GM2kURL = "<a href=\"http://upload.idb.s1.jcink.com/\" title=\"".$GM2k."\" onclick=\"window.open(this.href);return false;\">".$GM2k."</a>";
 $cryear = date("Y"); if($cryear<=2007) { $cryear = "2007"; }
 $endpagevar = "<div class=\"copyright\">Powered by ".$iDBURL1."iDB</a> &copy; ".$GM2kURL." @ 2004 - ".$cryear." <a href=\"".url_maker($exfile['index'],$Settings['file_ext'],"act=bsd",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'])."\" title=\"iDB is licensed under the Revised BSD License\">BSDL</a> <br />\n".$ThemeSet['CopyRight'];
@@ -74,7 +76,7 @@ if($Settings['html_level']!="Math") {
 <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $Settings['charset']; ?>" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <base href="<?php echo $BoardURL; ?>" />
-<meta name="Generator" content="<?php echo version_info("iDB",$VER1,$VER3); ?>" />
+<meta name="Generator" content="<?php echo $VerInfo['iDB_Ver_Show']; ?>" />
 <meta name="Author" content="<?php echo $SettInfo['Author']; ?>" />
 <meta name="Keywords" content="<?php echo $SettInfo['Keywords']; ?>" />
 <meta name="Description" content="<?php echo $SettInfo['Description']; ?>" />

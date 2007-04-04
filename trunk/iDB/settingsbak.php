@@ -11,6 +11,8 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
     iDB Installer made by Game Maker 2k - http://upload.idb.s1.jcink.com/
+
+    $FileInfo: settingsbak.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
 */
 /*	You Need to install iDB. Run install.php	*/
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";

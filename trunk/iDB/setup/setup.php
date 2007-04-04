@@ -11,6 +11,8 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
     iDB Installer made by Game Maker 2k - http://s1.jcink.com/s/host/idb/
+
+    $FileInfo: setup.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -91,7 +93,6 @@ fclose($fp);
 	<td style="width: 50%;"><select size="1" class="TextBox" name="HTMLType" id="HTMLType">
 	<option value="xhtml10">XHTML 1.0</option>
 	<option value="xhtml11">XHTML 1.1</option>
-	<option value="html4">HTML 4.01</option>
 	</select></td>
 </tr><tr>
 	<td style="width: 50%;"><label class="TextBoxLabel" for="HTMLLevel">HTML level only for XHTML 1.0/HTML 4.01:</label></td>

@@ -1,4 +1,18 @@
 <?php
+/*
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the Revised BSD License.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    Revised BSD License for more details.
+
+    Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
+    Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
+
+    $FileInfo: setcheck.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
+*/
 if($Settings['DefaultTheme']==null) {
 	$Settings['DefaultTheme'] = "iDB"; }
 if($Settings['DefaultTimeZone']==null) {
@@ -58,6 +72,8 @@ if($Settings['fixpathinfo']==null) {
 	$Settings['fixpathinfo'] = false; }
 if($Settings['fixbasedir']==null) {
 	$Settings['fixbasedir'] = false; }
+if($Settings['html_type']=="html4") { 
+	$Settings['html_type'] = "html10"; }
 if ($_GET['act']=="iDBInfo") { @header('Location: http://developer.berlios.de/projects/idb/'); }
 if ($_GET['act']=="iDBSite") { @header('Location: http://idb.berlios.de/'); }
 if ($_GET['act']=="GM2kSite") { @header('Location: http://upload.idb.s1.jcink.com/'); }

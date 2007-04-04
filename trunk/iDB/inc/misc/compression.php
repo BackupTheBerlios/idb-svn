@@ -12,6 +12,8 @@
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
     GZip and Zlib by Jean-loup Gailly (compression) and Mark Adler (decompression) http://www.zlib.net/
 	BZip2 and libbzip2 by Julian Seward http://www.bzip.org/
+
+    $FileInfo: compression.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];

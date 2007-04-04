@@ -10,6 +10,8 @@
 
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
+
+    $FileInfo: rss3.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -81,7 +83,7 @@ $Atom .= '<entry>'."\n".'<title>'.htmlentities($CategoryName).'</title>'."\n".'<
 $RSS .= '<item>'."\n".'<title>'.htmlentities($CategoryName).'</title>'."\n".'<description>'.htmlentities($CategoryDescription).'</description>'."\n".'<link>'.$BoardURL.url_maker($exfilerss['category'],$Settings['file_ext'],"act=view&id=".$CategoryID,$Settings['qstr'],$Settings['qsep'],$prexqstrrss['category'],$exqstrrss['category']).'</link>'."\n".'<guid>'.$BoardURL.url_maker($exfilerss['category'],$Settings['file_ext'],"act=view&id=".$CategoryID,$Settings['qstr'],$Settings['qsep'],$prexqstrrss['category'],$exqstrrss['category']).'</guid>'."\n".'</item>'."\n";
 ++$prei1; } @mysql_free_result($preresult1); ?>
 <?php xml_doc_start("1.0",$Settings['charset']); ?>
-<!-- generator="<?php echo version_info("iDB",$VER1,$VER3); ?>" -->
+<!-- generator="<?php echo $VerInfo['iDB_Ver_Show']; ?>" -->
 <?php if($_GET['feedtype']=="rss") { ?>
 <rss version="2.0">
   <channel>
@@ -89,7 +91,7 @@ $RSS .= '<item>'."\n".'<title>'.htmlentities($CategoryName).'</title>'."\n".'<de
    <description>RSS Feed of the Categorys on Board <?php echo $boardsname; ?></description>
    <link><?php echo $BoardURL; ?></link>
    <language>en-us</language>
-   <generator><?php echo version_info("iDB",$VER1,$VER3); ?></generator>
+   <generator><?php echo $VerInfo['iDB_Ver_Show']; ?></generator>
    <copyright>Game Maker 2k</copyright>
    <ttl>120</ttl>
    <image>
@@ -106,7 +108,7 @@ $RSS .= '<item>'."\n".'<title>'.htmlentities($CategoryName).'</title>'."\n".'<de
    <link rel="self" href="<?php echo $feedsname; ?>" />
    <id><?php echo $BoardURL; ?></id>
    <updated><?php echo gmdate("Y-m-d\TH:i:s\Z"); ?></updated>
-   <generator><?php echo version_info("iDB",$VER1,$VER3); ?></generator>
+   <generator><?php echo $VerInfo['iDB_Ver_Show']; ?></generator>
   <icon><?php echo $BoardURL; ?>inc/rss/rss.gif</icon>
  <?php echo "\n".$Atom."\n"; ?>
 </feed>

@@ -10,6 +10,8 @@
 
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
+
+    $FileInfo: functions.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -33,17 +35,17 @@ if ($File3Name==$FileName||$File3Name=="/".$FileName) {
 	return true; } }
 CheckFile("functions.php");
 require($SettDir['misc']."compression.php");
-function version_info($proname,$prever,$subver=null,$withver=null,$svnver=null) {
-if($subver!=null) { 
-	if($withver!=null) {
-		return $proname." ".$withver." ".$prever." ".$subver; }
-	if($withver==null) {
-		return $proname." ".$prever." ".$subver; } }
-if($subver==null) { 
-	if($withver!=null) {
-		return $proname." ".$withver." ".$prever; }
-	if($withver==null) {
-		return $proname." ".$prever; } } }
+function version_info($proname,$subver,$ver,$supver,$reltype,$svnver,$showsvn) {
+	$return_var = $proname." ".$reltype." ".$subver.".".$ver.".".$supver;
+	if($showsvn==true) { $return_var .= " SVN ".$svnver; }
+	return $return_var; }
+$VER1[0] = 0; $VER1[1] = 1; $VER1[2] = 4; $VERFull[1] = $VER1[0].".".$VER1[1].".".$VER1[2];
+$VER2[0] = "Pre-Alpha"; $VER2[1] = "PA"; $VER2[2] = "SVN"; $SubVerN = 33;
+$VerInfo['iDB_Ver'] = version_info("iDB",$VER1[0],$VER1[1],$VER1[2],$VER2[1],$SubVerN,false);
+$VerInfo['iDB_Ver_SVN'] = version_info("iDB",$VER1[0],$VER1[1],$VER1[2],$VER2[1],$SubVerN,true);
+$VerInfo['iDB_Full_Ver'] = version_info("iDB",$VER1[0],$VER1[1],$VER1[2],$VER2[0],$SubVerN,false);
+$VerInfo['iDB_Full_Ver_SVN'] = version_info("iDB",$VER1[0],$VER1[1],$VER1[2],$VER2[0],$SubVerN,true);
+$VerInfo['iDB_Ver_Show'] = $VerInfo['iDB_Ver_SVN']; $VerInfo['iDB_Full_Ver_Show'] = $VerInfo['iDB_Full_Ver_SVN'];
 if(isset($Settings['showverinfo'])) { $idbmisc['showverinfo'] = $Settings['showverinfo']; }
 if(!isset($Settings['showverinfo'])) { $idbmisc['showverinfo'] = false; }
 $CD2k = "Cool Dude 2k"; $GM2k = "Game Maker 2k";
@@ -52,13 +54,12 @@ $iDBURL1 = "<a href=\"http://idb.berlios.de/\" onclick=\"window.open(this.href);
 $DF2kURL1 = "<a href=\"http://df2k.berlios.de/\" onclick=\"window.open(this.href);return false;\">"; $DF2kURL2 = $DF2kURL1.$DF2k."</a>";
 $GM2kURL = "<a href=\"http://upload.idb.s1.jcink.com/\" title=\"".$GM2k."\" onclick=\"window.open(this.href);return false;\">".$GM2k."</a>";
 $iDBURL3 = "<a href=\"http://idb.everywebhost.com/\" title=\"".$iDB."\" onclick=\"window.open(this.href);return false;\">".$iDB."</a>";
-$PHPQA = "PHP-Quick-Arcade"; $VER1 = "0.1.4"; $VER2 = "Pre-Alpha SVN 32"; $VER3 = "PA SVN 32"; $SubVerN = "32";
-$PHPV1 = @phpversion(); $PHPV2 = "PHP ".$PHPV1; $OSType = PHP_OS;
+$PHPQA = "PHP-Quick-Arcade"; $PHPV1 = @phpversion(); $PHPV2 = "PHP ".$PHPV1; $OSType = PHP_OS;
 if($OSType=="WINNT") { $OSType="Windows NT"; } if($OSType=="WIN32") { $OSType="Windows 9x"; }
 $OSType2 = $PHPV2." / ".$OSType; $ZENDV1 = @zend_version(); $ZENDV2 = "Zend engine ".$ZENDV1;
 if($idbmisc['showverinfo']==true) {
-@header("X-iDB-Powered-By: ".version_info("iDB",$VER1,$VER3));
-@header("Generator: ".version_info("iDB",$VER1,$VER3)); }
+@header("X-iDB-Powered-By: ".$VerInfo['iDB_Ver_Show']);
+@header("Generator: ".$VerInfo['iDB_Ver_Show']); }
 if($idbmisc['showverinfo']!=true) {
 @header("X-iDB-Powered-By: iDB");
 //@header("X-Powered-By: PHP");

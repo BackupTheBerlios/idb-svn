@@ -55,21 +55,9 @@ if($Settings['idburl']=="localhost"||$Settings['idburl']==null) {
 	$BoardURL = $prehost.$_SERVER["HTTP_HOST"].$basedir; }
 if($Settings['idburl']!="localhost"&&$Settings['idburl']!=null) {
 	$BoardURL = $Settings['idburl']; }
-if($Settings['html_level']!="Math") {
-	if($Settings['html_level']!="Math-Svg") {
-		$Settings['html_level'] = "Strict"; } }
 ?>
-<?php if($Settings['html_level']=="Math") { ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN"
-   "http://www.w3.org/Math/DTD/mathml2/xhtml-math11-f.dtd">
-<?php } if($Settings['html_level']=="Math-Svg") { ?>
-<!DOCTYPE html PUBLIC
-    "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN"
-    "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd">
-<?php } if($Settings['html_level']=="Strict") { ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<?php } ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <meta http-equiv="Content-Language" content="en" />

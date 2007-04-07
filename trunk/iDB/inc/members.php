@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: members.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
+    $FileInfo: members.php - Last Update: 04/07/2007 SVN 37 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -473,7 +473,7 @@ echo "<option value=\"".$plusi."\">GMT + ".$plusi.":00 hours</option>\n"; }
 <textarea rows="10" cols="58" id="TOSBox" name="TOSBox" class="TextBox" readonly="readonly" accesskey="T"><?php 
 	echo file_get_contents("TOS");	?></textarea><br />
 <input type="checkbox" class="TextBox" name="TOS" value="Agree" id="TOS" /><label class="TextBoxLabel" for="TOS">I Agree</label><br/>
-<input type="hidden" class="HiddenTextBox" style="display: none;" name="act" value="makemembers" />
+<input type="hidden" style="display: none;" name="act" value="makemembers" />
 <input type="submit" class="Button" value="Sign UP" />
 </td></tr></table>
 </form>

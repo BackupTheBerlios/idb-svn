@@ -11,7 +11,7 @@
     Copyright 2004-2006 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2006 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: settings.php - Last Update: 04/06/2007 SVN 36 - Author: cooldude2k $
+    $FileInfo: settings.php - Last Update: 04/07/2007 SVN 37 - Author: cooldude2k $
 */
 $ThemeSet = array();
 $ThemeSet['ThemeName'] = "iDB Theme";
@@ -30,15 +30,15 @@ $ThemeSet['CopyRight'] = $ThemeSet['ThemeName']." Theme was made by <a href=\"".
 $ThemeSet['Toggle'] = "[&#35;]";
 $ThemeSet['ToggleExt'] = null;
 $ThemeSet['TopicIcon'] = "<div style=\"text-align: center;\" title=\"Topic!\">[T]</div>";
-$ThemeSet['HotTopic'] = "<div style=\"text-align: center;\" title=\"Hot Topic!\">[T]</div>";
+$ThemeSet['HotTopic'] = "<div style=\"text-align: center; font-weight: bold;\" title=\"Hot Topic!\">[T]</div>";
 $ThemeSet['PinTopic'] = "<div style=\"text-align: center;\" title=\"Pinned Topic!\">[P]</div>";
-$ThemeSet['HotPinTopic'] = "<div style=\"text-align: center;\" title=\"Hot Pinned Topic!\">[P]</div>";
-$ThemeSet['ClosedTopic'] = "<div style=\"text-align: center;\" title=\"Closed Topic!\">[C]</div>";
-$ThemeSet['HotClosedTopic'] = "<div style=\"text-align: center;\" title=\"Hot Closed Topic!\">[C]</div>";
-$ThemeSet['PinClosedTopic'] = "<div style=\"text-align: center;\" title=\"Closed Pinned Topic!\">[C]</div>";
-$ThemeSet['HotPinClosedTopic'] = "<div style=\"text-align: center;\" title=\"Hot Closed Pinned Topic!\">[C]</div>";
-$ThemeSet['MessageRead'] = "<div style=\"text-align: center;\"><img src=\"themes/iDB/topic.gif\" alt=\"Message!\" title=\"Message!\" /></div>";
-$ThemeSet['MessageUnread'] = "<div style=\"text-align: center;\"><img src=\"themes/iDB/pin.gif\" alt=\"New Message!\" title=\"New Message!\" /></div>";
+$ThemeSet['HotPinTopic'] = "<div style=\"text-align: center; font-weight: bold;\" title=\"Hot Pinned Topic!\">[P]</div>";
+$ThemeSet['ClosedTopic'] = "<div style=\"text-align: center; text-decoration: line-through;\" title=\"Closed Topic!\">[T]</div>";
+$ThemeSet['HotClosedTopic'] = "<div style=\"text-align: center; text-decoration: line-through; font-weight: bold;\" title=\"Hot Closed Topic!\">[T]</div>";
+$ThemeSet['PinClosedTopic'] = "<div style=\"text-align: center; text-decoration: line-through;\" title=\"Closed Pinned Topic!\">[P]</div>";
+$ThemeSet['HotPinClosedTopic'] = "<div style=\"text-align: center; text-decoration: line-through; font-weight: bold;\" title=\"Hot Closed Pinned Topic!\">[P]</div>";
+$ThemeSet['MessageRead'] = "<div style=\"text-align: center;\" title=\"Message!\">[M]</div>";
+$ThemeSet['MessageUnread'] = "<div style=\"text-align: center; font-weight: bold;\" title=\"New Message!\">[M]</div>";
 $ThemeSet['Profile'] = "Profile";
 $ThemeSet['WWW'] = "WWW";
 $ThemeSet['PM'] = "PM";

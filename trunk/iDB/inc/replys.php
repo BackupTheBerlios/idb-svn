@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: replys.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
+    $FileInfo: replys.php - Last Update: 04/08/2007 SVN 38 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -31,7 +31,7 @@ $ViewTimes=mysql_result($preresult,$prei,"NumViews");
 <table style="width: 100%;" class="Table2">
 <tr>
  <td style="width: 20%; text-align: left;">&nbsp;</td>
- <td style="width: 80%; text-align: right;"><a href="#Act/Reply"><?php echo $ThemeSet['AddReply']; ?></a><?php echo $ThemeSet['LineDividerTopic']; ?><a href="#Act/Topic"><?php echo $ThemeSet['NewTopic']; ?></a></td>
+ <td style="width: 80%; text-align: right;"><a href="#Act/Reply"><?php echo $ThemeSet['AddReply']; ?></a><?php echo $ThemeSet['ButtonDivider']; ?><a href="#Act/Topic"><?php echo $ThemeSet['NewTopic']; ?></a></td>
 </tr>
 </table>
 <div>&nbsp;</div>
@@ -139,7 +139,7 @@ Joined: <?php echo $User1Joined; ?><br /><br />
 <table class="Table2" style="width: 100%;">
 <tr>
  <td style="width: 20%; text-align: left;">&nbsp;</td>
- <td style="width: 80%; text-align: right;"><a href="#Act/Reply"><?php echo $ThemeSet['AddReply']; ?></a><?php echo $ThemeSet['LineDividerTopic']; ?><a href="#Act/Reply"><?php echo $ThemeSet['FastReply']; ?></a><?php echo $ThemeSet['LineDividerTopic']; ?><a href="#Act/Topic"><?php echo $ThemeSet['NewTopic']; ?></a></td>
+ <td style="width: 80%; text-align: right;"><a href="#Act/Reply"><?php echo $ThemeSet['AddReply']; ?></a><?php echo $ThemeSet['ButtonDivider']; ?><a href="#Act/Reply"><?php echo $ThemeSet['FastReply']; ?></a><?php echo $ThemeSet['ButtonDivider']; ?><a href="#Act/Topic"><?php echo $ThemeSet['NewTopic']; ?></a></td>
 </tr>
 </table>
 <div>&nbsp;</div>

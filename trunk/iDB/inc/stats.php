@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: stats.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
+    $FileInfo: stats.php - Last Update: 04/08/2007 SVN 38 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -19,8 +19,13 @@ $File3Name=str_replace($File1Name, null, $File2Name);
 if ($File3Name=="stats.php"||$File3Name=="/stats.php") {
 	require('index.php');
 	exit(); }
-if($_GET['act']=="view"||$_GET['act']=="stats") {
+if($_GET['act']=="view"||$_GET['act']=="stats") { $toggle = null; 
+$togglecode = "<span style=\"float: right;\">&nbsp;</span>";
+if($ThemeSet['EnableToggle']==true) {
 $toggle = "toggletag('Stats1'),toggletag('Stats2'),toggletag('Stats3');return false;";
+$togglecode = "<span style=\"float: right;\"><a href=\"".$filewpath."#Toggle\" onclick=\"".$toggle."\">".$ThemeSet['Toggle']."</a>".$ThemeSet['ToggleExt']."</span>"; }
+if($ThemeSet['EnableToggle']==false) { $toggle = null;
+$togglecode = "<span style=\"float: right;\">&nbsp;</span>"; }
 $ntquery = query("select * from ".$Settings['sqltable']."topics", array(null));
 $ntresult = mysql_query($ntquery);
 $numtopics = mysql_num_rows($ntresult);
@@ -35,8 +40,8 @@ $nummembers = mysql_num_rows($nmresult);
 <table class="Table1">
 <tr class="TableRow1">
 <td class="TableRow1" colspan="2"><span style="float: left;">
-<?php echo $ThemeSet['TitleIcon'] ?><a id="bstats" href="<?php echo $filewpath; ?>#bstats">Board Statistics</a></span>
-<span style="float: right;"><a href="<?php echo $filewpath; ?>#Toggle<?php echo $CategoryID; ?>" onclick="<?php echo $toggle; ?>"><?php echo $ThemeSet['Toggle']; ?></a><?php echo $ThemeSet['ToggleExt']; ?></span></td>
+<?php echo $ThemeSet['TitleIcon']; ?><a id="bstats" href="<?php echo $filewpath; ?>#bstats">Board Statistics</a></span>
+<?php echo $togglecode; ?></td>
 </tr>
 <tr id="Stats1" class="TableRow2">
 <td class="TableRow2" colspan="2" style="width: 100%; font-weight: bold;">Board Stats</td>

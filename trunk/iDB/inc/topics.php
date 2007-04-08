@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: topics.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
+    $FileInfo: topics.php - Last Update: 04/08/2007 SVN 38 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -60,6 +60,8 @@ redirect("location",$basedir.url_maker($exfile['index'],$Settings['file_ext'],"a
 if($ForumCheck!="skip") {
 if($ForumType=="subforum") {
 redirect("location",$basedir.url_maker($exfile['subforum'],$Settings['file_ext'],"act=".$_GET['act']."&id=".$_GET['id'],$Settings['qstr'],$Settings['qsep'],$prexqstr['subforum'],$exqstr['subforum'],FALSE)); } }
+$toggle=""; $togglecode = "<span style=\"float: right;\">&nbsp;</span>";
+if($ThemeSet['EnableToggle']==true) {
 /*	Toggle Code	*/
 $query2 = query("select * from ".$Settings['sqltable']."topics where ForumID=%s ORDER BY ID", array($_GET['id']));
 $result2=mysql_query($query2);
@@ -78,11 +80,14 @@ $toggle=$toggle."toggletag('Forum".$_GET['id']."'),toggletag('ForumEnd');return 
 ++$i2; }
 if($toggle==null) { $toggle="toggletag('Forum".$_GET['id']."'),toggletag('ForumEnd');return false;"; }
 @mysql_free_result($result2);
+$togglecode = "<span style=\"float: right;\"><a href=\"".$filewpath."#Toggle".$ForumID."\" onclick=\"".$toggle."\">".$ThemeSet['Toggle']."</a>".$ThemeSet['ToggleExt']."</span>"; }
+if($ThemeSet['EnableToggle']==false) { $toggle="";
+$togglecode = "<span style=\"float: right;\">&nbsp;</span>"; }
 ?>
 <tr class="TableRow1">
 <td class="TableRow1" colspan="6"><span style="float: left;">
 <?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['forum'],$Settings['file_ext'],"act=view&id=".$ForumID,$Settings['qstr'],$Settings['qsep'],$prexqstr['forum'],$exqstr['forum']); ?>#<?php echo $ForumID; ?>" id="Toggle<?php echo $ForumID; ?>"><?php echo $ForumName; ?></a></span>
-<span style="float: right;"><a href="<?php echo $filewpath; ?>#Toggle<?php echo $ForumID; ?>" onclick="<?php echo $toggle; ?>"><?php echo $ThemeSet['Toggle']; ?></a><?php echo $ThemeSet['ToggleExt']; ?></span></td>
+<?php echo $togglecode; ?></td>
 </tr>
 <?php ++$prei; } @mysql_free_result($preresult); ?>
 <tr id="Forum<?php echo $ForumID; ?>" class="TableRow2">

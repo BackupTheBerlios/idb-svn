@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: subforums.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
+    $FileInfo: subforums.php - Last Update: 04/08/2007 SVN 38 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -58,6 +58,8 @@ $CategoryID=mysql_result($preresult,$prei,"ID");
 $CategoryName=mysql_result($preresult,$prei,"Name");
 $CategoryShow=mysql_result($preresult,$prei,"ShowCategory");
 $CategoryDescription=mysql_result($preresult,$prei,"Description");
+$toggle=""; $togglecode = "<span style=\"float: right;\">&nbsp;</span>";
+if($ThemeSet['EnableToggle']==true) {
 /*	Toggle Code	*/
 $query2 = query("select * from ".$Settings['sqltable']."forums where ShowForum='yes' and InSubForum=%i ORDER BY ID", array($_GET['id']));
 $result2=mysql_query($query2);
@@ -75,13 +77,17 @@ if ($i3==$num2) {
 $toggle=$toggle."toggletag('Cat".$CategoryID."'),toggletag('CatEnd".$CategoryID."');return false;"; }
 ++$i2; }
 @mysql_free_result($result2);
-if($toggle==null) { $toggle="toggletag('Cat".$CategoryID."'),toggletag('CatEnd".$CategoryID."');return false;"; } ?>
+$togglecode = "<span style=\"float: right;\"><a href=\"".$filewpath."#SubToggle".$CategoryID."\" onclick=\"".$toggle."\">".$ThemeSet['Toggle']."</a>".$ThemeSet['ToggleExt']."</span>"; }
+if($toggle==null) { $toggle="toggletag('Cat".$CategoryID."'),toggletag('CatEnd".$CategoryID."');return false;"; }
+if($ThemeSet['EnableToggle']==false) { $toggle="";
+$togglecode = "<span style=\"float: right;\">&nbsp;</span>"; }
+?>
 <div class="Table1Border">
 <table class="Table1">
 <tr class="TableRow1">
 <td class="TableRow1" colspan="5"><span style="float: left;">
 <?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['category'],$Settings['file_ext'],"act=view&id=".$CategoryID,$Settings['qstr'],$Settings['qsep'],$prexqstr['category'],$exqstr['category']); ?>" id="SubToggle<?php echo $CategoryID; ?>"><?php echo $CategoryName; ?></a></span>
-<span style="float: right;"><a href="<?php echo $filewpath; ?>#SubToggle<?php echo $CategoryID; ?>" onclick="<?php echo $toggle; ?>"><?php echo $ThemeSet['Toggle']; ?></a><?php echo $ThemeSet['ToggleExt']; ?></span></td>
+<?php echo $togglecode; ?></td>
 </tr>
 <?php
 $query = query("select * from ".$Settings['sqltable']."forums where (ShowForum='yes' and CategoryID=%i and InSubForum=%i) ORDER BY ID", array($CategoryID,$_GET['id']));

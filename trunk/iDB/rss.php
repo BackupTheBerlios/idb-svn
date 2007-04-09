@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: rss.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
+    $FileInfo: rss.php - Last Update: 04/09/2007 SVN 41 - Author: cooldude2k $
 */
 @error_reporting(E_ALL ^ E_NOTICE);
 if(@ini_get("register_globals")) {
@@ -23,6 +23,7 @@ if($SettDir['rss']==null) { $SettDir['rss'] = "inc/rss/"; }
 if($SettDir['admin']==null) { $SettDir['admin'] = "inc/admin/"; }
 if($SettDir['mod']==null) { $SettDir['mod'] = "inc/mod/"; }
 if($SettDir['themes']==null) { $SettDir['themes'] = "themes/"; }
+if($Settings['enable_rss']==true) {
 if($_GET['act']==null)
 {	$_GET['act']="boardrss";	}
 if($_GET['act']==null)
@@ -69,5 +70,5 @@ if($_GET['act']=="eventatom")
 	require($SettDir['rss'].'rss4.php'); $Feed['Feed']="Done";	}
 if($Feed['Feed']!="Done")
 {	$_GET['feedtype'] = "rss";
-	require($SettDir['rss'].'rss1.php'); $Feed['Feed']="Done";	}
+	require($SettDir['rss'].'rss1.php'); $Feed['Feed']="Done";	} }
 ?>

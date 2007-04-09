@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: forum.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
+    $FileInfo: forum.php - Last Update: 04/09/2007 SVN 41 - Author: cooldude2k $
 */
 require('preindex.php');
 $usefileext = $Settings['file_ext'];
@@ -19,8 +19,10 @@ if($ext=="noext"||$ext=="no ext"||$ext=="no+ext") { $usefileext = ""; }
 $filewpath = $exfile['forum'].$usefileext.$_SERVER['PATH_INFO'];
 if(!is_numeric($_GET['id']))
 { $_GET['id']="1"; }
+if($Settings['enable_rss']==true) {
 ?>
 <link rel="alternate" type="application/rss+xml" title="Forum Topics RSS Feed" href="<?php echo url_maker($exfile['rss'],$Settings['rss_ext'],"act=topicrss&id=".$_GET['id'],$Settings['qstr'],$Settings['qsep'],$prexqstr['rss'],$exqstr['rss']); ?>" />
+<?php } ?>
 <title> <?php echo $Settings['board_name'].$idbpowertitle; ?> </title>
 </head>
 <body>

@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: setcheck.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
+    $FileInfo: setcheck.php - Last Update: 04/09/2007 SVN 41 - Author: cooldude2k $
 */
 if($Settings['DefaultTheme']==null) {
 	$Settings['DefaultTheme'] = "iDB"; }
@@ -22,6 +22,11 @@ if(!is_numeric($Settings['DefaultTimeZone'])) {
 if($Settings['DefaultDST']!="on"&&
 	$Settings['DefaultDST']!="off") { 
 	$Settings['DefaultDST'] = "off"; }
+if($Settings['enable_rss']!="on"&&
+	$Settings['enable_rss']!=true) { 
+	$Settings['enable_rss'] = false; }
+if($Settings['enable_rss']!="on") { 
+	$Settings['enable_rss'] = true; }
 if($Settings['DefaultTheme']!=null) {
 if (file_exists("themes/".$Settings['DefaultTheme']."/settings.php")) {
 /* The file Skin Exists */ }

@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: navbar.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
+    $FileInfo: navbar.php - Last Update: 04/09/2007 SVN 39 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -28,12 +28,14 @@ $pmquery2 = query("select * from ".$Settings['sqltable']."messenger where `Sende
 $pmresult2=mysql_query($pmquery2);
 $SentPMNumber=mysql_num_rows($pmresult2);
 @mysql_free_result($pmresult2); }
+if($ThemeSet['LogoStyle']==null) { $logostyle = ""; }
+if($ThemeSet['LogoStyle']!=null) { $logostyle = "style=\"".$ThemeSet['LogoStyle']."\" "; }
 ?>
 <div class="NavBorder">
 <table id="NavBarTable" class="NavBar1">
 <tr class="NavBar2">
 <td id="NavBarLogo" class="NavBar2"><?php echo $ThemeSet['PreLogo']; ?>
-<a title="<?php echo $Settings['board_name'].$idbpowertitle; ?>" href="<?php echo url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); ?>">
+<a <?php echo $logostyle; ?>title="<?php echo $Settings['board_name'].$idbpowertitle; ?>" href="<?php echo url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); ?>">
 <?php echo $ThemeSet['Logo']; ?></a>
 <?php echo $ThemeSet['SubLogo']; ?></td>
 </tr>

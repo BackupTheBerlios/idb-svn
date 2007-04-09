@@ -10,7 +10,7 @@
     Copyright 2004-2006 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2006 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: css.css - Last Update: 04/07/2007 SVN 37 - Author: cooldude2k $
+    $FileInfo: css.css - Last Update: 04/09/2007 SVN 39 - Author: cooldude2k $
 */
 html {
 	font-family: verdana, arial, sans-serif;
@@ -33,6 +33,12 @@ color: #465584;
 a:hover { 
 color: #6665A4; 
 text-decoration: none; 
+}
+.NavBar2 a:link, .NavBar2 a:visited, .NavBar2 a:active, .NavBar2 a:hover { 
+text-decoration: none; 
+color: #000000;
+font-family: verdana, arial, sans-serif;
+font-size: 40px;
 }
 .copyright { 
 text-align: center;

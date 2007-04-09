@@ -11,22 +11,23 @@
     Copyright 2004-2006 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2006 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: settings.php - Last Update: 04/08/2007 SVN 38 - Author: cooldude2k $
+    $FileInfo: settings.php - Last Update: 04/09/2007 SVN 39 - Author: cooldude2k $
 */
 $ThemeSet = array();
 $ThemeSet['ThemeName'] = "iDB Theme";
 $ThemeSet['ThemeMaker'] = "Cool Dude 2k";
 $ThemeSet['ThemeVersion'] = "0.1.4";
 $ThemeSet['ThemeVersionType'] = "Pre-Alpha";
-$ThemeSet['ThemeSubVersion'] = "SVN 38";
+$ThemeSet['ThemeSubVersion'] = "SVN 39";
 $ThemeSet['MakerURL'] = "http://upload.idb.s1.jcink.com/";
+$ThemeSet['CopyRight'] = $ThemeSet['ThemeName']." was made by <a href=\"".$ThemeSet['MakerURL']."\" title=\"".$ThemeSet['ThemeMaker']."\">".$ThemeSet['ThemeMaker']."</a>";
 $ThemeSet['CSS'] = "themes/iDB/css.css";
 $ThemeSet['CSSType'] = "include";
 $ThemeSet['FavIcon'] = "themes/iDB/favicon.ico";
-$ThemeSet['PreLogo'] = "<div style=\"text-align: center; color: black; font-size: 40px; font-family: verdana, arial, sans-serif;\">";
+$ThemeSet['PreLogo'] = "<div style=\"text-align: center;\">";
 $ThemeSet['Logo'] = $Settings['board_name'];
+$ThemeSet['LogoStyle'] = "font-size: 40px; font-family: verdana, arial, sans-serif; color: black;";
 $ThemeSet['SubLogo'] = "</div>";
-$ThemeSet['CopyRight'] = $ThemeSet['ThemeName']." Theme was made by <a href=\"".$ThemeSet['MakerURL']."\" title=\"".$ThemeSet['ThemeMaker']."\">".$ThemeSet['ThemeMaker']."</a>";
 $ThemeSet['EnableToggle'] = false;
 $ThemeSet['Toggle'] = "[&#35;]";
 $ThemeSet['ToggleExt'] = null;

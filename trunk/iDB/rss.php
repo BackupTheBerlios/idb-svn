@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: rss.php - Last Update: 04/09/2007 SVN 42 - Author: cooldude2k $
+    $FileInfo: rss.php - Last Update: 04/09/2007 SVN 44 - Author: cooldude2k $
 */
 @error_reporting(E_ALL ^ E_NOTICE);
 if(@ini_get("register_globals")) {
@@ -23,7 +23,7 @@ if($SettDir['rss']==null) { $SettDir['rss'] = "inc/rss/"; }
 if($SettDir['admin']==null) { $SettDir['admin'] = "inc/admin/"; }
 if($SettDir['mod']==null) { $SettDir['mod'] = "inc/mod/"; }
 if($SettDir['themes']==null) { $SettDir['themes'] = "themes/"; }
-if($Settings['enable_rss']==true) {
+if($Settings['enable_rss']==false) {
 redirect("location",$basedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)); }
 if($Settings['enable_rss']==true) {
 if($_GET['act']==null)

@@ -25,7 +25,7 @@ if($Settings['DefaultDST']!="on"&&
 if($Settings['enable_rss']!="on"&&
 	$Settings['enable_rss']!=true) { 
 	$Settings['enable_rss'] = false; }
-if($Settings['enable_rss']!="on") { 
+if($Settings['enable_rss']=="on") { 
 	$Settings['enable_rss'] = true; }
 if($Settings['DefaultTheme']!=null) {
 if (file_exists("themes/".$Settings['DefaultTheme']."/settings.php")) {

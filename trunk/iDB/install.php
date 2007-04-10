@@ -12,7 +12,7 @@
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
     iDB Installer made by Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: install.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
+    $FileInfo: install.php - Last Update: 04/10/2007 SVN 46 - Author: cooldude2k $
 */
 @error_reporting(E_ALL ^ E_NOTICE); unset($preact['idb']);
 if ($_GET['act']!="Part4"&&$_POST['act']!="Part4") {
@@ -32,11 +32,11 @@ unset($Error); ?>
 
 <table class="Table1">
 <tr class="TableRow1">
-<td class="TableRow1" colspan="2"><span style="float: left;">
+<td class="TableRow1"><span style="float: left;">
 &nbsp;<a href="Install.php">Install <?php echo $VerInfo['iDB_Ver_Show']." on ".$OSType2; ?> </a></span>
 <span style="float: right;">&nbsp;</span></td>
 </tr>
-<tr class="TableRow2" colspan="2">
+<tr class="TableRow2">
 <th class="TableRow2" style="width: 100%; text-align: left;">
 <span style="float: left;">&nbsp;Inert your install info: </span>
 <span style="float: right;">&nbsp;</span>

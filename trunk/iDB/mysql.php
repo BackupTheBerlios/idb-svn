@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: mysql.php - Last Update: 04/08/2007 SVN 38 - Author: cooldude2k $
+    $FileInfo: mysql.php - Last Update: 04/10/2007 SVN 46 - Author: cooldude2k $
 */
 @error_reporting(E_ALL ^ E_NOTICE);
 //@output_reset_rewrite_vars();
@@ -88,6 +88,8 @@ if(CheckFiles("install.php")!=true) {
 	if($Settings['sqldb']==null) {
 		redirect("location",$basedir."install.php"); }
 @ConnectMysql($Settings['sqlhost'],$Settings['sqluser'],$Settings['sqlpass'],$Settings['sqldb']); }
+if(CheckFiles("install.php")==true) {
+	$Settings['board_name'] = "Installing iDB"; }
 if($_SESSION['CheckCookie']!="done") {
 if($_COOKIE['SessPass']!=null&&
 $_COOKIE['MemberName']!=null) {

@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: rss4.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
+    $FileInfo: rss4.php - Last Update: 04/10/2007 SVN 45 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -82,7 +82,7 @@ $result=mysql_query($query);
 $num=mysql_num_rows($result);
 $Atom = null; $RSS = null; $i=0;
 while ($i < $num) {
-$EventID=mysql_result($result,$i,"ID");
+$EventID=mysql_result($result,$i,"id");
 $EventUser=mysql_result($result,$i,"UserID");
 $EventName=mysql_result($result,$i,"EventName");
 $EventText=mysql_result($result,$i,"EventText");

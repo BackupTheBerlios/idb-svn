@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: forums.php - Last Update: 04/08/2007 SVN 38 - Author: cooldude2k $
+    $FileInfo: forums.php - Last Update: 04/10/2007 SVN 45 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -24,7 +24,7 @@ $preresult=mysql_query($prequery);
 $prenum=mysql_num_rows($preresult);
 $prei=0;
 while ($prei < $prenum) {
-$CategoryID=mysql_result($preresult,$prei,"ID");
+$CategoryID=mysql_result($preresult,$prei,"id");
 $CategoryName=mysql_result($preresult,$prei,"Name");
 $CategoryShow=mysql_result($preresult,$prei,"ShowCategory");
 $CategoryDescription=mysql_result($preresult,$prei,"Description");
@@ -37,7 +37,7 @@ $num2=mysql_num_rows($result2);
 $i2=0;
 $toggle="";
 while ($i2 < $num2) {
-$ForumID=mysql_result($result2,$i2,"ID");
+$ForumID=mysql_result($result2,$i2,"id");
 $i3=$i2+1;
 if ($i3!=$num2) {
 $toggle=$toggle."toggletag('Forum".$ForumID."'),"; }
@@ -75,7 +75,7 @@ if($num>=1) {
 </tr>
 <?php }
 while ($i < $num) {
-$ForumID=mysql_result($result,$i,"ID");
+$ForumID=mysql_result($result,$i,"id");
 $ForumName=mysql_result($result,$i,"Name");
 $ForumShow=mysql_result($result,$i,"ShowForum");
 $ForumType=mysql_result($result,$i,"ForumType");
@@ -88,7 +88,7 @@ $gltquery = query("select * from ".$Settings['sqltable']."topics where CategoryI
 $gltresult=mysql_query($gltquery);
 $gltnum=mysql_num_rows($gltresult);
 if($gltnum>0){
-$TopicID=mysql_result($gltresult,0,"ID");
+$TopicID=mysql_result($gltresult,0,"id");
 $TopicName=mysql_result($gltresult,0,"TopicName");
 $NumReplys=mysql_result($gltresult,0,"NumReply");
 $ShowReply = $NumReplys + 1;

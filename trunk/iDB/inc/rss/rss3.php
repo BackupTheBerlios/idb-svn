@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: rss3.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
+    $FileInfo: rss3.php - Last Update: 04/10/2007 SVN 45 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -75,7 +75,7 @@ $preresult1=mysql_query($query);
 $num=mysql_num_rows($preresult1);
 $Atom = null; $RSS = null; $prei1=0;
 while ($prei1 < $num) {
-$CategoryID=mysql_result($preresult1,$prei1,"ID");
+$CategoryID=mysql_result($preresult1,$prei1,"id");
 $CategoryName=mysql_result($preresult1,$prei1,"Name");
 $CategoryShow=mysql_result($preresult1,$prei1,"ShowCategory");
 $CategoryDescription=mysql_result($preresult1,$prei1,"Description");

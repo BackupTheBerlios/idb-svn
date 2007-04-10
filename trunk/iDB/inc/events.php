@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: events.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
+    $FileInfo: events.php - Last Update: 04/10/2007 SVN 45 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -30,7 +30,7 @@ $num=mysql_num_rows($result);
 $is=0;
 if($num==0) { redirect("location",$basedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)); }
 while ($is < $num) {
-$EventID=mysql_result($result,$is,"ID");
+$EventID=mysql_result($result,$is,"id");
 $EventUser=mysql_result($result,$is,"UserID");
 $EventGuest=mysql_result($result,$is,"GuestName");
 $EventName=mysql_result($result,$is,"EventName");

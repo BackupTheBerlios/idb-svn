@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: replys.php - Last Update: 04/08/2007 SVN 38 - Author: cooldude2k $
+    $FileInfo: replys.php - Last Update: 04/10/2007 SVN 45 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -53,7 +53,7 @@ if($ViewTimes!=0&&$ViewTimes!=null) { $NewViewTimes = $ViewTimes + 1; }
 $viewsup = query("update ".$Settings['sqltable']."topics set NumViews='%s' WHERE id=%i", array($NewViewTimes,$_GET['id']));
 mysql_query($viewsup); }
 while ($i < $num) {
-$MyPostID=mysql_result($result,$i,"ID");
+$MyPostID=mysql_result($result,$i,"id");
 $MyTopicID=mysql_result($result,$i,"TopicID");
 $MyForumID=mysql_result($result,$i,"ForumID");
 $MyCategoryID=mysql_result($result,$i,"CategoryID");

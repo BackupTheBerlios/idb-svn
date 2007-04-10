@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: topics.php - Last Update: 04/08/2007 SVN 38 - Author: cooldude2k $
+    $FileInfo: topics.php - Last Update: 04/10/2007 SVN 45 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -36,7 +36,7 @@ $prenum=mysql_num_rows($preresult);
 $prei=0;
 if($prenum==0) { redirect("location",$basedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)); }
 while ($prei < $prenum) {
-$ForumID=mysql_result($preresult,$prei,"ID");
+$ForumID=mysql_result($preresult,$prei,"id");
 $ForumName=mysql_result($preresult,$prei,"Name");
 $ForumType=mysql_result($preresult,$prei,"ForumType");
 $RedirectURL=mysql_result($preresult,$prei,"RedirectURL");
@@ -69,7 +69,7 @@ $num2=mysql_num_rows($result2);
 $i2=0;
 $toggle="";
 while ($i2 < $num2) {
-$TopicID=mysql_result($result2,$i2,"ID");
+$TopicID=mysql_result($result2,$i2,"id");
 $i3=$i2+1;
 if ($i3!=$num2) {
 $toggle=$toggle."toggletag('Topic".$TopicID."'),"; }
@@ -104,7 +104,7 @@ $result=mysql_query($query);
 $num=mysql_num_rows($result);
 $i=0;
 while ($i < $num) {
-$TopicID=mysql_result($result,$i,"ID");
+$TopicID=mysql_result($result,$i,"id");
 $UsersID=mysql_result($result,$i,"UserID");
 $GuestName=mysql_result($result,$i,"GuestName");
 $TheTime=mysql_result($result,$i,"TimeStamp");
@@ -121,7 +121,7 @@ $glrquery = query("select * from ".$Settings['sqltable']."posts where ForumID=%i
 $glrresult=mysql_query($glrquery);
 $glrnum=mysql_num_rows($glrresult);
 if($glrnum>0){
-$ReplyID1=mysql_result($glrresult,0,"ID");
+$ReplyID1=mysql_result($glrresult,0,"id");
 $UsersID1=mysql_result($glrresult,0,"UserID");
 $GuestName1=mysql_result($glrresult,0,"GuestName");
 $TimeStamp1=mysql_result($glrresult,0,"TimeStamp");

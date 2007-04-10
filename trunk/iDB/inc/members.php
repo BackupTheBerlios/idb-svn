@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: members.php - Last Update: 04/07/2007 SVN 37 - Author: cooldude2k $
+    $FileInfo: members.php - Last Update: 04/10/2007 SVN 45 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -605,7 +605,7 @@ $Website = preg_replace("/&amp;#(x[a-f0-9]+|[0-9]+);/i", "&#$1;", $Website);
 $Website = @remove_spaces($Website);
 $gquerys = query("select * from ".$Settings['sqltable']."groups where Name='%s'", array($Settings['MemberGroup']));
 $gresults=mysql_query($gquerys);
-$yourgroup=mysql_result($gresults,0,"ID");
+$yourgroup=mysql_result($gresults,0,"id");
 @mysql_free_result($gresults);
 $yourid = getnextid($Settings['sqltable'],"members");
 $_POST['Interests'] = @remove_spaces($_POST['Interests']);

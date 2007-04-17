@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: profilemain.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
+    $FileInfo: profilemain.php - Last Update: 04/17/2007 SVN 47 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -67,10 +67,10 @@ $profiletitle = " ".$ThemeSet['TitleDivider']." NotePad";
 <?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo $updateact; ?>">Updating Settings</a>
 </span><span style="float: right;">&nbsp;</span></td>
 </tr>
-<tr id="Messenger" class="TableRow2">
+<tr id="ProfileTitle" class="TableRow2">
 <th class="TableRow2">Updating Settings</th>
 </tr>
-<tr class="TableRow3" id="NotePad">
+<tr class="TableRow3" id="ProfileUpdate">
 <td class="TableRow3">
 <div style="text-align: center;">
 <br />Profile updated <a href="<?php echo $updateact; ?>">click here</a> to go back. ^_^<br />&nbsp;</div>
@@ -92,10 +92,10 @@ $profiletitle = " ".$ThemeSet['TitleDivider']." NotePad";
 <?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo $noteact; ?>">NotePad</a>
 </span><span style="float: right;">&nbsp;</span></td>
 </tr>
-<tr id="Messenger" class="TableRow2">
+<tr id="ProfileTitle" class="TableRow2">
 <th class="TableRow2">NotePad</th>
 </tr>
-<tr class="TableRow3" id="NotePad">
+<tr class="TableRow3" id="NotePadRow">
 <td class="TableRow3">
 <form method="post" action="<?php echo $notepadact; ?>"><div style="text-align: center;">
 <label class="TextBoxLabel" for="NotePad">Your NotePad</label><br />
@@ -105,7 +105,7 @@ $profiletitle = " ".$ThemeSet['TitleDivider']." NotePad";
 <br /><input type="submit" class="Button" value="Save" />&nbsp;<input class="Button" type="reset" />
 </div></form></td>
 </tr>
-<tr id="ForumEnd" class="TableRow4">
+<tr id="ProfileEnd" class="TableRow4">
 <td class="TableRow4">&nbsp;</td>
 </tr>
 </table>
@@ -137,10 +137,10 @@ $profiletitle = " ".$ThemeSet['TitleDivider']." Signature Editor";
 <?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo $signatureact; ?>">Signature Editer</a>
 </span><span style="float: right;">&nbsp;</span></td>
 </tr>
-<tr id="Messenger" class="TableRow2">
+<tr id="ProfileTitle" class="TableRow2">
 <th class="TableRow2">Signature Editor</th>
 </tr>
-<tr class="TableRow3" id="Signature">
+<tr class="TableRow3" id="SignatureRow">
 <td class="TableRow3">
 <form method="post" action="<?php echo $signatureact; ?>"><div style="text-align: center;">
 <label class="TextBoxLabel" for="Signature">Your Signature</label><br />
@@ -150,7 +150,7 @@ $profiletitle = " ".$ThemeSet['TitleDivider']." Signature Editor";
 <br /><input type="submit" class="Button" value="Save" />&nbsp;<input class="Button" type="reset" />
 </div></form></td>
 </tr>
-<tr id="ForumEnd" class="TableRow4">
+<tr id="ProfileEnd" class="TableRow4">
 <td class="TableRow4">&nbsp;</td>
 </tr>
 </table>
@@ -192,7 +192,7 @@ $AvatarSize1W=$AvatarSize1[0]; $AvatarSize1H=$AvatarSize1[1];
 <?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo $avataract; ?>">Avatar Editer</a>
 </span><span style="float: right;">&nbsp;</span></td>
 </tr>
-<tr id="Messenger" class="TableRow2">
+<tr id="ProfileTitle" class="TableRow2">
 <th class="TableRow2">Avatar Editor</th>
 </tr>
 <tr class="TableRow3" id="AvatarEditor">
@@ -202,7 +202,7 @@ $AvatarSize1W=$AvatarSize1[0]; $AvatarSize1H=$AvatarSize1[1];
  <table class="AvatarTable" style="width: 100px; height: 100px; text-align: center;">
 	<tr class="AvatarRow" style="width: 100%; height: 100%;">
 		<td class="AvatarRow" style="width: 100%; height: 100%; text-align: center; vertical-align: middle;">
-		<img src="<?php echo $Pre1Avatar; ?>" alt="<?php echo $User1Name; ?>'s Avatar" style="border: 0px; width: <?php echo $AvatarSize1W; ?>px; height: <?php echo $AvatarSize1H; ?>px;" />
+		<img src="<?php echo $Pre1Avatar; ?>" alt="<?php echo $_SESSION['MemberName']; ?>'s Avatar" title="<?php echo $_SESSION['MemberName']; ?>'s Avatar" style="border: 0px; width: <?php echo $AvatarSize1W; ?>px; height: <?php echo $AvatarSize1H; ?>px;" />
 		</td>
 	</tr>
  </table>
@@ -210,12 +210,12 @@ $AvatarSize1W=$AvatarSize1[0]; $AvatarSize1H=$AvatarSize1[1];
 <tr style="text-align: left;">
 	<td style="width: 40%;"><label class="TextBoxLabel" for="Avatar">Your Avatar</label></td>
 	<td style="width: 60%;"><input type="text" class="TextBox" name="Avatar" id="Avatar" value="<?php echo $User1Avatar; ?>" size="20" /></td>
-	</tr><tr>
+	</tr><tr style="text-align: left;">
 	<td style="width: 40%;"><label class="TextBoxLabel" for="AvatarSizeW">Avatar Width</label></td>
 	<td style="width: 60%;"><select size="1" name="AvatarSizeW" id="AvatarSizeW" class="TextBox">
 	<option value="<?php echo $AvatarSize1W; ?>" selected="selected"><?php echo $AvatarSize1W; ?></option><?php echo "\n"; $r=1; while ($r <= 100) { ?><option value="<?php echo $r ?>"><?php echo $r; ?></option><?php echo "\n"; ++$r; } ?>
 </select></td>
-</tr><tr>
+</tr><tr style="text-align: left;">
 	<td style="width: 40%;"><label class="TextBoxLabel" for="AvatarSizeH">Avatar Height</label></td>
 	<td style="width: 60%;"><select size="1" name="AvatarSizeH" id="AvatarSizeH" class="TextBox">
 <option value="<?php echo $AvatarSize1H; ?>" selected="selected"><?php echo $AvatarSize1H; ?></option><?php echo "\n"; $s=1; while ($s <= 100) { ?><option value="<?php echo $s ?>"><?php echo $s; ?></option><?php echo "\n"; ++$s; } ?>
@@ -231,7 +231,7 @@ $AvatarSize1W=$AvatarSize1[0]; $AvatarSize1H=$AvatarSize1[1];
 </td></tr></table>
 </form></td>
 </tr>
-<tr id="ForumEnd" class="TableRow4">
+<tr id="ProfileEnd" class="TableRow4">
 <td class="TableRow4">&nbsp;</td>
 </tr>
 </table>
@@ -251,6 +251,13 @@ if($_POST['Avatar']!=null&&$_POST['AvatarSizeW']!=null&&$_POST['AvatarSizeH']!=n
 	mysql_query($querynewskin); } } }
 if($_GET['act']=="settings") {
 if($_POST['update']!="now") {
+$query = query("select * from ".$Settings['sqltable']."members where `id`=%i", array($_SESSION['UserID']));
+$result=mysql_query($query);
+$num=mysql_num_rows($result);
+$i=0;
+$YourID=mysql_result($result,$i,"id");
+$User1TimeZone=mysql_result($result,$i,"TimeZone"); 
+$User1DST=mysql_result($result,$i,"DST");
 $settingsact = url_maker($exfile['profile'],$Settings['file_ext'],"act=settings",$Settings['qstr'],$Settings['qsep'],$prexqstr['profile'],$exqstr['profile']);
 $profiletitle = " ".$ThemeSet['TitleDivider']." Board Settings"; ?>
 <div class="Table1Border">
@@ -260,15 +267,31 @@ $profiletitle = " ".$ThemeSet['TitleDivider']." Board Settings"; ?>
 <?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo $settingsact; ?>">Board Settings</a>
 </span><span style="float: right;">&nbsp;</span></td>
 </tr>
-<tr id="Messenger" class="TableRow2">
+<tr id="ProfileTitle" class="TableRow2">
 <th class="TableRow2">Board Settings</th>
 </tr>
 <tr class="TableRow3" id="BoardSettings">
 <td class="TableRow3">
 <form method="post" action="<?php echo $settingsact; ?>">
-<div>&nbsp;</div>
 <table style="text-align: left;">
 <tr style="text-align: left;">
+	<td style="width: 40%;"><label class="TextBoxLabel" for="YourOffSet">Your TimeZone:</label></td>
+	<td style="width: 60%;"><select id="YourOffSet" name="YourOffSet" class="TextBox">
+<option selected="selected" value="<?php echo $User1TimeZone; ?>">Old Value (<?php echo $User1TimeZone.":00 hours"; ?>)</option>
+<?php
+$plusi = 1; $minusi = 12;
+$plusnum = 13; $minusnum = 0;
+while ($minusi > $minusnum) {
+echo "<option value=\"-".$minusi."\">GMT - ".$minusi.":00 hours</option>\n";
+--$minusi; }
+?>
+<option value="0">GMT +/- 0:00 hours</option>
+<?php
+while ($plusi < $plusnum) {
+echo "<option value=\"".$plusi."\">GMT + ".$plusi.":00 hours</option>\n";
+++$plusi; }
+?></select></td>
+</tr><tr style="text-align: left;">
 	<td style="width: 40%;"><label class="TextBoxLabel" for="skin">Pick a CSS Theme</label></td>
 	<td style="width: 60%;"><select id="skin" name="skin" class="TextBox">
 <option selected="selected" value="<?php echo $_SESSION['Theme']; ?>">Old Value (<?php echo $_SESSION['Theme']; ?>)</option><?php
@@ -283,6 +306,14 @@ if ($handle = opendir($skindir)) {
    closedir($handle);
 } ?>
 </select></td>
+</tr><tr style="text-align: left;">
+	<td style="width: 40%;"><label class="TextBoxLabel" for="DST">Is <span title="Daylight Savings Time">DST</span> / <span title="Summer Time">ST</span> on or off:</label></td>
+	<td style="width: 60%;"><select id="DST" name="DST" class="TextBox"><?php echo "\n" ?>
+<?php if($User1DST=="off"||$User1DST!="on") { ?>
+<option selected="selected" value="off">off</option><?php echo "\n" ?><option value="on">on</option>
+<?php } if($User1DST=="on") { ?>
+<option selected="selected" value="on">on</option><?php echo "\n" ?><option value="off">off</option>
+<?php } echo "\n" ?></select></td>
 </tr></table>
 <table style="text-align: left;">
 <tr style="text-align: left;">
@@ -294,7 +325,7 @@ if ($handle = opendir($skindir)) {
 </td></tr></table>
 </form></td>
 </tr>
-<tr id="ForumEnd" class="TableRow4">
+<tr id="ProfileEnd" class="TableRow4">
 <td class="TableRow4">&nbsp;</td>
 </tr>
 </table>
@@ -305,7 +336,7 @@ if($_POST['act']=="settings"&&
 	$_SESSION['UserGroup']!=$Settings['GuestGroup']) {
 	$NewDay=GMTimeStamp();
 	$NewIP=$_SERVER['REMOTE_ADDR'];
-	$querynewskin = query("update ".$Settings['sqltable']."members set UseTheme='%s',LastActive='%s',IP='%s' WHERE id=%i", array($_POST['skin'],$NewDay,$NewIP,$_SESSION['UserID']));
+	$querynewskin = query("update ".$Settings['sqltable']."members set UseTheme='%s',TimeZone='%s',DST='%s',LastActive='%s',IP='%s' WHERE id=%i", array($_POST['skin'],$_POST['YourOffSet'],$_POST['DST'],$NewDay,$NewIP,$_SESSION['UserID']));
 	mysql_query($querynewskin); } } }
 if($_GET['act']=="profile") {
 if($_POST['update']!="now") {
@@ -330,7 +361,7 @@ $profiletitle = " ".$ThemeSet['TitleDivider']." Profile Editor";
 <?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo $profileact; ?>">Profile Editer</a>
 </span><span style="float: right;">&nbsp;</span></td>
 </tr>
-<tr id="Messenger" class="TableRow2">
+<tr id="ProfileTitle" class="TableRow2">
 <th class="TableRow2">Profile Editor</th>
 </tr>
 <tr class="TableRow3" id="ProfileEditor">
@@ -340,13 +371,13 @@ $profiletitle = " ".$ThemeSet['TitleDivider']." Profile Editor";
 <tr style="text-align: left;">
 	<td style="width: 40%;"><label class="TextBoxLabel" for="Interests">Your Interests</label></td>
 	<td style="width: 60%;"><input type="text" class="TextBox" name="Interests" id="Interests" value="<?php echo $User1Interests; ?>" /></td>
-</tr><tr>
+</tr><tr style="text-align: left;">
 	<td style="width: 40%;"><label class="TextBoxLabel" for="Title">Your Title</label></td>
 	<td style="width: 60%;"><input type="text" class="TextBox" name="Title" id="Title" value="<?php echo $User1Title; ?>" /></td>
-</tr><tr>
+</tr><tr style="text-align: left;">
 	<td style="width: 40%;"><label class="TextBoxLabel" for="Website">Your Website</label></td>
 	<td style="width: 60%;"><input type="text" class="TextBox" name="Website" id="Website" value="<?php echo $User1Website; ?>" /></td>
-</tr><tr>
+</tr><tr style="text-align: left;">
 	<td style="width: 40%;"><label class="TextBoxLabel" for="YourOffSet">Your TimeZone:</label></td>
 	<td style="width: 60%;"><select id="YourOffSet" name="YourOffSet" class="TextBox">
 <option selected="selected" value="<?php echo $User1TimeZone; ?>">Old Value (<?php echo $User1TimeZone.":00 hours"; ?>)</option>
@@ -363,7 +394,7 @@ while ($plusi < $plusnum) {
 echo "<option value=\"".$plusi."\">GMT + ".$plusi.":00 hours</option>\n";
 ++$plusi; }
 ?></select></td>
-</tr><tr>
+</tr><tr style="text-align: left;">
 	<td style="width: 40%;"><label class="TextBoxLabel" for="YourGender">Your Gender:</label></td>
 	<td style="width: 60%;"><select id="YourGender" name="YourGender" class="TextBox">
 <option selected="selected" value="<?php echo $User1Gender; ?>">Old Value (<?php echo $User1Gender; ?>)</option>
@@ -371,7 +402,7 @@ echo "<option value=\"".$plusi."\">GMT + ".$plusi.":00 hours</option>\n";
 <option value="Female">Female</option>
 <option value="Unknow">Unknow</option>
 </select></td>
-</tr><tr>
+</tr><tr style="text-align: left;">
 	<td style="width: 40%;"><label class="TextBoxLabel" for="DST">Is <span title="Daylight Savings Time">DST</span> / <span title="Summer Time">ST</span> on or off:</label></td>
 	<td style="width: 60%;"><select id="DST" name="DST" class="TextBox"><?php echo "\n" ?>
 <?php if($User1DST=="off"||$User1DST!="on") { ?>
@@ -390,7 +421,7 @@ echo "<option value=\"".$plusi."\">GMT + ".$plusi.":00 hours</option>\n";
 </td></tr></table>
 </form></td>
 </tr>
-<tr id="ForumEnd" class="TableRow4">
+<tr id="ProfileEnd" class="TableRow4">
 <td class="TableRow4">&nbsp;</td>
 </tr>
 </table>
@@ -429,7 +460,7 @@ $profiletitle = " ".$ThemeSet['TitleDivider']." User Info Editer";
 <?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo $userinfoact; ?>">User Info Editer</a>
 </span><span style="float: right;">&nbsp;</span></td>
 </tr>
-<tr id="Messenger" class="TableRow2">
+<tr id="ProfileTitle" class="TableRow2">
 <th class="TableRow2">User Info Editer</th>
 </tr>
 <tr class="TableRow3" id="UserInfoEditor">
@@ -439,13 +470,13 @@ $profiletitle = " ".$ThemeSet['TitleDivider']." User Info Editer";
 <tr style="text-align: left;">
 	<td style="width: 40%;"><label class="TextBoxLabel" for="OldPass">Insert old Password:</label></td>
 	<td style="width: 60%;"><input type="password" class="TextBox" name="OldPass" size="20" id="OldPass" maxlength="30" /></td>
-</tr><tr>
+</tr><tr style="text-align: left;">
 	<td style="width: 40%;"><label class="TextBoxLabel" for="Password">Insert a Password:</label></td>
 	<td style="width: 60%;"><input type="password" class="TextBox" name="Password" size="20" id="Password" maxlength="30" /></td>
-</tr><tr>
+</tr><tr style="text-align: left;">
 	<td style="width: 40%;"><label class="TextBoxLabel" for="RePassword">ReInsert a Password:</label></td>
 	<td style="width: 60%;"><input type="password" class="TextBox" name="RePassword" size="20" id="RePassword" maxlength="30" /></td>
-</tr><tr>
+</tr><tr style="text-align: left;">
 	<td style="width: 40%;"><label class="TextBoxLabel" for="Email">Insert Your Email:</label></td>
 	<td style="width: 60%;"><input type="text" class="TextBox" name="Email" size="20" id="Email" value="<?php echo $User1Email; ?>" /></td>
 </tr></table>
@@ -459,7 +490,7 @@ $profiletitle = " ".$ThemeSet['TitleDivider']." User Info Editer";
 </td></tr></table>
 </form></td>
 </tr>
-<tr id="ForumEnd" class="TableRow4">
+<tr id="ProfileEnd" class="TableRow4">
 <td class="TableRow4">&nbsp;</td>
 </tr>
 </table>
@@ -506,7 +537,7 @@ if($YourPassword!=$OldPassword) { $Error="Yes"; ?>
 <?php if($_POST['update']=="now"&&$_GET['act']!=null) {
 	$profiletitle = " - Updating Settings"; ?>
 </td></tr>
-<tr id="ForumEnd" class="TableRow4">
+<tr id="ProfileTitleEnd" class="TableRow4">
 <td class="TableRow4">&nbsp;</td>
 </tr></table></div><?php } ?>
 </td></tr>

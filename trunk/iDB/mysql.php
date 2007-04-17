@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: mysql.php - Last Update: 04/10/2007 SVN 46 - Author: cooldude2k $
+    $FileInfo: mysql.php - Last Update: 04/17/2007 SVN 47 - Author: cooldude2k $
 */
 @error_reporting(E_ALL ^ E_NOTICE);
 //@output_reset_rewrite_vars();
@@ -150,6 +150,8 @@ $_GET['theme']=$Settings['DefaultTheme']; } }
 $PreSkin['skindir1'] = $_SESSION['Theme'];
 $PreSkin['skindir2'] = $SettDir['themes'].$_SESSION['Theme'];
 require($SettDir['themes'].$_GET['theme']."/settings.php");
+if($Settings['EnableToggle']==null||$Settings['EnableToggle']==false) { 
+	$ThemeSet['EnableToggle'] = false; }
 if($ThemeSet['EnableToggle']==null||$ThemeSet['Toggle']==false||
 	$ThemeSet['Toggle']==null) { $ThemeSet['EnableToggle'] = false; }
 if($_SESSION['DBName']==null) {

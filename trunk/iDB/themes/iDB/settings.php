@@ -11,14 +11,14 @@
     Copyright 2004-2006 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2006 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: settings.php - Last Update: 04/09/2007 SVN 39 - Author: cooldude2k $
+    $FileInfo: settings.php - Last Update: 04/17/2007 SVN 47 - Author: cooldude2k $
 */
 $ThemeSet = array();
 $ThemeSet['ThemeName'] = "iDB Theme";
 $ThemeSet['ThemeMaker'] = "Cool Dude 2k";
 $ThemeSet['ThemeVersion'] = "0.1.4";
 $ThemeSet['ThemeVersionType'] = "Pre-Alpha";
-$ThemeSet['ThemeSubVersion'] = "SVN 39";
+$ThemeSet['ThemeSubVersion'] = "SVN 47";
 $ThemeSet['MakerURL'] = "http://upload.idb.s1.jcink.com/";
 $ThemeSet['CopyRight'] = $ThemeSet['ThemeName']." was made by <a href=\"".$ThemeSet['MakerURL']."\" title=\"".$ThemeSet['ThemeMaker']."\">".$ThemeSet['ThemeMaker']."</a>";
 $ThemeSet['CSS'] = "themes/iDB/css.css";
@@ -58,7 +58,7 @@ $ThemeSet['ForumIcon'] = "<div style=\"text-align: center; font-size: 11px;\" ti
 $ThemeSet['SubForumIcon'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"SubForum\">{SF}</div>";
 $ThemeSet['RedirectIcon'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"Redirect Forum\">[RF]</div>";
 $ThemeSet['TitleIcon'] = null;
-$ThemeSet['StatsIcon'] = null;
+$ThemeSet['StatsIcon'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"Board Stats\"><br />(S)<br /></div>";
 $ThemeSet['NoAvatar'] = "themes/iDB/noavatar.png";
 $ThemeSet['NoAvatarSize'] = "100x100";
 ?>

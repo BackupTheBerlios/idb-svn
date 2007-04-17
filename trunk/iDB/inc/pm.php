@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: pm.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
+    $FileInfo: pm.php - Last Update: 04/17/2007 SVN 47 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -47,7 +47,7 @@ if($_GET['act']=="view") {
 <table class="Table1" style="width: 100%;">
 <tr class="TableRow1">
 <td class="TableRow1" colspan="6"><span style="float: left;">
-<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['messenger'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['messenger'],$exqstr['messenger']); ?>">MailBox(<?php echo $PMNumber; ?>)</a>
+<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['messenger'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['messenger'],$exqstr['messenger']); ?>">MailBox&nbsp;(<?php echo $PMNumber; ?>)</a>
 </span><span style="float: right;">&nbsp;</span></td>
 </tr>
 <tr id="Messenger" class="TableRow2">
@@ -91,7 +91,7 @@ if ($MessageStat==1) {
 <td class="TableRow3" style="text-align: center;"><?php echo $DateSend; ?></td>
 </tr>
 <?php ++$i; } @mysql_free_result($result); ?>
-<tr id="ForumEnd" class="TableRow4">
+<tr id="MessengerEnd" class="TableRow4">
 <td class="TableRow4" colspan="6">&nbsp;</td>
 </tr>
 <?php } 
@@ -101,7 +101,7 @@ if($_GET['act']=="viewsent") {
 <table class="Table1" style="width: 100%;">
 <tr class="TableRow1">
 <td class="TableRow1" colspan="6"><span style="float: left;">
-<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['messenger'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['messenger'],$exqstr['messenger']); ?>">MailBox(<?php echo $PMNumber; ?>)</a>
+<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['messenger'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['messenger'],$exqstr['messenger']); ?>">MailBox&nbsp;(<?php echo $PMNumber; ?>)</a>
 </span><span style="float: right;">&nbsp;</span></td>
 </tr>
 <tr id="Messenger" class="TableRow2">
@@ -145,7 +145,7 @@ if ($MessageStat==1) {
 <td class="TableRow3" style="text-align: center;"><?php echo $DateSend; ?></td>
 </tr>
 <?php ++$i; } ?>
-<tr id="ForumEnd" class="TableRow4">
+<tr id="MessengerEnd" class="TableRow4">
 <td class="TableRow4" colspan="6">&nbsp;</td>
 </tr>
 <?php } @mysql_free_result($result);
@@ -229,7 +229,7 @@ $User1Signature = text2icons($User1Signature,$Settings['sqltable']);
  <table class="AvatarTable" style="width: 100px; height: 100px; text-align: center;">
 	<tr class="AvatarRow" style="width: 100%; height: 100%;">
 		<td class="AvatarRow" style="width: 100%; height: 100%; text-align: center; vertical-align: middle;">
-		<img src="<?php echo $User1Avatar; ?>" alt="<?php echo $User1Name; ?>'s Avatar" style="border: 0px; width: <?php echo $AvatarSize1W; ?>px; height: <?php echo $AvatarSize1H; ?>px;" />
+		<img src="<?php echo $User1Avatar; ?>" alt="<?php echo $User1Name; ?>'s Avatar" title="<?php echo $User1Name; ?>'s Avatar" style="border: 0px; width: <?php echo $AvatarSize1W; ?>px; height: <?php echo $AvatarSize1H; ?>px;" />
 		</td>
 	</tr>
  </table><br />

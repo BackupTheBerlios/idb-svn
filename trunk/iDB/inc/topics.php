@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: topics.php - Last Update: 04/10/2007 SVN 45 - Author: cooldude2k $
+    $FileInfo: topics.php - Last Update: 04/27/2007 SVN 48 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -129,8 +129,12 @@ $TimeStamp1=GMTimeChange("F j, Y",$TimeStamp1,$_SESSION['UserTimeZone'],0,$_SESS
 $UsersName1 = GetUserName($UsersID1,$Settings['sqltable']); }
 if($UsersName1=="Guest") { $UsersName1=$GuestName1;
 if($UsersName1==null) { $UsersName1="Guest"; } }
-if($TimeStamp1!=null) {
-$LastReply = "User: <a href=\"".url_maker($exfile['member'],$Settings['file_ext'],"act=view&id=".$UsersID1,$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member'])."\">".$UsersName1."</a><br />\nTime: ".$TimeStamp1; }
+if($TimeStamp1!=null) { $lul = null;
+if($UsersID1!="-1") {
+$lul = url_maker($exfile['member'],$Settings['file_ext'],"act=view&id=".$UsersID1,$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); }
+if($UsersID1=="-1") {
+$lul = url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); }
+$LastReply = "User: <a href=\"".$lul."\">".$UsersName1."</a><br />\nTime: ".$TimeStamp1; }
 @mysql_free_result($glrresult);
 if($TimeStamp1==null) { $LastReply = "&nbsp;<br />&nbsp;"; }
 $PreTopic = $ThemeSet['TopicIcon'];
@@ -163,7 +167,12 @@ if ($PinnedTopic==1) {
 <td class="TableRow3"><div class="topicname">
 <a href="<?php echo url_maker($exfile['topic'],$Settings['file_ext'],"act=view&id=".$TopicID,$Settings['qstr'],$Settings['qsep'],$prexqstr['topic'],$exqstr['topic']); ?>"><?php echo $TopicName; ?></a></div>
 <div class="topicdescription"><?php echo $TopicDescription; ?></div></td>
-<td class="TableRow3" style="text-align: center;"><a href="<?php echo url_maker($exfile['member'],$Settings['file_ext'],"act=view&id=".$UsersID,$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); ?>"><?php echo $UsersName; ?></a></td>
+<td class="TableRow3" style="text-align: center;"><a href="<?php
+if($UsersID!="-1") {
+echo url_maker($exfile['member'],$Settings['file_ext'],"act=view&id=".$UsersID,$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); }
+if($UsersID=="-1") {
+echo url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); }
+?>"><?php echo $UsersName; ?></a></td>
 <td class="TableRow3" style="text-align: center;"><?php echo $TheTime; ?></td>
 <td class="TableRow3" style="text-align: center;"><?php echo $NumReply; ?></td>
 <td class="TableRow3"><?php echo $LastReply; ?></td>

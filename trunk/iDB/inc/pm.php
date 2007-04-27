@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: pm.php - Last Update: 04/17/2007 SVN 47 - Author: cooldude2k $
+    $FileInfo: pm.php - Last Update: 04/27/2007 SVN 48 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -87,7 +87,12 @@ if ($MessageStat==1) {
 <td class="TableRow3"><div class="messagename">
 <a href="<?php echo url_maker($exfile['messenger'],$Settings['file_ext'],"act=read&id=".$PMID,$Settings['qstr'],$Settings['qsep'],$prexqstr['messenger'],$exqstr['messenger']); ?>"><?php echo $MessageName; ?></a></div>
 <div class="messagedesc"><?php echo $MessageDesc; ?></div></td>
-<td class="TableRow3" style="text-align: center;"><a href="<?php echo url_maker($exfile['member'],$Settings['file_ext'],"act=read&id".$SenderID,$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); ?>"><?php echo $SenderName; ?></a></td>
+<td class="TableRow3" style="text-align: center;"><a href="<?php
+if($SenderID!="-1") {
+echo url_maker($exfile['member'],$Settings['file_ext'],"act=read&id".$SenderID,$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); }
+if($SenderID=="-1") {
+echo url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); }
+?>"><?php echo $SenderName; ?></a></td>
 <td class="TableRow3" style="text-align: center;"><?php echo $DateSend; ?></td>
 </tr>
 <?php ++$i; } @mysql_free_result($result); ?>
@@ -141,7 +146,12 @@ if ($MessageStat==1) {
 <td class="TableRow3"><div class="messagename">
 <a href="<?php echo url_maker($exfile['messenger'],$Settings['file_ext'],"act=read&id=".$PMID,$Settings['qstr'],$Settings['qsep'],$prexqstr['messenger'],$exqstr['messenger']); ?>"><?php echo $MessageName; ?></a></div>
 <div class="messagedesc"><?php echo $MessageDesc; ?></div></td>
-<td class="TableRow3" style="text-align: center;"><a href="<?php echo url_maker($exfile['member'],$Settings['file_ext'],"act=view&id=".$SentToID,$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); ?>"><?php echo $SentToName; ?></a></td>
+<td class="TableRow3" style="text-align: center;"><a href="<?php
+if($SentToID!="-1") {
+echo url_maker($exfile['member'],$Settings['file_ext'],"act=view&id=".$SentToID,$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); }
+if($SentToID=="-1") {
+echo url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); }
+?>"><?php echo $SentToName; ?></a></td>
 <td class="TableRow3" style="text-align: center;"><?php echo $DateSend; ?></td>
 </tr>
 <?php ++$i; } ?>
@@ -215,7 +225,12 @@ $User1Signature = text2icons($User1Signature,$Settings['sqltable']);
 </tr>
 <tr class="TableRow2">
 <td class="TableRow2" style="vertical-align: middle; width: 20%;">
-&nbsp;<a href="<?php echo url_maker($exfile['member'],$Settings['file_ext'],"act=view&id=".$User1ID,$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); ?>"><?php echo $User1Name; ?></a></td>
+&nbsp;<a href="<?php
+if($User1ID!="-1") {
+echo url_maker($exfile['member'],$Settings['file_ext'],"act=view&id=".$User1ID,$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); }
+if($User1ID=="-1") {
+echo url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); }
+?>"><?php echo $User1Name; ?></a></td>
 <td class="TableRow2" style="vertical-align: middle; width: 80%;">
 <div style="text-align: left; float: left;">
 <span style="font-weight: bold;">Time Sent: </span><?php echo $DateSend; ?>
@@ -247,7 +262,12 @@ Joined: <?php echo $User1Joined; ?><br /><br />
 </tr>
 <tr class="TableRow4">
 <td class="TableRow4" colspan="2">
-<span style="float: left;">&nbsp;<a href="<?php echo url_maker($exfile['member'],$Settings['file_ext'],"act=view&id=".$User1ID,$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); ?>"><?php echo $ThemeSet['Profile']; ?></a><?php echo $ThemeSet['LineDividerTopic']; ?><a href="<?php echo $User1Website; ?>" onclick="window.open(this.href);return false;"><?php echo $ThemeSet['WWW']; ?></a><?php echo $ThemeSet['LineDividerTopic']; ?><a href="#Act/PM"><?php echo $ThemeSet['PM']; ?></a></span>
+<span style="float: left;">&nbsp;<a href="<?php
+if($User1ID!="-1") {
+echo url_maker($exfile['member'],$Settings['file_ext'],"act=view&id=".$User1ID,$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); }
+if($User1ID=="-1") {
+echo url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); }
+?>"><?php echo $ThemeSet['Profile']; ?></a><?php echo $ThemeSet['LineDividerTopic']; ?><a href="<?php echo $User1Website; ?>" onclick="window.open(this.href);return false;"><?php echo $ThemeSet['WWW']; ?></a><?php echo $ThemeSet['LineDividerTopic']; ?><a href="#Act/PM"><?php echo $ThemeSet['PM']; ?></a></span>
 <span style="float: right;">&nbsp;</span></td></tr>
 <?php } ?>
 </table></div>

@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: events.php - Last Update: 04/17/2007 SVN 47 - Author: cooldude2k $
+    $FileInfo: events.php - Last Update: 04/27/2007 SVN 48 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -78,7 +78,12 @@ $EventText = text2icons($EventText,$Settings['sqltable']); $User1Signature = tex
 </tr>
 <tr class="TableRow2">
 <td class="TableRow2" style="vertical-align: middle; width: 20%;">
-&nbsp;<a href="<?php echo url_maker($exfile['member'],$Settings['file_ext'],"act=view&id=".$User1ID,$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); ?>"><?php echo $User1Name; ?></a></td>
+&nbsp;<a href="<?php
+if($User1ID!="-1") {
+echo url_maker($exfile['member'],$Settings['file_ext'],"act=view&id=".$User1ID,$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); }
+if($User1ID=="-1") {
+echo url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); }
+?>"><?php echo $User1Name; ?></a></td>
 <td class="TableRow2" style="vertical-align: middle; width: 80%;">
 <div style="text-align: left; float: left;">
 <span style="font-weight: bold;">Event Start: </span><?php echo $EventStart; ?><?php echo $ThemeSet['LineDividerTopic']; ?><span style="font-weight: bold;">Event End: </span><?php echo $EventEnd; ?>
@@ -98,7 +103,10 @@ $EventText = text2icons($EventText,$Settings['sqltable']); $User1Signature = tex
  </table><br />
 User Title: <?php echo $User1Title; ?><br />
 Group: <?php echo $User1Group; ?><br />
-Member: <?php echo $User1ID; ?><br />
+Member: <?php 
+if($User1ID!="-1") { echo $User1ID; }
+if($User1ID=="-1") { echo 0; }
+?><br />
 Posts: <?php echo $User1PostCount; ?><br />
 Joined: <?php echo $User1Joined; ?><br /><br />
 </td>
@@ -110,7 +118,12 @@ Joined: <?php echo $User1Joined; ?><br /><br />
 </tr>
 <tr class="TableRow4">
 <td class="TableRow4" colspan="2">
-<span style="float: left;">&nbsp;<a href="<?php echo url_maker($exfile['member'],$Settings['file_ext'],"act=view&id=".$User1ID,$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); ?>"><?php echo $ThemeSet['Profile']; ?></a><?php echo $ThemeSet['LineDividerTopic']; ?><a href="<?php echo $User1Website; ?>" onclick="window.open(this.href);return false;"><?php echo $ThemeSet['WWW']; ?></a><?php echo $ThemeSet['LineDividerTopic']; ?><a href="#Act/PM"><?php echo $ThemeSet['PM']; ?></a></span>
+<span style="float: left;">&nbsp;<a href="<?php
+if($User1ID!="-1") {
+echo url_maker($exfile['member'],$Settings['file_ext'],"act=view&id=".$User1ID,$Settings['qstr'],$Settings['qsep'],$prexqstr['member'],$exqstr['member']); }
+if($User1ID=="-1") {
+echo url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); }
+?>"><?php echo $ThemeSet['Profile']; ?></a><?php echo $ThemeSet['LineDividerTopic']; ?><a href="<?php echo $User1Website; ?>" onclick="window.open(this.href);return false;"><?php echo $ThemeSet['WWW']; ?></a><?php echo $ThemeSet['LineDividerTopic']; ?><a href="#Act/PM"><?php echo $ThemeSet['PM']; ?></a></span>
 <span style="float: right;">&nbsp;</span></td>
 </tr>
 <?php } ?>

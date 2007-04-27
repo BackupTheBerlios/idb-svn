@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: pm.php - Last Update: 04/27/2007 SVN 48 - Author: cooldude2k $
+    $FileInfo: pm.php - Last Update: 04/27/2007 SVN 49 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -250,7 +250,10 @@ echo url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr
  </table><br />
 User Title: <?php echo $User1Title; ?><br />
 Group: <?php echo $User1Group; ?><br />
-Member: <?php echo $User1ID; ?><br />
+Member: <?php 
+if($User1ID!="-1") { echo $User1ID; }
+if($User1ID=="-1") { echo 0; }
+?><br />
 Posts: <?php echo $User1PostCount; ?><br />
 Joined: <?php echo $User1Joined; ?><br /><br />
 </td>

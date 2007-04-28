@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: stats.php - Last Update: 04/10/2007 SVN 45 - Author: cooldude2k $
+    $FileInfo: stats.php - Last Update: 04/28/2007 SVN 49 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -43,7 +43,7 @@ if($guest_check > 0) { $nummembers = $nummembers - 1; }
 <table class="Table1">
 <tr class="TableRow1">
 <td class="TableRow1" colspan="2"><span style="float: left;">
-<?php echo $ThemeSet['TitleIcon']; ?><a id="bstats" href="<?php echo $filewpath; ?>#bstats">Board Statistics</a></span>
+<?php echo $ThemeSet['TitleIcon']; ?><a id="bstats" href="<?php echo url_maker($exfile['index'],$Settings['file_ext'],"act=stats",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); ?>#bstats">Board Statistics</a></span>
 <?php echo $togglecode; ?></td>
 </tr>
 <tr id="Stats1" class="TableRow2">

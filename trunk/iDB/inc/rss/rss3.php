@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: rss3.php - Last Update: 04/10/2007 SVN 45 - Author: cooldude2k $
+    $FileInfo: rss3.php - Last Update: 04/28/2007 SVN 49 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -40,8 +40,9 @@ $basedir = str_replace("//", "/", $basedir);
 if($Settings['fixpathinfo']!=true&&
 	$Settings['fixpathinfo']!=false&&
 	$Settings['fixpathinfo']!=null) {
-		$basedir = "/"; }
-$BaseURL = $basedir;
+		$basedir = "/"; } $BaseURL = $basedir;
+if(isset($Settings['showverinfo'])) { $idbmisc['showverinfo'] = $Settings['showverinfo']; }
+if(!isset($Settings['showverinfo'])) { $idbmisc['showverinfo'] = false; }
 if($_SERVER['HTTPS']=="on") { $prehost = "https://"; }
 if($_SERVER['HTTPS']!="on") { $prehost = "http://"; }
 if($Settings['idburl']=="localhost"||$Settings['idburl']==null) {
@@ -81,18 +82,25 @@ $CategoryShow=mysql_result($preresult1,$prei1,"ShowCategory");
 $CategoryDescription=mysql_result($preresult1,$prei1,"Description");
 $Atom .= '<entry>'."\n".'<title>'.htmlentities($CategoryName).'</title>'."\n".'<summary>'.htmlentities($CategoryDescription).'</summary>'."\n".'link rel="alternate" href="'.$BoardURL.url_maker($exfilerss['category'],$Settings['file_ext'],"act=view&id=".$CategoryID,$Settings['qstr'],$Settings['qsep'],$prexqstrrss['category'],$exqstrrss['category']).'" />'."\n".'<id>'.$BoardURL.url_maker($exfilerss['category'],$Settings['file_ext'],"act=view&id=".$CategoryID,$Settings['qstr'],$Settings['qsep'],$prexqstrrss['category'],$exqstrrss['category']).'</id>'."\n".'<author>'."\n".'<name>'.$SettInfo['Author'].'</name>'."\n".'</author>'."\n".'<updated>'.gmdate("Y-m-d\TH:i:s\Z").'</updated>'."\n".'</entry>'."\n";
 $RSS .= '<item>'."\n".'<title>'.htmlentities($CategoryName).'</title>'."\n".'<description>'.htmlentities($CategoryDescription).'</description>'."\n".'<link>'.$BoardURL.url_maker($exfilerss['category'],$Settings['file_ext'],"act=view&id=".$CategoryID,$Settings['qstr'],$Settings['qsep'],$prexqstrrss['category'],$exqstrrss['category']).'</link>'."\n".'<guid>'.$BoardURL.url_maker($exfilerss['category'],$Settings['file_ext'],"act=view&id=".$CategoryID,$Settings['qstr'],$Settings['qsep'],$prexqstrrss['category'],$exqstrrss['category']).'</guid>'."\n".'</item>'."\n";
-++$prei1; } @mysql_free_result($preresult1); ?>
-<?php xml_doc_start("1.0",$Settings['charset']); ?>
+++$prei1; } @mysql_free_result($preresult1);
+xml_doc_start("1.0",$Settings['charset']);
+if($Settings['showverinfo']==true) { ?>
 <!-- generator="<?php echo $VerInfo['iDB_Ver_Show']; ?>" -->
-<?php if($_GET['feedtype']=="rss") { ?>
+<?php } if($Settings['showverinfo']!=true) { ?>
+<!-- generator="<?php echo $iDB; ?>" -->
+<?php } echo "\n"; if($_GET['feedtype']=="rss") { ?>
 <rss version="2.0">
   <channel>
    <title><?php echo $boardsname; ?></title>
    <description>RSS Feed of the Categorys on Board <?php echo $boardsname; ?></description>
    <link><?php echo $BoardURL; ?></link>
    <language>en-us</language>
+   <?php if($Settings['showverinfo']==true) { ?>
    <generator><?php echo $VerInfo['iDB_Ver_Show']; ?></generator>
-   <copyright>Game Maker 2k</copyright>
+   <?php } if($Settings['showverinfo']!=true) { ?>
+   <generator><?php echo $iDB; ?></generator>
+   <?php } echo "\n"; ?>
+   <copyright><?php echo $SettInfo['Author']; ?></copyright>
    <ttl>120</ttl>
    <image>
 	<url><?php echo $BoardURL.$SettDir['rss']; ?>rss.gif</url>
@@ -108,7 +116,11 @@ $RSS .= '<item>'."\n".'<title>'.htmlentities($CategoryName).'</title>'."\n".'<de
    <link rel="self" href="<?php echo $feedsname; ?>" />
    <id><?php echo $BoardURL; ?></id>
    <updated><?php echo gmdate("Y-m-d\TH:i:s\Z"); ?></updated>
+   <?php if($Settings['showverinfo']==true) { ?>
    <generator><?php echo $VerInfo['iDB_Ver_Show']; ?></generator>
+   <?php } if($Settings['showverinfo']!=true) { ?>
+   <generator><?php echo $iDB; ?></generator>
+   <?php } echo "\n"; ?>
   <icon><?php echo $BoardURL; ?>inc/rss/rss.gif</icon>
  <?php echo "\n".$Atom."\n"; ?>
 </feed>

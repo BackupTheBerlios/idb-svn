@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: rss4.php - Last Update: 04/10/2007 SVN 45 - Author: cooldude2k $
+    $FileInfo: rss4.php - Last Update: 04/28/2007 SVN 49 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -40,8 +40,9 @@ $basedir = str_replace("//", "/", $basedir);
 if($Settings['fixpathinfo']!=true&&
 	$Settings['fixpathinfo']!=false&&
 	$Settings['fixpathinfo']!=null) {
-		$basedir = "/"; }
-$BaseURL = $basedir;
+		$basedir = "/"; } $BaseURL = $basedir;
+if(isset($Settings['showverinfo'])) { $idbmisc['showverinfo'] = $Settings['showverinfo']; }
+if(!isset($Settings['showverinfo'])) { $idbmisc['showverinfo'] = false; }
 if($_SERVER['HTTPS']=="on") { $prehost = "https://"; }
 if($_SERVER['HTTPS']!="on") { $prehost = "http://"; }
 if($Settings['idburl']=="localhost"||$Settings['idburl']==null) {
@@ -92,17 +93,24 @@ $EventDay = GMTimeChange("m/d/y",$EventStart,$YourOffSet);
 $EventDayEnd = GMTimeChange("m/d/y",$EventEnd,$YourOffSet);
 $Atom .= '<entry>'."\n".'<title>'.htmlentities($EventName).'</title>'."\n".'<summary>Event Starts at '.$EventDay.' and ends at '.$EventDayEnd.'</summary>'."\n".'<link rel="alternate" href="'.$BoardURL.url_maker($exfilerss['event'],$Settings['file_ext'],"act=view&id=".$EventID,$Settings['qstr'],$Settings['qsep'],$prexqstrrss['event'],$exqstrrss['event']).'" />'."\n".'<id>'.$BoardURL.url_maker($exfilerss['event'],$Settings['file_ext'],"act=view&id=".$EventID,$Settings['qstr'],$Settings['qsep'],$prexqstrrss['event'],$exqstrrss['event']).'</id>'."\n".'<author>'."\n".'<name>'.$SettInfo['Author'].'</name>'."\n".'</author>'."\n".'<updated>'.gmdate("Y-m-d\TH:i:s\Z").'</updated>'."\n".'</entry>'."\n";
 $RSS .= '<item>'."\n".'<title>'.htmlentities($EventName).'</title>'."\n".'<description>Event Starts at '.$EventDay.' and ends at '.$EventDayEnd.'</description>'."\n".'<link>'.$BoardURL.url_maker($exfilerss['event'],$Settings['file_ext'],"act=view&id=".$EventID,$Settings['qstr'],$Settings['qsep'],$prexqstrrss['event'],$exqstrrss['event']).'</link>'."\n".'<guid>'.$BoardURL.url_maker($exfilerss['event'],$Settings['file_ext'],"act=view&id=".$EventID,$Settings['qstr'],$Settings['qsep'],$prexqstrrss['event'],$exqstrrss['event']).'</guid>'."\n".'</item>'."\n";
-++$i; } @mysql_free_result($result); ?>
-<?php xml_doc_start("1.0",$Settings['charset']); ?>
+++$i; } @mysql_free_result($result);
+xml_doc_start("1.0",$Settings['charset']);
+if($Settings['showverinfo']==true) { ?>
 <!-- generator="<?php echo $VerInfo['iDB_Ver_Show']; ?>" -->
-<?php if($_GET['feedtype']=="rss") { ?>
+<?php } if($Settings['showverinfo']!=true) { ?>
+<!-- generator="<?php echo $iDB; ?>" -->
+<?php } echo "\n"; if($_GET['feedtype']=="rss") { ?>
 <rss version="2.0">
   <channel>
    <title><?php echo $boardsname; ?></title>
    <link><?php echo $BoardURL; ?></link>
    <description>RSS Feed of the Events on Board <?php echo $boardsname; ?></description>
    <language>en</language>
+   <?php if($Settings['showverinfo']==true) { ?>
    <generator><?php echo $VerInfo['iDB_Ver_Show']; ?></generator>
+   <?php } if($Settings['showverinfo']!=true) { ?>
+   <generator><?php echo $iDB; ?></generator>
+   <?php } echo "\n"; ?>
    <copyright><?php echo $SettInfo['Author']; ?></copyright>
    <ttl>120</ttl>  
    <image>
@@ -119,7 +127,11 @@ $RSS .= '<item>'."\n".'<title>'.htmlentities($EventName).'</title>'."\n".'<descr
    <link rel="self" href="<?php echo $feedsname; ?>" />
    <id><?php echo $BoardURL; ?></id>
    <updated><?php echo gmdate("Y-m-d\TH:i:s\Z"); ?></updated>
+   <?php if($Settings['showverinfo']==true) { ?>
    <generator><?php echo $VerInfo['iDB_Ver_Show']; ?></generator>
+   <?php } if($Settings['showverinfo']!=true) { ?>
+   <generator><?php echo $iDB; ?></generator>
+   <?php } echo "\n"; ?>
   <icon><?php echo $BoardURL.$SettDir['rss']; ?>rss.gif</icon>
  <?php echo "\n".$Atom."\n"; ?>
 </feed>

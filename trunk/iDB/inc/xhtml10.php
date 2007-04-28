@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: xhtml10.php - Last Update: 04/05/2007 SVN 35 - Author: cooldude2k $
+    $FileInfo: xhtml10.php - Last Update: 04/28/2007 SVN 49 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -38,13 +38,15 @@ if($Settings['output_type']!="xhtml") {
 		$ccstart = "//<!--"; $ccend = "//-->";
 @header("Content-Type: text/html; charset=iso-8859-15"); } }
 @header("Content-Script-Type: text/javascript");
+if(isset($Settings['showverinfo'])) { $idbmisc['showverinfo'] = $Settings['showverinfo']; }
+if(!isset($Settings['showverinfo'])) { $idbmisc['showverinfo'] = false; }
 if($Settings['showverinfo']!=true) {
 $iDBURL1 = "<a href=\"http://idb.berlios.de/\" title=\"".$iDB."\" onclick=\"window.open(this.href);return false;\">"; }
-if($Settings['showverinfo']!=false) {
+if($Settings['showverinfo']==true) {
 $iDBURL1 = "<a href=\"http://idb.berlios.de/\" title=\"".$VerInfo['iDB_Ver_Show']."\" onclick=\"window.open(this.href);return false;\">"; }
 $GM2kURL = "<a href=\"http://upload.idb.s1.jcink.com/\" title=\"".$GM2k."\" onclick=\"window.open(this.href);return false;\">".$GM2k."</a>";
-$cryear = date("Y"); if($cryear<=2007) { $cryear = "2007"; }
-$endpagevar = "<div class=\"copyright\">Powered by ".$iDBURL1."iDB</a> &copy; ".$GM2kURL." @ 2004 - ".$cryear." <a href=\"".url_maker($exfile['index'],$Settings['file_ext'],"act=bsd",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'])."\" title=\"iDB is licensed under the Revised BSD License\">BSDL</a> <br />\n".$ThemeSet['CopyRight'];
+$csryear = "2004"; $cryear = date("Y"); if($cryear<=2004) { $cryear = "2005"; }
+$endpagevar = "<div class=\"copyright\">Powered by ".$iDBURL1."iDB</a> &copy; ".$GM2kURL." @ ".$csryear." - ".$cryear." <a href=\"".url_maker($exfile['index'],$Settings['file_ext'],"act=bsd",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'])."\" title=\"iDB is licensed under the Revised BSD License\">BSDL</a> <br />\n".$ThemeSet['CopyRight'];
 @header("Content-Language: en");
 @header("Vary: Accept");
 if($_SERVER['HTTPS']=="on") { $prehost = "https://"; }
@@ -70,10 +72,14 @@ if($Settings['html_level']!="Strict") {
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Language" content="en" />
-<meta http-equiv="Content-Type" content="text/html; <?php echo $Settings['charset']; ?>" />
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $Settings['charset']; ?>" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <base href="<?php echo $BoardURL; ?>" />
+<?php if($Settings['showverinfo']==true) { ?>
 <meta name="Generator" content="<?php echo $VerInfo['iDB_Ver_Show']; ?>" />
+<?php } if($Settings['showverinfo']!=true) { ?>
+<meta name="Generator" content="<?php echo $iDB; ?>" />
+<?php } echo "\n"; ?>
 <meta name="Author" content="<?php echo $SettInfo['Author']; ?>" />
 <meta name="Keywords" content="<?php echo $SettInfo['Keywords']; ?>" />
 <meta name="Description" content="<?php echo $SettInfo['Description']; ?>" />
@@ -82,6 +88,11 @@ if($Settings['html_level']!="Strict") {
 <meta name="GOOGLEBOT" content="Index, FOLLOW" />
 <meta name="resource-type" content="document" />
 <meta name="distribution" content="global" />
+<?php if($Settings['showverinfo']==true) { ?>
+<!-- generator="<?php echo $VerInfo['iDB_Ver_Show']; ?>" -->
+<?php } if($Settings['showverinfo']!=true) { ?>
+<!-- generator="<?php echo $iDB; ?>" -->
+<?php } echo "\n"; ?>
 
 <script type="text/javascript" src="<?php echo url_maker($exfilejs['javascript'],$Settings['js_ext'],null,$Settings['qstr'],$Settings['qsep'],$prexqstrjs['javascript'],$exqstrjs['javascript']); ?>"></script>
 <?php if($ThemeSet['CSSType']!="import"&&$ThemeSet['CSSType']!="link") { 

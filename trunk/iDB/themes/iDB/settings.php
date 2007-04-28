@@ -11,14 +11,14 @@
     Copyright 2004-2006 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2006 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: settings.php - Last Update: 04/27/2007 SVN 48 - Author: cooldude2k $
+    $FileInfo: settings.php - Last Update: 04/28/2007 SVN 49 - Author: cooldude2k $
 */
 $ThemeSet = array();
 $ThemeSet['ThemeName'] = "iDB Theme";
 $ThemeSet['ThemeMaker'] = "Cool Dude 2k";
 $ThemeSet['ThemeVersion'] = "0.1.5";
 $ThemeSet['ThemeVersionType'] = "Pre-Alpha";
-$ThemeSet['ThemeSubVersion'] = "SVN 48";
+$ThemeSet['ThemeSubVersion'] = "SVN 49";
 $ThemeSet['MakerURL'] = "http://upload.idb.s1.jcink.com/";
 $ThemeSet['CopyRight'] = $ThemeSet['ThemeName']." was made by <a href=\"".$ThemeSet['MakerURL']."\" title=\"".$ThemeSet['ThemeMaker']."\">".$ThemeSet['ThemeMaker']."</a>";
 $ThemeSet['CSS'] = "themes/iDB/css.css";
@@ -31,16 +31,16 @@ $ThemeSet['SubLogo'] = "</div>";
 $ThemeSet['EnableToggle'] = false;
 $ThemeSet['Toggle'] = "[&#35;]";
 $ThemeSet['ToggleExt'] = null;
-$ThemeSet['TopicIcon'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"Topic!\">(T)</div>";
-$ThemeSet['HotTopic'] = "<div style=\"text-align: center; font-size: 11px; font-weight: bold;\" title=\"Hot Topic!\">(T)</div>";
-$ThemeSet['PinTopic'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"Pinned Topic!\">{P}</div>";
-$ThemeSet['HotPinTopic'] = "<div style=\"text-align: center; font-size: 11px; font-weight: bold;\" title=\"Hot Pinned Topic!\">{P}</div>";
-$ThemeSet['ClosedTopic'] = "<div style=\"text-align: center; font-size: 11px; text-decoration: line-through;\" title=\"Closed Topic!\">[T]</div>";
-$ThemeSet['HotClosedTopic'] = "<div style=\"text-align: center; font-size: 11px; text-decoration: line-through; font-weight: bold;\" title=\"Hot Closed Topic!\">[T]</div>";
-$ThemeSet['PinClosedTopic'] = "<div style=\"text-align: center; font-size: 11px; text-decoration: line-through;\" title=\"Closed Pinned Topic!\">[P]</div>";
-$ThemeSet['HotPinClosedTopic'] = "<div style=\"text-align: center; font-size: 11px; text-decoration: line-through; font-weight: bold;\" title=\"Hot Closed Pinned Topic!\">[P]</div>";
-$ThemeSet['MessageRead'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"Message!\">[M]</div>";
-$ThemeSet['MessageUnread'] = "<div style=\"text-align: center; font-size: 11px; font-weight: bold;\" title=\"New Message!\">(M)</div>";
+$ThemeSet['TopicIcon'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"Topic!\">&nbsp;(T)&nbsp;</div>";
+$ThemeSet['HotTopic'] = "<div style=\"text-align: center; font-size: 11px; font-weight: bold;\" title=\"Hot Topic!\">&nbsp;(T)&nbsp;</div>";
+$ThemeSet['PinTopic'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"Pinned Topic!\">&nbsp;{P}&nbsp;</div>";
+$ThemeSet['HotPinTopic'] = "<div style=\"text-align: center; font-size: 11px; font-weight: bold;\" title=\"Hot Pinned Topic!\">&nbsp;{P}&nbsp;</div>";
+$ThemeSet['ClosedTopic'] = "<div style=\"text-align: center; font-size: 11px; text-decoration: line-through;\" title=\"Closed Topic!\">&nbsp;[T]&nbsp;</div>";
+$ThemeSet['HotClosedTopic'] = "<div style=\"text-align: center; font-size: 11px; text-decoration: line-through; font-weight: bold;\" title=\"Hot Closed Topic!\">&nbsp;[T]&nbsp;</div>";
+$ThemeSet['PinClosedTopic'] = "<div style=\"text-align: center; font-size: 11px; text-decoration: line-through;\" title=\"Closed Pinned Topic!\">&nbsp;[P]&nbsp;</div>";
+$ThemeSet['HotPinClosedTopic'] = "<div style=\"text-align: center; font-size: 11px; text-decoration: line-through; font-weight: bold;\" title=\"Hot Closed Pinned Topic!\">&nbsp;[P]&nbsp;</div>";
+$ThemeSet['MessageRead'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"Message!\">&nbsp;[M]&nbsp;</div>";
+$ThemeSet['MessageUnread'] = "<div style=\"text-align: center; font-size: 11px; font-weight: bold;\" title=\"New Message!\">&nbsp;(M)&nbsp;</div>";
 $ThemeSet['Profile'] = "Profile";
 $ThemeSet['WWW'] = "WWW";
 $ThemeSet['PM'] = "PM";
@@ -54,9 +54,9 @@ $ThemeSet['LineDivider'] = "&nbsp;|&nbsp;";
 $ThemeSet['ButtonDivider'] = "&nbsp;&nbsp;&nbsp;";
 $ThemeSet['LineDividerTopic'] = "&nbsp;|&nbsp;";
 $ThemeSet['TitleDivider'] = "-&gt;";
-$ThemeSet['ForumIcon'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"Forum\">(F)</div>";
-$ThemeSet['SubForumIcon'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"SubForum\">{SF}</div>";
-$ThemeSet['RedirectIcon'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"Redirect Forum\">[RF]</div>";
+$ThemeSet['ForumIcon'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"Forum\">&nbsp;(F)&nbsp;</div>";
+$ThemeSet['SubForumIcon'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"SubForum\">&nbsp;{SF}&nbsp;</div>";
+$ThemeSet['RedirectIcon'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"Redirect Forum\">&nbsp;[RF]&nbsp;</div>";
 $ThemeSet['TitleIcon'] = null;
 $ThemeSet['StatsIcon'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"Board Stats\"><br />(S)<br /></div>";
 $ThemeSet['NoAvatar'] = "themes/iDB/noavatar.png";

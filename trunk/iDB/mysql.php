@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: mysql.php - Last Update: 04/17/2007 SVN 47 - Author: cooldude2k $
+    $FileInfo: mysql.php - Last Update: 05/08/2007 SVN 53 - Author: cooldude2k $
 */
 @error_reporting(E_ALL ^ E_NOTICE);
 //@output_reset_rewrite_vars();
@@ -31,7 +31,6 @@ if($Settings['fixpathinfo']==true) {
 	@putenv("PATH_INFO=".$_SERVER['ORIG_PATH_INFO']); }
 if($SettDir['inc']==null) { $SettDir['inc'] = "inc/"; }
 if($SettDir['misc']==null) { $SettDir['misc'] = "inc/misc/"; }
-if($SettDir['rss']==null) { $SettDir['rss'] = "inc/rss/"; }
 if($SettDir['admin']==null) { $SettDir['admin'] = "inc/admin/"; }
 if($SettDir['mod']==null) { $SettDir['mod'] = "inc/mod/"; }
 if($SettDir['themes']==null) { $SettDir['themes'] = "themes/"; }

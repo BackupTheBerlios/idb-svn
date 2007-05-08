@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: preindex.php - Last Update: 04/09/2007 SVN 41 - Author: cooldude2k $
+    $FileInfo: preindex.php - Last Update: 05/08/2007 SVN 53 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -21,15 +21,7 @@ if ($File3Name=="preindex.php"||$File3Name=="/preindex.php") {
 	exit(); }
 require('mysql.php');
 if($Settings['enable_rss']==true) {
-if($_GET['feed']=="rss"&&$_GET['catfeed']=="rss") {
-	$_GET['catfeed']=""; }
-if($_GET['feed']=="rss"&&$_GET['subfeed']=="rss") {
-	$_GET['subfeed']=""; }
-if($_GET['feed']=="rss"||$_GET['act']=="Feed") {
-	require($SettDir['inc'].'rssfeed.php'); }
-if($_GET['catfeed']=="rss"||$_GET['act']=="catfeed") {
-	require($SettDir['inc'].'rssfeed.php'); }
-if($_GET['subfeed']=="rss"||$_GET['act']=="subfeed") {
+if($_GET['feed']=="rss"||$_GET['act']=="Feed"||$_GET['feed']=="atom") {
 	require($SettDir['inc'].'rssfeed.php'); } }
 if($Settings['output_type']=="htm") {
 	$Settings['output_type'] = "html"; }

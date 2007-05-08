@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: subforums.php - Last Update: 04/10/2007 SVN 45 - Author: cooldude2k $
+    $FileInfo: subforums.php - Last Update: 05/08/2007 SVN 53 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -49,7 +49,7 @@ redirect("location",url_maker($exfile['index'],$Settings['file_ext'],"act=view",
 if($ForumType=="forum") {
 redirect("location",$basedir.url_maker($exfile['forum'],$Settings['file_ext'],"act=".$_GET['act']."&id=".$_GET['id'],$Settings['qstr'],$Settings['qsep'],$prexqstr['forum'],$exqstr['forum'],FALSE)); }
 @mysql_free_result($checkresult);
-$prequery = query("select * from ".$Settings['sqltable']."categories where ShowCategory='on' and ID=%i and InSubForum=0 ORDER BY ID", array($CategoryID));
+$prequery = query("select * from ".$Settings['sqltable']."categories where ShowCategory='yes' and id=%i ORDER BY id", array($CategoryID));
 $preresult=mysql_query($prequery);
 $prenum=mysql_num_rows($preresult);
 $prei=0;

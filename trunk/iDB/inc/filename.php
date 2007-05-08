@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: filename.php - Last Update: 05/02/2007 SVN 52 - Author: cooldude2k $
+    $FileInfo: filename.php - Last Update: 05/08/2007 SVN 53 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -40,11 +40,13 @@ if($Settings['rssurl']!=null&&$Settings['rssurl']!="") {
 //Version info stuff. :P 
 function version_info($proname,$subver,$ver,$supver,$reltype,$svnver,$showsvn) {
 	$return_var = $proname." ".$reltype." ".$subver.".".$ver.".".$supver;
+	if($showsvn==false) { $showsvn = null; }
 	if($showsvn==true) { $return_var .= " SVN ".$svnver; }
+	if($showsvn!=true&&$showsvn!=null) { $return_var .= " ".$showsvn." ".$svnver; }
 	return $return_var; }
 $VER1[0] = 0; $VER1[1] = 1; $VER1[2] = 5; $VERFull[1] = $VER1[0].".".$VER1[1].".".$VER1[2];
-$VER2[0] = "Pre-Alpha"; $VER2[1] = "PA"; $VER2[2] = "SVN"; $SubVerN = 52; 
-$SVNDay[0] = 5; $SVNDay[1] = 02; $SVNDay[2] = 2007; $SVNDay[3] = $SVNDay[0]."/".$SVNDay[1]."/".$SVNDay[2];
+$VER2[0] = "Pre-Alpha"; $VER2[1] = "PA"; $VER2[2] = "SVN"; $SubVerN = 53; 
+$SVNDay[0] = 5; $SVNDay[1] = 08; $SVNDay[2] = 2007; $SVNDay[3] = $SVNDay[0]."/".$SVNDay[1]."/".$SVNDay[2];
 $VerInfo['iDB_Ver'] = version_info("iDB",$VER1[0],$VER1[1],$VER1[2],$VER2[1],$SubVerN,false);
 $VerInfo['iDB_Ver_SVN'] = version_info("iDB",$VER1[0],$VER1[1],$VER1[2],$VER2[1],$SubVerN,true);
 $VerInfo['iDB_Full_Ver'] = version_info("iDB",$VER1[0],$VER1[1],$VER1[2],$VER2[0],$SubVerN,false);
@@ -91,6 +93,8 @@ $exfile['rss'] = 'rss';
 $prexqstr['rss'] = null; $exqstr['rss'] = null;
 $exfile['subforum'] = 'subforum';
 $prexqstr['subforum'] = null; $exqstr['subforum'] = null;
+$exfile['subcategory'] = 'subcategory';
+$prexqstr['subcategory'] = null; $exqstr['subcategory'] = null;
 $exfile['topic'] = 'topic';
 $prexqstr['topic'] = null; $exqstr['topic'] = null;
 $exfile['redirect'] = 'forum';
@@ -101,6 +105,8 @@ $exfilerss['forum'] = 'forum';
 $prexqstrrss['forum'] = null; $exqstrrss['forum'] = null;
 $exfilerss['subforum'] = "subforum";
 $prexqstrrss['subforum'] = null; $exqstrrss['subforum'] = null;
+$exfilerss['subcategory'] = "subcategory";
+$prexqstrrss['subcategory'] = null; $exqstrrss['subcategory'] = null;
 $exfilerss['redirect'] = 'forum';
 $prexqstrrss['redirect'] = null; $exqstrrss['redirect'] = null;
 $exfilerss['topic'] = "topic";

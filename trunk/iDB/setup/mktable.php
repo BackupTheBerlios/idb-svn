@@ -12,7 +12,7 @@
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
     iDB Installer made by Game Maker 2k - http://s1.jcink.com/s/host/idb/
 
-    $FileInfo: mktable.php - Last Update: 04/10/2007 SVN 45 - Author: cooldude2k $
+    $FileInfo: mktable.php - Last Update: 05/08/2007 SVN 53 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -22,7 +22,7 @@ if ($File3Name=="mktable.php"||$File3Name=="/mktable.php") {
 	exit(); }
 if($SetupDir['setup']==null) { $SetupDir['setup'] = "setup/"; }
 if($SetupDir['convert']==null) { $SetupDir['convert'] = "setup/convert/"; }
-$query="CREATE TABLE `".$_POST['tableprefix']."categories` ( `id` int(15) NOT NULL auto_increment, `Name` varchar(150) NOT NULL default '', `ShowCategory` varchar(5) NOT NULL default '', `InSubForum` int(15) NOT NULL default '0', `Description` text NOT NULL, PRIMARY KEY  (`id`)) TYPE=MyISAM ;";
+$query="CREATE TABLE `".$_POST['tableprefix']."categories` ( `id` int(15) NOT NULL auto_increment, `Name` varchar(150) NOT NULL default '', `ShowCategory` varchar(5) NOT NULL default '', `CategoryType` varchar(15) NOT NULL default '', `SubShowForums` varchar(5) NOT NULL default '', `InSubCategory` int(15) NOT NULL default '0', `Description` text NOT NULL, PRIMARY KEY  (`id`)) TYPE=MyISAM ;";
 mysql_query($query);
 $query="CREATE TABLE `".$_POST['tableprefix']."forums` ( `id` int(15) NOT NULL auto_increment, `CategoryID` int(15) NOT NULL default '0', `Name` varchar(150) NOT NULL default '', `ShowForum` varchar(5) NOT NULL default '', `ForumType` varchar(15) NOT NULL default '', `InSubForum` int(15) NOT NULL default '0', `RedirectURL` text NOT NULL, `Redirects` int(15) NOT NULL default '0', `NumViews` int(15) NOT NULL default '0', `Description` text NOT NULL, `PostCountAdd` varchar(15) NOT NULL default '', `CanHaveTopics` varchar(5) NOT NULL default '', `NumPosts` int(15) NOT NULL default '0', `NumTopics` int(15) NOT NULL default '0', PRIMARY KEY  (`id`)) TYPE=MyISAM ;";
 mysql_query($query);
@@ -47,9 +47,13 @@ $query="CREATE TABLE `".$_POST['tableprefix']."groups` ( `id` int(15) NOT NULL a
 mysql_query($query);
 $query="CREATE TABLE `".$_POST['tableprefix']."permissions` ( `id` int(15) NOT NULL auto_increment, `PermissionID` int(15) NOT NULL default '0', `Name` varchar(150) NOT NULL default '', `ForumID` int(15) NOT NULL default '0', `CanViewForum` varchar(5) NOT NULL default '', `CanMakeTopics` varchar(5) NOT NULL default '', `CanMakeReplys` varchar(5) NOT NULL default '', `CanEditTopics` varchar(5) NOT NULL default '', `CanEditReplys` varchar(5) NOT NULL default '', `CanDeleteTopics` varchar(5) NOT NULL default '', `CanDeleteReplys` varchar(5) NOT NULL default '', `CanDohtml` varchar(5) NOT NULL default '', `CanUseBBags` varchar(5) NOT NULL default '', `CanModForum` varchar(5) NOT NULL default '', PRIMARY KEY  (`id`)) TYPE=MyISAM ;";
 mysql_query($query);
+$query="CREATE TABLE `".$_POST['tableprefix']."catpermissions` ( `id` int(15) NOT NULL auto_increment, `PermissionID` int(15) NOT NULL default '0', `Name` varchar(150) NOT NULL default '', `CategoryID` int(15) NOT NULL default '0', `CanViewCategory` varchar(5) NOT NULL default '', PRIMARY KEY  (`id`)) TYPE=MyISAM ;";
+mysql_query($query);
 $query = "INSERT INTO ".$_POST['tableprefix']."groups VALUES (1, 'Admin', 1, '', '', 'yes', 'yes', 'yes', 'yes', 'none', 0, 'yes', 'yes', 'no'), (2, 'Moderator', 2, '', '', 'yes', 'yes', 'yes', 'yes', 'none', 0, 'yes', 'no', 'no'), (3, 'Member', 3, '', '', 'yes', 'yes', 'yes', 'yes', 'none', 0, 'no', 'no', 'no'), (4, 'Guest', 4, '', '', 'yes', 'no', 'no', 'no', 'none', 0, 'no', 'no', 'no'), (5, 'Banned', 5, '', '', 'no', 'no', 'no', 'no', 'none', 0, 'no', 'no', 'no'), (6, 'Validate', 6, '', '', 'yes', 'yes', 'no', 'no', 'none', 0, 'no', 'no', 'no');"; 
 mysql_query($query);
 $query = "INSERT INTO ".$_POST['tableprefix']."permissions VALUES (1, 1, 'Admin', 1, 'yes', 'yes', 'yes', 'yes', 'yes', 'yes', 'yes', 'yes', 'yes', 'yes'), (2, 2, 'Moderator', 1, 'yes', 'yes', 'yes', 'yes', 'yes', 'yes', 'yes', 'yes', 'yes', 'yes'), (3, 3, 'Member', 1, 'yes', 'yes', 'yes', 'yes', 'yes', 'yes', 'yes', 'no', 'yes', 'no'), (4, 4, 'Guest', 1, 'yes', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no'), (5, 5, 'Banned', 1, 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no'), (6, 6, 'Validate', 1, 'yes', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no');"; 
+mysql_query($query);
+$query = "INSERT INTO ".$_POST['tableprefix']."catpermissions VALUES (1, 1, 'Admin', 1, 'yes'), (2, 2, 'Moderator', 1, 'yes'), (3, 3, 'Member', 1, 'yes'), (4, 4, 'Guest', 1, 'yes'), (5, 5, 'Banned', 1, 'no'), (6, 6, 'Validate', 1, 'yes');"; 
 mysql_query($query);
 $query = "INSERT INTO ".$_POST['tableprefix']."smileys VALUES (1, 'smile.gif', 'Happy', ':)', 'smileys/', 'yes'), (2, 'tongue.gif', 'Tongue', ':P', 'smileys/', 'yes'), (3, 'tongue2.gif', 'Tongue', ':tongue:', 'smileys/', 'yes'), (4, 'sweat.gif', 'Sweat', ':sweat:', 'smileys/', 'yes'), (5, 'laugh.gif', 'lol', ':lol:', 'smileys/', 'yes'), (6, 'cool.gif', 'Cool', 'B)', 'smileys/', 'yes'), (7, 'sleep.gif', 'Sleep', '-_-', 'smileys/', 'yes'), (8, 'sad.gif', 'Sad', ':(', 'smileys/', 'yes'), (9, 'angry.gif', 'Angry', ':angry:', 'smileys/', 'yes'), (10, 'huh.gif', 'huh', ':huh:', 'smileys/', 'yes'), (11, 'ohmy.gif', 'ohmy', ':o', 'smileys/', 'yes'), (12, 'hmm.gif', 'hmm', ':unsure:', 'smileys/', 'yes'), (13, 'mad.gif', 'Mad', ':mad:', 'smileys/', 'yes'), (14, 'wub.gif', 'Wub', ':wub:', 'smileys/', 'yes'), (15, 'x.gif', 'X', ':x:', 'smileys/', 'yes');";
 mysql_query($query);

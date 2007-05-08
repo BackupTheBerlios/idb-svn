@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: rss.php - Last Update: 04/09/2007 SVN 44 - Author: cooldude2k $
+    $FileInfo: rss.php - Last Update: 05/08/2007 SVN 53 - Author: cooldude2k $
 */
 @error_reporting(E_ALL ^ E_NOTICE);
 if(@ini_get("register_globals")) {
@@ -19,58 +19,18 @@ if(@ini_get("register_globals")) {
 require_once('mysql.php');
 if($SettDir['inc']==null) { $SettDir['inc'] = "inc/"; }
 if($SettDir['misc']==null) { $SettDir['misc'] = "inc/misc/"; }
-if($SettDir['rss']==null) { $SettDir['rss'] = "inc/rss/"; }
 if($SettDir['admin']==null) { $SettDir['admin'] = "inc/admin/"; }
 if($SettDir['mod']==null) { $SettDir['mod'] = "inc/mod/"; }
 if($SettDir['themes']==null) { $SettDir['themes'] = "themes/"; }
 if($Settings['enable_rss']==false) {
 redirect("location",$basedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)); }
-if($Settings['enable_rss']==true) {
-if($_GET['act']==null)
-{	$_GET['act']="boardrss";	}
-if($_GET['act']==null)
-{	$_GET['act']="boardfeed";	}
-if($_GET['act']=="boardfeed")
-{	$_GET['act'] = "boardrss";	}
-if($_GET['act']=="catboardfeed")
-{	$_GET['act'] = "catboardrss";	}
-if($_GET['act']=="categoryfeed")
-{	$_GET['act'] = "categoryrss";	}
-if($_GET['act']=="topicfeed")
-{	$_GET['act'] = "topicrss";	}
-if($_GET['act']=="eventfeed")
-{	$_GET['act'] = "eventrss";	}
-if($_GET['act']=="boardrss")
-{	$_GET['feedtype'] = "rss";
-	require($SettDir['rss'].'rss1.php'); $Feed['Feed']="Done";	}
-if($_GET['act']=="boardatom")
-{	$_GET['feedtype'] = "atom";
-	require($SettDir['rss'].'rss1.php'); $Feed['Feed']="Done";	}
-if($_GET['act']=="catboardrss")
-{	$_GET['feedtype'] = "rss";
-	require($SettDir['rss'].'rss1.php'); $Feed['Feed']="Done";	}
-if($_GET['act']=="catboardatom")
-{	$_GET['feedtype'] = "atom";
-	require($SettDir['rss'].'rss1.php'); $Feed['Feed']="Done";	}
-if($_GET['act']=="categoryrss")
-{	$_GET['feedtype'] = "rss";
-	require($SettDir['rss'].'rss3.php'); $Feed['Feed']="Done";	}
-if($_GET['act']=="categoryatom")
-{	$_GET['feedtype'] = "atom";
-	require($SettDir['rss'].'rss3.php'); $Feed['Feed']="Done";	}
-if($_GET['act']=="topicrss")
-{	$_GET['feedtype'] = "rss";
-	require($SettDir['rss'].'rss2.php'); $Feed['Feed']="Done";	}
-if($_GET['act']=="topicatom")
-{	$_GET['feedtype'] = "atom";
-	require($SettDir['rss'].'rss2.php'); $Feed['Feed']="Done";	}
-if($_GET['act']=="eventrss")
-{	$_GET['feedtype'] = "rss";
-	require($SettDir['rss'].'rss4.php'); $Feed['Feed']="Done";	}
-if($_GET['act']=="eventatom")
-{	$_GET['feedtype'] = "atom";
-	require($SettDir['rss'].'rss4.php'); $Feed['Feed']="Done";	}
-if($Feed['Feed']!="Done")
-{	$_GET['feedtype'] = "rss";
-	require($SettDir['rss'].'rss1.php'); $Feed['Feed']="Done";	} }
+if($_GET['feed']!="rss"&&$_GET['feed']!="atom") {
+	$_GET['feed'] = "rss"; }
+if($_GET['feedtype']!="rss"&&$_GET['feedtype']!="atom") {
+	if($_GET['feed']=="rss"||$_GET['feed']=="atom") { $_GET['feedtype'] = $_GET['feed']; }
+	if($_GET['act']=="rss"||$_GET['act']=="atom") { $_GET['feedtype'] = $_GET['act']; }
+	if($_GET['feedtype']!="rss"&&$_GET['feedtype']!="atom") { $_GET['feedtype'] = "rss"; } }
+if($_GET['feed']=="rss"||$_GET['act']=="Feed"||$_GET['feed']=="atom") {
+	$_GET['feedtype'] = $_GET['feed']; $Feed['Feed']="Done";
+	require($SettDir['inc'].'rssfeed.php'); }
 ?>

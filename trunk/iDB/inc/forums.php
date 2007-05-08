@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: forums.php - Last Update: 04/27/2007 SVN 48 - Author: cooldude2k $
+    $FileInfo: forums.php - Last Update: 05/08/2007 SVN 53 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -19,7 +19,7 @@ $File3Name=str_replace($File1Name, null, $File2Name);
 if ($File3Name=="boards.php"||$File3Name=="/boards.php") {
 	require('index.php');
 	exit(); }
-$prequery = query("select * from ".$Settings['sqltable']."categories where ShowCategory='on' and InSubForum=0", array());
+$prequery = query("select * from ".$Settings['sqltable']."categories where ShowCategory='yes' and InSubCategory=0", array());
 $preresult=mysql_query($prequery);
 $prenum=mysql_num_rows($preresult);
 $prei=0;
@@ -27,7 +27,10 @@ while ($prei < $prenum) {
 $CategoryID=mysql_result($preresult,$prei,"id");
 $CategoryName=mysql_result($preresult,$prei,"Name");
 $CategoryShow=mysql_result($preresult,$prei,"ShowCategory");
+$CategoryType=mysql_result($preresult,$prei,"CategoryType");
+$SubShowForums=mysql_result($preresult,$prei,"SubShowForums");
 $CategoryDescription=mysql_result($preresult,$prei,"Description");
+$CategoryType = strtolower($CategoryType); $SubShowForums = strtolower($SubShowForums);
 $toggle=""; $togglecode = "<span style=\"float: right;\">&nbsp;</span>";
 if($ThemeSet['EnableToggle']==true) {
 /*	Toggle Code	*/
@@ -56,7 +59,7 @@ $togglecode = "<span style=\"float: right;\">&nbsp;</span>"; }
 <table class="Table1">
 <tr class="TableRow1">
 <td class="TableRow1" colspan="5"><span style="float: left;">
-<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['category'],$Settings['file_ext'],"act=view&id=".$CategoryID,$Settings['qstr'],$Settings['qsep'],$prexqstr['category'],$exqstr['category']); ?>" id="Toggle<?php echo $CategoryID; ?>"><?php echo $CategoryName; ?></a></span>
+<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile[$CategoryType],$Settings['file_ext'],"act=view&id=".$CategoryID,$Settings['qstr'],$Settings['qsep'],$prexqstr[$CategoryType],$exqstr[$CategoryType]); ?>" id="Toggle<?php echo $CategoryID; ?>"><?php echo $CategoryName; ?></a></span>
 <?php echo $togglecode; ?></td>
 </tr>
 <?php

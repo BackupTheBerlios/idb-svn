@@ -11,34 +11,45 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: categories.php - Last Update: 05/08/2007 SVN 53 - Author: cooldude2k $
+    $FileInfo: subcategories.php - Last Update: 05/08/2007 SVN 53 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
 $File3Name=str_replace($File1Name, null, $File2Name);
-if ($File3Name=="categories.php"||$File3Name=="/categories.php") {
+if ($File3Name=="subcategories.php"||$File3Name=="/subcategories.php") {
 	require('index.php');
 	exit(); }
-$prequery = query("select * from ".$Settings['sqltable']."categories where ID=%i and ShowCategory='yes'", array($_GET['id']));
+$checkquery = query("select * from ".$Settings['sqltable']."categories where ID=%s", array($_GET['id']));
+$checkresult=mysql_query($checkquery);
+$checknum=mysql_num_rows($checkresult);
+$checki=0;
+if($checknum===0) { redirect("location",$basedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)); }
+$CategoryID=mysql_result($checkresult,$checki,"id");
+$CategoryName=mysql_result($checkresult,$checki,"Name");
+$CategoryShow=mysql_result($checkresult,$checki,"ShowCategory");
+$CategoryType=mysql_result($checkresult,$checki,"CategoryType");
+$SubShowForums=mysql_result($checkresult,$checki,"SubShowForums");
+$CategoryType = strtolower($CategoryType); $SubShowForums = strtolower($SubShowForums);
+$SCategoryName = $CategoryName;
+if($ForumType=="category") {
+redirect("location",$basedir.url_maker($exfile['category'],$Settings['file_ext'],"act=".$_GET['act']."&id=".$_GET['id'],$Settings['qstr'],$Settings['qsep'],$prexqstr['category'],$exqstr['category'],FALSE)); }
+@mysql_free_result($checkresult);
+$prequery = query("select * from ".$Settings['sqltable']."categories where ShowCategory='yes' and InSubCategory=%i", array($_GET['id']));
 $preresult=mysql_query($prequery);
 $prenum=mysql_num_rows($preresult);
 $prei=0;
-if($prenum==0) { redirect("location",$basedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)); }
 while ($prei < $prenum) {
 $CategoryID=mysql_result($preresult,$prei,"id");
 $CategoryName=mysql_result($preresult,$prei,"Name");
 $CategoryShow=mysql_result($preresult,$prei,"ShowCategory");
 $CategoryType=mysql_result($preresult,$prei,"CategoryType");
-$SubShowForums=mysql_result($preresult,$prei,"SubShowForums");
+$SSubShowForums=mysql_result($preresult,$prei,"SubShowForums");
 $CategoryDescription=mysql_result($preresult,$prei,"Description");
 $CategoryType = strtolower($CategoryType); $SubShowForums = strtolower($SubShowForums);
-if($CatCheck!="skip") {
-if($ForumType=="subcategory") {
-redirect("location",$basedir.url_maker($exfile['subcategory'],$Settings['file_ext'],"act=".$_GET['act']."&id=".$_GET['id'],$Settings['qstr'],$Settings['qsep'],$prexqstr['subcategory'],$exqstr['subcategory'],FALSE)); } }
 $toggle=""; $togglecode = "<span style=\"float: right;\">&nbsp;</span>";
 if($ThemeSet['EnableToggle']==true) {
 /*	Toggle Code	*/
-$query2 = query("select * from ".$Settings['sqltable']."forums where ShowForum='yes' and CategoryID=%i and InSubForum='0' ORDER BY ID", array($CategoryID));
+$query2 = query("select * from ".$Settings['sqltable']."forums where ShowForum='yes' and CategoryID='%s' and InSubForum=0", array($CategoryID));
 $result2=mysql_query($query2);
 $num2=mysql_num_rows($result2);
 $i2=0;
@@ -51,10 +62,10 @@ $toggle=$toggle."toggletag('Forum".$ForumID."'),"; }
 if ($i3==$num2) {
 $toggle=$toggle."toggletag('Forum".$ForumID."'),"; }
 if ($i3==$num2) {
-$toggle=$toggle."toggletag('Cat".$CategoryID."'),toggletag('CatEnd');return false;"; }
+$toggle=$toggle."toggletag('SubCat".$CategoryID."'),toggletag('SubCatEnd".$CategoryID."');return false;"; }
 ++$i2; }
-if($toggle==null) { $toggle="toggletag('Cat".$CategoryID."'),toggletag('CatEnd');return false;"; }
-@mysql_free_result($result2);
+if($toggle==null) { $toggle="toggletag('SubCat".$CategoryID."'),toggletag('SubCatEnd".$CategoryID."');return false;"; } 
+@mysql_free_result($result2); 
 $togglecode = "<span style=\"float: right;\"><a href=\"".$filewpath."#Toggle".$CategoryID."\" onclick=\"".$toggle."\">".$ThemeSet['Toggle']."</a>".$ThemeSet['ToggleExt']."</span>"; }
 if($ThemeSet['EnableToggle']==false) { $toggle="";
 $togglecode = "<span style=\"float: right;\">&nbsp;</span>"; }
@@ -63,7 +74,7 @@ $togglecode = "<span style=\"float: right;\">&nbsp;</span>"; }
 <table class="Table1">
 <tr class="TableRow1">
 <td class="TableRow1" colspan="5"><span style="float: left;">
-<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile[$CategoryType],$Settings['file_ext'],"act=view&id=".$CategoryID,$Settings['qstr'],$Settings['qsep'],$prexqstr[$CategoryType],$exqstr[$CategoryType]); ?>" id="Toggle<?php echo $CategoryID; ?>"><?php echo $CategoryName; ?></a></span>
+<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile[$CategoryType],$Settings['file_ext'],"act=view&id=".$CategoryID,$Settings['qstr'],$Settings['qsep'],$prexqstr[$CategoryType],$exqstr[$CategoryType]); ?>" id="SubToggle<?php echo $CategoryID; ?>"><?php echo $CategoryName; ?></a></span>
 <?php echo $togglecode; ?></td>
 </tr>
 <?php
@@ -73,7 +84,7 @@ $num=mysql_num_rows($result);
 $i=0;
 if($num>=1) {
 ?>
-<tr id="Cat<?php echo $CategoryID; ?>" class="TableRow2">
+<tr id="SubCat<?php echo $CategoryID; ?>" class="TableRow2">
 <th class="TableRow2" style="width: 4%;">&nbsp;</th>
 <th class="TableRow2" style="width: 58%;">Forum</th>
 <th class="TableRow2" style="width: 7%;">Topics</th>
@@ -89,8 +100,9 @@ $ForumType=mysql_result($result,$i,"ForumType");
 $NumTopics=mysql_result($result,$i,"NumTopics");
 $NumPosts=mysql_result($result,$i,"NumPosts");
 $ForumDescription=mysql_result($result,$i,"Description");
+$ForumType = strtolower($ForumType);
 unset($LastTopic);
-$gltquery = query("select * from ".$Settings['sqltable']."topics where (CategoryID=%i and ForumID=%i) ORDER BY LastUpdate DESC", array($CategoryID,$ForumID));
+$gltquery = query("select * from ".$Settings['sqltable']."topics where CategoryID=%i and ForumID=%i ORDER BY LastUpdate DESC", array($CategoryID,$ForumID));
 $gltresult=mysql_query($gltquery);
 $gltnum=mysql_num_rows($gltresult);
 if($gltnum>0){
@@ -98,14 +110,14 @@ $TopicID=mysql_result($gltresult,0,"id");
 $TopicName=mysql_result($gltresult,0,"TopicName");
 $NumReplys=mysql_result($gltresult,0,"NumReply");
 $ShowReply = $NumReplys + 1;
-$TopicName1 = substr($TopicName,0,15);
+$TopicName1 = substr($TopicName,0,12);
 if (strlen($TopicName)>12) { $TopicName1 = $TopicName1."..."; }
 $UsersID=mysql_result($gltresult,0,"UserID");
 $GuestName=mysql_result($gltresult,0,"GuestName");
 $UsersName = GetUserName($UsersID,$Settings['sqltable']);
+$UsersName1 = substr($UsersName,0,18);
 if($UsersName=="Guest") { $UsersName=$GuestName;
 if($UsersName==null) { $UsersName="Guest"; } }
-$UsersName1 = substr($UsersName,0,18);
 if (strlen($UsersName)>15) { $UsersName1 = $UsersName1."...";
 $oldtopicname=$TopicName; $oldusername=$UsersName;
 $TopicName=$TopicName1; $UsersName=$UsersName1; } $lul = null;
@@ -114,12 +126,11 @@ $lul = url_maker($exfile['member'],$Settings['file_ext'],"act=view&id=".$UsersID
 if($UsersID=="-1") {
 $lul = url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); }
 $LastTopic = "User: <a href=\"".$lul."\" title=\"".$oldusername."\">".$UsersName."</a><br />\nTopic: <a href=\"".url_maker($exfile['topic'],$Settings['file_ext'],"act=view&id=".$TopicID,$Settings['qstr'],$Settings['qsep'],$prexqstr['topic'],$exqstr['topic'])."#post".$ShowReply."\" title=\"".$oldtopicname."\">".$TopicName."</a>"; }
-@mysql_free_result($gltresult);
+if($LastTopic==null) { $LastTopic="&nbsp;<br />&nbsp;"; }
 $ForumType = strtolower($ForumType);
+$PreForum = $ThemeSet['ForumIcon'];
 if ($ForumType=="forum") {
 	$PreForum=$ThemeSet['ForumIcon']; }
-if ($ForumType=="subforum") {
-	$PreForum=$ThemeSet['SubForumIcon']; }
 if ($ForumType=="subforum") {
 	$PreForum=$ThemeSet['SubForumIcon']; }
 if ($ForumType=="redirect") {
@@ -129,18 +140,27 @@ if ($ForumType=="redirect") {
 <td class="TableRow3"><div class="forumicon">
 <?php echo $PreForum; ?></div></td>
 <td class="TableRow3"><div class="forumname"><a href="<?php echo url_maker($exfile[$ForumType],$Settings['file_ext'],"act=view&id=".$ForumID,$Settings['qstr'],$Settings['qsep'],$prexqstr[$ForumType],$exqstr[$ForumType]); ?>"><?php echo $ForumName; ?></a></div>
-<div class="forumescription"><?php echo $ForumDescription; ?></div></td>
+<div class="forumdescription"><?php echo $ForumDescription; ?></div></td>
 <td class="TableRow3" style="text-align: center;"><?php echo $NumTopics; ?></td>
 <td class="TableRow3" style="text-align: center;"><?php echo $NumPosts; ?></td>
 <td class="TableRow3"><?php echo $LastTopic; ?></td>
 </tr>
 <?php
 ++$i; } @mysql_free_result($result);
-if($num>=1) { ?>
-<tr id="CatEnd" class="TableRow4">
+if($num>=1) {
+?>
+<tr id="SubCatEnd<?php echo $CategoryID; ?>" class="TableRow4">
 <td class="TableRow4" colspan="5">&nbsp;</td>
 </tr>
 <?php } ?>
 </table></div>
 <div>&nbsp;</div>
-<?php ++$prei; } @mysql_free_result($preresult); ?>
+<?php
+++$prei; }
+@mysql_free_result($preresult);
+$CatCheck = "skip";
+if($SubShowForums!="yes") { 
+	$CategoryName = $SCategoryName; }
+if($SubShowForums!="no") {
+require($SettDir['inc'].'categories.php'); }
+?>

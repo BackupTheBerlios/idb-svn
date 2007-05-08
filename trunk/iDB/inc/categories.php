@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: categories.php - Last Update: 05/08/2007 SVN 53 - Author: cooldude2k $
+    $FileInfo: categories.php - Last Update: 05/08/2007 SVN 54 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -33,7 +33,7 @@ $SubShowForums=mysql_result($preresult,$prei,"SubShowForums");
 $CategoryDescription=mysql_result($preresult,$prei,"Description");
 $CategoryType = strtolower($CategoryType); $SubShowForums = strtolower($SubShowForums);
 if($CatCheck!="skip") {
-if($ForumType=="subcategory") {
+if($CategoryType=="subcategory") {
 redirect("location",$basedir.url_maker($exfile['subcategory'],$Settings['file_ext'],"act=".$_GET['act']."&id=".$_GET['id'],$Settings['qstr'],$Settings['qsep'],$prexqstr['subcategory'],$exqstr['subcategory'],FALSE)); } }
 $toggle=""; $togglecode = "<span style=\"float: right;\">&nbsp;</span>";
 if($ThemeSet['EnableToggle']==true) {

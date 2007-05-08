@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: subcategories.php - Last Update: 05/08/2007 SVN 53 - Author: cooldude2k $
+    $FileInfo: subcategories.php - Last Update: 05/08/2007 SVN 54 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -31,7 +31,7 @@ $CategoryType=mysql_result($checkresult,$checki,"CategoryType");
 $SubShowForums=mysql_result($checkresult,$checki,"SubShowForums");
 $CategoryType = strtolower($CategoryType); $SubShowForums = strtolower($SubShowForums);
 $SCategoryName = $CategoryName;
-if($ForumType=="category") {
+if($CategoryType=="category") {
 redirect("location",$basedir.url_maker($exfile['category'],$Settings['file_ext'],"act=".$_GET['act']."&id=".$_GET['id'],$Settings['qstr'],$Settings['qsep'],$prexqstr['category'],$exqstr['category'],FALSE)); }
 @mysql_free_result($checkresult);
 $prequery = query("select * from ".$Settings['sqltable']."categories where ShowCategory='yes' and InSubCategory=%i", array($_GET['id']));

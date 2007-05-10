@@ -8,10 +8,10 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     Revised BSD License for more details.
 
-    Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
+    Copyright 2004-2007 Cool Dude 2k - http://intdb.sourceforge.net/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: mysql.php - Last Update: 05/08/2007 SVN 53 - Author: cooldude2k $
+    $FileInfo: mysql.php - Last Update: 05/09/2007 SVN 1 - Author: cooldude2k $
 */
 @error_reporting(E_ALL ^ E_NOTICE);
 //@output_reset_rewrite_vars();

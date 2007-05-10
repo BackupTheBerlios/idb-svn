@@ -8,11 +8,11 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     Revised BSD License for more details.
 
-    Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
+    Copyright 2004-2007 Cool Dude 2k - http://intdb.sourceforge.net/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
-    iDB Installer made by Game Maker 2k - http://s1.jcink.com/s/host/idb/
+    iDB Installer made by Game Maker 2k - http://idb.berlios.net/
 
-    $FileInfo: setup.php - Last Update: 04/04/2007 SVN 33 - Author: cooldude2k $
+    $FileInfo: setup.php - Last Update: 05/09/2007 SVN 1 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -37,7 +37,7 @@ if(!$StatSQL) { $Error="Yes";
 echo "<span class=\"TableMessage\">";
 echo "<br />".mysql_errno().": ".mysql_error()."\n</span>\n"; }
 if ($Error!="Yes") {
-$pretext = "<?php\n/*\n    This program is free software; you can redistribute it and/or modify\n    it under the terms of the Revised BSD License.\n\n    This program is distributed in the hope that it will be useful,\n    but WITHOUT ANY WARRANTY; without even the implied warranty of\n    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    Revised BSD License for more details.\n\n    Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/\n    Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/\n    Emoticons made by Jcink http://tfbb.jcink.com/\n*/\n";
+$pretext = "<?php\n/*\n    This program is free software; you can redistribute it and/or modify\n    it under the terms of the Revised BSD License.\n\n    This program is distributed in the hope that it will be useful,\n    but WITHOUT ANY WARRANTY; without even the implied warranty of\n    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    Revised BSD License for more details.\n\n    Copyright 2004-2007 Cool Dude 2k - http://intdb.sourceforge.net/\n    Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/\n    Emoticons made by Jcink http://tfbb.jcink.com/\n*/\n";
 $BoardSettings=$pretext."\$Settings = array();\n\$Settings['sqlhost'] = '".$_POST['DatabaseHost']."';\n\$Settings['sqluser'] = '".$_POST['DatabaseUserName']."';\n\$Settings['sqlpass'] = '".$_POST['DatabasePassword']."';\n?>";
 $fp = fopen("./settings.php","w+");
 fwrite($fp, $BoardSettings);

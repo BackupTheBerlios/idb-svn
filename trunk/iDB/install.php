@@ -8,11 +8,11 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     Revised BSD License for more details.
 
-    Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
+    Copyright 2004-2007 Cool Dude 2k - http://intdb.sourceforge.net/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
     iDB Installer made by Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: install.php - Last Update: 04/10/2007 SVN 46 - Author: cooldude2k $
+    $FileInfo: install.php - Last Update: 05/09/2007 SVN 1 - Author: cooldude2k $
 */
 @error_reporting(E_ALL ^ E_NOTICE); unset($preact['idb']);
 if ($_GET['act']!="Part4"&&$_POST['act']!="Part4") {

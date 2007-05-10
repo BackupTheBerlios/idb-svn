@@ -8,10 +8,10 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     Revised BSD License for more details.
 
-    Copyright 2004-2007 Cool Dude 2k - http://idb.berlios.de/
+    Copyright 2004-2007 Cool Dude 2k - http://intdb.sourceforge.net/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: xhtml10.php - Last Update: 04/28/2007 SVN 51 - Author: cooldude2k $
+    $FileInfo: xhtml10.php - Last Update: 05/09/2007 SVN 1 - Author: cooldude2k $
 */
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
@@ -41,9 +41,9 @@ if($Settings['output_type']!="xhtml") {
 if(isset($Settings['showverinfo'])) { $idbmisc['showverinfo'] = $Settings['showverinfo']; }
 if(!isset($Settings['showverinfo'])) { $idbmisc['showverinfo'] = false; }
 if($Settings['showverinfo']!=true) {
-$iDBURL1 = "<a href=\"http://idb.berlios.de/\" title=\"".$iDB."\" onclick=\"window.open(this.href);return false;\">"; }
+$iDBURL1 = "<a href=\"http://intdb.sourceforge.net/\" title=\"".$iDB."\" onclick=\"window.open(this.href);return false;\">"; }
 if($Settings['showverinfo']==true) {
-$iDBURL1 = "<a href=\"http://idb.berlios.de/\" title=\"".$VerInfo['iDB_Ver_Show']."\" onclick=\"window.open(this.href);return false;\">"; }
+$iDBURL1 = "<a href=\"http://intdb.sourceforge.net/\" title=\"".$VerInfo['iDB_Ver_Show']."\" onclick=\"window.open(this.href);return false;\">"; }
 $GM2kURL = "<a href=\"http://upload.idb.s1.jcink.com/\" title=\"".$GM2k."\" onclick=\"window.open(this.href);return false;\">".$GM2k."</a>";
 $csryear = "2004"; $cryear = date("Y"); if($cryear<=2004) { $cryear = "2005"; }
 $endpagevar = "<div class=\"copyright\">Powered by ".$iDBURL1."iDB</a> &copy; ".$GM2kURL." @ ".$csryear." - ".$cryear." <a href=\"".url_maker($exfile['index'],$Settings['file_ext'],"act=bsd",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'])."\" title=\"iDB is licensed under the Revised BSD License\">BSDL</a> <br />\n".$ThemeSet['CopyRight'];

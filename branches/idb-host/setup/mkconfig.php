@@ -169,7 +169,7 @@ $BoardSettings = $pretext.$settcheck.$BoardSettings;
 $fp = fopen("settings.php","w+");
 fwrite($fp, $BoardSettings);
 fclose($fp);
-$fp = fopen("settings.php","w+");
+$fp = fopen("settingsbak.php","w+");
 fwrite($fp, $BoardSettingsBak);
 fclose($fp);
 $_SESSION['Theme']="iDB";

@@ -160,7 +160,7 @@ $BoardSettings = $pretext.$settcheck.$BoardSettings;
 $fp = fopen($_POST['tableprefix']."settings.php","w+");
 fwrite($fp, $BoardSettings);
 fclose($fp);
-$fp = fopen($_POST['tableprefix']."settings.php","w+");
+$fp = fopen($_POST['tableprefix']."settingsbak.php","w+");
 fwrite($fp, $BoardSettingsBak);
 fclose($fp);
 $_SESSION['Theme']="iDB";

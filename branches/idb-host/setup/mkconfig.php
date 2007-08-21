@@ -200,7 +200,7 @@ if($chdel5==false||$chdel6==false||$chdel7==false||$chdel8==false) { $chdel = fa
 if($chdel9==false||$chdel10==false||$chdel11==false||$chdel12==false) { $chdel = false; }
 if($ConvertInfo['ConvertFile']!=null) { if($chdel0==false) { $chdel = false; } }
 ?><span class="TableMessage">
-<br />Install Finish <a href="index.php?act=view&board=<?php echo $_POST['unixname']; ?>">Click here</a> to goto board. ^_^</span>
+<br />Install Finish <a href="index.php?act=view&amp;board=<?php echo $_POST['unixname']; ?>">Click here</a> to goto board. ^_^</span>
 <?php if($chdel==false) { ?><span class="TableMessage">
 <br />Error: Cound not delete installer. Read readme.txt for more info.</span>
 <?php } ?><br /><br />

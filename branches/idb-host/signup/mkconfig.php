@@ -177,7 +177,7 @@ if($_POST['storecookie']==true) {
 @setcookie("SessPass", $NewPassword, time() + (7 * 86400), $this_dir); }
 @mysql_close(); $chdel = true;
 ?><span class="TableMessage">
-<br />Install Finish <a href="index.php?act=view&board=<?php echo $_POST['unixname']; ?>">Click here</a> to goto board. ^_^</span>
+<br />Install Finish <a href="index.php?act=view&amp;board=<?php echo $_POST['unixname']; ?>">Click here</a> to goto board. ^_^</span>
 <?php if($chdel==false) { ?><span class="TableMessage">
 <br />Error: Cound not delete installer. Read readme.txt for more info.</span>
 <?php } ?><br /><br />

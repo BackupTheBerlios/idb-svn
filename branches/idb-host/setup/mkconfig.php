@@ -12,7 +12,7 @@
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
     iDB Installer made by Game Maker 2k - http://idb.berlios.net/
 
-    $FileInfo: mkconfig.php - Last Update: 08/18/2007 SVN 86 - Author: cooldude2k $
+    $FileInfo: mkconfig.php - Last Update: 08/22/2007 SVN 89 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="mkconfig.php"||$File3Name=="/mkconfig.php") {
@@ -29,11 +29,13 @@ $_POST['DatabasePassword'] = $Settings['sqlpass'];
 <td class="TableRow3" colspan="2">
 <?php
 $dayconv = array('second' => 1, 'minute' => 60, 'hour' => 3600, 'day' => 86400, 'week' => 604800, 'month' => 2630880, 'year' => 31570560, 'decade' => 15705600);
+$_POST['unixname'] = strtolower($_POST['unixname']);
+if($_POST['unixname']==null) { $_POST['unixname'] = null; }
 $_POST['tableprefix'] = $_POST['unixname']."_";
 $_POST['unixname'] = preg_replace("/[^A-Za-z0-9_$]/", "", $_POST['unixname']);
 $_POST['tableprefix'] = preg_replace("/[^A-Za-z0-9_$]/", "", $_POST['tableprefix']);
-if($_POST['tableprefix']==null) { $_POST['tableprefix']="idb_"; }
-if($_POST['sessprefix']==null) { $_POST['sessprefix']="idb_"; }
+if($_POST['tableprefix']==null||$_POST['tableprefix']=="_") { $_POST['tableprefix']="idb_"; }
+if($_POST['sessprefix']==null||$_POST['sessprefix']=="_") { $_POST['sessprefix']="idb_"; }
 $checkfile="settings.php";
 if (!is_writable($checkfile)) {
    echo "<br />Settings is not writable.";
@@ -93,7 +95,7 @@ require($SetupDir['setup'].'mktable.php');
 /*
 $query = query("INSERT INTO `".$_POST['tableprefix']."tagboard` VALUES (1,-1,'Cool Dude 2k',".$YourDate.",'Welcome to Your New Tag Board. ^_^','127.0.0.1'), array(null)); 
 */
-$query = query("INSERT INTO `".$_POST['tableprefix']."categories` VALUES (1,'Main','yes','category','yes',0,'The Main Category.')", array(null));
+$query = query("INSERT INTO `".$_POST['tableprefix']."categories` VALUES (1,1,'Main','yes','category','yes',0,'The Main Category.')", array(null));
 mysql_query($query);
 if(!is_numeric($_POST['YourOffSet'])) { $_POST['YourOffSet'] = "0"; }
 if($_POST['YourOffSet']>12) { $_POST['YourOffSet'] = "12"; }
@@ -116,7 +118,7 @@ $EventYear = GMTimeChange("Y",$YourDate,0,0,"off");
 $EventYearEnd = GMTimeChange("Y",$YourDateEnd,0,0,"off");
 $query = query("INSERT INTO `".$_POST['tableprefix']."events` VALUES (1, -1, 'Cool Dude 2k', 'Opening', 'This is the day the Board was made. ^_^', %i, %i, %i, %i, %i, %i, %i, %i)", array($YourDate,$YourDateEnd,$EventMonth,$EventMonthEnd,$EventDay,$EventDayEnd,$EventYear,$EventYearEnd));
 mysql_query($query);
-$query = query("INSERT INTO `".$_POST['tableprefix']."forums` VALUES (1,1,'Test/Spam','yes','forum',0,'http://',0,0,'A Test Board.','off','yes',1,1)", array(null));
+$query = query("INSERT INTO `".$_POST['tableprefix']."forums` VALUES (1,1,1,'Test/Spam','yes','forum',0,'http://',0,0,'A Test Board.','off','yes',1,1)", array(null));
 mysql_query($query);
 $query = query("INSERT INTO `".$_POST['tableprefix']."topics` VALUES (1,1,1,-1,'Cool Dude 2k',%i,%i,'Welcome','Install was successful',0,0,1,1)", array($YourDate,$YourDate));
 mysql_query($query);
@@ -163,7 +165,7 @@ unset($BoardSettings); unset($BoardSettingsBak);
 $pretext = "<?php\n/*\n    This program is free software; you can redistribute it and/or modify\n    it under the terms of the GNU General Public License as published by\n    the Free Software Foundation; either version 2 of the License, or\n    (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful,\n    but WITHOUT ANY WARRANTY; without even the implied warranty of\n    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    Revised BSD License for more details.\n\n    Copyright 2004-2007 Cool Dude 2k - http://intdb.sourceforge.net/\n    Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/\n    iDB Installer made by Game Maker 2k - http://idb.berlios.net/\n\n    \$FileInfo: settings.php & settingsbak.php - Last Update: ".$SVNDay[0]."/".$SVNDay[1]."/".$SVNDay[2]." SVN ".$SubVerN." - Author: cooldude2k \$\n*/\n";
 $pretext2 = array("/*   Board Setting Section Begins   */\n\$Settings = array();","/*   Board Setting Section Ends  \n     Board Info Section Begins   */\n\$SettInfo = array();","/*   Board Setting Section Ends   \n     Board Dir Section Begins   */\n\$SettDir = array();","/*   Board Dir Section Ends   */");
 $settcheck = "\$File3Name = basename(\$_SERVER['SCRIPT_NAME']);\nif (\$File3Name==\"settings.php\"||\$File3Name==\"/settings.php\"||\n    \$File3Name==\"settingsbak.php\"||\$File3Name==\"/settingsbak.php\") {\n    @header('Location: index.php');\n    exit(); }\n";
-$BoardSettings=$pretext2[0]."\n\$Settings['sqlhost'] = '".$_POST['DatabaseHost']."';\n\$Settings['sqldb'] = '".$_POST['DatabaseName']."';\n\$Settings['sqluser'] = '".$_POST['DatabaseUserName']."';\n\$Settings['sqlpass'] = '".$_POST['DatabasePassword']."';\n\$Settings['idbdir'] = '".$idbdir."';\n\$Settings['idburl'] = '".$_POST['BoardURL']."';\n\$Settings['use_gzip'] = '".$_POST['GZip']."';\n\$Settings['html_type'] = '".$_POST['HTMLType']."';\n\$Settings['html_level'] = '".$_POST['HTMLLevel']."';\n\$Settings['output_type'] = '".$_POST['OutPutType']."';\n".$pretext2[2]."\n\$SettDir['maindir'] = '".$idbdir."';\n\$SettDir['inc'] = 'inc/';\n\$SettDir['misc'] = 'inc/misc/';\n\$SettDir['admin'] = 'inc/admin/';\n\$SettDir['mod'] = 'inc/mod/';\n\$SettDir['themes'] = 'themes/';\n\$Settings['qstr'] = '&';\n\$Settings['qsep'] = '=';\n\$Settings['file_ext'] = '.php';\n\$Settings['rss_ext'] = '.php';\n\$Settings['js_ext'] = '.js';\n\$Settings['showverinfo'] = true;\n\$Settings['fixpathinfo'] = false;\n\$Settings['fixbasedir'] = false;\n\$Settings['enable_pathinfo'] = false;\n\$Settings['sessionid_in_urls'] = false;\n\$Settings['rssurl'] = false;\n".$pretext2[1]."\n?>";
+$BoardSettings=$pretext2[0]."\n\$Settings['root_board'] = '".$_POST['unixname']."';\n\$Settings['sqlhost'] = '".$_POST['DatabaseHost']."';\n\$Settings['sqldb'] = '".$_POST['DatabaseName']."';\n\$Settings['sqluser'] = '".$_POST['DatabaseUserName']."';\n\$Settings['sqlpass'] = '".$_POST['DatabasePassword']."';\n\$Settings['idbdir'] = '".$idbdir."';\n\$Settings['idburl'] = '".$_POST['BoardURL']."';\n\$Settings['use_gzip'] = '".$_POST['GZip']."';\n\$Settings['html_type'] = '".$_POST['HTMLType']."';\n\$Settings['html_level'] = '".$_POST['HTMLLevel']."';\n\$Settings['output_type'] = '".$_POST['OutPutType']."';\n".$pretext2[2]."\n\$SettDir['maindir'] = '".$idbdir."';\n\$SettDir['inc'] = 'inc/';\n\$SettDir['misc'] = 'inc/misc/';\n\$SettDir['admin'] = 'inc/admin/';\n\$SettDir['mod'] = 'inc/mod/';\n\$SettDir['themes'] = 'themes/';\n\$Settings['qstr'] = '&';\n\$Settings['qsep'] = '=';\n\$Settings['file_ext'] = '.php';\n\$Settings['rss_ext'] = '.php';\n\$Settings['js_ext'] = '.js';\n\$Settings['showverinfo'] = true;\n\$Settings['fixpathinfo'] = false;\n\$Settings['fixbasedir'] = false;\n\$Settings['enable_pathinfo'] = false;\n\$Settings['sessionid_in_urls'] = false;\n\$Settings['rssurl'] = false;\n".$pretext2[1]."\n?>";
 $BoardSettingsBak = $pretext.$settcheck.$BoardSettings;
 $BoardSettings = $pretext.$settcheck.$BoardSettings;
 $fp = fopen("settings.php","w+");

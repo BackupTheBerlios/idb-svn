@@ -18,6 +18,7 @@
 if(@ini_get("register_globals")) { 
 	if(!isset($SettDir['misc'])) { $SettDir['misc'] = "inc/misc/"; }
 	require_once($SettDir['misc'].'killglobals.php'); }
+require('settings.php');
 if(!isset($preact['idb'])) { $preact['idb'] = null; }
 if(!isset($_GET['act'])) { $_GET['act'] = null; }
 if(!isset($_POST['act'])) { $_POST['act'] = null; }

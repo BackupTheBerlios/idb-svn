@@ -22,6 +22,9 @@ $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="mysql.php"||$File3Name=="/mysql.php") {
 	@header('Location: index.php');
 	exit(); }
+$_GET['board']=preg_replace("/(.*?)\.\/(.*?)/", "", $_GET['board']);
+$_GET['board']=preg_replace("/(.*?)\/(.*?)/", "", $_GET['board']);
+$_GET['board']=preg_replace("/(.*?)\.(.*?)/", "", $_GET['board']);
 if(!isset($_GET['board'])) { $_GET['board'] = "support"; }
 if(!file_exists($_GET['board']."_settings.php")) { 
 echo "Sorry I could not find the board with url prefix ".$_GET['board']."."; die(); }

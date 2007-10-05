@@ -12,7 +12,7 @@
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
     iDB Installer made by Game Maker 2k - http://idb.berlios.net/
 
-    $FileInfo: mkconfig.php - Last Update: 09/19/2007 SVN 105 - Author: cooldude2k $
+    $FileInfo: mkconfig.php - Last Update: 10/05/2007 SVN 115 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="mkconfig.php"||$File3Name=="/mkconfig.php") {
@@ -20,8 +20,13 @@ if ($File3Name=="mkconfig.php"||$File3Name=="/mkconfig.php") {
 	exit(); }
 require_once('settings.php');
 if($Settings['fixbasedir']==null) { $Settings['fixbasedir'] = false; }
-if($Settings['fixbasedir']!=null&&$Settings['fixbasedir']!="") {
+if($Settings['fixbasedir']!=null&&$Settings['fixbasedir']!=false) {
 		$this_dir = $Settings['fixbasedir']; }
+if($Settings['fixcookiedir']==null) { $Settings['fixcookiedir'] = false; }
+if($Settings['fixcookiedir']!=null&&$Settings['fixcookiedir']!=false) {
+		$cookie_dir = $Settings['fixcookiedir']; }
+if($Settings['fixcookiedir']!=true||$Settings['fixcookiedir']==false) {
+		$cookie_dir = $this_dir; }
 if(!isset($Settings['sqldb'])) { echo "Sorry you can not signup yet."; $Error="Yes"; die(); }
 if(!isset($SetupDir['setup'])) { $SetupDir['setup'] = "signup/"; }
 if(!isset($SetupDir['convert'])) { $SetupDir['convert'] = null; }
@@ -47,7 +52,7 @@ if (!is_writable($checkfile)) {
    @chmod("settingsbak.php",0755);
 } else { /* settings.php is writable install iDB. ^_^ */ }
 @session_name($_POST['tableprefix']."sess");
-@session_set_cookie_params(0, $this_dir);
+@session_set_cookie_params(0, $cookie_dir);
 @session_cache_limiter("private, must-revalidate");
 @header("Cache-Control: private, must-revalidate"); // IE 6 Fix
 @header("Pragma: private, must-revalidate");
@@ -174,9 +179,9 @@ $_SESSION['UserDST'] = $AdminDST;
 $_SESSION['UserPass']=$NewPassword;
 $_SESSION['DBName'] = $Settings['sqldb'];
 if($_POST['storecookie']==true) {
-@setcookie("MemberName", $_POST['AdminUser'], time() + (7 * 86400), $this_dir);
-@setcookie("UserID", 1, time() + (7 * 86400), $this_dir);
-@setcookie("SessPass", $NewPassword, time() + (7 * 86400), $this_dir); }
+@setcookie("MemberName", $_POST['AdminUser'], time() + (7 * 86400), $cookie_dir);
+@setcookie("UserID", 1, time() + (7 * 86400), $cookie_dir);
+@setcookie("SessPass", $NewPassword, time() + (7 * 86400), $cookie_dir); }
 @mysql_close(); $chdel = true;
 ?><span class="TableMessage">
 <br />Install Finish <a href="index.php?act=view&amp;board=<?php echo $_POST['unixname']; ?>">Click here</a> to goto board. ^_^</span>

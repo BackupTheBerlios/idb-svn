@@ -27,9 +27,15 @@ $_GET['board'] = preg_replace("/[^A-Za-z0-9_$]/", "", $_GET['board']);
 $_GET['board'] = preg_replace("/(.*?)\.\/(.*?)/", "", $_GET['board']);
 $_GET['board'] = preg_replace("/(.*?)\/(.*?)/", "", $_GET['board']);
 $_GET['board'] = preg_replace("/(.*?)\.(.*?)/", "", $_GET['board']);
-if(!isset($_GET['board'])) { $_GET['board'] = "support"; }
+if(!isset($_GET['board'])) { require('settings.php');
+@header("Content-Type: text/plain; charset=UTF8");
+@header('Location: '.$Settings['idburl'].'/index.php?board='.$Settings['root_board']); 
+die(); }
 if(!file_exists($_GET['board']."_settings.php")) { 
-echo "Sorry I could not find the board with url prefix ".$_GET['board']."."; die(); }
+require('settings.php');
+@header("Content-Type: text/plain; charset=UTF8");
+@header('Location: '.$Settings['idburl'].'/index.php?board='.$Settings['root_board']); 
+die(); }
 if(@ini_get("register_globals")) { require($_GET['board'].'_settings.php');
 if(!isset($SettDir['misc'])) { $SettDir['misc'] = "inc/misc/"; }
 	require_once($SettDir['misc'].'killglobals.php'); }

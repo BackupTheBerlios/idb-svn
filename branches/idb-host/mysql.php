@@ -28,18 +28,29 @@ $_GET['board'] = preg_replace("/(.*?)\.\/(.*?)/", "", $_GET['board']);
 $_GET['board'] = preg_replace("/(.*?)\/(.*?)/", "", $_GET['board']);
 $_GET['board'] = preg_replace("/(.*?)\.(.*?)/", "", $_GET['board']);
 if(!isset($_GET['board'])) { require('settings.php');
+if(!isset($Settings['sqldb'])) {
 @header("Content-Type: text/plain; charset=UTF8");
-@header('Location: '.$Settings['idburl'].'/index.php?board='.$Settings['root_board']); 
+@header('Location: install.php'); }
+if(isset($Settings['sqldb'])) {
+@header("Content-Type: text/plain; charset=UTF8");
+@header('Location: '.$Settings['idburl'].'index.php?board='.$Settings['root_board']); }
 die(); }
 if(!file_exists($_GET['board']."_settings.php")) { 
 require('settings.php');
+if(!isset($Settings['sqldb'])) {
 @header("Content-Type: text/plain; charset=UTF8");
-@header('Location: '.$Settings['idburl'].'/index.php?board='.$Settings['root_board']); 
+@header('Location: install.php'); }
+if(isset($Settings['sqldb'])) {
+@header("Content-Type: text/plain; charset=UTF8");
+@header('Location: '.$Settings['idburl'].'index.php?board='.$Settings['root_board']); }
 die(); }
 if(@ini_get("register_globals")) { require($_GET['board'].'_settings.php');
 if(!isset($SettDir['misc'])) { $SettDir['misc'] = "inc/misc/"; }
 	require_once($SettDir['misc'].'killglobals.php'); }
 require($_GET['board'].'_settings.php');
+if(!isset($Settings['sqldb'])) {
+@header("Content-Type: text/plain; charset=UTF8");
+@header('Location: install.php'); }
 if($Settings['fixbasedir']==true) {
 if($Settings['idburl']!=null&&$Settings['idburl']!="localhost") {
 $PathsTest = parse_url($Settings['idburl']);

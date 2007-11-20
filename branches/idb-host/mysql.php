@@ -11,7 +11,7 @@
     Copyright 2004-2007 Cool Dude 2k - http://intdb.sourceforge.net/
     Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
 
-    $FileInfo: mysql.php - Last Update: 11/15/2007 SVN 128 - Author: cooldude2k $
+    $FileInfo: mysql.php - Last Update: 11/20/2007 SVN 129 - Author: cooldude2k $
 */
 //@ini_set("display_errors", true); 
 //@ini_set("display_startup_errors", true);
@@ -47,6 +47,7 @@ if($Settings['charset']!="ISO-8859-15"&&$Settings['charset']!="ISO-8859-1"&&
 	$Settings['charset']!="GB2312"&&$Settings['charset']!="BIG5-HKSCS"&&
 	$Settings['charset']!="Shift_JIS"&&$Settings['charset']!="EUC-JP") {
 	$Settings['charset'] = "ISO-8859-15"; } }
+	$chkcharset = $Settings['charset'];
 @ini_set('default_charset', $Settings['charset']);
 if(!isset($Settings['sqldb'])) {
 @header("Content-Type: text/plain; charset=UTF-8");
@@ -104,6 +105,7 @@ if(!isset($_GET['debug'])) { $_GET['debug'] = false; }
 if(!isset($_GET['post'])) { $_GET['post'] = null; }
 if(!isset($_POST['License'])) { $_POST['License'] = null; }
 if(!isset($_SERVER['HTTPS'])) { $_SERVER['HTTPS'] = "off"; }
+require_once($SettDir['misc'].'utf8.php');
 require_once($SettDir['inc'].'filename.php');
 require_once($SettDir['inc'].'function.php');
 if($Settings['enable_pathinfo']==true) { 

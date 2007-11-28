@@ -20,6 +20,7 @@ if ($File3Name=="utf8.php"||$File3Name=="/utf8.php") {
 	require('index.php');
 	exit(); }
 /*   strlen for UTF-8 - by: anpaza @ http://us2.php.net/manual/en/function.strlen.php#59258   */
+if($Settings['charset']=="UTF-8") {
 function strlen_utf8($str)
 {
     $i = 0;
@@ -44,25 +45,26 @@ function strlen_utf8($str)
     }
     }
     return $count;
-}
+} }
 
 /*   substr for UTF-8 - by: felipe @ http://us2.php.net/manual/en/function.substr.php#57899   */
+if($Settings['charset']=="UTF-8") {
 function utf8_substr($str,$from,$len){
 # utf8 substr
 # www.yeap.lv
   return preg_replace('#^(?:[\x00-\x7F]|[\xC0-\xFF][\x80-\xBF]+){0,'.$from.'}'.
                        '((?:[\x00-\x7F]|[\xC0-\xFF][\x80-\xBF]+){0,'.$len.'}).*#s',
                        '$1',$str);
-}
+} }
 
-function presubstr($str,$from,$len) {
+function pre_substr($str,$from,$len) {
 global $chkcharset;
 if($chkcharset=="UTF-8") {
 return utf8_substr($str,$from,$len); }
 if($chkcharset!="UTF-8") {
 return substr($str,$from,$len); } }
 
-function prestrlen($str) {
+function pre_strlen($str) {
 global $chkcharset;
 if($chkcharset=="UTF-8") {
 return strlen_utf8($str); }

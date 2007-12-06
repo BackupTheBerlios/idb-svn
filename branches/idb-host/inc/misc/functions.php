@@ -29,8 +29,8 @@ $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name==$FileName||$File3Name=="/".$FileName) {
 	return true; } }
 CheckFile("functions.php");
-/* 
 require($SettDir['misc']."compression.php");
+/* 
 if ($_GET['act']=="DeleteSession") { @session_destroy(); }
 if ($_GET['act']=="ResetSession") { @session_unset(); }
 if ($_GET['act']=="NewSessionID") { @session_regenerate_id(); }

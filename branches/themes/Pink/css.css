@@ -1,0 +1,250 @@
+/*
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the Revised BSD License.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    Revised BSD License for more details.
+
+    Copyright 2004-2006 Cool Dude 2k - http://intdb.sourceforge.net/
+    Copyright 2004-2006 Game Maker 2k - http://upload.idb.s1.jcink.com/
+    $ThemeInfo - Name: iDB Pink Theme - Author: cooldude2k $
+*/
+html {
+	font-family: verdana, arial, sans-serif;
+	font-size: 11px;
+	width: 100%;
+	color: #FFFFFF;
+	background-color: #000000;
+}
+body {
+	font-family: verdana, arial, sans-serif;
+	font-size: 11px;
+	margin: 5px 30px 5px 30px; 
+	color: #FFFFFF;
+	background-color: #000000;
+}
+a:link, a:visited, a:active { 
+text-decoration: none; 
+color: #C76BA5; 
+}
+a:hover { 
+color: #F99DD7;  
+text-decoration: none; 
+}
+.copyright { 
+text-align: center;
+font-family: Sans-Serif; 
+font-size: 12px; 
+line-height: 11px; 
+color: #FFFFFF; 
+}
+.copyright a:link, .copyright a:visited, .copyright a:active { 
+color: #DFDFDF; 
+text-decoration: none; 
+}
+.copyright a:hover { 
+color: #FDFDFD; 
+text-decoration: none; 
+}
+.noborder { 
+border: 0px;
+}
+img {
+   border: 0px;
+   vertical-align: middle;
+   display: inline;
+}
+.NavBar1 { 
+background-color: #a7b1bd; 
+font-size: 11px;
+font-family: verdana, arial, sans-serif;
+color: #000000; 
+width: 100%;
+border: 1px solid #FFE0F0;
+border-collapse: collapse; 
+}
+.NavBar2 { 
+background-color: #F99DD7;
+font-size: 11px;
+text-align: center;
+border: 1px solid #91356F;
+}
+.NavBar3 { 
+background-color: #FFE0F0;
+font-size: 11px;
+text-align: left;
+border: 1px solid #91356F;
+}
+.Table1 { 
+background-color: #FFE0F0; 
+font-size: 11px;
+font-family: verdana, arial, sans-serif;  
+color: #000000; 
+width: 100%;
+border: 1px solid #91356F;
+border-collapse: collapse; 
+}
+.Table2 { 
+background-color: #000000;
+font-size: 11px;
+font-family: verdana, arial, sans-serif;
+color: #000000;
+width: 100%;
+}
+.Table2 a:link, .Table2 a:visited, .Table2 a:active { 
+text-decoration: none; 
+color: #7675B4;
+}
+.Table2 a:hover { 
+color: #9695C4; 
+text-decoration: none; 
+}
+.Table3 { 
+font-size: 11px;
+font-family: verdana, arial, sans-serif;
+color: #000000;
+width: 100%;
+}
+.TableRow1 { 
+background-color: #C76BA5;
+background-image: url(grad.png);
+border: 1px solid #91356F;
+}
+.TableRow1 a:link, .TableRow1 a:visited, .TableRow1 a:active { 
+text-decoration: none; 
+color: #FCCFF9; 
+font-weight: bold;
+}
+.TableRow1 a:hover { 
+color: #FEEFFC;  
+text-decoration: none; 
+font-weight: bold;
+}
+.TableRow2 { 
+background-color: #F99DD7; 
+border: 1px solid #91356F;
+}
+.TableRow2 a:link, .TableRow1 a:visited, .TableRow1 a:active { 
+text-decoration: none; 
+color: #FDDFFC;
+font-weight: bold;
+}
+.TableRow2 a:hover { 
+color: #FEEFFD;
+text-decoration: none; 
+font-weight: bold;
+}
+.TableRow3 { 
+background-color: #FFE0F0; 
+border: 1px solid #91356F;
+}
+.TableRow4 { 
+background-color: #F99DD7; 
+border: 1px solid #91356F;
+}
+.TableRow4 a:link, .TableRow4 a:visited, .TableRow4 a:active { 
+text-decoration: none; 
+color: #FDDFFC;
+font-weight: bold;
+}
+.TableRow4 a:hover { 
+color: #FEEFFD;
+text-decoration: none; 
+font-weight: bold;
+}
+.CalTableRow1, .CalTableRow2 { 
+background-color: #FFE0F0; 
+border: 1px solid #91356F;
+}
+.TextBox { 
+background-color: #F99DD7; 
+font-size: 13px; 
+font-family: Courier, Courier New, Verdana, Arial;   
+color: #000000; 
+border: 1px solid #91356F;
+border-collapse: collapse; 
+}
+.HiddenTextBox {
+font-family: Courier, Courier New, Verdana, Arial, serif; 
+font-size: 13px; 
+color: #C0C0C0; 
+display: none;
+border: 2px outset #000000;
+border-width: 2px;
+border-bottom-color: #C0C0C0;
+border-left-color: #C0C0C0; 
+border-right-color: #C0C0C0; 
+border-top-color: #C0C0C0; 
+}
+.QuoteTop { 
+font-family: Verdana, Tahoma, Arial, sans-serif;
+font-size: 10px; 
+color: #A0A0A0; 
+}
+.QuoteBottom { 
+font-family: Courier, Courier New, Verdana, Arial, serif; 
+font-size: 12px; 
+color: #C0C0C0; 
+background-color: #000000; 
+border: 1px solid #000; 
+border-color: #808080;
+padding-top: 2px; 
+padding-right: 2px; 
+padding-bottom: 2px; 
+padding-left: 2px 
+}
+.CodeTop  { 
+font-family: Verdana, Tahoma, Arial, sans-serif; 
+font-size: 10px; 
+color: #A0A0A0; 
+}
+.CodeBottom { 
+font-family: Courier, Courier New, Verdana, Arial;  
+font-size: 12px; 
+color: #C0C0C0; 
+background-color: #000000; 
+border: 1px solid #000; 
+border-color: #808080;
+padding-top: 2px; 
+padding-right: 2px; 
+padding-bottom: 2px; 
+padding-left: 2px 
+}
+.CodeBox { 
+width:500px; 
+height:100px; 
+white-space:pre; 
+overflow:auto; 
+border:3px outset #000000; 
+font-family: Courier, Courier New, Verdana, Arial, serif; 
+font-size: 15px; 
+}
+.Button { 
+background-color: #F99DD7; 
+font-size: 13px; 
+font-family: Courier, Courier New, Verdana, Arial;   
+color: #000000; 
+border: 1px solid #91356F;
+border-collapse: collapse; 
+}
+.TextBoxLabel, label {
+color: #000000;
+font-weight: bold; 
+cursor: pointer;
+font-size: 10px;
+}
+.EditReply {
+color: #000000;
+font-size: 9px; 
+}
+.TableMessage {
+color: #000000;
+font-weight: bold; 
+font-size: 10px;
+}
+.statsicon {
+text-align: center;
+vertical-align:  middle;
+}

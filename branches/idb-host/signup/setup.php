@@ -25,11 +25,14 @@ if(!isset($SetupDir['convert'])) { $SetupDir['convert'] = null; }
 <td class="TableRow3">
 <?php
 require('settings.php');
-if(!isset($Settings['sqldb'])) { echo "Sorry you can not signup yet."; $Error="Yes"; die(); }
+if(!isset($Settings['sqldb'])) { echo "<span class=\"TableMessage\">";
+	echo "<br />Sorry you can not signup yet.<br />\n</span>\n"; $Error="Yes"; }
+if($_POST['License']!="Agree") { echo "<span class=\"TableMessage\">";
+	echo "<br />You need to agree to the tos.<br />\n</span>\n"; $Error="Yes"; }
 $StatSQL = @mysql_connect($Settings['sqlhost'],$Settings['sqluser'],$Settings['sqlpass']);
-if(!$StatSQL) { $Error="Yes";
-echo "<span class=\"TableMessage\">";
-echo "<br />".mysql_errno().": ".mysql_error()."\n</span>\n"; }
+if(!$StatSQL) { $Error="Yes"; echo "<span class=\"TableMessage\">";
+echo "<br />".mysql_errno().": ".mysql_error()."<br />\n</span>\n"; }
+if ($Error!="Yes") {
 ?>
 <form style="display: inline;" method="post" name="install" id="install" action="signup.php?act=Part3">
 <table style="text-align: left;">
@@ -121,3 +124,4 @@ echo "<option value=\"".$showmin."\">0:".$showmin." minutes</option>\n"; }
 </form>
 </td>
 </tr>
+<?php } ?>

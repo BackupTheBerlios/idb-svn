@@ -8,11 +8,11 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     Revised BSD License for more details.
 
-    Copyright 2004-2007 Cool Dude 2k - http://intdb.sourceforge.net/
-    Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/
+    Copyright 2004-2008 Cool Dude 2k - http://idb.berlios.de/
+    Copyright 2004-2008 Game Maker 2k - http://intdb.sourceforge.net/
     iDB Installer made by Game Maker 2k - http://idb.berlios.net/
 
-    $FileInfo: mkconfig.php - Last Update: 11/10/2007 SVN 124 - Author: cooldude2k $
+    $FileInfo: mkconfig.php - Last Update: 01/01/2008 SVN 144 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="mkconfig.php"||$File3Name=="/mkconfig.php") {
@@ -159,7 +159,7 @@ mysql_query($query);
 $query = query("INSERT INTO `".$_POST['tableprefix']."messenger` VALUES (1,-1,1,'Cool Dude 2k','Test','Hello Welcome to your board.\r\nThis is a Test PM. :P ','Hello Welcome',%i,0)", array($YourDate));
 mysql_query($query);
 $CHMOD = $_SERVER['PHP_SELF'];
-$pretext = "<?php\n/*\n    This program is free software; you can redistribute it and/or modify\n    it under the terms of the GNU General Public License as published by\n    the Free Software Foundation; either version 2 of the License, or\n    (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful,\n    but WITHOUT ANY WARRANTY; without even the implied warranty of\n    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    Revised BSD License for more details.\n\n    Copyright 2004-2007 Cool Dude 2k - http://intdb.sourceforge.net/\n    Copyright 2004-2007 Game Maker 2k - http://upload.idb.s1.jcink.com/\n    iDB Installer made by Game Maker 2k - http://idb.berlios.net/\n\n    \$FileInfo: settings.php & settingsbak.php - Last Update: ".$SVNDay[0]."/".$SVNDay[1]."/".$SVNDay[2]." SVN ".$SubVerN." - Author: cooldude2k \$\n*/\n";
+$pretext = "<?php\n/*\n    This program is free software; you can redistribute it and/or modify\n    it under the terms of the GNU General Public License as published by\n    the Free Software Foundation; either version 2 of the License, or\n    (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful,\n    but WITHOUT ANY WARRANTY; without even the implied warranty of\n    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    Revised BSD License for more details.\n\n    Copyright 2004-2008 Cool Dude 2k - http://idb.berlios.de/\n    Copyright 2004-2008 Game Maker 2k - http://intdb.sourceforge.net/\n    iDB Installer made by Game Maker 2k - http://idb.berlios.net/\n\n    \$FileInfo: settings.php & settingsbak.php - Last Update: ".$SVNDay[0]."/".$SVNDay[1]."/".$SVNDay[2]." SVN ".$SubVerN." - Author: cooldude2k \$\n*/\n";
 $pretext2 = array("/*   Board Setting Section Begins   */\n\$Settings = array();","/*   Board Setting Section Ends  \n     Board Info Section Begins   */\n\$SettInfo = array();","/*   Board Setting Section Ends   \n     Board Dir Section Begins   */\n\$SettDir = array();","/*   Board Dir Section Ends   */");
 $settcheck = "\$File3Name = basename(\$_SERVER['SCRIPT_NAME']);\nif (\$File3Name==\"".$_POST['tableprefix']."settings.php\"||\$File3Name==\"/".$_POST['tableprefix']."settings.php\") {\n    @header('Location: index.php');\n    exit(); }\n";
 $BoardSettings=$pretext2[0]."\nrequire('settings.php');\n\$Settings['sqltable'] = '".$_POST['tableprefix']."';\n\$Settings['board_name'] = '".$_POST['NewBoardName']."';\n\$Settings['weburl'] = '".$_POST['WebURL']."';\n\$Settings['GuestGroup'] = 'Guest';\n\$Settings['MemberGroup'] = 'Member';\n\$Settings['ValidateGroup'] = 'Validate';\n\$Settings['AdminValidate'] = false;\n\$Settings['TestReferer'] = ".$_POST['TestReferer'].";\n\$Settings['DefaultTheme'] = 'iDB';\n\$Settings['DefaultTimeZone'] = '".$AdminTime."';\n\$Settings['DefaultDST'] = '".$AdminDST."';\n\$Settings['max_posts'] = '10';\n\$Settings['max_topics'] = '10';\n\$Settings['max_memlist'] = '10';\n\$Settings['max_pmlist'] = '10';\n\$Settings['hot_topic_num'] = '15';\n\$Settings['enable_rss'] = true;\n\$Settings['enable_search'] = true;\n\$Settings['board_offline'] = false;\n".$pretext2[1]."\n\$SettInfo['board_name'] = '".$_POST['NewBoardName']."';\n\$SettInfo['Author'] = '".$_POST['AdminUser']."';\n\$SettInfo['Keywords'] = '".$_POST['NewBoardName'].",".$_POST['AdminUser']."';\n\$SettInfo['Description'] = '".$_POST['NewBoardName'].",".$_POST['AdminUser']."';\n?>";

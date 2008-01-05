@@ -1,0 +1,4 @@
+ RewriteEngine on
+ RewriteRule   ^([A-Za-z0-9]+)/{1}$    index.php/$1/
+ RewriteRule   ^([A-Za-z0-9]+)/{1}([A-Za-z0-9]+).js$    $2.js
+ RewriteRule   ^([A-Za-z0-9]+)/{1}([A-Za-z0-9]+).php$    $2.php/$1/

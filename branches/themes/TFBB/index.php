@@ -8,10 +8,10 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     Revised BSD License for more details.
 
-    Copyright 2004-2006 Jcink - https://launchpad.net/tfbb
-    Copyright 2004-2006 Jcink - http://jcink.com/
-    $ThemeInfo - Name: TFBB Theme - Author: cooldude2k $
-    $FileInfo: index.php - Last Update: 05/28/2007 SVN 17 - Author: jcink $
+    Copyright 2004-2008 Jcink - https://launchpad.net/tfbb
+    Copyright 2004-2008 Jcink - http://jcink.com/
+    $ThemeInfo - Name: TFBB Theme - Author: jcink $
+    $FileInfo: index.php - Last Update: 01/01/2008 SVN 144 - Author: jcink $
 */
 header('Location: ../../index.php');
 ?>

@@ -8,17 +8,17 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     Revised BSD License for more details.
 
-    Copyright 2004-2006 Jcink - https://launchpad.net/tfbb
-    Copyright 2004-2006 Jcink - http://jcink.com/
-    $ThemeInfo - Name: TFBB Theme - Author: cooldude2k $
-    $FileInfo: settings.php - Last Update: 07/19/2007 SVN 49 - Author: jcink $
+    Copyright 2004-2008 Jcink - https://launchpad.net/tfbb
+    Copyright 2004-2008 Jcink - http://jcink.com/
+    $ThemeInfo - Name: TFBB Theme - Author: jcink $
+    $FileInfo: settings.php - Last Update: 01/01/2008 SVN 144 - Author: jcink $
 */
 $ThemeSet = array();
 $ThemeSet['ThemeName'] = "TFBB Theme";
 $ThemeSet['ThemeMaker'] = "Jcink";
-$ThemeSet['ThemeVersion'] = "0.1.5";
+$ThemeSet['ThemeVersion'] = "0.2.1";
 $ThemeSet['ThemeVersionType'] = "Pre-Alpha";
-$ThemeSet['ThemeSubVersion'] = "SVN 17";
+$ThemeSet['ThemeSubVersion'] = "SVN 144";
 $ThemeSet['MakerURL'] = "http://Jcink.com/";
 $ThemeSet['CopyRight'] = $ThemeSet['ThemeName']." was made by <a href=\"".$ThemeSet['MakerURL']."\" title=\"".$ThemeSet['ThemeMaker']."\">".$ThemeSet['ThemeMaker']."</a>";
 $ThemeSet['CSS'] = "themes/TFBB/css.css";

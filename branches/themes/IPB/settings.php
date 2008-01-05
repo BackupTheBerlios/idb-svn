@@ -5,9 +5,9 @@
 $ThemeSet = array();
 $ThemeSet['ThemeName'] = "IPB Theme";
 $ThemeSet['ThemeMaker'] = "Matt Mecham";
-$ThemeSet['ThemeVersion'] = "0.1.5";
+$ThemeSet['ThemeVersion'] = "0.2.1";
 $ThemeSet['ThemeVersionType'] = "Pre-Alpha";
-$ThemeSet['ThemeSubVersion'] = "SVN 17";
+$ThemeSet['ThemeSubVersion'] = "SVN 144";
 $ThemeSet['MakerURL'] = "http://invisionpower.com/";
 $ThemeSet['CopyRight'] = $ThemeSet['ThemeName']." was made by <a href=\"".$ThemeSet['MakerURL']."\" title=\"".$ThemeSet['ThemeMaker']."\">".$ThemeSet['ThemeMaker']."</a>";
 $ThemeSet['CSS'] = "themes/IPB/css.css";

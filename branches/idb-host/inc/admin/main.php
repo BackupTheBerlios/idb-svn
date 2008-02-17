@@ -11,14 +11,14 @@
     Copyright 2004-2008 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2008 Game Maker 2k - http://intdb.sourceforge.net/
 
-    $FileInfo: main.php - Last Update: 02/15/2008 SVN 148 - Author: cooldude2k $
+    $FileInfo: main.php - Last Update: 02/17/2008 SVN 149 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="main.php"||$File3Name=="/main.php") {
 	require('index.php');
 	exit(); }
 
-// Check if we can edit the profile
+// Check if we can goto admin cp
 if($_SESSION['UserGroup']==$Settings['GuestGroup']||$GroupInfo['HasAdminCP']=="no") {
 redirect("location",$basedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false));
 ob_clean(); @header("Content-Type: text/plain; charset=".$Settings['charset']);
@@ -45,6 +45,9 @@ if($boolean==0||$boolean==false) {
 return "false"; }
 if($boolean==1||$boolean==true) { 
 return "true"; } } }
+function rsq($string) {
+$string = str_replace("'", "\'", $string);
+return $string; }
 ?>
 <table class="Table3">
 <tr style="width: 100%; vertical-align: top;">
@@ -72,7 +75,7 @@ $admincptitle = " ".$ThemeSet['TitleDivider']." Updating Settings";
 <tr class="TableRow3" id="ProfileUpdate">
 <td class="TableRow3">
 <div style="text-align: center;">
-<br />Profile updated <a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=".$_GET['act'],$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">click here</a> to go back. ^_^<br />&nbsp;</div>
+<br />Settings have been updated <a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=".$_GET['act'],$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">click here</a> to go back. ^_^<br />&nbsp;</div>
 <?php } if($_GET['act']=="view"&&$_POST['update']!="now") {
 $query = query("SELECT * FROM `".$Settings['sqltable']."members` WHERE `id`=%i", array($_SESSION['UserID']));
 $result=mysql_query($query);
@@ -328,6 +331,7 @@ if($Settings['fixcookiedir']!="true"&&$Settings['fixcookiedir']!="false") {
 $Settings['rssurl'] = bool_string($Settings['rssurl']);
 if($Settings['rssurl']!="true"&&$Settings['rssurl']!="false") {
    $Settings['rssurl']="'".$Settings['rssurl']."'"; }
+$_POST  = array_map("rsq", $_POST);
 $BoardSettings=$pretext2[0]."\nrequire('settings.php');\n\$Settings['sqltable'] = '".$Settings['sqltable']."';\n\$Settings['board_name'] = '".$Settings['board_name']."';\n\$Settings['weburl'] = '".$_POST['WebURL']."';\n\$Settings['GuestGroup'] = '".$_POST['GuestGroup']."';\n\$Settings['MemberGroup'] = '".$_POST['MemberGroup']."';\n\$Settings['ValidateGroup'] = '".$_POST['ValidateGroup']."';\n\$Settings['AdminValidate'] = ".bool_string($_POST['AdminValidate']).";\n\$Settings['TestReferer'] = '".$_POST['TestReferer']."';\n\$Settings['DefaultTheme'] = '".$_POST['DefaultTheme']."';\n\$Settings['DefaultTimeZone'] = '".$_POST['YourOffSet'].":".$_POST['MinOffSet']."';\n\$Settings['DefaultDST'] = '".$_POST['DST']."';\n\$Settings['max_posts'] = '".$_POST['max_posts']."';\n\$Settings['max_topics'] = '".$_POST['max_topics']."';\n\$Settings['max_memlist'] = '".$_POST['max_memlist']."';\n\$Settings['max_pmlist'] = '".$_POST['max_pmlist']."';\n\$Settings['hot_topic_num'] = '".$_POST['hot_topic_num']."';\n\$Settings['enable_rss'] = ".bool_string($_POST['enable_rss']).";\n\$Settings['enable_search'] = ".bool_string($_POST['enable_search']).";\n\$Settings['board_offline'] = ".bool_string($Settings['board_offline']).";\n".$pretext2[1]."\n\$SettInfo['board_name'] = '".$SettInfo['board_name']."';\n\$SettInfo['Author'] = '".$SettInfo['Author']."';\n\$SettInfo['Keywords'] = '".$SettInfo['Keywords']."';\n\$SettInfo['Description'] = '".$SettInfo['Description']."';\n?>";
 $BoardSettingsBak = $pretext.$settcheck.$BoardSettings;
 $BoardSettings = $pretext.$settcheck.$BoardSettings;
@@ -414,6 +418,7 @@ if($Settings['fixcookiedir']!="true"&&$Settings['fixcookiedir']!="false") {
 $Settings['rssurl'] = bool_string($Settings['rssurl']);
 if($Settings['rssurl']!="true"&&$Settings['rssurl']!="false") {
    $Settings['rssurl']="'".$Settings['rssurl']."'"; }
+$_POST  = array_map("rsq", $_POST);
 $BoardSettings=$pretext2[0]."\n\$Settings['root_board'] = '".$_POST['unixname']."';\n\$Settings['sqlhost'] = '".$_POST['DatabaseHost']."';\n\$Settings['sqldb'] = '".$_POST['DatabaseName']."';\n\$Settings['sqluser'] = '".$_POST['DatabaseUserName']."';\n\$Settings['sqlpass'] = '".$_POST['DatabasePassword']."';\n\$Settings['idbdir'] = '".$Settings['idbdir']."';\n\$Settings['idburl'] = '".$Settings['idburl']."';\n\$Settings['enable_https'] = ".bool_string($Settings['enable_https']).";\n\$Settings['use_gzip'] = '".$Settings['use_gzip']."';\n\$Settings['html_type'] = '".$Settings['html_type']."';\n\$Settings['html_level'] = '".$Settings['html_level']."';\n\$Settings['output_type'] = '".$Settings['output_type']."';\n\$Settings['charset'] = '".$Settings['charset']."';\n\$Settings['add_power_by'] = ".bool_string($Settings['add_power_by']).";\n\$Settings['send_pagesize'] = ".bool_string($Settings['send_pagesize']).";\n".$pretext2[2]."\n\$SettDir['maindir'] = '".$SettDir['maindir']."';\n\$SettDir['inc'] = '".$SettDir['inc']."';\n\$SettDir['misc'] = '".$SettDir['misc']."';\n\$SettDir['admin'] = '".$SettDir['admin']."';\n\$SettDir['mod'] = '".$SettDir['mod']."';\n\$SettDir['themes'] = '".$SettDir['themes']."';\n\$Settings['qstr'] = '".$Settings['qstr']."';\n\$Settings['qsep'] = '".$Settings['qsep']."';\n\$Settings['file_ext'] = '".$Settings['file_ext']."';\n\$Settings['rss_ext'] = '".$Settings['rss_ext']."';\n\$Settings['js_ext'] = '".$Settings['js_ext']."';\n\$Settings['showverinfo'] = ".$Settings['showverinfo'].";\n\$Settings['fixpathinfo'] = ".bool_string($Settings['fixpathinfo']).";\n\$Settings['fixbasedir'] = ".bool_string($Settings['fixbasedir']).";\n\$Settings['fixcookiedir'] = ".bool_string($Settings['fixcookiedir']).";\n\$Settings['enable_pathinfo'] = ".bool_string($Settings['enable_pathinfo']).";\n\$Settings['sessionid_in_urls'] = ".bool_string($Settings['sessionid_in_urls']).";\n\$Settings['rssurl'] = ".bool_string($Settings['rssurl']).";\n".$pretext2[1]."\n?>";
 $BoardSettingsBak = $pretext.$settcheck.$BoardSettings;
 $BoardSettings = $pretext.$settcheck.$BoardSettings;
@@ -486,6 +491,7 @@ if($Settings['fixcookiedir']!="true"&&$Settings['fixcookiedir']!="false") {
 $Settings['rssurl'] = bool_string($Settings['rssurl']);
 if($Settings['rssurl']!="true"&&$Settings['rssurl']!="false") {
    $Settings['rssurl']="'".$Settings['rssurl']."'"; }
+$_POST  = array_map("rsq", $_POST);
 $BoardSettings=$pretext2[0]."\nrequire('settings.php');\n\$Settings['sqltable'] = '".$Settings['sqltable']."';\n\$Settings['board_name'] = '".$_POST['board_name']."';\n\$Settings['weburl'] = '".$Settings['weburl']."';\n\$Settings['GuestGroup'] = '".$Settings['GuestGroup']."';\n\$Settings['MemberGroup'] = '".$Settings['MemberGroup']."';\n\$Settings['ValidateGroup'] = '".$Settings['ValidateGroup']."';\n\$Settings['AdminValidate'] = ".bool_string($Settings['AdminValidate']).";\n\$Settings['TestReferer'] = '".$Settings['TestReferer']."';\n\$Settings['DefaultTheme'] = '".$Settings['DefaultTheme']."';\n\$Settings['DefaultTimeZone'] = '".$Settings['DefaultTimeZone']."';\n\$Settings['DefaultDST'] = '".$Settings['DefaultDST']."';\n\$Settings['max_posts'] = '".$Settings['max_posts']."';\n\$Settings['max_topics'] = '".$Settings['max_topics']."';\n\$Settings['max_memlist'] = '".$Settings['max_memlist']."';\n\$Settings['max_pmlist'] = '".$Settings['max_pmlist']."';\n\$Settings['hot_topic_num'] = '".$Settings['hot_topic_num']."';\n\$Settings['enable_rss'] = ".bool_string($Settings['enable_rss']).";\n\$Settings['enable_search'] = ".bool_string($Settings['enable_search']).";\n\$Settings['board_offline'] = ".bool_string($Settings['board_offline']).";\n".$pretext2[1]."\n\$SettInfo['board_name'] = '".$_POST['board_name']."';\n\$SettInfo['Author'] = '".$_POST['Author']."';\n\$SettInfo['Keywords'] = '".$_POST['Keywords']."';\n\$SettInfo['Description'] = '".$_POST['Description']."';\n?>";
 $BoardSettingsBak = $pretext.$settcheck.$BoardSettings;
 $BoardSettings = $pretext.$settcheck.$BoardSettings;

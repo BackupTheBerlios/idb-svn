@@ -12,7 +12,7 @@
     Copyright 2004-2008 Game Maker 2k - http://intdb.sourceforge.net/
     iDB Installer made by Game Maker 2k - http://idb.berlios.net/
 
-    $FileInfo: mkconfig.php - Last Update: 02/15/2008 SVN 148 - Author: cooldude2k $
+    $FileInfo: mkconfig.php - Last Update: 02/18/2008 SVN 150 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="mkconfig.php"||$File3Name=="/mkconfig.php") {
@@ -37,10 +37,12 @@ $_POST['tableprefix'] = preg_replace("/[^A-Za-z0-9_$]/", "", $_POST['tableprefix
 if($_POST['tableprefix']==null||$_POST['tableprefix']=="_") { $_POST['tableprefix']="idb_"; }
 if($_POST['sessprefix']==null||$_POST['sessprefix']=="_") { $_POST['sessprefix']="idb_"; }
 $checkfile="settings.php";
+@chmod("settings.php",0766);
+@chmod("settingsbak.php",0766);
 if (!is_writable($checkfile)) {
    echo "<br />Settings is not writable.";
-   @chmod("settings.php",0755); $Error="Yes";
-   @chmod("settingsbak.php",0755);
+   @chmod("settings.php",0766); $Error="Yes";
+   @chmod("settingsbak.php",0766);
 } else { /* settings.php is writable install iDB. ^_^ */ }
 @session_name($_POST['tableprefix']."sess");
 @session_set_cookie_params(0, $this_dir);
@@ -162,6 +164,8 @@ fclose($fp);
 $fp = fopen($_POST['tableprefix']."settingsbak.php","w+");
 fwrite($fp, $BoardSettingsBak);
 fclose($fp);
+@chmod($_POST['tableprefix']."settings.php",0766);
+@chmod($_POST['tableprefix']."settingsbak.php",0766);
 unset($BoardSettings); unset($BoardSettingsBak);
 $pretext = "<?php\n/*\n    This program is free software; you can redistribute it and/or modify\n    it under the terms of the GNU General Public License as published by\n    the Free Software Foundation; either version 2 of the License, or\n    (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful,\n    but WITHOUT ANY WARRANTY; without even the implied warranty of\n    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    Revised BSD License for more details.\n\n    Copyright 2004-2008 Cool Dude 2k - http://idb.berlios.de/\n    Copyright 2004-2008 Game Maker 2k - http://intdb.sourceforge.net/\n    iDB Installer made by Game Maker 2k - http://idb.berlios.net/\n\n    \$FileInfo: settings.php & settingsbak.php - Last Update: ".$SVNDay[0]."/".$SVNDay[1]."/".$SVNDay[2]." SVN ".$SubVerN." - Author: cooldude2k \$\n*/\n";
 $pretext2 = array("/*   Board Setting Section Begins   */\n\$Settings = array();","/*   Board Setting Section Ends  \n     Board Info Section Begins   */\n\$SettInfo = array();","/*   Board Setting Section Ends   \n     Board Dir Section Begins   */\n\$SettDir = array();","/*   Board Dir Section Ends   */");

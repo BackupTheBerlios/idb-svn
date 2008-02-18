@@ -34,6 +34,7 @@ $_GET['act']="view"; }
 if($_GET['act']=="view"||
 	$_GET['act']=="settings"||
 	$_GET['act']=="mysql"||
+	$_GET['act']=="delete"||
 	$_GET['act']=="info")
 { require($SettDir['admin'].'main.php'); }
 if($_GET['act']=="addforum"||

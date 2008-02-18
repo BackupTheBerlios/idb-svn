@@ -32,6 +32,10 @@ if($_GET['act']=="mysql"&&$_GET['board']!=$Settings['root_board']) {
 redirect("location",$basedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false));
 ob_clean(); @header("Content-Type: text/plain; charset=".$Settings['charset']);
 gzip_page($Settings['use_gzip'],$GZipEncode['Type']); @mysql_close(); die(); }
+if($_GET['act']=="delete"&&$_GET['board']==$Settings['root_board']) {
+redirect("location",$basedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false));
+ob_clean(); @header("Content-Type: text/plain; charset=".$Settings['charset']);
+gzip_page($Settings['use_gzip'],$GZipEncode['Type']); @mysql_close(); die(); }
 if(!isset($_POST['update'])) { $_POST['update'] = null; }
 $pretext = "<?php\n/*\n    This program is free software; you can redistribute it and/or modify\n    it under the terms of the GNU General Public License as published by\n    the Free Software Foundation; either version 2 of the License, or\n    (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful,\n    but WITHOUT ANY WARRANTY; without even the implied warranty of\n    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    Revised BSD License for more details.\n\n    Copyright 2004-2008 Cool Dude 2k - http://idb.berlios.de/\n    Copyright 2004-2008 Game Maker 2k - http://intdb.sourceforge.net/\n    iDB Installer made by Game Maker 2k - http://idb.berlios.net/\n\n    \$FileInfo: settings.php & settingsbak.php - Last Update: ".$SVNDay[0]."/".$SVNDay[1]."/".$SVNDay[2]." SVN ".$SubVerN." - Author: cooldude2k \$\n*/\n";
 $pretext2 = array("/*   Board Setting Section Begins   */\n\$Settings = array();","/*   Board Setting Section Ends  \n     Board Info Section Begins   */\n\$SettInfo = array();","/*   Board Setting Section Ends   \n     Board Dir Section Begins   */\n\$SettDir = array();","/*   Board Dir Section Ends   */");
@@ -57,7 +61,7 @@ require($SettDir['admin'].'table.php');
 ?>
 </td>
 	<td style="width: 85%; vertical-align: top;">
-<?php if($_POST['update']=="now"&&$_GET['act']!=null) {
+<?php if($_POST['update']=="now"&&$_GET['act']!=null&&$_GET['act']!="delete") {
 $updateact = url_maker($exfile['profile'],$Settings['file_ext'],"act=".$_GET['act'],$Settings['qstr'],$Settings['qsep'],$prexqstr['profile'],$exqstr['profile']);
 $admincptitle = " ".$ThemeSet['TitleDivider']." Updating Settings";
 @redirect("refresh",$basedir.url_maker($exfile['admin'],$Settings['file_ext'],"act=".$_GET['act'],$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin'],FALSE),"3");
@@ -76,6 +80,88 @@ $admincptitle = " ".$ThemeSet['TitleDivider']." Updating Settings";
 <td class="TableRow3">
 <div style="text-align: center;">
 <br />Settings have been updated <a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=".$_GET['act'],$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">click here</a> to go back. ^_^<br />&nbsp;</div>
+<?php } if($_GET['act']=="delete"&&$_POST['update']!="now"&&
+	$_GET['board']!=$Settings['root_board']&&$GroupInfo['ViewDBInfo']=="yes") {
+$updateact = url_maker($exfile['profile'],$Settings['file_ext'],"act=".$_GET['act'],$Settings['qstr'],$Settings['qsep'],$prexqstr['profile'],$exqstr['profile']);
+$admincptitle = " ".$ThemeSet['TitleDivider']." Deleting Board";
+?>
+<div class="Table1Border">
+<table class="Table1" style="width: 100%;">
+<tr class="TableRow1">
+<td class="TableRow1"><span style="float: left;">
+<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=delete",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Deleting Board</a>
+</span><span style="float: right;">&nbsp;</span></td>
+</tr>
+<tr id="ProfileTitle" class="TableRow2">
+<th class="TableRow2">Deleting Board</th>
+</tr>
+<tr class="TableRow3" id="ProfileUpdate">
+<td class="TableRow3">
+<div style="text-align: center;">
+<br />Are you sure you want to delete this board?<br />
+<form style="text-align: center;" method="post" name="install" id="install" action="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=delete",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">
+<table style="width: 100%; text-align: center;">
+<tr style="width: 100%; text-align: center;">
+<td style="width: 100%; text-align: center;">
+<input type="hidden" name="act" value="delete" style="display: none;" />
+<input type="hidden" name="update" value="now" style="display: none;" />
+<input type="submit" class="Button" value="Delete" name="Delete_Board" />
+</td></tr></table>
+</form><br />&nbsp;</div>
+</td></tr>
+<tr id="ProfileTitleEnd" class="TableRow4">
+<td class="TableRow4">&nbsp;</td>
+</tr></table></div>
+<?php } if($_POST['act']=="delete"&&$_POST['update']=="now"&&$_GET['act']=="delete"&&
+	$_SESSION['UserGroup']!=$Settings['GuestGroup']&&$GroupInfo['HasAdminCP']=="yes"&&
+	$_GET['board']!=$Settings['root_board']&&$GroupInfo['ViewDBInfo']=="yes") {
+$updateact = url_maker($exfile['profile'],$Settings['file_ext'],"act=".$_GET['act'],$Settings['qstr'],$Settings['qsep'],$prexqstr['profile'],$exqstr['profile']);
+$admincptitle = " ".$ThemeSet['TitleDivider']." Deleting Board";
+unlink($_GET['board']."_settings.php");
+unlink($_GET['board']."_settingsbak.php");
+@session_unset();
+if($cookieDomain==null) {
+@setcookie("MemberName", null, GMTimeStamp() - 3600, $cbasedir);
+@setcookie("UserID", null, GMTimeStamp() - 3600, $cbasedir);
+@setcookie("SessPass", null, GMTimeStamp() - 3600, $cbasedir);
+@setcookie(session_name(), "", GMTimeStamp() - 3600, $cbasedir); }
+if($cookieDomain!=null) {
+if($cookieSecure==true) {
+@setcookie("MemberName", null, GMTimeStamp() - 3600, $cbasedir, $cookieDomain, 1);
+@setcookie("UserID", null, GMTimeStamp() - 3600, $cbasedir, $cookieDomain, 1);
+@setcookie("SessPass", null, GMTimeStamp() - 3600, $cbasedir, $cookieDomain, 1);
+@setcookie(session_name(), "", GMTimeStamp() - 3600, $cbasedir, $cookieDomain, 1); }
+if($cookieSecure==false) {
+@setcookie("MemberName", null, GMTimeStamp() - 3600, $cbasedir, $cookieDomain);
+@setcookie("UserID", null, GMTimeStamp() - 3600, $cbasedir, $cookieDomain);
+@setcookie("SessPass", null, GMTimeStamp() - 3600, $cbasedir, $cookieDomain);
+@setcookie(session_name(), "", GMTimeStamp() - 3600, $cbasedir, $cookieDomain); } }
+unset($_COOKIE[session_name()]);
+$_SESSION = array();
+@session_unset();
+@session_destroy();
+$delboard = 'DROP TABLE `'.$_GET['board'].'_categories`, `'.$_GET['board'].'_catpermissions`, `'.$_GET['board'].'_events`, `'.$_GET['board'].'_forums`, `'.$_GET['board'].'_groups`, `'.$_GET['board'].'_members`, `'.$_GET['board'].'_messenger`, `'.$_GET['board'].'_permissions`, `'.$_GET['board'].'_posts`, `'.$_GET['board'].'_restrictedwords`, `'.$_GET['board'].'_sessions`, `'.$_GET['board'].'_smileys`, `'.$_GET['board'].'_topics`, `'.$_GET['board'].'_wordfilter`';
+mysql_query($delboard);
+@redirect("refresh",$basedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],FALSE),"3");
+?>
+<div class="Table1Border">
+<table class="Table1" style="width: 100%;">
+<tr class="TableRow1">
+<td class="TableRow1"><span style="float: left;">
+<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); ?>">Deleting Board</a>
+</span><span style="float: right;">&nbsp;</span></td>
+</tr>
+<tr id="ProfileTitle" class="TableRow2">
+<th class="TableRow2">Deleting Board</th>
+</tr>
+<tr class="TableRow3" id="ProfileUpdate">
+<td class="TableRow3">
+<div style="text-align: center;">
+<br />The board was deleted successfully <a href="<?php echo url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); ?>">click here</a>. ^_^<br />&nbsp;</div>
+</td></tr>
+<tr id="ProfileTitleEnd" class="TableRow4">
+<td class="TableRow4">&nbsp;</td>
+</tr></table></div>
 <?php } if($_GET['act']=="view"&&$_POST['update']!="now") {
 $query = query("SELECT * FROM `".$Settings['sqltable']."members` WHERE `id`=%i", array($_SESSION['UserID']));
 $result=mysql_query($query);
@@ -501,7 +587,7 @@ fclose($fp);
 //	@cp("settings.php","settingsbak.php");
 $fp = fopen($_GET['board']."_settingsbak.php","w+");
 fwrite($fp, $BoardSettingsBak);
-fclose($fp); } if($_POST['update']=="now"&&$_GET['act']!=null) {
+fclose($fp); } if($_POST['update']=="now"&&$_GET['act']!=null&&$_GET['act']!="delete") {
 	$profiletitle = " ".$ThemeSet['TitleDivider']." Updating Settings"; ?>
 </td></tr>
 <tr id="ProfileTitleEnd" class="TableRow4">

@@ -33,6 +33,10 @@ if ($File3Name=="table.php"||$File3Name=="/table.php") {
 <?php } ?>
 </tr><tr class="TableRow3">
 <td class="TableRow3"><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=info",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Edit Board Info</a></td>
+<?php if($GroupInfo['ViewDBInfo']=="yes"&&$_GET['board']!=$Settings['root_board']) { ?>
+</tr><tr class="TableRow3">
+<td class="TableRow3"><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=delete",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Delete Board</a></td>
+<?php } ?>
 </tr><tr class="TableRow4">
 <td class="TableRow4">&nbsp;</td>
 </tr></table><div>&nbsp;</div>

@@ -43,6 +43,13 @@ if($Settings['charset']!="ISO-8859-15"&&$Settings['charset']!="ISO-8859-1"&&
 	$Settings['charset']!="GB2312"&&$Settings['charset']!="BIG5-HKSCS"&&
 	$Settings['charset']!="Shift_JIS"&&$Settings['charset']!="EUC-JP") {
 	$Settings['charset'] = "ISO-8859-15"; } }
+if(!isset($_GET['board'])) { 
+	$_GET['board'] = $Settings['root_board'];
+	$_GET['board'] = strtolower($_GET['board']);
+	$_GET['board'] = preg_replace("/[^A-Za-z0-9_$]/", "", $_GET['board']);
+	$_GET['board'] = preg_replace("/(.*?)\.\/(.*?)/", "", $_GET['board']);
+	$_GET['board'] = preg_replace("/(.*?)\/(.*?)/", "", $_GET['board']);
+	$_GET['board'] = preg_replace("/(.*?)\.(.*?)/", "", $_GET['board']); }
 require($SetupDir['setup'].'preinstall.php');
 require_once($SettDir['inc'].'filename.php');
 require_once($SettDir['inc'].'function.php');

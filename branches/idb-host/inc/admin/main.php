@@ -11,7 +11,7 @@
     Copyright 2004-2008 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2008 Game Maker 2k - http://intdb.sourceforge.net/
 
-    $FileInfo: main.php - Last Update: 02/17/2008 SVN 149 - Author: cooldude2k $
+    $FileInfo: main.php - Last Update: 03/31/2008 SVN 157 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="main.php"||$File3Name=="/main.php") {
@@ -163,7 +163,7 @@ mysql_query($delboard);
 <td class="TableRow4">&nbsp;</td>
 </tr></table></div>
 <?php } if($_GET['act']=="view"&&$_POST['update']!="now") {
-$query = query("SELECT * FROM `".$Settings['sqltable']."members` WHERE `id`=%i", array($_SESSION['UserID']));
+$query = query("SELECT * FROM `".$Settings['sqltable']."members` WHERE `id`=%i LIMIT 1", array($_SESSION['UserID']));
 $result=mysql_query($query);
 $num=mysql_num_rows($result);
 $i=0;

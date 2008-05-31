@@ -12,7 +12,7 @@
     Copyright 2004-2008 Game Maker 2k - http://intdb.sourceforge.net/
     iDB Installer made by Game Maker 2k - http://idb.berlios.net/
 
-    $FileInfo: mkconfig.php - Last Update: 02/18/2008 SVN 150 - Author: cooldude2k $
+    $FileInfo: mkconfig.php - Last Update: 05/31/2008 SVN 164 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="mkconfig.php"||$File3Name=="/mkconfig.php") {
@@ -25,7 +25,7 @@ if($Settings['fixbasedir']!=null&&$Settings['fixbasedir']!=false) {
 if($Settings['fixcookiedir']==null) { $Settings['fixcookiedir'] = false; }
 if($Settings['fixcookiedir']!=null&&$Settings['fixcookiedir']!=false) {
 		$cookie_dir = $Settings['fixcookiedir']; }
-if($Settings['fixcookiedir']!=true||$Settings['fixcookiedir']==false) {
+if($Settings['fixcookiedir']!==true||$Settings['fixcookiedir']===false) {
 		$cookie_dir = $this_dir; }
 if(!isset($Settings['sqldb'])) { echo "Sorry you can not signup yet."; $Error="Yes"; die(); }
 if(!isset($SetupDir['setup'])) { $SetupDir['setup'] = "signup/"; }
@@ -92,7 +92,7 @@ if ($_POST['AdminUser']=="Guest") { $Error="Yes";
 echo "<br />You can not use Guest as your name."; }
 /* We are done now with fixing the info. ^_^ */
 $mydbtest = @ConnectMysql($Settings['sqlhost'],$Settings['sqluser'],$Settings['sqlpass'],$Settings['sqldb']);
-if($mydbtest!=true) { $Error="Yes";
+if($mydbtest!==true) { $Error="Yes";
 echo "<br />".mysql_errno().": ".mysql_error()."\n"; }
 if ($Error!="Yes") {
 require($SetupDir['setup'].'mktable.php');
@@ -176,14 +176,14 @@ $_SESSION['UserGroup']="Admin";
 $_SESSION['UserDST'] = $AdminDST;
 $_SESSION['UserPass']=$NewPassword;
 $_SESSION['DBName'] = $Settings['sqldb'];
-if($_POST['storecookie']==true) {
+if($_POST['storecookie']===true) {
 @setcookie("MemberName", $_POST['AdminUser'], time() + (7 * 86400), "/".$_POST['unixname']."/");
 @setcookie("UserID", 1, time() + (7 * 86400), "/".$_POST['unixname']."/");
 @setcookie("SessPass", $NewPassword, time() + (7 * 86400), "/".$_POST['unixname']."/"); }
 @mysql_close(); $chdel = true;
 ?><span class="TableMessage">
 <br />Install Finish <a href="/<?php echo $_POST['unixname']; ?>/index.php?act=view">Click here</a> to goto board. ^_^</span>
-<?php if($chdel==false) { ?><span class="TableMessage">
+<?php if($chdel===false) { ?><span class="TableMessage">
 <br />Error: Cound not delete installer. Read readme.txt for more info.</span>
 <?php } ?><br /><br />
 </td>

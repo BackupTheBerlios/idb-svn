@@ -47,7 +47,8 @@ if(isset($Settings['sqldb'])) {
 die(); }
 if(!file_exists($_GET['board']."_settings.php")) { 
 require('settings.php');
-$Settings['use_captcha'] = "off";
+$Settings['use_captcha'] = "on";
+$Settings['captcha_guest'] = "on";
 $Settings['captcha_clean'] = "off";
 if(!isset($Settings['charset'])) {
 	$Settings['charset'] = "ISO-8859-15"; }
@@ -268,6 +269,14 @@ if($Settings['DefaultDST']=="off") {
 	$_SESSION['UserDST'] = "off"; }
 if($Settings['DefaultDST']=="on") { 
 	$_SESSION['UserDST'] = "on"; } }
+// Guest Stuff
+if(isset($_SESSION['MemberName'])||
+   isset($_COOKIE['MemberName'])) {
+	$_SESSION['GuestName'] = null;
+	$_COOKIE['GuestName'] = null; }
+if(!isset($_SESSION['MemberName'])&&!isset($_COOKIE['MemberName'])) {
+if(!isset($_SESSION['GuestName'])&&isset($_COOKIE['GuestName'])) {
+	$_SESSION['GuestName'] = $_COOKIE['GuestName']; } }
 // Skin Stuff
 if(!isset($_SESSION['Theme'])) { $_SESSION['Theme'] = null; }
 if(!isset($_GET['theme'])) { $_GET['theme'] = null; }

@@ -363,6 +363,14 @@ echo "</table>";
 <td style="width: 100%;">
 <label class="TextBoxLabel" for="ReplyPost">Insert Your Reply:</label><br />
 <textarea rows="10" name="ReplyPost" id="ReplyPost" cols="40" class="TextBox"><?php echo $QuoteReply; ?></textarea><br />
+<?php if($_SESSION['UserGroup']==$Settings['GuestGroup']&&$Settings['captcha_guest']=="on") { ?>
+<label class="TextBoxLabel" for="signcode"><img src="<?php echo url_maker($exfile['index'],$Settings['file_ext'],"act=MkCaptcha",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); ?>" alt="CAPTCHA Code" title="CAPTCHA Code" /></label><br />
+<input maxlength="25" type="text" class="TextBox" name="signcode" size="20" id="signcode" value="Enter SignCode" /><br />
+<?php } ?>
+<input type="hidden" name="act" value="makereplies" style="display: none;" />
+<?php if($_SESSION['UserGroup']!=$Settings['GuestGroup']) { ?>
+<input type="hidden" name="GuestName" value="null" style="display: none;" />
+<?php } ?>
 <input type="hidden" name="act" value="makereplies" style="display: none;" />
 <?php if($_SESSION['UserGroup']!=$Settings['GuestGroup']) { ?>
 <input type="hidden" name="GuestName" value="null" style="display: none;" />

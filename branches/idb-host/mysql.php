@@ -37,9 +37,6 @@ if(isset($Settings['sqldb'])) {
 die(); }
 if(!file_exists($_GET['board']."_settings.php")) { 
 require('settings.php');
-$Settings['use_captcha'] = "on";
-$Settings['captcha_guest'] = "on";
-$Settings['captcha_clean'] = "off";
 if(!isset($Settings['charset'])) {
 	$Settings['charset'] = "ISO-8859-15"; }
 if(isset($Settings['charset'])) {

@@ -11,7 +11,7 @@
     Copyright 2004-2008 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2008 Game Maker 2k - http://intdb.sourceforge.net/
 
-    $FileInfo: members.php - Last Update: 10/11/2008 SVN 174 - Author: cooldude2k $
+    $FileInfo: members.php - Last Update: 10/29/2008 SVN 185 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="members.php"||$File3Name=="/members.php") {
@@ -497,7 +497,7 @@ if($cookieSecure===false) {
 	Click <a href="<?php echo url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); ?>">here</a> to continue to board.<br />&nbsp;
 	</span><br /></td>
 </tr>
-<?php } if($passright===false||$BanError=="yes") { ?>
+<?php } if($passright===false||$BanError=="yes"||$numlog<=0) { ?>
 <tr>
 	<td><span class="TableMessage">
 	<br />Password was not right or user not found or user is banned!! &lt;_&lt;<br />

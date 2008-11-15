@@ -11,7 +11,7 @@
     Copyright 2004-2008 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2008 Game Maker 2k - http://intdb.sourceforge.net/
 
-    $FileInfo: main.php - Last Update: 05/31/2008 SVN 164 - Author: cooldude2k $
+    $FileInfo: main.php - Last Update: 11/15/2008 SVN 189 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="main.php"||$File3Name=="/main.php") {
@@ -52,6 +52,21 @@ return "true"; } } }
 function rsq($string) {
 $string = str_replace("'", "\'", $string);
 return $string; }
+if(!is_numeric($Settings['KarmaBoostDay']) {
+$Settings['KarmaBoostDay'] = "false"; }
+if(!is_numeric($Settings['KarmaBoostDay']) {
+$Settings['KarmaBoostDay'] = "false"; }
+$KBoostPercent = explode("|",$Settings['KBoostPercent']);
+if(count($KBoostPercent)<1) { 
+$Settings['KBoostPercent'] = "6|10"; }
+if(!is_numeric($KBoostPercent[0])) {
+$Settings['KBoostPercent'] = "6|10"; }
+if(count($KBoostPercent)==1) { 
+$Settings['KBoostPercent'] = "6|10"; }
+if(!is_numeric($KBoostPercent[1])) {
+$Settings['KBoostPercent'] = "6|10"; }
+if(count($KBoostPercent)>2) { 
+$Settings['KBoostPercent'] = "6|10"; }
 ?>
 <table class="Table3">
 <tr style="width: 100%; vertical-align: top;">
@@ -421,7 +436,7 @@ $Settings['showverinfo'] = bool_string($Settings['showverinfo']);
 if($Settings['showverinfo']!="true"&&$Settings['showverinfo']!="false") {
    $Settings['showverinfo']="'".$Settings['showverinfo']."'"; }
 $_POST  = array_map("rsq", $_POST);
-$BoardSettings=$pretext2[0]."\nrequire('settings.php');\n\$Settings['sqltable'] = '".$Settings['sqltable']."';\n\$Settings['board_name'] = '".$Settings['board_name']."';\n\$Settings['weburl'] = '".$_POST['WebURL']."';\n\$Settings['GuestGroup'] = '".$_POST['GuestGroup']."';\n\$Settings['MemberGroup'] = '".$_POST['MemberGroup']."';\n\$Settings['ValidateGroup'] = '".$_POST['ValidateGroup']."';\n\$Settings['AdminValidate'] = ".bool_string($_POST['AdminValidate']).";\n\$Settings['TestReferer'] = '".$_POST['TestReferer']."';\n\$Settings['DefaultTheme'] = '".$_POST['DefaultTheme']."';\n\$Settings['DefaultTimeZone'] = '".$_POST['YourOffSet'].":".$_POST['MinOffSet']."';\n\$Settings['DefaultDST'] = '".$_POST['DST']."';\n\$Settings['max_posts'] = '".$_POST['max_posts']."';\n\$Settings['max_topics'] = '".$_POST['max_topics']."';\n\$Settings['max_memlist'] = '".$_POST['max_memlist']."';\n\$Settings['max_pmlist'] = '".$_POST['max_pmlist']."';\n\$Settings['hot_topic_num'] = '".$_POST['hot_topic_num']."';\n\$Settings['enable_rss'] = ".bool_string($_POST['enable_rss']).";\n\$Settings['enable_search'] = ".bool_string($_POST['enable_search']).";\n\$Settings['board_offline'] = ".bool_string($Settings['board_offline']).";\n".$pretext2[1]."\n\$SettInfo['board_name'] = '".$SettInfo['board_name']."';\n\$SettInfo['Author'] = '".$SettInfo['Author']."';\n\$SettInfo['Keywords'] = '".$SettInfo['Keywords']."';\n\$SettInfo['Description'] = '".$SettInfo['Description']."';\n?>";
+$BoardSettings=$pretext2[0]."\nrequire('settings.php');\n\$Settings['sqltable'] = '".$Settings['sqltable']."';\n\$Settings['board_name'] = '".$Settings['board_name']."';\n\$Settings['weburl'] = '".$_POST['WebURL']."';\n\$Settings['GuestGroup'] = '".$_POST['GuestGroup']."';\n\$Settings['MemberGroup'] = '".$_POST['MemberGroup']."';\n\$Settings['ValidateGroup'] = '".$_POST['ValidateGroup']."';\n\$Settings['AdminValidate'] = ".bool_string($_POST['AdminValidate']).";\n\$Settings['TestReferer'] = '".$_POST['TestReferer']."';\n\$Settings['DefaultTheme'] = '".$_POST['DefaultTheme']."';\n\$Settings['DefaultTimeZone'] = '".$_POST['YourOffSet'].":".$_POST['MinOffSet']."';\n\$Settings['DefaultDST'] = '".$_POST['DST']."';\n\$Settings['max_posts'] = '".$_POST['max_posts']."';\n\$Settings['max_topics'] = '".$_POST['max_topics']."';\n\$Settings['max_memlist'] = '".$_POST['max_memlist']."';\n\$Settings['max_pmlist'] = '".$_POST['max_pmlist']."';\n\$Settings['hot_topic_num'] = '".$_POST['hot_topic_num']."';\n\$Settings['enable_rss'] = ".bool_string($_POST['enable_rss']).";\n\$Settings['enable_search'] = ".bool_string($_POST['enable_search']).";\n\$Settings['board_offline'] = ".bool_string($Settings['board_offline']).";\n\$Settings['KarmaBoostDays'] = '".bool_string($Settings['KarmaBoostDays'])."';\n\$Settings['KBoostPercent'] = '".$Settings['KBoostPercent']."';\n".$pretext2[1]."\n\$SettInfo['board_name'] = '".$SettInfo['board_name']."';\n\$SettInfo['Author'] = '".$SettInfo['Author']."';\n\$SettInfo['Keywords'] = '".$SettInfo['Keywords']."';\n\$SettInfo['Description'] = '".$SettInfo['Description']."';\n?>";
 $BoardSettingsBak = $pretext.$settcheck.$BoardSettings;
 $BoardSettings = $pretext.$settcheck.$BoardSettings;
 $fp = fopen($_GET['board']."_settings.php","w+");
@@ -584,7 +599,7 @@ $Settings['rssurl'] = bool_string($Settings['rssurl']);
 if($Settings['rssurl']!="true"&&$Settings['rssurl']!="false") {
    $Settings['rssurl']="'".$Settings['rssurl']."'"; }
 $_POST  = array_map("rsq", $_POST);
-$BoardSettings=$pretext2[0]."\nrequire('settings.php');\n\$Settings['sqltable'] = '".$Settings['sqltable']."';\n\$Settings['board_name'] = '".$_POST['board_name']."';\n\$Settings['weburl'] = '".$Settings['weburl']."';\n\$Settings['GuestGroup'] = '".$Settings['GuestGroup']."';\n\$Settings['MemberGroup'] = '".$Settings['MemberGroup']."';\n\$Settings['ValidateGroup'] = '".$Settings['ValidateGroup']."';\n\$Settings['AdminValidate'] = ".bool_string($Settings['AdminValidate']).";\n\$Settings['TestReferer'] = '".$Settings['TestReferer']."';\n\$Settings['DefaultTheme'] = '".$Settings['DefaultTheme']."';\n\$Settings['DefaultTimeZone'] = '".$Settings['DefaultTimeZone']."';\n\$Settings['DefaultDST'] = '".$Settings['DefaultDST']."';\n\$Settings['max_posts'] = '".$Settings['max_posts']."';\n\$Settings['max_topics'] = '".$Settings['max_topics']."';\n\$Settings['max_memlist'] = '".$Settings['max_memlist']."';\n\$Settings['max_pmlist'] = '".$Settings['max_pmlist']."';\n\$Settings['hot_topic_num'] = '".$Settings['hot_topic_num']."';\n\$Settings['enable_rss'] = ".bool_string($Settings['enable_rss']).";\n\$Settings['enable_search'] = ".bool_string($Settings['enable_search']).";\n\$Settings['board_offline'] = ".bool_string($Settings['board_offline']).";\n".$pretext2[1]."\n\$SettInfo['board_name'] = '".$_POST['board_name']."';\n\$SettInfo['Author'] = '".$_POST['Author']."';\n\$SettInfo['Keywords'] = '".$_POST['Keywords']."';\n\$SettInfo['Description'] = '".$_POST['Description']."';\n?>";
+$BoardSettings=$pretext2[0]."\nrequire('settings.php');\n\$Settings['sqltable'] = '".$Settings['sqltable']."';\n\$Settings['board_name'] = '".$_POST['board_name']."';\n\$Settings['weburl'] = '".$Settings['weburl']."';\n\$Settings['GuestGroup'] = '".$Settings['GuestGroup']."';\n\$Settings['MemberGroup'] = '".$Settings['MemberGroup']."';\n\$Settings['ValidateGroup'] = '".$Settings['ValidateGroup']."';\n\$Settings['AdminValidate'] = ".bool_string($Settings['AdminValidate']).";\n\$Settings['TestReferer'] = '".$Settings['TestReferer']."';\n\$Settings['DefaultTheme'] = '".$Settings['DefaultTheme']."';\n\$Settings['DefaultTimeZone'] = '".$Settings['DefaultTimeZone']."';\n\$Settings['DefaultDST'] = '".$Settings['DefaultDST']."';\n\$Settings['max_posts'] = '".$Settings['max_posts']."';\n\$Settings['max_topics'] = '".$Settings['max_topics']."';\n\$Settings['max_memlist'] = '".$Settings['max_memlist']."';\n\$Settings['max_pmlist'] = '".$Settings['max_pmlist']."';\n\$Settings['hot_topic_num'] = '".$Settings['hot_topic_num']."';\n\$Settings['enable_rss'] = ".bool_string($Settings['enable_rss']).";\n\$Settings['enable_search'] = ".bool_string($Settings['enable_search']).";\n\$Settings['board_offline'] = ".bool_string($Settings['board_offline']).";\n\$Settings['KarmaBoostDays'] = '".bool_string($Settings['KarmaBoostDays'])."';\n\$Settings['KBoostPercent'] = '".$Settings['KBoostPercent']."';\n".$pretext2[1]."\n\$SettInfo['board_name'] = '".$_POST['board_name']."';\n\$SettInfo['Author'] = '".$_POST['Author']."';\n\$SettInfo['Keywords'] = '".$_POST['Keywords']."';\n\$SettInfo['Description'] = '".$_POST['Description']."';\n?>";
 $BoardSettingsBak = $pretext.$settcheck.$BoardSettings;
 $BoardSettings = $pretext.$settcheck.$BoardSettings;
 $fp = fopen($_GET['board']."_settings.php","w+");

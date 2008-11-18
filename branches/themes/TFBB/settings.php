@@ -11,7 +11,7 @@
     Copyright 2004-2008 Jcink - https://launchpad.net/tfbb
     Copyright 2004-2008 Jcink - http://jcink.com/
     $ThemeInfo - Name: TFBB Theme - Author: jcink $
-    $FileInfo: settings.php - Last Update: 01/01/2008 SVN 144 - Author: jcink $
+    $FileInfo: settings.php - Last Update: 11/18/2008 SVN 191 - Author: jcink $
 */
 $ThemeSet = array();
 $ThemeSet['ThemeName'] = "TFBB Theme";
@@ -57,6 +57,8 @@ $ThemeSet['ForumIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/T
 $ThemeSet['SubForumIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/forum.gif\" alt=\"SubForum\" title=\"SubForum\" /></div>";
 $ThemeSet['RedirectIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/forum.gif\" alt=\"Redirect\" title=\"Redirect\" /></div>";
 $ThemeSet['TitleIcon'] = "<img src=\"themes/TFBB/nav.gif\" alt=\"-&gt;\" title=\"-&gt;\" />&nbsp;";
+$ThemeSet['NavLinkIcon'] = null;
+$ThemeSet['NavLinkDivider'] = "&nbsp;-&gt;&nbsp;";
 $ThemeSet['StatsIcon'] = "<img src=\"themes/TFBB/stats.gif\" alt=\"Board Stats\" title=\"Board Stats\" />";
 $ThemeSet['NoAvatar'] = "themes/TFBB/noavatar.png";
 $ThemeSet['NoAvatarSize'] = "100x100";

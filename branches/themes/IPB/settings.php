@@ -46,6 +46,8 @@ $ThemeSet['ForumIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/I
 $ThemeSet['SubForumIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/IPB/subforum.gif\" alt=\"SubForum\" title=\"SubForum\" /></div>";
 $ThemeSet['RedirectIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/IPB/redirect.gif\" alt=\"Redirect Forum\" title=\"Redirect Forum\" /></div>";
 $ThemeSet['TitleIcon'] = "<img src=\"themes/IPB/nav.gif\" alt=\"-&gt;\" title=\"-&gt;\" />&nbsp;";
+$ThemeSet['NavLinkIcon'] = "<img src=\"themes/IPB/nav.gif\" alt=\"-&gt;\" title=\"-&gt;\" />&nbsp;";
+$ThemeSet['NavLinkDivider'] = "&nbsp;-&gt;&nbsp;";
 $ThemeSet['StatsIcon'] = "<img src=\"themes/IPB/stats.gif\" alt=\"Board Stats\" title=\"Board Stats\" />";
 $ThemeSet['NoAvatar'] = "themes/IPB/noavatar.png";
 $ThemeSet['NoAvatarSize'] = "100x100";

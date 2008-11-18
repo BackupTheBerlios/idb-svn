@@ -42,6 +42,8 @@ $ThemeSet['LineDivider'] = "&nbsp;|&nbsp;";
 $ThemeSet['ButtonDivider'] = "&nbsp;";
 $ThemeSet['LineDividerTopic'] = "&nbsp;";
 $ThemeSet['TitleDivider'] = "-&gt;";
+$ThemeSet['NavLinkIcon'] = "<img src=\"themes/IPB/nav.gif\" alt=\"-&gt;\" title=\"-&gt;\" />&nbsp;";
+$ThemeSet['NavLinkDivider'] = "&nbsp;-&gt;&nbsp;";
 $ThemeSet['ForumIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/IPBAlt/forum.gif\" alt=\"Forum\" title=\"Forum\" /></div>";
 $ThemeSet['SubForumIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/IPBAlt/subforum.gif\" alt=\"SubForum\" title=\"SubForum\" /></div>";
 $ThemeSet['RedirectIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/IPBAlt/redirect.gif\" alt=\"Redirect Forum\" title=\"Redirect Forum\" /></div>";

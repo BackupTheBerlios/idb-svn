@@ -11,7 +11,7 @@
     Copyright 2004-2008 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2008 Game Maker 2k - http://intdb.sourceforge.net/
 
-    $FileInfo: mysql.php - Last Update: 09/26/2008 SVN 172 - Author: cooldude2k $
+    $FileInfo: mysql.php - Last Update: 11/19/2008 SVN 192 - Author: cooldude2k $
 */
 //@ini_set("display_errors", true); 
 //@ini_set("display_startup_errors", true);
@@ -59,6 +59,7 @@ die(); }
 if(@ini_get("register_globals")) { require($_GET['board'].'_settings.php');
 if(!isset($SettDir['misc'])) { $SettDir['misc'] = "inc/misc/"; }
 	require_once($SettDir['misc'].'killglobals.php'); }
+$starttime = $_POST['starttime'];
 require($_GET['board'].'_settings.php');
 if(!isset($Settings['sqldb'])) {
 @header("Content-Type: text/plain; charset=UTF-8");

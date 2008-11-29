@@ -11,7 +11,7 @@
     Copyright 2004-2008 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2008 Game Maker 2k - http://intdb.sourceforge.net/
 
-    $FileInfo: mysql.php - Last Update: 11/19/2008 SVN 192 - Author: cooldude2k $
+    $FileInfo: mysql.php - Last Update: 11/29/2008 SVN 193 - Author: cooldude2k $
 */
 //@ini_set("display_errors", true); 
 //@ini_set("display_startup_errors", true);
@@ -323,6 +323,13 @@ $_GET['theme']=$Settings['DefaultTheme']; } }
 $PreSkin['skindir1'] = $_SESSION['Theme'];
 $PreSkin['skindir2'] = $SettDir['themes'].$_SESSION['Theme'];
 require($SettDir['themes'].$_GET['theme']."/settings.php");
+$_SESSION['Theme'] = $_GET['theme'];
+if(!isset($ThemeSet['TableStyle'])) {
+	$ThemeSet['TableStyle'] = "table"; }
+if(isset($ThemeSet['TableStyle'])) {
+if($ThemeSet['TableStyle']!="div"&&
+	$ThemeSet['TableStyle']!="table") {
+	$ThemeSet['TableStyle'] = "table"; } }
 if(!isset($_SESSION['DBName'])) { $_SESSION['DBName'] = null; }
 if($_SESSION['DBName']==null) {
 	$_SESSION['DBName'] = $Settings['sqldb']; }

@@ -11,14 +11,14 @@
     Copyright 2004-2008 Jcink - https://launchpad.net/tfbb
     Copyright 2004-2008 Jcink - http://jcink.com/
     $ThemeInfo - Name: TFBB Theme - Author: jcink $
-    $FileInfo: info.php - Last Update: 01/01/2008 SVN 144 - Author: jcink $
+    $FileInfo: info.php - Last Update: 12/01/2008 SVN 194 - Author: jcink $
 */
 $ThemeInfo = array();
 $ThemeInfo['ThemeName'] = "TFBB Theme";
 $ThemeInfo['ThemeMaker'] = "Jcink";
 $ThemeInfo['ThemeVersion'] = "0.2.1";
 $ThemeInfo['ThemeVersionType'] = "Pre-Alpha";
-$ThemeInfo['ThemeSubVersion'] = "SVN 144";
+$ThemeInfo['ThemeSubVersion'] = "SVN 194";
 $ThemeInfo['MakerURL'] = "http://Jcink.com/";
 $ThemeInfo['CopyRight'] = $ThemeInfo['ThemeName']." was made by <a href=\"".$ThemeInfo['MakerURL']."\" title=\"".$ThemeInfo['ThemeMaker']."\">".$ThemeInfo['ThemeMaker']."</a>";
 ?>

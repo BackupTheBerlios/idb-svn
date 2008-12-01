@@ -11,19 +11,20 @@
     Copyright 2004-2008 Jcink - https://launchpad.net/tfbb
     Copyright 2004-2008 Jcink - http://jcink.com/
     $ThemeInfo - Name: TFBB Theme - Author: jcink $
-    $FileInfo: settings.php - Last Update: 11/18/2008 SVN 191 - Author: jcink $
+    $FileInfo: settings.php - Last Update: 12/01/2008 SVN 194 - Author: jcink $
 */
 $ThemeSet = array();
 $ThemeSet['ThemeName'] = "TFBB Theme";
 $ThemeSet['ThemeMaker'] = "Jcink";
 $ThemeSet['ThemeVersion'] = "0.2.1";
 $ThemeSet['ThemeVersionType'] = "Pre-Alpha";
-$ThemeSet['ThemeSubVersion'] = "SVN 144";
+$ThemeSet['ThemeSubVersion'] = "SVN 194";
 $ThemeSet['MakerURL'] = "http://Jcink.com/";
 $ThemeSet['CopyRight'] = $ThemeSet['ThemeName']." was made by <a href=\"".$ThemeSet['MakerURL']."\" title=\"".$ThemeSet['ThemeMaker']."\">".$ThemeSet['ThemeMaker']."</a>";
 $ThemeSet['CSS'] = "themes/TFBB/css.css";
 $ThemeSet['CSSType'] = "include";
 $ThemeSet['FavIcon'] = "themes/TFBB/favicon.ico";
+$ThemeSet['TableStyle'] = "div";
 $ThemeSet['PreLogo'] = "<div style=\"text-align: center;\">";
 $ThemeSet['Logo'] = $Settings['board_name'];
 $ThemeSet['LogoStyle'] = "font-size: 40px; font-family: verdana, arial, sans-serif; color: white;";
@@ -57,7 +58,7 @@ $ThemeSet['ForumIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/T
 $ThemeSet['SubForumIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/forum.gif\" alt=\"SubForum\" title=\"SubForum\" /></div>";
 $ThemeSet['RedirectIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/forum.gif\" alt=\"Redirect\" title=\"Redirect\" /></div>";
 $ThemeSet['TitleIcon'] = "<img src=\"themes/TFBB/nav.gif\" alt=\"-&gt;\" title=\"-&gt;\" />&nbsp;";
-$ThemeSet['NavLinkIcon'] = null;
+$ThemeSet['NavLinkIcon'] = "&gt;&gt; ";
 $ThemeSet['NavLinkDivider'] = "&nbsp;-&gt;&nbsp;";
 $ThemeSet['StatsIcon'] = "<img src=\"themes/TFBB/stats.gif\" alt=\"Board Stats\" title=\"Board Stats\" />";
 $ThemeSet['NoAvatar'] = "themes/TFBB/noavatar.png";

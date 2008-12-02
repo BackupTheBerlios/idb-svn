@@ -12,12 +12,14 @@
     $ThemeInfo - Name: TFBB Theme - Author: jcink $
     $FileInfo: settings.php - Last Update: 12/01/2008 SVN 194 - Author: jcink $
 */
+
 html {
 font-family: Verdana, Tahoma, Arial, sans-serif;
 font-size: 11px;
 color: white;
 background-color: black;
 }
+
 body {
 font-family: Verdana, Tahoma, Arial, sans-serif;
 font-size: 11px;
@@ -25,37 +27,46 @@ color: white;
 margin: 5px 40px 5px 40px;
 background-color: black;
 }
+
 a:link, a:visited, a:active {
 color: silver;
 text-decoration: none;
 }
+
 a:hover {
 color: gray;
 text-decoration: none;
 }
+
 .copyright {
 text-align: center;
-font-family: Sans-Serif;
-font-size: 12px;
 line-height: 11px;
-color: #ffffff;
+color: #FFF;
+font-family: Verdana, Tahoma, Arial, Sans-Serif;
+font-size: 9px;
+line-height: 12px;
 }
+
 .copyright a:link, .copyright a:visited, .copyright a:active {
 color: #dfdfdf;
 text-decoration: none;
 }
+
 .copyright a:hover {
 color: #fdfdfd;
 text-decoration: none;
 }
+
 .noborder {
 border: 0;
 }
+
 img {
 border: 0;
 vertical-align: middle;
 display: inline;
 }
+
 .NavBar {
 background-color: #343434;
 font-size: 11px;
@@ -65,31 +76,36 @@ width: 100%;
 border: 1px solid #464646;
 border-collapse: collapse;
 }
+
 .NavBarRow1, .NavBarColumn1 {
 background-color: #1f1f1f;
 font-size: 11px;
 text-align: center;
 border: 1px solid #464646;
 }
+
 .NavBarRow2, .NavBarColumn2 {
 background-color: #343434;
 font-size: 11px;
 text-align: left;
 border: 1px solid #464646;
 }
-.Table1 {
+
+.Table1, .TableInfo1 {
 width: 100%;
 border: 0px;
 border-width: 1px;
 border-spacing: 1px;
 }
-.Table1Border {
+
+.Table1Border, .TableInfo1Border {
 padding: 0px;
 margin: 0px;
 width: 100%;
 background-color: #464646;
 border: 1px solid #464646;
 }
+
 .Table2 {
 background-color: black;
 font-size: 11px;
@@ -97,13 +113,15 @@ font-family: verdana, arial, sans-serif;
 color: white;
 width: 100%;
 }
+
 .Table3 {
 font-size: 11px;
 font-family: verdana, arial, sans-serif;
 color: #000000;
 width: 100%;
 }
-.TableRow1 {
+
+.TableRow1, .TableInfoRow1 {
 background-image: url(grad.gif);
 vertical-align: middle;
 font-weight: bold;
@@ -112,6 +130,7 @@ padding: 8px 0px 8px 5px;
 color: white;
 background-color: #232323;
 }
+
 .TableColumn2 {
 font-weight: bold;
 padding: 7px;
@@ -119,17 +138,25 @@ margin: 0px;
 color: white;
 background-color: #232323;
 }
-.TableRow3, .TableColumn3 {
+
+.TableInfoColumn2 {
 background-color: #343434;
 }
-.TableRow4, .TableColumn4 {
+
+.TableRow3, .TableInfoRow3 {
+background-color: #343434;
+}
+
+.TableRow4, .TableInfoRow4 {
 color: white;
 background-color: #131313;
 }
+
 .CalTableRow1, .CalTableRow2 {
 background-color: #343434;
 border: 1px solid #464646;
 }
+
 .TextBox {
 background-color: #1f1f1f;
 font-size: 13px;
@@ -138,14 +165,17 @@ color: white;
 border: 1px solid #464646;
 border-collapse: collapse;
 }
+
 .HiddenTextBox {
 display: none;
 }
+
 .QuoteTop {
 font-family: Verdana, Tahoma, Arial, sans-serif;
 font-size: 10px;
 color: #a0a0a0;
 }
+
 .QuoteBottom {
 font-family: Courier, Courier New, Verdana, Arial, serif;
 font-size: 12px;
@@ -158,11 +188,13 @@ padding-right: 2px;
 padding-bottom: 2px;
 padding-left: 2px;
 }
+
 .CodeTop {
 font-family: Verdana, Tahoma, Arial, sans-serif;
 font-size: 10px;
 color: #a0a0a0;
 }
+
 .CodeBottom {
 font-family: Courier, Courier New, Verdana, Arial;
 font-size: 12px;
@@ -175,6 +207,7 @@ padding-right: 2px;
 padding-bottom: 2px;
 padding-left: 2px;
 }
+
 .CodeBox {
 width: 500px;
 height: 100px;
@@ -184,6 +217,7 @@ border: 3px outset black;
 font-family: Courier, Courier New, Verdana, Arial, serif;
 font-size: 15px;
 }
+
 .Button {
 background-color: #1f1f1f;
 font-size: 13px;
@@ -192,20 +226,24 @@ color: white;
 border: 1px solid #464646;
 border-collapse: collapse;
 }
+
 .TextBoxLabel, label {
 color: #e1e1e1;
 font-weight: bold;
 cursor: pointer;
 }
+
 .EditReply {
 color: #000000;
 font-size: 9px;
 }
+
 .TableMessage {
 color: #000000;
 font-weight: bold;
 font-size: 10px;
 }
+
 .statsicon {
 text-align: center;
 vertical-align: middle;

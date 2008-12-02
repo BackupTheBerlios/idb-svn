@@ -34,9 +34,10 @@ text-decoration: underline;
 .copyright {
 text-align: center;
 font-family: Sans-Serif;
-font-size: 12px;
 line-height: 11px;
 color: #000;
+background: #EEE;
+font-size: 7.5pt;
 }
 
 .noborder {
@@ -78,19 +79,14 @@ margin: 5px 0 5px 0;
 padding: 0 5px 0 5px;
 }
 
-.copyright {
-background: #EEE;
-font-size: 7.5pt;
-}
-
-.Table1 {
+.Table1, .TableInfo1 {
 width: 100%;
 border: 0px;
 border-width: 1px;
 border-spacing: 1px;
 }
 
-.Table1Border {
+.Table1Border, .TableInfo1Border {
 border: 1px solid #345487;
 background-color: #FFF;
 padding: 0;
@@ -112,7 +108,7 @@ color: #000000;
 width: 100%;
 }
 
-.TableRow1 {
+.TableRow1, .TableInfoRow1 {
 background-image: url(tile_back.gif);
 vertical-align: middle;
 font-weight:bold;
@@ -128,12 +124,11 @@ color: #FFF;
 text-decoration: underline;
 }
 
-.TableRow1 a:link, .TableRow1 a:visited, .TableRow1 a:active {
-text-decoration: none;
-color: #fff;
+.TableInfoRow1 a:link, .TableInfoRow1  a:visited, .TableInfo1  a:active { 
+text-decoration: none; 
+color: #FFF;
 }
-
-.TableRow1 a:hover {
+.TableInfoRow1 a:hover {
 text-decoration: underline;
 }
 
@@ -150,12 +145,30 @@ text-decoration: underline;
 color: #3A4F6C;
 }
 
-.TableRow3 {
+.TableRow3, .TableInfoRow3 {
+background-color: #dfe6ef;
+}
+
+.TableInfoColumn2 {
+background-color: #E4EAF2; 
+}
+
+.TableInfoColumn2 a:link, .TableInfoColumn2 a:visited, .TableInfoColumn2 a:active {
+text-decoration: underline;
+color: #3A4F6C;
+}
+
+.TableRow3, .TableInfoRow3 {
 background-color: #dfe6ef;
 }
 
 .TableRow4 {
 background-color: #BCD0ED;
+color:#3A4F6C;
+}
+
+.TableInfoRow4 {
+background-color: #D1DCEB;
 color:#3A4F6C;
 }
 
@@ -263,4 +276,3 @@ font-size: 10px;
 text-align: center;
 vertical-align: middle;
 }
-

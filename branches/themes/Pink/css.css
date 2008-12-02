@@ -91,7 +91,7 @@ text-align: left;
 border: 1px solid #91356f;
 }
 
-.Table1 {
+.Table1, .TableInfo1 {
 background-color: #ffe0f0;
 font-size: 11px;
 font-family: verdana, arial, sans-serif;
@@ -144,6 +144,24 @@ text-decoration: none;
 font-weight: bold;
 }
 
+.TableInfoRow1, .TableInfoColumn1 {
+background-color: #c76ba5;
+background-image: url(grad.png);
+border: 1px solid #91356f;
+}
+
+.TableInfoRow1 a:link, .TableInfoRow1 a:visited, .TableInfoRow1 a:active {
+text-decoration: none;
+color: #fccff9;
+font-weight: bold;
+}
+
+.TableInfoRow1 a:hover {
+color: #feeffc;
+text-decoration: none;
+font-weight: bold;
+}
+
 .TableRow2, .TableColumn2 {
 background-color: #f99dd7;
 border: 1px solid #91356f;
@@ -161,7 +179,29 @@ text-decoration: none;
 font-weight: bold;
 }
 
+.TableInfoRow2, .TableInfoColumn2 {
+background-color: #f99dd7;
+border: 1px solid #91356f;
+}
+
+.TableInfoRow2 a:link, .TableInfoRow1 a:visited, .TableInfoRow1 a:active {
+text-decoration: none;
+color: #fddffc;
+font-weight: bold;
+}
+
+.TableInfoRow2 a:hover {
+color: #feeffd;
+text-decoration: none;
+font-weight: bold;
+}
+
 .TableRow3, .TableColumn3 {
+background-color: #ffe0f0;
+border: 1px solid #91356f;
+}
+
+.TableInfoRow3, .TableInfoColumn3 {
 background-color: #ffe0f0;
 border: 1px solid #91356f;
 }
@@ -178,6 +218,23 @@ font-weight: bold;
 }
 
 .TableRow4 a:hover {
+color: #feeffd;
+text-decoration: none;
+font-weight: bold;
+}
+
+.TableInfoRow4, .TableInfoColumn4 {
+background-color: #f99dd7;
+border: 1px solid #91356f;
+}
+
+.TableInfoRow4 a:link, .TableInfoRow4 a:visited, .TableInfoRow4 a:active {
+text-decoration: none;
+color: #fddffc;
+font-weight: bold;
+}
+
+.TableInfoRow4 a:hover {
 color: #feeffd;
 text-decoration: none;
 font-weight: bold;

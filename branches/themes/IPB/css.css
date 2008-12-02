@@ -34,9 +34,10 @@ text-decoration: underline;
 .copyright {
 text-align: center;
 font-family: Sans-Serif;
-font-size: 12px;
 line-height: 11px;
 color: #000;
+background: #EEE;
+font-size: 7.5pt;
 }
 
 .noborder {
@@ -79,19 +80,14 @@ margin: 5px 0 5px 0;
 padding: 0 5px 0 5px;
 }
 
-.copyright {
-background: #EEE;
-font-size: 7.5pt;
-}
-
-.Table1 {
+.Table1, .TableInfo1 {
 width: 100%;
 border: 0px;
 border-width: 1px;
 border-spacing: 1px;
 }
 
-.Table1Border {
+.Table1Border, .TableInfo1Border {
 border: 1px solid #072A66;
 background-color: #FFF;
 padding: 0px;
@@ -114,17 +110,7 @@ color: #000000;
 width: 100%;
 }
 
-.TableRow1 a:link, .TableRow1  a:visited, .TableRow1  a:active {
-background: transparent;
-color: #F1F1F1;
-}
-
-.TableRow1 a:hover {
-background: transparent;
-color: #F1F1F1;
-}
-
-.TableRow1 {
+.TableRow1, .TableInfoRow1 {
 background-image: url(tile_back.gif);
 border: 1px solid #FFF;
 border-bottom: 1px solid #5176B5;
@@ -144,12 +130,33 @@ color: #fff;
 text-decoration: underline;
 }
 
+.TableInfoRow1 a:link, .TableInfoRow1 a:visited, .TableInfoRow1 a:active {
+text-decoration: none;
+color: #fff;
+}
+
+.TableInfoRow1 a:hover {
+text-decoration: underline;
+}
+
 .TableColumn2 a:link, .TableColumn2 a:visited, .TableColumn2 a:active  {
 background: transparent;
 color: #3A4F6C;
 text-decoration: none;
 }
+
 .TableColumn2 a:hover {
+text-decoration: none;
+color: #3A4F6C;
+}
+
+.TableInfoColumn2 a:link, .TableInfoColumn2 a:visited, .TableInfoColumn2 a:active  {
+background: transparent;
+color: #3A4F6C;
+text-decoration: none;
+}
+
+.TableInfoColumn2 a:hover {
 text-decoration: none;
 color: #3A4F6C;
 }
@@ -165,7 +172,12 @@ margin: 0;
 padding: 5px;
 }
 
-.TableRow3 {
+.TableInfoColumn2 {
+background-color: #E4EAF2;
+font-weight:normal;
+}
+
+.TableRow3, .TableInfoRow3 {
 background-color: #dfe6ef;
 }
 
@@ -174,6 +186,11 @@ background: #8394B2;
 background-repeat: repeat-y;
 color: #000;
 font-size: 10px;
+}
+
+.TableInfoRow4 {
+background-color: #D1DCEB;
+color:#3A4F6C;
 }
 
 .CalTableRow1 {
@@ -280,4 +297,3 @@ font-size: 10px;
 text-align: center;
 vertical-align: middle;
 }
-

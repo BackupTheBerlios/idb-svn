@@ -6,19 +6,15 @@ html {
 font-family: Verdana, Tahoma, Arial, sans-serif;
 font-size: 11px;
 color: #000;
-width: 100%;
 background-color: #fff;
 }
 
 body {
 font-family: Verdana, Tahoma, Arial, sans-serif;
 font-size: 11px;
-color: #000;
-width: 95%;
-margin: auto;
-margin: 5px 40px 5px 40px;
-padding: 0;
-background-color: #fff;
+color: #222;
+margin: 20px 12px 20px 12px;
+background-color: #FFF;
 }
 
 a:link, a:visited, a:active {

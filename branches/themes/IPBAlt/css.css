@@ -55,38 +55,36 @@ text-align: center;
 }
 
 .NavBar {
-font-family: verdana, arial, sans-serif;
-width: 100%;
-border: 1px solid #345487;
-background-color: #FFF;
-padding: 0;
-margin: 0;
-}
-
-.NavBarRow1, .NavBarColumn1 {
-background: #3860BB;
-background-image: url(tile_back.gif);
-border: 1px solid #fff;
-height: 50px;
-margin: 0;
-padding: 0;
-}
-
-.NavBarRow2, .NavBarColumn2 {
-background: #F0F5FA;
-border: 1px solid #C2CFDF;
-margin: 5px 0 5px 0;
-padding: 0 5px 0 5px;
-}
-
-.Table1, .TableInfo1 {
 width: 100%;
 border: 0px;
 border-width: 1px;
 border-spacing: 1px;
 }
 
-.Table1Border, .TableInfo1Border {
+.NavBarRow1 {
+text-align: center;
+background: #3860BB;
+background-image: url(tile_back.gif);
+border: 1px solid #FFF;
+border-bottom: 1px solid #5176B5;
+margin: 0;
+}
+
+.NavBarRow2, .NavBarColumn2 {
+background: #F0F5FA;
+border: 1px solid #FFF;
+margin: 0;
+width: 100%;
+}
+
+.Table1, .TableInfo1, .TableStats1 {
+width: 100%;
+border: 0px;
+border-width: 1px;
+border-spacing: 1px;
+}
+
+.Table1Border, .TableInfo1Border, .NavBorder, .StatsBorder {
 border: 1px solid #345487;
 background-color: #FFF;
 padding: 0;
@@ -108,7 +106,7 @@ color: #000000;
 width: 100%;
 }
 
-.TableRow1, .TableInfoRow1 {
+.TableRow1, .TableInfoRow1, .TableStatsRow1 {
 background-image: url(tile_back.gif);
 vertical-align: middle;
 font-weight:bold;
@@ -132,7 +130,15 @@ color: #FFF;
 text-decoration: underline;
 }
 
-.TableColumn2 {
+.TableStatsRow1 a:link, .TableStatsRow1  a:visited, .TableStats1  a:active { 
+text-decoration: none; 
+color: #FFF;
+}
+.TableStatsRow1 a:hover {
+text-decoration: underline;
+}
+
+.TableColumn2, .TableStatsColumn2 {
 background-image: url(tile_sub.gif);
 font-weight:bold;
 color:#3A4F6C;
@@ -145,8 +151,9 @@ text-decoration: underline;
 color: #3A4F6C;
 }
 
-.TableRow3, .TableInfoRow3 {
-background-color: #dfe6ef;
+.TableStatsColumn2 a:link, .TableStatsColumn2 a:visited, .TableStatsColumn2 a:active {
+text-decoration: underline;
+color: #3A4F6C;
 }
 
 .TableInfoColumn2 {
@@ -158,17 +165,12 @@ text-decoration: underline;
 color: #3A4F6C;
 }
 
-.TableRow3, .TableInfoRow3 {
+.TableRow3, .TableInfoRow3, .TableStatsRow3 {
 background-color: #dfe6ef;
 }
 
-.TableRow4 {
+.TableRow4, .TableInfoRow4, .TableStatsRow4 {
 background-color: #BCD0ED;
-color:#3A4F6C;
-}
-
-.TableInfoRow4 {
-background-color: #D1DCEB;
 color:#3A4F6C;
 }
 

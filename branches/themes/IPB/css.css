@@ -55,39 +55,36 @@ text-align: center;
 }
 
 .NavBar {
-font-family: verdana, arial, sans-serif;
-width: 100%;
-border: 1px solid #072A66;
-background-color: #FFF;
-padding: 0px;
-margin: 0px;
-width: 100%;
-}
-
-.NavBarRow1, .NavBarColumn1 {
-background: #3860BB;
-background-image: url(tile_back.gif);
-border: 1px solid #fff;
-height: 52px;
-margin: 0;
-padding: 0;
-}
-
-.NavBarRow2, .NavBarColumn2 {
-background: #F0F5FA;
-border: 1px solid #C2CFDF;
-margin: 5px 0 5px 0;
-padding: 0 5px 0 5px;
-}
-
-.Table1, .TableInfo1 {
 width: 100%;
 border: 0px;
 border-width: 1px;
 border-spacing: 1px;
 }
 
-.Table1Border, .TableInfo1Border {
+.NavBarRow1 {
+text-align: center;
+background: #3860BB;
+background-image: url(tile_back.gif);
+border: 1px solid #FFF;
+border-bottom: 1px solid #5176B5;
+margin: 0;
+}
+
+.NavBarRow2, .NavBarColumn2 {
+background: #F0F5FA;
+border: 1px solid #FFF;
+margin: 0;
+width: 100%;
+}
+
+.Table1, .TableInfo1, .TableStats1 {
+width: 100%;
+border: 0px;
+border-width: 1px;
+border-spacing: 1px;
+}
+
+.Table1Border, .TableInfo1Border, .NavBorder, .StatsBorder {
 border: 1px solid #072A66;
 background-color: #FFF;
 padding: 0px;
@@ -110,7 +107,7 @@ color: #000000;
 width: 100%;
 }
 
-.TableRow1, .TableInfoRow1 {
+.TableRow1, .TableInfoRow1, .TableStatsRow1 {
 background-image: url(tile_back.gif);
 border: 1px solid #FFF;
 border-bottom: 1px solid #5176B5;
@@ -139,6 +136,15 @@ color: #fff;
 text-decoration: underline;
 }
 
+.TableStatsRow1 a:link, .TableStatsRow1 a:visited, .TableStatsRow1 a:active {
+text-decoration: none;
+color: #fff;
+}
+
+.TableStatsRow1 a:hover {
+text-decoration: underline;
+}
+
 .TableColumn2 a:link, .TableColumn2 a:visited, .TableColumn2 a:active  {
 background: transparent;
 color: #3A4F6C;
@@ -161,7 +167,18 @@ text-decoration: none;
 color: #3A4F6C;
 }
 
-.TableColumn2 {
+.TableStatsColumn2 a:link, .TableStatsColumn2 a:visited, .TableStatsColumn2 a:active  {
+background: transparent;
+color: #3A4F6C;
+text-decoration: none;
+}
+
+.TableStatsColumn2 a:hover {
+text-decoration: none;
+color: #3A4F6C;
+}
+
+.TableColumn2, .TableStatsColumn2 {
 background-image: url(tile_sub.gif);
 border-bottom: 1px solid #5176B5;
 color: #3A4F6C;
@@ -177,11 +194,11 @@ background-color: #E4EAF2;
 font-weight:normal;
 }
 
-.TableRow3, .TableInfoRow3 {
+.TableRow3, .TableInfoRow3, .TableStatsRow3 {
 background-color: #dfe6ef;
 }
 
-.TableRow4 {
+.TableRow4, .TableStatsRow4 {
 background: #8394B2;
 background-repeat: repeat-y;
 color: #000;

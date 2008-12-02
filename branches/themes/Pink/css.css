@@ -91,7 +91,7 @@ text-align: left;
 border: 1px solid #91356f;
 }
 
-.Table1, .TableInfo1 {
+.Table1, .TableInfo1, .TableStats1 {
 background-color: #ffe0f0;
 font-size: 11px;
 font-family: verdana, arial, sans-serif;
@@ -162,6 +162,24 @@ text-decoration: none;
 font-weight: bold;
 }
 
+.TableStatsRow1, .TableStatsColumn1 {
+background-color: #c76ba5;
+background-image: url(grad.png);
+border: 1px solid #91356f;
+}
+
+.TableStatsRow1 a:link, .TableStatsRow1 a:visited, .TableStatsRow1 a:active {
+text-decoration: none;
+color: #fccff9;
+font-weight: bold;
+}
+
+.TableStatsRow1 a:hover {
+color: #feeffc;
+text-decoration: none;
+font-weight: bold;
+}
+
 .TableRow2, .TableColumn2 {
 background-color: #f99dd7;
 border: 1px solid #91356f;
@@ -196,12 +214,34 @@ text-decoration: none;
 font-weight: bold;
 }
 
+.TableStatsRow2, .TableStatsColumn2 {
+background-color: #f99dd7;
+border: 1px solid #91356f;
+}
+
+.TableStatsRow2 a:link, .TableStatsRow1 a:visited, .TableStatsRow1 a:active {
+text-decoration: none;
+color: #fddffc;
+font-weight: bold;
+}
+
+.TableStatsRow2 a:hover {
+color: #feeffd;
+text-decoration: none;
+font-weight: bold;
+}
+
 .TableRow3, .TableColumn3 {
 background-color: #ffe0f0;
 border: 1px solid #91356f;
 }
 
 .TableInfoRow3, .TableInfoColumn3 {
+background-color: #ffe0f0;
+border: 1px solid #91356f;
+}
+
+.TableStatsRow3, .TableStatsColumn3 {
 background-color: #ffe0f0;
 border: 1px solid #91356f;
 }
@@ -235,6 +275,23 @@ font-weight: bold;
 }
 
 .TableInfoRow4 a:hover {
+color: #feeffd;
+text-decoration: none;
+font-weight: bold;
+}
+
+.TableStatsRow4, .TableStatsColumn4 {
+background-color: #f99dd7;
+border: 1px solid #91356f;
+}
+
+.TableStatsRow4 a:link, .TableStatsRow4 a:visited, .TableStatsRow4 a:active {
+text-decoration: none;
+color: #fddffc;
+font-weight: bold;
+}
+
+.TableStatsRow4 a:hover {
 color: #feeffd;
 text-decoration: none;
 font-weight: bold;

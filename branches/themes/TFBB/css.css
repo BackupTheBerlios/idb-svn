@@ -84,14 +84,15 @@ text-align: center;
 margin: 0;
 }
 
-.Table1, .TableInfo1, .TableStats1 {
+.Table1, .TableInfo1, .TableInfoMini1, .TableStats1, .TableSMenu, .TableMenu {
 width: 100%;
 border: 0px;
 border-width: 1px;
 border-spacing: 1px;
 }
 
-.Table1Border, .TableInfo1Border, .StatsBorder {
+.Table1Border, .TableInfo1Border, .TableInfoMini1Border, 
+.StatsBorder, .TableSMenuBorder, .TableMenuBorder {
 padding: 0px;
 margin: 0px;
 width: 100%;
@@ -114,7 +115,8 @@ color: #000000;
 width: 100%;
 }
 
-.TableRow1, .TableInfoRow1, .TableStatsRow1 {
+.TableRow1, .TableInfoRow1, .TableInfoMiniRow1, .TableStatsRow1, 
+.TableSMenuRow1, .TableMenuRow1 {
 background-image: url(grad.gif);
 vertical-align: middle;
 font-weight: bold;
@@ -124,7 +126,7 @@ color: white;
 background-color: #232323;
 }
 
-.TableColumn2, .TableStatsColumn2 {
+.TableColumn2, .TableStatsColumn2, .TableSMenuColumn2, .TableMenuColumn2 {
 font-weight: bold;
 padding: 7px;
 margin: 0px;
@@ -132,15 +134,17 @@ color: white;
 background-color: #232323;
 }
 
-.TableInfoColumn2 {
+.TableInfoColumn2, .TableInfoMiniColumn2 {
 background-color: #343434;
 }
 
-.TableRow3, .TableInfoRow3, .TableStatsRow3 {
+.TableRow3, .TableInfoRow3, .TableInfoMiniRow3, .TableStatsRow3, 
+.TableSMenuRow3, .TableMenuRow3 {
 background-color: #343434;
 }
 
-.TableRow4, .TableInfoRow4, .TableStatsRow4 {
+.TableRow4, .TableStatsRow4, .TableSMenuRow4, .TableMenuRow4, 
+.TableInfoRow4, .TableInfoMiniRow4 {
 color: white;
 background-color: #131313;
 }

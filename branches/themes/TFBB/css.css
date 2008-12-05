@@ -17,7 +17,6 @@ html {
 font-family: Verdana, Tahoma, Arial, sans-serif;
 font-size: 11px;
 color: white;
-background-color: black;
 }
 
 body {
@@ -25,6 +24,7 @@ font-family: Verdana, Tahoma, Arial, sans-serif;
 font-size: 11px;
 margin: 1px 10px 0px 10px;
 color: white;
+background-image: url(bg.gif);
 background-color: black;
 }
 
@@ -78,7 +78,6 @@ border: 1px solid gray;
 }
 
 .NavBarRow1 {
-background-color: black;
 font-size: 11px;
 text-align: center;
 margin: 0;
@@ -147,6 +146,10 @@ background-color: #343434;
 .TableInfoRow4, .TableInfoMiniRow4 {
 color: white;
 background-color: #131313;
+}
+
+.TableStatsRow4, .TableStatsColumn4 {
+display: none;
 }
 
 .CalTableRow1, .CalTableRow2 {

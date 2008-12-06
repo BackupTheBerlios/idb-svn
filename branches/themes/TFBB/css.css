@@ -83,15 +83,16 @@ text-align: center;
 margin: 0;
 }
 
-.Table1, .TableInfo1, .TableInfoMini1, .TableStats1, .TableSMenu, .TableMenu {
+.Table1, .CalTable1, .TableInfo1, .TableInfoMini1, .TableStats1, 
+.TableSMenu, .TableMenu {
 width: 100%;
 border: 0px;
 border-width: 1px;
 border-spacing: 1px;
 }
 
-.Table1Border, .TableInfo1Border, .TableInfoMini1Border, 
-.StatsBorder, .TableSMenuBorder, .TableMenuBorder {
+.Table1Border, .CalTable1Border, .TableInfo1Border, .TableInfoMini1Border, 
+.NavBorder, .StatsBorder, .TableSMenuBorder, .TableMenuBorder {
 padding: 0px;
 margin: 0px;
 width: 100%;
@@ -113,8 +114,8 @@ color: #000000;
 width: 100%;
 }
 
-.TableRow1, .TableInfoRow1, .TableInfoMiniRow1, .TableStatsRow1, 
-.TableSMenuRow1, .TableMenuRow1 {
+.TableRow1, .TableInfoRow1, .CalTableRow1, .CalTableInfoRow1, 
+.TableInfoMiniRow1, .TableStatsRow1, .TableSMenuRow1, .TableMenuRow1 {
 background-image: url(grad.gif);
 vertical-align: middle;
 font-weight: bold;
@@ -124,7 +125,8 @@ color: white;
 background-color: #232323;
 }
 
-.TableColumn2, .TableStatsColumn2, .TableSMenuColumn2, .TableMenuColumn2 {
+.TableColumn2, .CalTableColumn2, .TableStatsColumn2, .TableSMenuColumn2, 
+.TableMenuColumn2 {
 font-weight: bold;
 padding: 7px;
 margin: 0px;
@@ -136,18 +138,47 @@ background-color: #232323;
 background-color: #343434;
 }
 
-.TableRow3, .TableInfoRow3, .TableInfoMiniRow3, .TableStatsRow3, 
-.TableSMenuRow3, .TableMenuRow3 {
+.TableRow3, .TableInfoRow3, .TableInfoMiniRow3, 
+.TableStatsRow3, .TableSMenuRow3, .TableMenuRow3 {
 background-color: #343434;
 }
 
-.TableRow4, .TableStatsRow4, .TableSMenuRow4, .TableMenuRow4, 
-.TableInfoRow4, .TableInfoMiniRow4 {
+.CalDate, .CalDateCurrent { 
+text-align: right;
+font-weight: bold;
+font-size: 11px;
+padding: 4px;
+margin: 0px;
+color: white;
+background-color: #232323;
+}
+
+.CalTableColumn3 {
+height: 100px;
+background-color: #343434;
+}
+
+.CalTableColumn3Current {
+height: 100px;
+background-color: #343434;
+border: 2px;
+border-style: outset;
+}
+
+.CalTableColumn3Blank {
+height: 100px;
+color: white;
+background-color: #232323;
+}
+
+.TableRow4, .CalTableRow4, .TableStatsRow4, .TableSMenuRow4, 
+.TableMenuRow4, .TableInfoRow4, .TableInfoMiniRow4 {
 color: white;
 background-color: #131313;
 }
 
-.TableStatsRow4, .TableStatsColumn4 {
+.TableStatsRow4, .TableStatsColumn4, .CalTableRow4, 
+.CalTableColumn4 {
 display: none;
 }
 

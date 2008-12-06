@@ -51,7 +51,7 @@ $ThemeSet['Report'] = "(&nbsp;Report&nbsp;)";
 $ThemeSet['EditReply'] = "(&nbsp;Edit&nbsp;)";
 $ThemeSet['DeleteReply'] = "(&nbsp;Delete&nbsp;)";
 $ThemeSet['LineDivider'] = "&nbsp;|&nbsp;";
-$ThemeSet['ButtonDivider'] = "&nbsp;&nbsp;";
+$ThemeSet['ButtonDivider'] = "&nbsp;|&nbsp;";
 $ThemeSet['LineDividerTopic'] = "&nbsp;|&nbsp;";
 $ThemeSet['TitleDivider'] = "-&gt;";
 $ThemeSet['ForumIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/forum.gif\" alt=\"Forum\" title=\"Forum\" /></div>";

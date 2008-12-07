@@ -173,6 +173,23 @@ font-weight: bold;
 background-color: #3355FF;
 }
 
+.replypost { 
+font-size: 12px; 
+line-height: 160%;
+}
+
+.EditReply {
+color: #000000;
+font-size: 9px;
+}
+
+.signature {  
+background: transparent;
+color: #339; 
+font-size: 10px;
+line-height: 150%;
+}
+
 .CalDate, .CalDateCurrent { 
 text-align: right;
 font-weight: bold;

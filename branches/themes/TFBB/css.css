@@ -92,7 +92,7 @@ border-spacing: 1px;
 }
 
 .Table1Border, .CalTable1Border, .TableInfo1Border, .TableInfoMini1Border, 
-.NavBorder, .StatsBorder, .TableSMenuBorder, .TableMenuBorder {
+.StatsBorder, .TableSMenuBorder, .TableMenuBorder {
 padding: 0px;
 margin: 0px;
 width: 100%;
@@ -110,7 +110,7 @@ width: 100%;
 .Table3 {
 font-size: 11px;
 font-family: verdana, arial, sans-serif;
-color: #000000;
+color: white;
 width: 100%;
 }
 
@@ -141,6 +141,21 @@ background-color: #343434;
 .TableRow3, .TableInfoRow3, .TableInfoMiniRow3, 
 .TableStatsRow3, .TableSMenuRow3, .TableMenuRow3 {
 background-color: #343434;
+}
+
+.replypost { 
+font-size: 12px; 
+line-height: 160%;
+}
+
+.EditReply {
+color: #000000;
+font-size: 9px;
+}
+
+.signature {  
+font-size: 12px;
+color: white;
 }
 
 .CalDate, .CalDateCurrent { 

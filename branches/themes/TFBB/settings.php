@@ -11,14 +11,14 @@
     Copyright 2004-2008 Jcink - https://launchpad.net/tfbb
     Copyright 2004-2008 Jcink - http://jcink.com/
     $ThemeInfo - Name: TFBB Theme - Author: jcink $
-    $FileInfo: settings.php - Last Update: 12/01/2008 SVN 194 - Author: jcink $
+    $FileInfo: settings.php - Last Update: 12/06/2008 SVN 201 - Author: jcink $
 */
 $ThemeSet = array();
 $ThemeSet['ThemeName'] = "TFBB Theme";
 $ThemeSet['ThemeMaker'] = "Jcink";
-$ThemeSet['ThemeVersion'] = "0.2.1";
+$ThemeSet['ThemeVersion'] = "0.2.4";
 $ThemeSet['ThemeVersionType'] = "Pre-Alpha";
-$ThemeSet['ThemeSubVersion'] = "SVN 194";
+$ThemeSet['ThemeSubVersion'] = "SVN 201";
 $ThemeSet['MakerURL'] = "http://Jcink.com/";
 $ThemeSet['CopyRight'] = $ThemeSet['ThemeName']." was made by <a href=\"".$ThemeSet['MakerURL']."\" title=\"".$ThemeSet['ThemeMaker']."\">".$ThemeSet['ThemeMaker']."</a>";
 $ThemeSet['CSS'] = "themes/TFBB/css.css";
@@ -46,20 +46,20 @@ $ThemeSet['TopicLayout'] = "Type 1";
 $ThemeSet['AddReply'] = "<span style=\"color: white; font-size: 25px;\" title=\"Add Reply\">Add Reply</span>";
 $ThemeSet['FastReply'] = "<span style=\"color: white; font-size: 25px;\" title=\"Fast Reply\">Fast Reply</span>";
 $ThemeSet['NewTopic'] = "<span style=\"color: white; font-size: 25px;\" title=\"New Topic\">New Topic</span>";
-$ThemeSet['QuoteReply'] = "(&nbsp;Quote&nbsp;)";
-$ThemeSet['Report'] = "(&nbsp;Report&nbsp;)";
-$ThemeSet['EditReply'] = "(&nbsp;Edit&nbsp;)";
-$ThemeSet['DeleteReply'] = "(&nbsp;Delete&nbsp;)";
-$ThemeSet['LineDivider'] = "&nbsp;|&nbsp;";
-$ThemeSet['ButtonDivider'] = "&nbsp;|&nbsp;";
-$ThemeSet['LineDividerTopic'] = "&nbsp;|&nbsp;";
+$ThemeSet['QuoteReply'] = "( Quote )";
+$ThemeSet['Report'] = "( Report )";
+$ThemeSet['EditReply'] = "( Edit )";
+$ThemeSet['DeleteReply'] = "( Delete )";
+$ThemeSet['LineDivider'] = " | ";
+$ThemeSet['ButtonDivider'] = " | ";
+$ThemeSet['LineDividerTopic'] = " | ";
 $ThemeSet['TitleDivider'] = "-&gt;";
 $ThemeSet['ForumIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/forum.gif\" alt=\"Forum\" title=\"Forum\" /></div>";
 $ThemeSet['SubForumIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/forum.gif\" alt=\"SubForum\" title=\"SubForum\" /></div>";
 $ThemeSet['RedirectIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/forum.gif\" alt=\"Redirect\" title=\"Redirect\" /></div>";
-$ThemeSet['TitleIcon'] = "<img src=\"themes/TFBB/nav.gif\" alt=\"-&gt;\" title=\"-&gt;\" />&nbsp;";
+$ThemeSet['TitleIcon'] = "<img src=\"themes/TFBB/nav.gif\" alt=\"-&gt;\" title=\"-&gt;\" /> ";
 $ThemeSet['NavLinkIcon'] = "&gt;&gt; ";
-$ThemeSet['NavLinkDivider'] = "&nbsp;-&gt;&nbsp;";
+$ThemeSet['NavLinkDivider'] = " -&gt; ";
 $ThemeSet['StatsIcon'] = "<img src=\"themes/TFBB/stats.gif\" alt=\"Board Stats\" title=\"Board Stats\" />";
 $ThemeSet['NoAvatar'] = "themes/TFBB/noavatar.png";
 $ThemeSet['NoAvatarSize'] = "100x100";

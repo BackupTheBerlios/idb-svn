@@ -40,7 +40,7 @@ $ThemeSet['Report'] = "<img src=\"themes/IPB/report.gif\" alt=\"Report Reply\" t
 $ThemeSet['EditReply'] = "<img src=\"themes/IPB/edit.gif\" alt=\"Edit Reply\" title=\"Edit Reply\" />";
 $ThemeSet['DeleteReply'] = "<img src=\"themes/IPB/delete.gif\" alt=\"Delete Reply\" title=\"Delete Reply\" />";
 $ThemeSet['LineDivider'] = " | ";
-$ThemeSet['LineDividerTopic'] = " ";
+$ThemeSet['ButtonDivider'] = " ";
 $ThemeSet['LineDividerTopic'] = " ";
 $ThemeSet['TitleDivider'] = "-&gt;";
 $ThemeSet['ForumIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/IPB/forum.gif\" alt=\"Forum\" title=\"Forum\" /></div>";

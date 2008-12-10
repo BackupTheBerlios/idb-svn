@@ -149,10 +149,6 @@ if($Settings['MemberGroup']==null) {
 if($Settings['ValidateGroup']==null&&
 	$Settings['AdminValidate']===true) {
 $Settings['ValidateGroup'] = "Validate"; }
-if($Settings['fixpathinfo']==null) {
-	$Settings['fixpathinfo'] = false; }
-if($Settings['fixbasedir']==null) {
-	$Settings['fixbasedir'] = false; }
 if($Settings['html_type']=="html4") { 
 	$Settings['html_type'] = "html10"; }
 /*if($_GET['debug']=="true"||$_GET['debug']=="on") {

@@ -11,7 +11,7 @@
     Copyright 2004-2008 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2008 Game Maker 2k - http://intdb.sourceforge.net/
 
-    $FileInfo: main.php - Last Update: 11/15/2008 SVN 189 - Author: cooldude2k $
+    $FileInfo: main.php - Last Update: 12/11/2008 SVN 210 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="main.php"||$File3Name=="/main.php") {
@@ -49,13 +49,16 @@ if($boolean==0||$boolean===false) {
 return "false"; }
 if($boolean==1||$boolean===true) { 
 return "true"; } } }
+function null_string($string) {
+if(isset($string)) {
+	return "'".$string."'"; }
+if(!isset($string)) {
+	return "null"; } }
 function rsq($string) {
 $string = str_replace("'", "\'", $string);
 return $string; }
-if(!is_numeric($Settings['KarmaBoostDay']) {
-$Settings['KarmaBoostDay'] = "false"; }
-if(!is_numeric($Settings['KarmaBoostDay']) {
-$Settings['KarmaBoostDay'] = "false"; }
+if(!is_numeric($Settings['KarmaBoostDay'])) {
+$Settings['KarmaBoostDay'] = null; }
 $KBoostPercent = explode("|",$Settings['KBoostPercent']);
 if(count($KBoostPercent)<1) { 
 $Settings['KBoostPercent'] = "6|10"; }
@@ -81,18 +84,23 @@ $updateact = url_maker($exfile['profile'],$Settings['file_ext'],"act=".$_GET['ac
 $admincptitle = " ".$ThemeSet['TitleDivider']." Updating Settings";
 @redirect("refresh",$basedir.url_maker($exfile['admin'],$Settings['file_ext'],"act=".$_GET['act'],$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin'],FALSE),"3");
 ?>
-<div class="Table1Border">
-<table class="Table1" style="width: 100%;">
-<tr class="TableRow1">
-<td class="TableRow1"><span style="float: left;">
+<div class="TableMenuBorder">
+<?php if($ThemeSet['TableStyle']=="div") { ?>
+<div class="TableMenuRow1">
+<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=".$_GET['act'],$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Updating Settings</a></div>
+<?php } ?>
+<table class="TableMenu" style="width: 100%;">
+<?php if($ThemeSet['TableStyle']=="table") { ?>
+<tr class="TableMenuRow1">
+<td class="TableMenuColumn1"><span style="float: left;">
 <?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=".$_GET['act'],$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Updating Settings</a>
 </span><span style="float: right;">&nbsp;</span></td>
+</tr><?php } ?>
+<tr id="ProfileTitle" class="TableMenuRow2">
+<th class="TableMenuColumn2">Updating Settings</th>
 </tr>
-<tr id="ProfileTitle" class="TableRow2">
-<th class="TableRow2">Updating Settings</th>
-</tr>
-<tr class="TableRow3" id="ProfileUpdate">
-<td class="TableRow3">
+<tr class="TableMenuRow3" id="ProfileUpdate">
+<td class="TableMenuColumn3">
 <div style="text-align: center;">
 <br />Settings have been updated <a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=".$_GET['act'],$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">click here</a> to go back. ^_^<br />&nbsp;</div>
 <?php } if($_GET['act']=="delete"&&$_POST['update']!="now"&&
@@ -100,18 +108,23 @@ $admincptitle = " ".$ThemeSet['TitleDivider']." Updating Settings";
 $updateact = url_maker($exfile['profile'],$Settings['file_ext'],"act=".$_GET['act'],$Settings['qstr'],$Settings['qsep'],$prexqstr['profile'],$exqstr['profile']);
 $admincptitle = " ".$ThemeSet['TitleDivider']." Deleting Board";
 ?>
-<div class="Table1Border">
-<table class="Table1" style="width: 100%;">
-<tr class="TableRow1">
-<td class="TableRow1"><span style="float: left;">
+<div class="TableMenuBorder">
+<?php if($ThemeSet['TableStyle']=="div") { ?>
+<div class="TableMenuRow1">
+<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=delete",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Deleting Board</a></div>
+<?php } ?>
+<table class="TableMenu" style="width: 100%;">
+<?php if($ThemeSet['TableStyle']=="table") { ?>
+<tr class="TableMenuRow1">
+<td class="TableMenuColumn1"><span style="float: left;">
 <?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=delete",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Deleting Board</a>
 </span><span style="float: right;">&nbsp;</span></td>
+</tr><?php } ?>
+<tr id="ProfileTitle" class="TableMenuRow2">
+<th class="TableMenuColumn2">Deleting Board</th>
 </tr>
-<tr id="ProfileTitle" class="TableRow2">
-<th class="TableRow2">Deleting Board</th>
-</tr>
-<tr class="TableRow3" id="ProfileUpdate">
-<td class="TableRow3">
+<tr class="TableMenuRow3" id="ProfileUpdate">
+<td class="TableMenuColumn3">
 <div style="text-align: center;">
 <br />Are you sure you want to delete this board?<br />
 <form style="text-align: center;" method="post" name="install" id="install" action="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=delete",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">
@@ -124,8 +137,8 @@ $admincptitle = " ".$ThemeSet['TitleDivider']." Deleting Board";
 </td></tr></table>
 </form><br />&nbsp;</div>
 </td></tr>
-<tr id="ProfileTitleEnd" class="TableRow4">
-<td class="TableRow4">&nbsp;</td>
+<tr id="ProfileTitleEnd" class="TableMenuRow4">
+<td class="TableMenuColumn4">&nbsp;</td>
 </tr></table></div>
 <?php } if($_POST['act']=="delete"&&$_POST['update']=="now"&&$_GET['act']=="delete"&&
 	$_SESSION['UserGroup']!=$Settings['GuestGroup']&&$GroupInfo['HasAdminCP']=="yes"&&
@@ -159,23 +172,28 @@ $delboard = 'DROP TABLE `'.$_GET['board'].'_categories`, `'.$_GET['board'].'_cat
 mysql_query($delboard);
 @redirect("refresh",$basedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],FALSE),"3");
 ?>
-<div class="Table1Border">
-<table class="Table1" style="width: 100%;">
-<tr class="TableRow1">
-<td class="TableRow1"><span style="float: left;">
+<div class="TableMenuBorder">
+<?php if($ThemeSet['TableStyle']=="div") { ?>
+<div class="TableMenuRow1">
+<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); ?>">Deleting Board</a></div>
+<?php } ?>
+<table class="TableMenu" style="width: 100%;">
+<?php if($ThemeSet['TableStyle']=="table") { ?>
+<tr class="TableMenuRow1">
+<td class="TableMenuColumn1"><span style="float: left;">
 <?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); ?>">Deleting Board</a>
 </span><span style="float: right;">&nbsp;</span></td>
+</tr><?php } ?>
+<tr id="ProfileTitle" class="TableMenuRow2">
+<th class="TableMenuColumn2">Deleting Board</th>
 </tr>
-<tr id="ProfileTitle" class="TableRow2">
-<th class="TableRow2">Deleting Board</th>
-</tr>
-<tr class="TableRow3" id="ProfileUpdate">
-<td class="TableRow3">
+<tr class="TableMenuRow3" id="ProfileUpdate">
+<td class="TableMenuColumn3">
 <div style="text-align: center;">
 <br />The board was deleted successfully <a href="<?php echo url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); ?>">click here</a>. ^_^<br />&nbsp;</div>
 </td></tr>
-<tr id="ProfileTitleEnd" class="TableRow4">
-<td class="TableRow4">&nbsp;</td>
+<tr id="ProfileTitleEnd" class="TableMenuRow4">
+<td class="TableMenuColumn4">&nbsp;</td>
 </tr></table></div>
 <?php } if($_GET['act']=="view"&&$_POST['update']!="now") {
 $query = query("SELECT * FROM `".$Settings['sqltable']."members` WHERE `id`=%i LIMIT 1", array($_SESSION['UserID']));
@@ -188,18 +206,23 @@ $noteact = url_maker($exfile['profile'],$Settings['file_ext'],"act=view",$Settin
 $notepadact = $noteact; $profiletitle = " ".$ThemeSet['TitleDivider']." NotePad";
 $admincptitle = " ".$ThemeSet['TitleDivider']." Admin CP";
 ?>
-<div class="Table1Border">
-<table class="Table1" style="width: 100%;">
-<tr class="TableRow1">
-<td class="TableRow1"><span style="float: left;">
+<div class="TableMenuBorder">
+<?php if($ThemeSet['TableStyle']=="div") { ?>
+<div class="TableMenuRow1">
+<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo $noteact; ?>">NotePad</a></div>
+<?php } ?>
+<table class="TableMenu" style="width: 100%;">
+<?php if($ThemeSet['TableStyle']=="table") { ?>
+<tr class="TableMenuRow1">
+<td class="TableMenuColumn1"><span style="float: left;">
 <?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo $noteact; ?>">NotePad</a>
 </span><span style="float: right;">&nbsp;</span></td>
+</tr><?php } ?>
+<tr id="ProfileTitle" class="TableMenuRow2">
+<th class="TableMenuColumn2">NotePad</th>
 </tr>
-<tr id="ProfileTitle" class="TableRow2">
-<th class="TableRow2">NotePad</th>
-</tr>
-<tr class="TableRow3" id="NotePadRow">
-<td class="TableRow3">
+<tr class="TableMenuRow3" id="NotePadRow">
+<td class="TableMenuColumn3">
 <form method="post" action="<?php echo $notepadact; ?>"><div style="text-align: center;">
 <label class="TextBoxLabel" for="NotePad">Your NotePad</label><br />
 <textarea class="TextBox" name="NotePad" id="NotePad" style="width: 75%; height: 128px;" rows="10" cols="84"><?php echo $Notes; ?></textarea>
@@ -208,8 +231,8 @@ $admincptitle = " ".$ThemeSet['TitleDivider']." Admin CP";
 <br /><input type="submit" class="Button" value="Save" />&nbsp;<input class="Button" type="reset" />
 </div></form></td>
 </tr>
-<tr id="ProfileEnd" class="TableRow4">
-<td class="TableRow4">&nbsp;</td>
+<tr id="ProfileEnd" class="TableMenuRow4">
+<td class="TableMenuColumn4">&nbsp;</td>
 </tr>
 </table>
 </div>
@@ -228,21 +251,26 @@ if($ts_array[1]>59) { $ts_array[1] = "59"; $Settings['DefaultTimeZone'] = $ts_ar
 if($ts_array[1]<0) { $ts_array[1] = "00"; $Settings['DefaultTimeZone'] = $ts_array[0].":".$ts_array[1]; }
 $tsa = array("offset" => $Settings['DefaultTimeZone'], "hour" => $ts_array[0], "minute" => $ts_array[1]);
 ?>
-<div class="Table1Border">
-<table class="Table1">
-<tr class="TableRow1">
-<td class="TableRow1"><span style="float: left;">
-&nbsp;<a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=settings",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">iDB Settings Manager</a></span>
-<span style="float: right;">&nbsp;</span></td>
-</tr>
-<tr class="TableRow2">
-<th class="TableRow2" style="width: 100%; text-align: left;">
+<div class="TableMenuBorder">
+<?php if($ThemeSet['TableStyle']=="div") { ?>
+<div class="TableMenuRow1">
+<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=settings",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">iDB Settings Manager</a></div>
+<?php } ?>
+<table class="TableMenu" style="width: 100%;">
+<?php if($ThemeSet['TableStyle']=="table") { ?>
+<tr class="TableMenuRow1">
+<td class="TableMenuColumn1"><span style="float: left;">
+<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=settings",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">iDB Settings Manager</a>
+</span><span style="float: right;">&nbsp;</span></td>
+</tr><?php } ?>
+<tr class="TableMenuRow2">
+<th class="TableMenuColumn2" style="width: 100%; text-align: left;">
 <span style="float: left;">&nbsp;Editing Setting for iDB: </span>
 <span style="float: right;">&nbsp;</span>
 </th>
 </tr>
-<tr class="TableRow3">
-<td class="TableRow3">
+<tr class="TableMenuRow3">
+<td class="TableMenuColumn3">
 <form style="display: inline;" method="post" name="install" id="install" action="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=settings",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">
 <table style="text-align: left;">
 <tr style="text-align: left;">
@@ -265,8 +293,8 @@ $tsa = array("offset" => $Settings['DefaultTimeZone'], "hour" => $ts_array[0], "
 </tr><tr style="text-align: left;">
 	<td style="width: 50%;"><label class="TextBoxLabel" for="AdminValidate">Do you want to validate new members:</label></td>
 	<td style="width: 50%;"><select size="1" class="TextBox" name="AdminValidate" id="AdminValidate">
-	<option<?php if($Settings['AdminValidate']===false) { echo " selected=\"selected\""; } ?> value="false">no</option>
-	<option<?php if($Settings['AdminValidate']===true) { echo " selected=\"selected\""; } ?> value="true">yes</option>
+	<option<?php if($Settings['AdminValidate']=="off") { echo " selected=\"selected\""; } ?> value="off">no</option>
+	<option<?php if($Settings['AdminValidate']=="on") { echo " selected=\"selected\""; } ?> value="on">yes</option>
 	</select></td>
 </tr><tr style="text-align: left;">
 	<td style="width: 50%;"><label class="TextBoxLabel" for="max_posts">Max replies per page:</label></td>
@@ -379,27 +407,27 @@ if ($handle = opendir($skindir)) { $dirnum = null;
 </tr><tr style="text-align: left;">
 	<td style="width: 50%;"><label class="TextBoxLabel" for="enable_https">Enable https:</label></td>
 	<td style="width: 50%;"><select size="1" class="TextBox" name="enable_https" id="enable_https">
-	<option<?php if($Settings['enable_https']===true) { echo " selected=\"selected\""; } ?> value="true">on</option>
-	<option<?php if($Settings['enable_https']===false) { echo " selected=\"selected\""; } ?> value="false">off</option>
+	<option<?php if($Settings['enable_https']=="on") { echo " selected=\"selected\""; } ?> value="on">on</option>
+	<option<?php if($Settings['enable_https']=="off") { echo " selected=\"selected\""; } ?> value="off">off</option>
 	</select></td>
 <?php } ?>
 </tr><tr style="text-align: left;">
 	<td style="width: 50%;"><label class="TextBoxLabel" for="enable_rss">Enable RSS:</label></td>
 	<td style="width: 50%;"><select size="1" class="TextBox" name="enable_rss" id="enable_rss">
-	<option<?php if($Settings['enable_rss']===true) { echo " selected=\"selected\""; } ?> value="true">on</option>
-	<option<?php if($Settings['enable_rss']===false) { echo " selected=\"selected\""; } ?> value="false">off</option>
+	<option<?php if($Settings['enable_rss']=="on") { echo " selected=\"selected\""; } ?> value="on">on</option>
+	<option<?php if($Settings['enable_rss']=="off") { echo " selected=\"selected\""; } ?> value="off">off</option>
 	</select></td>
 </tr><tr style="text-align: left;">
 	<td style="width: 50%;"><label class="TextBoxLabel" for="enable_search">Enable search:</label></td>
 	<td style="width: 50%;"><select size="1" class="TextBox" name="enable_search" id="enable_search">
-	<option<?php if($Settings['enable_search']===true) { echo " selected=\"selected\""; } ?> value="true">on</option>
-	<option<?php if($Settings['enable_search']===false) { echo " selected=\"selected\""; } ?> value="false">off</option>
+	<option<?php if($Settings['enable_search']=="on") { echo " selected=\"selected\""; } ?> value="on">on</option>
+	<option<?php if($Settings['enable_search']=="off") { echo " selected=\"selected\""; } ?> value="off">off</option>
 	</select></td>
 </tr><tr style="text-align: left;">
 	<td style="width: 50%;"><label class="TextBoxLabel" for="TestReferer">Test Referering URL with host name:</label></td>
 	<td style="width: 50%;"><select id="TestReferer" name="TestReferer" class="TextBox">
-<option<?php if($Settings['TestReferer']===true) { echo " selected=\"selected\""; } ?> value="on">on</option>
-<option<?php if($Settings['TestReferer']===false) { echo " selected=\"selected\""; } ?> value="off">off</option>
+<option<?php if($Settings['TestReferer']=="on") { echo " selected=\"selected\""; } ?> value="on">on</option>
+<option<?php if($Settings['TestReferer']=="off") { echo " selected=\"selected\""; } ?> value="off">off</option>
 </select></td>
 </tr></table>
 <table style="text-align: left;">
@@ -413,30 +441,15 @@ if ($handle = opendir($skindir)) { $dirnum = null;
 </form>
 </td>
 </tr>
-<tr class="TableRow4">
-<td class="TableRow4">&nbsp;</td>
+<tr class="TableMenuRow4">
+<td class="TableMenuColumn4">&nbsp;</td>
 </tr>
 </table>
 </div>
 <?php } if($_POST['act']=="settings"&&$_POST['update']=="now"&&$_GET['act']=="settings"&&
 	$_SESSION['UserGroup']!=$Settings['GuestGroup']&&$GroupInfo['HasAdminCP']=="yes") {
-$Settings['fixpathinfo'] = bool_string($Settings['fixpathinfo']);
-if($Settings['fixpathinfo']!="true"&&$Settings['fixpathinfo']!="false") {
-   $Settings['fixpathinfo']="'".$Settings['fixpathinfo']."'"; }
-$Settings['fixbasedir'] = bool_string($Settings['fixbasedir']);
-if($Settings['fixbasedir']!="true"&&$Settings['fixbasedir']!="false") {
-   $Settings['fixbasedir']="'".$Settings['fixbasedir']."'"; }
-$Settings['fixcookiedir'] = bool_string($Settings['fixcookiedir']);
-if($Settings['fixcookiedir']!="true"&&$Settings['fixcookiedir']!="false") {
-   $Settings['fixcookiedir']="'".$Settings['fixcookiedir']."'"; }
-$Settings['rssurl'] = bool_string($Settings['rssurl']);
-if($Settings['rssurl']!="true"&&$Settings['rssurl']!="false") {
-   $Settings['rssurl']="'".$Settings['rssurl']."'"; }
-$Settings['showverinfo'] = bool_string($Settings['showverinfo']);
-if($Settings['showverinfo']!="true"&&$Settings['showverinfo']!="false") {
-   $Settings['showverinfo']="'".$Settings['showverinfo']."'"; }
 $_POST  = array_map("rsq", $_POST);
-$BoardSettings=$pretext2[0]."\nrequire('settings.php');\n\$Settings['sqltable'] = '".$Settings['sqltable']."';\n\$Settings['board_name'] = '".$Settings['board_name']."';\n\$Settings['weburl'] = '".$_POST['WebURL']."';\n\$Settings['GuestGroup'] = '".$_POST['GuestGroup']."';\n\$Settings['MemberGroup'] = '".$_POST['MemberGroup']."';\n\$Settings['ValidateGroup'] = '".$_POST['ValidateGroup']."';\n\$Settings['AdminValidate'] = ".bool_string($_POST['AdminValidate']).";\n\$Settings['TestReferer'] = '".$_POST['TestReferer']."';\n\$Settings['DefaultTheme'] = '".$_POST['DefaultTheme']."';\n\$Settings['DefaultTimeZone'] = '".$_POST['YourOffSet'].":".$_POST['MinOffSet']."';\n\$Settings['DefaultDST'] = '".$_POST['DST']."';\n\$Settings['max_posts'] = '".$_POST['max_posts']."';\n\$Settings['max_topics'] = '".$_POST['max_topics']."';\n\$Settings['max_memlist'] = '".$_POST['max_memlist']."';\n\$Settings['max_pmlist'] = '".$_POST['max_pmlist']."';\n\$Settings['hot_topic_num'] = '".$_POST['hot_topic_num']."';\n\$Settings['enable_rss'] = ".bool_string($_POST['enable_rss']).";\n\$Settings['enable_search'] = ".bool_string($_POST['enable_search']).";\n\$Settings['board_offline'] = ".bool_string($Settings['board_offline']).";\n\$Settings['KarmaBoostDays'] = '".bool_string($Settings['KarmaBoostDays'])."';\n\$Settings['KBoostPercent'] = '".$Settings['KBoostPercent']."';\n".$pretext2[1]."\n\$SettInfo['board_name'] = '".$SettInfo['board_name']."';\n\$SettInfo['Author'] = '".$SettInfo['Author']."';\n\$SettInfo['Keywords'] = '".$SettInfo['Keywords']."';\n\$SettInfo['Description'] = '".$SettInfo['Description']."';\n?>";
+$BoardSettings=$pretext2[0]."\nrequire('settings.php');\n\$Settings['sqltable'] = ".null_string($Settings['sqltable']).";\n\$Settings['board_name'] = ".null_string($Settings['board_name']).";\n\$Settings['weburl'] = ".null_string($_POST['WebURL']).";\n\$Settings['GuestGroup'] = ".null_string($_POST['GuestGroup']).";\n\$Settings['MemberGroup'] = ".null_string($_POST['MemberGroup']).";\n\$Settings['ValidateGroup'] = ".null_string($_POST['ValidateGroup']).";\n\$Settings['AdminValidate'] = ".null_string($_POST['AdminValidate']).";\n\$Settings['TestReferer'] = ".null_string($_POST['TestReferer']).";\n\$Settings['DefaultTheme'] = ".null_string($_POST['DefaultTheme']).";\n\$Settings['DefaultTimeZone'] = ".null_string($_POST['YourOffSet'].":".$_POST['MinOffSet']).";\n\$Settings['DefaultDST'] = ".null_string($_POST['DST']).";\n\$Settings['max_posts'] = ".null_string($_POST['max_posts']).";\n\$Settings['max_topics'] = ".null_string($_POST['max_topics']).";\n\$Settings['max_memlist'] = ".null_string($_POST['max_memlist']).";\n\$Settings['max_pmlist'] = ".null_string($_POST['max_pmlist']).";\n\$Settings['hot_topic_num'] = ".null_string($_POST['hot_topic_num']).";\n\$Settings['enable_rss'] = ".null_string($_POST['enable_rss']).";\n\$Settings['enable_search'] = ".null_string($_POST['enable_search']).";\n\$Settings['board_offline'] = ".null_string($Settings['board_offline']).";\n\$Settings['KarmaBoostDays'] = ".null_string($Settings['KarmaBoostDays']).";\n\$Settings['KBoostPercent'] = ".null_string($Settings['KBoostPercent']).";\n".$pretext2[1]."\n\$SettInfo['board_name'] = ".null_string($SettInfo['board_name']).";\n\$SettInfo['Author'] = ".null_string($SettInfo['Author']).";\n\$SettInfo['Keywords'] = ".null_string($SettInfo['Keywords']).";\n\$SettInfo['Description'] = ".null_string($SettInfo['Description']).";\n?>";
 $BoardSettingsBak = $pretext.$settcheck.$BoardSettings;
 $BoardSettings = $pretext.$settcheck.$BoardSettings;
 $fp = fopen($_GET['board']."_settings.php","w+");
@@ -448,7 +461,7 @@ fwrite($fp, $BoardSettingsBak);
 fclose($fp); 
 if($_GET['board']==$Settings['root_board']) {
 $BoardSettings = null; $BoardSettingsBak = null;
-$BoardSettings=$pretext2[0]."\n\$Settings['root_board'] = '".$Settings['root_board']."';\n\$Settings['sqlhost'] = '".$Settings['sqlhost']."';\n\$Settings['sqldb'] = '".$Settings['sqldb']."';\n\$Settings['sqluser'] = '".$Settings['sqluser']."';\n\$Settings['sqlpass'] = '".$Settings['sqlpass']."';\n\$Settings['idbdir'] = '".$Settings['idbdir']."';\n\$Settings['idburl'] = '".$_POST['BoardURL']."';\n\$Settings['enable_https'] = ".bool_string($_POST['enable_https']).";\n\$Settings['use_gzip'] = '".$_POST['UseGzip']."';\n\$Settings['html_type'] = '".$_POST['HTMLType']."';\n\$Settings['html_level'] = '".$_POST['HTMLLevel']."';\n\$Settings['output_type'] = '".$_POST['OutPutType']."';\n\$Settings['charset'] = '".$Settings['charset']."';\n\$Settings['add_power_by'] = ".bool_string($Settings['add_power_by']).";\n\$Settings['send_pagesize'] = ".bool_string($Settings['send_pagesize']).";\n".$pretext2[2]."\n\$SettDir['maindir'] = '".$SettDir['maindir']."';\n\$SettDir['inc'] = '".$SettDir['inc']."';\n\$SettDir['misc'] = '".$SettDir['misc']."';\n\$SettDir['admin'] = '".$SettDir['admin']."';\n\$SettDir['mod'] = '".$SettDir['mod']."';\n\$SettDir['themes'] = '".$SettDir['themes']."';\n\$Settings['qstr'] = '".$Settings['qstr']."';\n\$Settings['qsep'] = '".$Settings['qsep']."';\n\$Settings['file_ext'] = '".$Settings['file_ext']."';\n\$Settings['rss_ext'] = '".$Settings['rss_ext']."';\n\$Settings['js_ext'] = '".$Settings['js_ext']."';\n\$Settings['showverinfo'] = ".$Settings['showverinfo'].";\n\$Settings['fixpathinfo'] = ".bool_string($Settings['fixpathinfo']).";\n\$Settings['fixbasedir'] = ".bool_string($Settings['fixbasedir']).";\n\$Settings['fixcookiedir'] = ".bool_string($Settings['fixcookiedir']).";\n\$Settings['enable_pathinfo'] = ".bool_string($Settings['enable_pathinfo']).";\n\$Settings['sessionid_in_urls'] = ".bool_string($Settings['sessionid_in_urls']).";\n\$Settings['rssurl'] = ".bool_string($Settings['rssurl']).";\n".$pretext2[1]."\n?>";
+$BoardSettings=$pretext2[0]."\n\$Settings['root_board'] = ".null_string($Settings['root_board']).";\n\$Settings['sqlhost'] = ".null_string($Settings['sqlhost']).";\n\$Settings['sqldb'] = ".null_string($Settings['sqldb']).";\n\$Settings['sqluser'] = ".null_string($Settings['sqluser']).";\n\$Settings['sqlpass'] = ".null_string($Settings['sqlpass']).";\n\$Settings['idbdir'] = ".null_string($Settings['idbdir']).";\n\$Settings['idburl'] = ".null_string($_POST['BoardURL']).";\n\$Settings['enable_https'] = ".null_string($_POST['enable_https']).";\n\$Settings['use_gzip'] = ".null_string($_POST['UseGzip']).";\n\$Settings['html_type'] = ".null_string($_POST['HTMLType']).";\n\$Settings['html_level'] = ".null_string($_POST['HTMLLevel']).";\n\$Settings['output_type'] = ".null_string($_POST['OutPutType']).";\n\$Settings['charset'] = ".null_string($Settings['charset']).";\n\$Settings['add_power_by'] = ".null_string($Settings['add_power_by']).";\n\$Settings['send_pagesize'] = ".null_string($Settings['send_pagesize']).";\n".$pretext2[2]."\n\$SettDir['maindir'] = ".null_string($SettDir['maindir']).";\n\$SettDir['inc'] = ".null_string($SettDir['inc']).";\n\$SettDir['misc'] = ".null_string($SettDir['misc']).";\n\$SettDir['admin'] = ".null_string($SettDir['admin']).";\n\$SettDir['mod'] = ".null_string($SettDir['mod']).";\n\$SettDir['themes'] = ".null_string($SettDir['themes']).";\n\$Settings['qstr'] = ".null_string($Settings['qstr']).";\n\$Settings['qsep'] = ".null_string($Settings['qsep']).";\n\$Settings['file_ext'] = ".null_string($Settings['file_ext']).";\n\$Settings['rss_ext'] = ".null_string($Settings['rss_ext']).";\n\$Settings['js_ext'] = ".null_string($Settings['js_ext']).";\n\$Settings['showverinfo'] = ".null_string($Settings['showverinfo']).";\n\$Settings['fixpathinfo'] = ".null_string($Settings['fixpathinfo']).";\n\$Settings['fixbasedir'] = ".null_string($Settings['fixbasedir']).";\n\$Settings['fixcookiedir'] = ".null_string($Settings['fixcookiedir']).";\n\$Settings['enable_pathinfo'] = ".null_string($Settings['enable_pathinfo']).";\n\$Settings['sessionid_in_urls'] = ".null_string($Settings['sessionid_in_urls']).";\n\$Settings['rssurl'] = ".null_string($Settings['rssurl']).";\n".$pretext2[1]."\n?>";
 $BoardSettingsBak = $pretext.$settcheck.$BoardSettings;
 $BoardSettings = $pretext.$settcheck.$BoardSettings;
 $fp = fopen("settings.php","w+");
@@ -461,21 +474,26 @@ fclose($fp); } } if($_GET['act']=="mysql"&&$_POST['update']!="now"&&
 	$_GET['board']==$Settings['root_board']&&$GroupInfo['ViewDBInfo']=="yes") {
 require($_GET['board'].'_settings.php'); $admincptitle = " ".$ThemeSet['TitleDivider']." Database Manager";
 ?>
-<div class="Table1Border">
-<table class="Table1">
-<tr class="TableRow1">
-<td class="TableRow1"><span style="float: left;">
-&nbsp;<a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=mysql",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">iDB Database Manager</a></span>
-<span style="float: right;">&nbsp;</span></td>
-</tr>
-<tr class="TableRow2">
-<th class="TableRow2" style="width: 100%; text-align: left;">
+<div class="TableMenuBorder">
+<?php if($ThemeSet['TableStyle']=="div") { ?>
+<div class="TableMenuRow1">
+<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=mysql",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">iDB Database Manager</a></div>
+<?php } ?>
+<table class="TableMenu" style="width: 100%;">
+<?php if($ThemeSet['TableStyle']=="table") { ?>
+<tr class="TableMenuRow1">
+<td class="TableMenuColumn1"><span style="float: left;">
+<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=mysql",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">iDB Database Manager</a>
+</span><span style="float: right;">&nbsp;</span></td>
+</tr><?php } ?>
+<tr class="TableMenuRow2">
+<th class="TableMenuColumn2" style="width: 100%; text-align: left;">
 <span style="float: left;">&nbsp;Editing MySQL Settings for iDB: </span>
 <span style="float: right;">&nbsp;</span>
 </th>
 </tr>
-<tr class="TableRow3">
-<td class="TableRow3">
+<tr class="TableMenuRow3">
+<td class="TableMenuColumn3">
 <form style="display: inline;" method="post" name="install" id="install" action="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=mysql",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">
 <table style="text-align: left;">
 <tr style="text-align: left;">
@@ -502,31 +520,16 @@ require($_GET['board'].'_settings.php'); $admincptitle = " ".$ThemeSet['TitleDiv
 </form>
 </td>
 </tr>
-<tr class="TableRow4">
-<td class="TableRow4">&nbsp;</td>
+<tr class="TableMenuRow4">
+<td class="TableMenuColumn4">&nbsp;</td>
 </tr>
 </table>
 </div>
 <?php } if($_POST['act']=="mysql"&&$_POST['update']=="now"&&$_GET['act']=="mysql"&&
 	$_SESSION['UserGroup']!=$Settings['GuestGroup']&&$GroupInfo['HasAdminCP']=="yes"&&
 	$_GET['board']==$Settings['root_board']&&$GroupInfo['ViewDBInfo']=="yes") {
-$Settings['fixpathinfo'] = bool_string($Settings['fixpathinfo']);
-if($Settings['fixpathinfo']!="true"&&$Settings['fixpathinfo']!="false") {
-   $Settings['fixpathinfo']="'".$Settings['fixpathinfo']."'"; }
-$Settings['fixbasedir'] = bool_string($Settings['fixbasedir']);
-if($Settings['fixbasedir']!="true"&&$Settings['fixbasedir']!="false") {
-   $Settings['fixbasedir']="'".$Settings['fixbasedir']."'"; }
-$Settings['fixcookiedir'] = bool_string($Settings['fixcookiedir']);
-if($Settings['fixcookiedir']!="true"&&$Settings['fixcookiedir']!="false") {
-   $Settings['fixcookiedir']="'".$Settings['fixcookiedir']."'"; }
-$Settings['rssurl'] = bool_string($Settings['rssurl']);
-if($Settings['rssurl']!="true"&&$Settings['rssurl']!="false") {
-   $Settings['rssurl']="'".$Settings['rssurl']."'"; }
-$Settings['showverinfo'] = bool_string($Settings['showverinfo']);
-if($Settings['showverinfo']!="true"&&$Settings['showverinfo']!="false") {
-   $Settings['showverinfo']="'".$Settings['showverinfo']."'"; }
 $_POST  = array_map("rsq", $_POST);
-$BoardSettings=$pretext2[0]."\n\$Settings['root_board'] = '".$_POST['unixname']."';\n\$Settings['sqlhost'] = '".$_POST['DatabaseHost']."';\n\$Settings['sqldb'] = '".$_POST['DatabaseName']."';\n\$Settings['sqluser'] = '".$_POST['DatabaseUserName']."';\n\$Settings['sqlpass'] = '".$_POST['DatabasePassword']."';\n\$Settings['idbdir'] = '".$Settings['idbdir']."';\n\$Settings['idburl'] = '".$Settings['idburl']."';\n\$Settings['enable_https'] = ".bool_string($Settings['enable_https']).";\n\$Settings['use_gzip'] = '".$Settings['use_gzip']."';\n\$Settings['html_type'] = '".$Settings['html_type']."';\n\$Settings['html_level'] = '".$Settings['html_level']."';\n\$Settings['output_type'] = '".$Settings['output_type']."';\n\$Settings['charset'] = '".$Settings['charset']."';\n\$Settings['add_power_by'] = ".bool_string($Settings['add_power_by']).";\n\$Settings['send_pagesize'] = ".bool_string($Settings['send_pagesize']).";\n".$pretext2[2]."\n\$SettDir['maindir'] = '".$SettDir['maindir']."';\n\$SettDir['inc'] = '".$SettDir['inc']."';\n\$SettDir['misc'] = '".$SettDir['misc']."';\n\$SettDir['admin'] = '".$SettDir['admin']."';\n\$SettDir['mod'] = '".$SettDir['mod']."';\n\$SettDir['themes'] = '".$SettDir['themes']."';\n\$Settings['qstr'] = '".$Settings['qstr']."';\n\$Settings['qsep'] = '".$Settings['qsep']."';\n\$Settings['file_ext'] = '".$Settings['file_ext']."';\n\$Settings['rss_ext'] = '".$Settings['rss_ext']."';\n\$Settings['js_ext'] = '".$Settings['js_ext']."';\n\$Settings['showverinfo'] = ".$Settings['showverinfo'].";\n\$Settings['fixpathinfo'] = ".bool_string($Settings['fixpathinfo']).";\n\$Settings['fixbasedir'] = ".bool_string($Settings['fixbasedir']).";\n\$Settings['fixcookiedir'] = ".bool_string($Settings['fixcookiedir']).";\n\$Settings['enable_pathinfo'] = ".bool_string($Settings['enable_pathinfo']).";\n\$Settings['sessionid_in_urls'] = ".bool_string($Settings['sessionid_in_urls']).";\n\$Settings['rssurl'] = ".bool_string($Settings['rssurl']).";\n".$pretext2[1]."\n?>";
+$BoardSettings=$pretext2[0]."\n\$Settings['root_board'] = ".null_string($_POST['unixname']).";\n\$Settings['sqlhost'] = ".null_string($_POST['DatabaseHost']).";\n\$Settings['sqldb'] = ".null_string($_POST['DatabaseName']).";\n\$Settings['sqluser'] = ".null_string($_POST['DatabaseUserName']).";\n\$Settings['sqlpass'] = ".null_string($_POST['DatabasePassword']).";\n\$Settings['idbdir'] = ".null_string($Settings['idbdir']).";\n\$Settings['idburl'] = ".null_string($Settings['idburl']).";\n\$Settings['enable_https'] = ".null_string($Settings['enable_https']).";\n\$Settings['use_gzip'] = ".null_string($Settings['use_gzip']).";\n\$Settings['html_type'] = ".null_string($Settings['html_type']).";\n\$Settings['html_level'] = ".null_string($Settings['html_level']).";\n\$Settings['output_type'] = ".null_string($Settings['output_type']).";\n\$Settings['charset'] = ".null_string($Settings['charset']).";\n\$Settings['add_power_by'] = ".null_string($Settings['add_power_by']).";\n\$Settings['send_pagesize'] = ".null_string($Settings['send_pagesize']).";\n".$pretext2[2]."\n\$SettDir['maindir'] = ".null_string($SettDir['maindir']).";\n\$SettDir['inc'] = ".null_string($SettDir['inc']).";\n\$SettDir['misc'] = ".null_string($SettDir['misc']).";\n\$SettDir['admin'] = ".null_string($SettDir['admin']).";\n\$SettDir['mod'] = ".null_string($SettDir['mod']).";\n\$SettDir['themes'] = ".null_string($SettDir['themes']).";\n\$Settings['qstr'] = ".null_string($Settings['qstr']).";\n\$Settings['qsep'] = ".null_string($Settings['qsep']).";\n\$Settings['file_ext'] = ".null_string($Settings['file_ext']).";\n\$Settings['rss_ext'] = ".null_string($Settings['rss_ext']).";\n\$Settings['js_ext'] = ".null_string($Settings['js_ext']).";\n\$Settings['showverinfo'] = ".null_string($Settings['showverinfo']).";\n\$Settings['fixpathinfo'] = ".null_string($Settings['fixpathinfo']).";\n\$Settings['fixbasedir'] = ".null_string($Settings['fixbasedir']).";\n\$Settings['fixcookiedir'] = ".null_string($Settings['fixcookiedir']).";\n\$Settings['enable_pathinfo'] = ".null_string($Settings['enable_pathinfo']).";\n\$Settings['sessionid_in_urls'] = ".null_string($Settings['sessionid_in_urls']).";\n\$Settings['rssurl'] = ".null_string($Settings['rssurl']).";\n".$pretext2[1]."\n?>";
 $BoardSettingsBak = $pretext.$settcheck.$BoardSettings;
 $BoardSettings = $pretext.$settcheck.$BoardSettings;
 $fp = fopen("settings.php","w+");
@@ -538,21 +541,26 @@ fwrite($fp, $BoardSettingsBak);
 fclose($fp); } if($_GET['act']=="info"&&$_POST['update']!="now") {
 require($_GET['board'].'_settings.php'); $admincptitle = " ".$ThemeSet['TitleDivider']." Board Info Manager";
 ?>
-<div class="Table1Border">
-<table class="Table1">
-<tr class="TableRow1">
-<td class="TableRow1"><span style="float: left;">
-&nbsp;<a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=info",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Board Info Manager</a></span>
-<span style="float: right;">&nbsp;</span></td>
-</tr>
-<tr class="TableRow2">
-<th class="TableRow2" style="width: 100%; text-align: left;">
+<div class="TableMenuBorder">
+<?php if($ThemeSet['TableStyle']=="div") { ?>
+<div class="TableMenuRow1">
+<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=info",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Board Info Manager</a></div>
+<?php } ?>
+<table class="TableMenu" style="width: 100%;">
+<?php if($ThemeSet['TableStyle']=="table") { ?>
+<tr class="TableMenuRow1">
+<td class="TableMenuColumn1"><span style="float: left;">
+<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=info",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Board Info Manager</a>
+</span><span style="float: right;">&nbsp;</span></td>
+</tr><?php } ?>
+<tr class="TableMenuRow2">
+<th class="TableMenuColumn2" style="width: 100%; text-align: left;">
 <span style="float: left;">&nbsp;Editing Board Info: </span>
 <span style="float: right;">&nbsp;</span>
 </th>
 </tr>
-<tr class="TableRow3">
-<td class="TableRow3">
+<tr class="TableMenuRow3">
+<td class="TableMenuColumn3">
 <form style="display: inline;" method="post" name="install" id="install" action="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=info",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">
 <table style="text-align: left;">
 <tr style="text-align: left;">
@@ -579,27 +587,15 @@ require($_GET['board'].'_settings.php'); $admincptitle = " ".$ThemeSet['TitleDiv
 </form>
 </td>
 </tr>
-<tr class="TableRow4">
-<td class="TableRow4">&nbsp;</td>
+<tr class="TableMenuRow4">
+<td class="TableMenuColumn4">&nbsp;</td>
 </tr>
 </table>
 </div>
 <?php } if($_POST['act']=="info"&&$_POST['update']=="now"&&$_GET['act']=="info"&&
 	$_SESSION['UserGroup']!=$Settings['GuestGroup']&&$GroupInfo['HasAdminCP']=="yes") {
-$Settings['fixpathinfo'] = bool_string($Settings['fixpathinfo']);
-if($Settings['fixpathinfo']!="true"&&$Settings['fixpathinfo']!="false") {
-   $Settings['fixpathinfo']="'".$Settings['fixpathinfo']."'"; }
-$Settings['fixbasedir'] = bool_string($Settings['fixbasedir']);
-if($Settings['fixbasedir']!="true"&&$Settings['fixbasedir']!="false") {
-   $Settings['fixbasedir']="'".$Settings['fixbasedir']."'"; }
-$Settings['fixcookiedir'] = bool_string($Settings['fixcookiedir']);
-if($Settings['fixcookiedir']!="true"&&$Settings['fixcookiedir']!="false") {
-   $Settings['fixcookiedir']="'".$Settings['fixcookiedir']."'"; }
-$Settings['rssurl'] = bool_string($Settings['rssurl']);
-if($Settings['rssurl']!="true"&&$Settings['rssurl']!="false") {
-   $Settings['rssurl']="'".$Settings['rssurl']."'"; }
 $_POST  = array_map("rsq", $_POST);
-$BoardSettings=$pretext2[0]."\nrequire('settings.php');\n\$Settings['sqltable'] = '".$Settings['sqltable']."';\n\$Settings['board_name'] = '".$_POST['board_name']."';\n\$Settings['weburl'] = '".$Settings['weburl']."';\n\$Settings['GuestGroup'] = '".$Settings['GuestGroup']."';\n\$Settings['MemberGroup'] = '".$Settings['MemberGroup']."';\n\$Settings['ValidateGroup'] = '".$Settings['ValidateGroup']."';\n\$Settings['AdminValidate'] = ".bool_string($Settings['AdminValidate']).";\n\$Settings['TestReferer'] = '".$Settings['TestReferer']."';\n\$Settings['DefaultTheme'] = '".$Settings['DefaultTheme']."';\n\$Settings['DefaultTimeZone'] = '".$Settings['DefaultTimeZone']."';\n\$Settings['DefaultDST'] = '".$Settings['DefaultDST']."';\n\$Settings['max_posts'] = '".$Settings['max_posts']."';\n\$Settings['max_topics'] = '".$Settings['max_topics']."';\n\$Settings['max_memlist'] = '".$Settings['max_memlist']."';\n\$Settings['max_pmlist'] = '".$Settings['max_pmlist']."';\n\$Settings['hot_topic_num'] = '".$Settings['hot_topic_num']."';\n\$Settings['enable_rss'] = ".bool_string($Settings['enable_rss']).";\n\$Settings['enable_search'] = ".bool_string($Settings['enable_search']).";\n\$Settings['board_offline'] = ".bool_string($Settings['board_offline']).";\n\$Settings['KarmaBoostDays'] = '".bool_string($Settings['KarmaBoostDays'])."';\n\$Settings['KBoostPercent'] = '".$Settings['KBoostPercent']."';\n".$pretext2[1]."\n\$SettInfo['board_name'] = '".$_POST['board_name']."';\n\$SettInfo['Author'] = '".$_POST['Author']."';\n\$SettInfo['Keywords'] = '".$_POST['Keywords']."';\n\$SettInfo['Description'] = '".$_POST['Description']."';\n?>";
+$BoardSettings=$pretext2[0]."\nrequire('settings.php');\n\$Settings['sqltable'] = ".null_string($Settings['sqltable']).";\n\$Settings['board_name'] = ".null_string($_POST['board_name']).";\n\$Settings['weburl'] = ".null_string($Settings['weburl']).";\n\$Settings['GuestGroup'] = ".null_string($Settings['GuestGroup']).";\n\$Settings['MemberGroup'] = ".null_string($Settings['MemberGroup']).";\n\$Settings['ValidateGroup'] = ".null_string($Settings['ValidateGroup']).";\n\$Settings['AdminValidate'] = ".null_string($Settings['AdminValidate']).";\n\$Settings['TestReferer'] = ".null_string($Settings['TestReferer']).";\n\$Settings['DefaultTheme'] = ".null_string($Settings['DefaultTheme']).";\n\$Settings['DefaultTimeZone'] = ".null_string($Settings['DefaultTimeZone']).";\n\$Settings['DefaultDST'] = ".null_string($Settings['DefaultDST']).";\n\$Settings['max_posts'] = ".null_string($Settings['max_posts']).";\n\$Settings['max_topics'] = ".null_string($Settings['max_topics']).";\n\$Settings['max_memlist'] = ".null_string($Settings['max_memlist']).";\n\$Settings['max_pmlist'] = ".null_string($Settings['max_pmlist']).";\n\$Settings['hot_topic_num'] = ".null_string($Settings['hot_topic_num']).";\n\$Settings['enable_rss'] = ".null_string($Settings['enable_rss']).";\n\$Settings['enable_search'] = ".null_string($Settings['enable_search']).";\n\$Settings['board_offline'] = ".null_string($Settings['board_offline']).";\n\$Settings['KarmaBoostDays'] = ".null_string($Settings['KarmaBoostDays']).";\n\$Settings['KBoostPercent'] = ".null_string($Settings['KBoostPercent']).";\n".$pretext2[1]."\n\$SettInfo['board_name'] = ".null_string($_POST['board_name']).";\n\$SettInfo['Author'] = ".null_string($_POST['Author']).";\n\$SettInfo['Keywords'] = ".null_string($_POST['Keywords']).";\n\$SettInfo['Description'] = ".null_string($_POST['Description']).";\n?>";
 $BoardSettingsBak = $pretext.$settcheck.$BoardSettings;
 $BoardSettings = $pretext.$settcheck.$BoardSettings;
 $fp = fopen($_GET['board']."_settings.php","w+");
@@ -611,8 +607,8 @@ fwrite($fp, $BoardSettingsBak);
 fclose($fp); } if($_POST['update']=="now"&&$_GET['act']!=null&&$_GET['act']!="delete") {
 	$profiletitle = " ".$ThemeSet['TitleDivider']." Updating Settings"; ?>
 </td></tr>
-<tr id="ProfileTitleEnd" class="TableRow4">
-<td class="TableRow4">&nbsp;</td>
+<tr id="ProfileTitleEnd" class="TableMenuRow4">
+<td class="TableMenuColumn4">&nbsp;</td>
 </tr></table></div><?php } ?>
 </td></tr>
 </table>

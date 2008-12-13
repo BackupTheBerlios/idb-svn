@@ -11,7 +11,7 @@
     Copyright 2004-2008 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2008 Game Maker 2k - http://intdb.sourceforge.net/
 
-    $FileInfo: main.php - Last Update: 12/11/2008 SVN 210 - Author: cooldude2k $
+    $FileInfo: main.php - Last Update: 12/12/2008 SVN 215 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="main.php"||$File3Name=="/main.php") {
@@ -87,13 +87,13 @@ $admincptitle = " ".$ThemeSet['TitleDivider']." Updating Settings";
 <div class="TableMenuBorder">
 <?php if($ThemeSet['TableStyle']=="div") { ?>
 <div class="TableMenuRow1">
-<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=".$_GET['act'],$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Updating Settings</a></div>
+<?php echo $ThemeSet['TitleIcon']; ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=".$_GET['act'],$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Updating Settings</a></div>
 <?php } ?>
 <table class="TableMenu" style="width: 100%;">
 <?php if($ThemeSet['TableStyle']=="table") { ?>
 <tr class="TableMenuRow1">
 <td class="TableMenuColumn1"><span style="float: left;">
-<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=".$_GET['act'],$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Updating Settings</a>
+<?php echo $ThemeSet['TitleIcon']; ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=".$_GET['act'],$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Updating Settings</a>
 </span><span style="float: right;">&nbsp;</span></td>
 </tr><?php } ?>
 <tr id="ProfileTitle" class="TableMenuRow2">
@@ -111,13 +111,13 @@ $admincptitle = " ".$ThemeSet['TitleDivider']." Deleting Board";
 <div class="TableMenuBorder">
 <?php if($ThemeSet['TableStyle']=="div") { ?>
 <div class="TableMenuRow1">
-<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=delete",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Deleting Board</a></div>
+<?php echo $ThemeSet['TitleIcon']; ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=delete",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Deleting Board</a></div>
 <?php } ?>
 <table class="TableMenu" style="width: 100%;">
 <?php if($ThemeSet['TableStyle']=="table") { ?>
 <tr class="TableMenuRow1">
 <td class="TableMenuColumn1"><span style="float: left;">
-<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=delete",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Deleting Board</a>
+<?php echo $ThemeSet['TitleIcon']; ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=delete",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Deleting Board</a>
 </span><span style="float: right;">&nbsp;</span></td>
 </tr><?php } ?>
 <tr id="ProfileTitle" class="TableMenuRow2">
@@ -175,13 +175,13 @@ mysql_query($delboard);
 <div class="TableMenuBorder">
 <?php if($ThemeSet['TableStyle']=="div") { ?>
 <div class="TableMenuRow1">
-<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); ?>">Deleting Board</a></div>
+<?php echo $ThemeSet['TitleIcon']; ?><a href="<?php echo url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); ?>">Deleting Board</a></div>
 <?php } ?>
 <table class="TableMenu" style="width: 100%;">
 <?php if($ThemeSet['TableStyle']=="table") { ?>
 <tr class="TableMenuRow1">
 <td class="TableMenuColumn1"><span style="float: left;">
-<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); ?>">Deleting Board</a>
+<?php echo $ThemeSet['TitleIcon']; ?><a href="<?php echo url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); ?>">Deleting Board</a>
 </span><span style="float: right;">&nbsp;</span></td>
 </tr><?php } ?>
 <tr id="ProfileTitle" class="TableMenuRow2">
@@ -209,13 +209,13 @@ $admincptitle = " ".$ThemeSet['TitleDivider']." Admin CP";
 <div class="TableMenuBorder">
 <?php if($ThemeSet['TableStyle']=="div") { ?>
 <div class="TableMenuRow1">
-<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo $noteact; ?>">NotePad</a></div>
+<?php echo $ThemeSet['TitleIcon']; ?><a href="<?php echo $noteact; ?>">NotePad</a></div>
 <?php } ?>
 <table class="TableMenu" style="width: 100%;">
 <?php if($ThemeSet['TableStyle']=="table") { ?>
 <tr class="TableMenuRow1">
 <td class="TableMenuColumn1"><span style="float: left;">
-<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo $noteact; ?>">NotePad</a>
+<?php echo $ThemeSet['TitleIcon']; ?><a href="<?php echo $noteact; ?>">NotePad</a>
 </span><span style="float: right;">&nbsp;</span></td>
 </tr><?php } ?>
 <tr id="ProfileTitle" class="TableMenuRow2">
@@ -254,13 +254,13 @@ $tsa = array("offset" => $Settings['DefaultTimeZone'], "hour" => $ts_array[0], "
 <div class="TableMenuBorder">
 <?php if($ThemeSet['TableStyle']=="div") { ?>
 <div class="TableMenuRow1">
-<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=settings",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">iDB Settings Manager</a></div>
+<?php echo $ThemeSet['TitleIcon']; ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=settings",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">iDB Settings Manager</a></div>
 <?php } ?>
 <table class="TableMenu" style="width: 100%;">
 <?php if($ThemeSet['TableStyle']=="table") { ?>
 <tr class="TableMenuRow1">
 <td class="TableMenuColumn1"><span style="float: left;">
-<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=settings",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">iDB Settings Manager</a>
+<?php echo $ThemeSet['TitleIcon']; ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=settings",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">iDB Settings Manager</a>
 </span><span style="float: right;">&nbsp;</span></td>
 </tr><?php } ?>
 <tr class="TableMenuRow2">
@@ -477,13 +477,13 @@ require($_GET['board'].'_settings.php'); $admincptitle = " ".$ThemeSet['TitleDiv
 <div class="TableMenuBorder">
 <?php if($ThemeSet['TableStyle']=="div") { ?>
 <div class="TableMenuRow1">
-<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=mysql",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">iDB Database Manager</a></div>
+<?php echo $ThemeSet['TitleIcon']; ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=mysql",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">iDB Database Manager</a></div>
 <?php } ?>
 <table class="TableMenu" style="width: 100%;">
 <?php if($ThemeSet['TableStyle']=="table") { ?>
 <tr class="TableMenuRow1">
 <td class="TableMenuColumn1"><span style="float: left;">
-<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=mysql",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">iDB Database Manager</a>
+<?php echo $ThemeSet['TitleIcon']; ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=mysql",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">iDB Database Manager</a>
 </span><span style="float: right;">&nbsp;</span></td>
 </tr><?php } ?>
 <tr class="TableMenuRow2">
@@ -544,13 +544,13 @@ require($_GET['board'].'_settings.php'); $admincptitle = " ".$ThemeSet['TitleDiv
 <div class="TableMenuBorder">
 <?php if($ThemeSet['TableStyle']=="div") { ?>
 <div class="TableMenuRow1">
-<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=info",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Board Info Manager</a></div>
+<?php echo $ThemeSet['TitleIcon']; ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=info",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Board Info Manager</a></div>
 <?php } ?>
 <table class="TableMenu" style="width: 100%;">
 <?php if($ThemeSet['TableStyle']=="table") { ?>
 <tr class="TableMenuRow1">
 <td class="TableMenuColumn1"><span style="float: left;">
-<?php echo $ThemeSet['TitleIcon'] ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=info",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Board Info Manager</a>
+<?php echo $ThemeSet['TitleIcon']; ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=info",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Board Info Manager</a>
 </span><span style="float: right;">&nbsp;</span></td>
 </tr><?php } ?>
 <tr class="TableMenuRow2">

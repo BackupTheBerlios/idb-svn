@@ -43,7 +43,7 @@ $ThemeSet['LineDivider'] = " | ";
 $ThemeSet['ButtonDivider'] = " ";
 $ThemeSet['LineDividerTopic'] = " ";
 $ThemeSet['TitleDivider'] = "-&gt;";
-$ThemeSet['NavLinkIcon'] = "<img src=\"themes/IPB/navbar.gif\" alt=\"-&gt;\" title=\"-&gt;\" /> ";
+$ThemeSet['NavLinkIcon'] = "<img src=\"themes/IPBAlt/navbar.gif\" alt=\"-&gt;\" title=\"-&gt;\" /> ";
 $ThemeSet['NavLinkDivider'] = " -&gt; ";
 $ThemeSet['ForumIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/IPBAlt/forum.gif\" alt=\"Forum\" title=\"Forum\" /></div>";
 $ThemeSet['SubForumIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/IPBAlt/subforum.gif\" alt=\"SubForum\" title=\"SubForum\" /></div>";

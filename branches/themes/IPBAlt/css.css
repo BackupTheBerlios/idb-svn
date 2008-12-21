@@ -73,20 +73,33 @@ margin: 0;
 width: 100%;
 }
 
-.pagelink,
-.pagelinklast,
-.pagecurrent {
+.pagelink, .pagelinklast, .pagecurrent,
+.minipagelink, .minipagelinklast {
 background: #F0F5FA;
 border: 1px solid #072A66;
 padding: 1px 3px 1px 3px;
 }
 
-.pagelinklast {
+.minipagelink, .minipagelinklast{
+border: 1px solid #C2CFDF;
+font-size: 10px;
+margin: 0 1px 0 0;
+}
+
+.pagelinklast, .minipagelinklast {
 background: #DFE6EF;
 }
 
 .pagecurrent {
 background: #FFC9A5;
+}
+
+.pagelink a:active, .pagelink a:visited, .pagelink a:link,
+.pagelinklast a:active, .pagelinklast a:visited, .pagelinklast a:link,
+.pagecurrent a:active, .pagecurrent a:visited, .pagecurrent a:link,
+.minipagelink a:active, .minipagelink a:visited, .minipagelink a:link,
+.minipagelinklast a:active, .minipagelinklast a:visited, .minipagelinklast a:link{
+	text-decoration: none;
 }
 
 .Table1, .CalTable1, .TableInfo1, .TableInfoMini1, .TableStats1, 

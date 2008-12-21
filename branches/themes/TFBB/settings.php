@@ -25,6 +25,7 @@ $ThemeSet['CSS'] = "themes/TFBB/css.css";
 $ThemeSet['CSSType'] = "include";
 $ThemeSet['FavIcon'] = "themes/TFBB/favicon.ico";
 $ThemeSet['TableStyle'] = "div";
+$ThemeSet['MiniPageAltStyle'] = "off";
 $ThemeSet['PreLogo'] = null;
 $ThemeSet['Logo'] = $Settings['board_name'];
 $ThemeSet['LogoStyle'] = "font-size: 40px; font-family: verdana, arial, sans-serif; color: white;";

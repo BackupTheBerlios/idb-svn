@@ -14,6 +14,7 @@ $ThemeSet['CSS'] = "themes/IPB/css.css";
 $ThemeSet['CSSType'] = "include";
 $ThemeSet['FavIcon'] = "themes/IPB/favicon.ico";
 $ThemeSet['TableStyle'] = "div";
+$ThemeSet['MiniPageAltStyle'] = "on";
 $ThemeSet['PreLogo'] = null;
 $ThemeSet['Logo'] = $Settings['board_name'];
 $ThemeSet['LogoStyle'] = "font-size: 40px; font-family: verdana, arial, sans-serif; color: black; text-decoration: none;";

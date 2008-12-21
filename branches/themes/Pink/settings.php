@@ -11,20 +11,21 @@
     Copyright 2004-2008 Cool Dude 2k - http://intdb.sourceforge.net/
     Copyright 2004-2008 Game Maker 2k - http://upload.idb.s1.jcink.com/
     $ThemeInfo - Name: iDB Theme - Author: cooldude2k $
-    $FileInfo: settings.php - Last Update: 12/06/2008 SVN 201 - Author: cooldude2k $
+    $FileInfo: settings.php - Last Update: 12/21/2008 SVN 222 - Author: cooldude2k $
 */
 $ThemeSet = array();
 $ThemeSet['ThemeName'] = "iDB Pink Theme";
 $ThemeSet['ThemeMaker'] = "Ren&eacute; Johnson";
-$ThemeSet['ThemeVersion'] = "0.2.4";
+$ThemeSet['ThemeVersion'] = "0.2.5";
 $ThemeSet['ThemeVersionType'] = "Pre-Alpha";
-$ThemeSet['ThemeSubVersion'] = "SVN 201";
+$ThemeSet['ThemeSubVersion'] = "SVN 222";
 $ThemeSet['MakerURL'] = "http://idb.id.funpic.org/";
 $ThemeSet['CopyRight'] = $ThemeSet['ThemeName']." was made by <a href=\"".$ThemeSet['MakerURL']."\" title=\"".$ThemeSet['ThemeMaker']."\">".$ThemeSet['ThemeMaker']."</a>";
 $ThemeSet['CSS'] = "themes/Pink/css.css";
 $ThemeSet['CSSType'] = "include";
 $ThemeSet['FavIcon'] = "themes/Pink/favicon.ico";
 $ThemeSet['TableStyle'] = "table";
+$ThemeSet['MiniPageAltStyle'] = "off";
 $ThemeSet['PreLogo'] = "<div style=\"text-align: center;\">";
 $ThemeSet['Logo'] = $Settings['board_name'];
 $ThemeSet['LogoStyle'] = "font-size: 40px; font-family: verdana, arial, sans-serif; color: black;";

@@ -10,7 +10,7 @@
     Copyright 2004-2008 Cool Dude 2k - http://intdb.sourceforge.net/
     Copyright 2004-2008 Game Maker 2k - http://upload.idb.s1.jcink.com/
     $ThemeInfo - Name: iDB Pink Theme - Author: cooldude2k $
-	$FileInfo: css.css - Last Update: 12/01/2008 SVN 194 - Author: cooldude2k $
+	$FileInfo: css.css - Last Update: 12/21/2008 SVN 223 - Author: cooldude2k $
 */
 
 html {
@@ -89,6 +89,10 @@ background-color: #ffe0f0;
 font-size: 11px;
 text-align: left;
 border: 1px solid #91356f;
+}
+
+.PageList {
+color: #FFFFFF;
 }
 
 .Table1, .CalTable1, .TableInfo1, .TableInfoMini1, .TableStats1, 

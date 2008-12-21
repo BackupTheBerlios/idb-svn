@@ -10,7 +10,7 @@
     Copyright 2004-2008 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2008 Game Maker 2k - http://intdb.sourceforge.net/
     $ThemeInfo - Name: Random iDB Theme - Author: cooldude2k $
-    $FileInfo: css.css - Last Update: 12/01/2008 SVN 194 - Author: cooldude2k $
+    $FileInfo: css.css - Last Update: 12/21/2008 SVN 223 - Author: cooldude2k $
 */
 
 html {
@@ -87,6 +87,10 @@ width: 100%;
 border: 0px;
 border-width: 1px;
 border-spacing: 1px;
+}
+
+.PageList {
+color: #FFFFFF;
 }
 
 .Table1Border, .CalTable1Border, .TableInfo1Border, .TableInfoMini1Border, 

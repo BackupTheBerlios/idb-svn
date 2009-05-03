@@ -8,10 +8,10 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     Revised BSD License for more details.
 
-    Copyright 2004-2008 Cool Dude 2k - http://idb.berlios.de/
-    Copyright 2004-2008 Game Maker 2k - http://intdb.sourceforge.net/
+    Copyright 2004-2009 Cool Dude 2k - http://idb.berlios.de/
+    Copyright 2004-2009 Game Maker 2k - http://intdb.sourceforge.net/
 
-    $FileInfo: subcategories.php - Last Update: 12/12/2008 SVN 215 - Author: cooldude2k $
+    $FileInfo: subcategories.php - Last Update: 5/03/2009 SVN 248 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="subcategories.php"||$File3Name=="/subcategories.php") {
@@ -101,8 +101,61 @@ $NumTopics=mysql_result($result,$i,"NumTopics");
 $NumPosts=mysql_result($result,$i,"NumPosts");
 $NumRedirects=mysql_result($result,$i,"Redirects");
 $ForumDescription=mysql_result($result,$i,"Description");
-$ForumType = strtolower($ForumType);
+$ForumType = strtolower($ForumType); $sflist = null;
 $gltf = array(null); $gltf[0] = $ForumID;
+if ($ForumType=="subforum") { 
+$apcquery = query("SELECT * FROM `".$Settings['sqltable']."forums` WHERE `ShowForum`='yes' AND `InSubForum`=%i ORDER BY `OrderID` ASC, `id` ASC", array($ForumID));
+$apcresult=mysql_query($apcquery);
+$apcnum=mysql_num_rows($apcresult);
+$apci=0; $apcl=1; if($apcnum>=1) {
+while ($apci < $apcnum) {
+$NumsTopics=mysql_result($apcresult,$apci,"NumTopics");
+$NumTopics = $NumsTopics + $NumTopics;
+$NumsPosts=mysql_result($apcresult,$apci,"NumPosts");
+$NumPosts = $NumsPosts + $NumPosts;
+$SubsForumID=mysql_result($apcresult,$apci,"id");
+$SubsForumName=mysql_result($apcresult,$apci,"Name");
+$SubsForumType=mysql_result($apcresult,$apci,"ForumType");
+if(isset($PermissionInfo['CanViewForum'][$SubsForumID])&&
+	$PermissionInfo['CanViewForum'][$SubsForumID]=="yes") {
+$sfurl = "<a href=\"";
+$sfurl = url_maker($exfile[$SubsForumType],$Settings['file_ext'],"act=view&id=".$SubsForumID.$ExStr,$Settings['qstr'],$Settings['qsep'],$prexqstr[$SubsForumType],$exqstr[$SubsForumType]);
+$sfurl = "<a href=\"".$sfurl."\">".$SubsForumName."</a>";
+if($apcl==1) {
+$sflist = "Subforums:";
+$sflist = $sflist." ".$sfurl; }
+if($apcl>1) {
+$sflist = $sflist.", ".$sfurl; }
+$gltf[$apcl] = $SubsForumID; ++$apcl; }
+++$apci; }
+@mysql_free_result($apcresult); } }
+$gltf = array(null); $gltf[0] = $ForumID;
+if ($ForumType=="subforum") { 
+$apcquery = query("SELECT * FROM `".$Settings['sqltable']."forums` WHERE `ShowForum`='yes' AND `InSubForum`=%i ORDER BY `OrderID` ASC, `id` ASC", array($ForumID));
+$apcresult=mysql_query($apcquery);
+$apcnum=mysql_num_rows($apcresult);
+$apci=0; $apcl=1; if($apcnum>=1) {
+while ($apci < $apcnum) {
+$NumsTopics=mysql_result($apcresult,$apci,"NumTopics");
+$NumTopics = $NumsTopics + $NumTopics;
+$NumsPosts=mysql_result($apcresult,$apci,"NumPosts");
+$NumPosts = $NumsPosts + $NumPosts;
+$SubsForumID=mysql_result($apcresult,$apci,"id");
+$SubsForumName=mysql_result($apcresult,$apci,"Name");
+$SubsForumType=mysql_result($apcresult,$apci,"ForumType");
+if(isset($PermissionInfo['CanViewForum'][$SubsForumID])&&
+	$PermissionInfo['CanViewForum'][$SubsForumID]=="yes") {
+$sfurl = "<a href=\"";
+$sfurl = url_maker($exfile[$SubsForumType],$Settings['file_ext'],"act=view&id=".$SubsForumID.$ExStr,$Settings['qstr'],$Settings['qsep'],$prexqstr[$SubsForumType],$exqstr[$SubsForumType]);
+$sfurl = "<a href=\"".$sfurl."\">".$SubsForumName."</a>";
+if($apcl==1) {
+$sflist = "Subforums:";
+$sflist = $sflist." ".$sfurl; }
+if($apcl>1) {
+$sflist = $sflist.", ".$sfurl; }
+$gltf[$apcl] = $SubsForumID; ++$apcl; }
+++$apci; }
+@mysql_free_result($apcresult); } }
 if ($ForumType=="subforum") { 
 $apcquery = query("SELECT * FROM `".$Settings['sqltable']."forums` WHERE `ShowForum`='yes' AND `InSubForum`=%i ORDER BY `OrderID` ASC, `id` ASC", array($ForumID));
 $apcresult=mysql_query($apcquery);
@@ -177,7 +230,8 @@ $ExStr = ""; if ($ForumType!="redirect"&&
 <td class="TableColumn3"><div class="forumicon">
 <?php echo $PreForum; ?></div></td>
 <td class="TableColumn3"><div class="forumname"><a href="<?php echo url_maker($exfile[$ForumType],$Settings['file_ext'],"act=view&id=".$ForumID.$ExStr,$Settings['qstr'],$Settings['qsep'],$prexqstr[$ForumType],$exqstr[$ForumType]); ?>"<?php if($ForumType=="redirect") { echo " onclick=\"window.open(this.href);return false;\""; } ?>><?php echo $ForumName; ?></a></div>
-<div class="forumdescription"><?php echo $ForumDescription; ?></div></td>
+<div class="forumdescription"><?php echo $ForumDescription; ?><br />
+<?php echo $sflist; ?></div></td>
 <td class="TableColumn3" style="text-align: center;"><?php echo $NumTopics; ?></td>
 <td class="TableColumn3" style="text-align: center;"><?php echo $NumPosts; ?></td>
 <td class="TableColumn3"><?php echo $LastTopic; ?></td>

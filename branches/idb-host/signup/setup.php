@@ -8,8 +8,8 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     Revised BSD License for more details.
 
-    Copyright 2004-2008 Cool Dude 2k - http://idb.berlios.de/
-    Copyright 2004-2008 Game Maker 2k - http://intdb.sourceforge.net/
+    Copyright 2004-2009 Cool Dude 2k - http://idb.berlios.de/
+    Copyright 2004-2009 Game Maker 2k - http://intdb.sourceforge.net/
     iDB Installer made by Game Maker 2k - http://idb.berlios.net/
 
     $FileInfo: setup.php - Last Update: 12/12/2008 SVN 214 - Author: cooldude2k $
@@ -66,7 +66,7 @@ if ($Error!="Yes") {
 if(date("I")!=1) { $myofftime = SeverOffSet(); $mydstime = "off"; }
 if(date("I")==1) { $myofftime = SeverOffSet()-1; $mydstime = "on"; }
 $plusi = 1; $minusi = 12;
-$plusnum = 13; $minusnum = 0;
+$plusnum = 15; $minusnum = 0;
 while ($minusi > $minusnum) {
 if($myofftime==-$minusi) {
 echo "<option selected=\"selected\" value=\"-".$minusi."\">GMT - ".$minusi.":00 hours</option>\n"; }

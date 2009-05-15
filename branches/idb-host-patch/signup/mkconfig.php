@@ -48,7 +48,7 @@ if($_POST['tableprefix']==null||$_POST['tableprefix']=="_") { $_POST['tableprefi
 if($_POST['sessprefix']==null||$_POST['sessprefix']=="_") { $_POST['sessprefix']="idb_"; }
 $checkfile="settings.php";
 @session_name($_POST['tableprefix']."sess");
-$HTTPsTest = parse_url($Settings['idburl'], $URLsTest['host']);
+$HTTPsTest = parse_url($Settings['idburl']);
 @session_set_cookie_params(0, "/".$_POST['unixname']."/");
 @session_cache_limiter("private, must-revalidate");
 @header("Cache-Control: private, must-revalidate"); // IE 6 Fix

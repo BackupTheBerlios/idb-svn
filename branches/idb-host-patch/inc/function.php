@@ -169,7 +169,7 @@ if($_GET['debug']=="true"||
 	$_GET['debug']=="on") {
 $debug_on = true; } }
 function url_maker($file="index",$ext=".php",$qvarstr=null,$qstr=";",$qsep="=",$prexqstr=null,$exqstr=null,$fixhtml=true) {
-global $sidurls, $icharset;
+global $sidurls, $icharset, $debug_on;
 $fileurl = null; if(!isset($ext)) { $ext = null; }
 if($ext==null) { $ext = ".php"; } 
 if($ext=="noext"||$ext=="no ext"||$ext=="no+ext") { $ext = null; }

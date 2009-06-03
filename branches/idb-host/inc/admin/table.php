@@ -36,6 +36,7 @@ if ($File3Name=="table.php"||$File3Name=="/table.php") {
 <?php if($GroupInfo['ViewDBInfo']=="yes"&&$_GET['board']==$Settings['root_board']) { ?>
 </tr><tr class="TableSMenuRow3">
 <td class="TableSMenuColumn3"><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=mysql",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">MySQL Settings</a></td>
+<?php } if($GroupInfo['ViewDBInfo']=="yes") { ?>
 </tr><tr class="TableSMenuRow3">
 <td class="TableSMenuColumn3"><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=sqldumper",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">SQL Dumper</a></td>
 <?php } ?>

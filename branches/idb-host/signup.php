@@ -12,7 +12,7 @@
     Copyright 2004-2009 Game Maker 2k - http://intdb.sourceforge.net/
     iDB Installer made by Game Maker 2k - http://idb.berlios.de/support/category.php?act=view&id=2
 
-    $FileInfo: signup.php - Last Update: 5/01/2009 SVN 247 - Author: cooldude2k $
+    $FileInfo: signup.php - Last Update: 6/07/2009 SVN 262 - Author: cooldude2k $
 */
 if(@ini_get("register_globals")) {
 require_once('inc/misc/killglobals.php'); }
@@ -45,6 +45,15 @@ if($Settings['charset']!="ISO-8859-15"&&$Settings['charset']!="ISO-8859-1"&&
 	$Settings['charset']!="GB2312"&&$Settings['charset']!="BIG5-HKSCS"&&
 	$Settings['charset']!="Shift_JIS"&&$Settings['charset']!="EUC-JP") {
 	$Settings['charset'] = "ISO-8859-15"; } }
+$SQLCharset = "latin1";
+if(isset($Settings['charset'])) { 
+if($Settings['charset']=="ISO-8859-1") {
+	$SQLCharset = "latin1"; }
+if($Settings['charset']=="ISO-8859-15") {
+	$SQLCharset = "latin1"; }
+if($Settings['charset']=="UTF-8") {
+	$SQLCharset = "utf8"; }
+	$Settings['charset'] = $Settings['charset']; }
 if(!isset($_GET['board'])) { 
 	$_GET['board'] = $Settings['root_board'];
 	$_GET['board'] = strtolower($_GET['board']);

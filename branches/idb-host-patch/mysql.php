@@ -11,7 +11,7 @@
     Copyright 2004-2009 iDB Support - http://idb.berlios.de/
     Copyright 2004-2008 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: mysql.php - Last Update: 6/16/2009 SVN 264 - Author: cooldude2k $
+    $FileInfo: mysql.php - Last Update: 6/23/2009 SVN 268 - Author: cooldude2k $
 */
 //@ini_set("display_errors", true); 
 //@ini_set("display_startup_errors", true);
@@ -75,6 +75,8 @@ if(isset($Settings['sqldb'])) {
 @header('Location: '.$Settings['idburl'].$Settings['root_board'].'/index.php?act=view'); }
 die(); }
 require($_GET['board'].'_settings.php');
+$Settings['bid'] = base64_encode(urlencode($Settings['idburl']));
+$Settings['ubid'] = base64_encode(urlencode($Settings['idburl']).$_GET['board']."/");
 if(!isset($Settings['showverinfo'])) { 
 	$Settings['showverinfo'] = "on"; }
 if(!isset($Settings['sqldb'])) {

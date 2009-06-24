@@ -11,7 +11,7 @@
     Copyright 2004-2009 iDB Support - http://idb.berlios.de/
     Copyright 2004-2008 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: versioninfo.php - Last Update: 6/18/2009 SVN 267 - Author: cooldude2k $
+    $FileInfo: versioninfo.php - Last Update: 6/23/2009 SVN 268 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="versioninfo.php"||$File3Name=="/versioninfo.php") {
@@ -27,17 +27,17 @@ function version_info($proname,$subver,$ver,$supver,$reltype,$svnver,$showsvn) {
 	return $return_var; }
 // Version number and date stuff. :P
 $VER1[0] = 0; $VER1[1] = 2; $VER1[2] = 8; $VERFull[1] = $VER1[0].".".$VER1[1].".".$VER1[2];
-$VER2[0] = "Pre-Alpha"; $VER2[1] = "PA"; $VER2[2] = "SVN"; $SubVerN = 267; $RName = "iDB EH Mod"; $SFName = "IntDB EH Mod";
-$SVNDay[0] = 6; $SVNDay[1] = 18; $SVNDay[2] = 2009; $SVNDay[3] = $SVNDay[0]."/".$SVNDay[1]."/".$SVNDay[2];
+$VER2[0] = "Pre-Alpha"; $VER2[1] = "PA"; $VER2[2] = "SVN"; $SubVerN = 268; $RName = "iDB EH Mod"; $SFName = "IntDB EH Mod";
+$SVNDay[0] = 6; $SVNDay[1] = 23; $SVNDay[2] = 2009; $SVNDay[3] = $SVNDay[0]."/".$SVNDay[1]."/".$SVNDay[2];
 $VerInfo['iDB_Ver'] = version_info($RName,$VER1[0],$VER1[1],$VER1[2],$VER2[1],$SubVerN,false);
 $VerInfo['iDB_Ver_SVN'] = version_info($RName,$VER1[0],$VER1[1],$VER1[2],$VER2[1],$SubVerN,true);
 $VerInfo['iDB_Full_Ver'] = version_info($RName,$VER1[0],$VER1[1],$VER1[2],$VER2[0],$SubVerN,false);
 $VerInfo['iDB_Full_Ver_SVN'] = version_info($RName,$VER1[0],$VER1[1],$VER1[2],$VER2[0],$SubVerN,true);
 $VerInfo['iDB_Ver_Show'] = $VerInfo['iDB_Ver_SVN']; $VerInfo['iDB_Full_Ver_Show'] = $VerInfo['iDB_Full_Ver_SVN'];
 // URLs and names and stuff. :P $KSP = "Kazuki Sabonis Przyborowski";
-$VerCheckURL = "http://idb.berlios.de/?act=vercheck&amp;name=iDBEH-Mod&amp;reltype=".$VER2[1]."&amp;ver=".$VER1[0].".".$VER1[1].".".$VER1[2]."&amp;subtype=".$VER2[2]."&amp;subver=".$SubVerN;
+$VerCheckURL = "http://idb.berlios.de/?act=vercheck&name=iDBEH-Mod&amp;reltype=".$VER2[1]."&amp;ver=".$VER1[0].".".$VER1[1].".".$VER1[2]."&amp;subtype=".$VER2[2]."&amp;subver=".$SubVerN;
 $CD2k = "Kazuki Przyborowski"; $GM2k = "Game Maker 2k"; $iDB_Author = "Kazuki";
-$iDB = "iDB Easy Host"; $iTB = "Internet Tag Boards"; $DF2k = "Discussion Forums 2k"; $TB2k = "Tag Boards 2k";
+$iDB = "iDB Easy Host Mod"; $iTB = "Internet Tag Boards"; $DF2k = "Discussion Forums 2k"; $TB2k = "Tag Boards 2k";
 $iDBURL1 = "<a href=\"http://intdb.sourceforge.net/\" onclick=\"window.open(this.href);return false;\">"; $iDBURL2 = $iDBURL1.$iDB."</a>";
 $DF2kURL1 = "<a href=\"http://df2k.berlios.de/\" onclick=\"window.open(this.href);return false;\">"; $DF2kURL2 = $DF2kURL1.$DF2k."</a>";
 $GM2kURL = "<a href=\"http://idb.berlios.de/support/category.php?act=view&amp;id=2\" title=\"".$GM2k."\" onclick=\"window.open(this.href);return false;\">".$GM2k."</a>";
@@ -51,10 +51,10 @@ if($OSType=="WINNT") { $OSType="Windows NT"; } if($OSType=="WIN32") { $OSType="W
 $OSType2 = $PHPV2." / ".$OSType; $ZENDV1 = @zend_version(); $ZENDV2 = "Zend engine ".$ZENDV1;
 // Show or hide the version number
 if($Settings['showverinfo']=="on") {
-@header("X-".$RName."-Powered-By: ".$VerInfo['iDB_Ver_Show']);
+//@header("X-".$RName."-Powered-By: ".$VerInfo['iDB_Ver_Show']);
 @header("Generator: ".$VerInfo['iDB_Ver_Show']); }
 if($Settings['showverinfo']!="on") {
-@header("X-".$RName."-Powered-By: ".$RName);
+//@header("X-".$RName."-Powered-By: ".$RName);
 //@header("X-Powered-By: PHP");
-@header("Generator: ".$iDB); }
+@header("Generator: ".$RName); }
 ?>

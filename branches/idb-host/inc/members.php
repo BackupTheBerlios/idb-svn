@@ -11,7 +11,7 @@
     Copyright 2004-2009 iDB Support - http://idb.berlios.de/
     Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: members.php - Last Update: 6/16/2009 SVN 264 - Author: cooldude2k $
+    $FileInfo: members.php - Last Update: 6/27/2009 SVN 271 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="members.php"||$File3Name=="/members.php") {
@@ -534,6 +534,7 @@ $YourNameM=mysql_result($resultlog,$i,"Name");
 $YourPassM=mysql_result($resultlog,$i,"Password");
 $PostCount=mysql_result($resultlog,$i,"PostCount");
 $YourGroupM=mysql_result($resultlog,$i,"GroupID");
+$YourLastPostTime=mysql_result($resultlog,$i,"LastPostTime");
 $YourBanTime=mysql_result($resultlog,$i,"BanTime");
 $CGMTime = GMTimeStamp();
 if($YourBanTime!=0&&$YourBanTime!=null) {
@@ -562,6 +563,7 @@ $_SESSION['UserTimeZone']=$YourTimeZoneM;
 $_SESSION['UserGroup']=$YourGroupM;
 $_SESSION['UserDST']=$YourDSTM;
 $_SESSION['UserPass']=$NewPassword;
+$_SESSION['LastPostTime'] = $YourLastPostTime;
 $_SESSION['DBName']=$Settings['sqldb'];
 if($_POST['storecookie']=="true") {
 if($cookieDomain==null) {

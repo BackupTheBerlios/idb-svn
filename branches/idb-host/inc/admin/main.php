@@ -11,7 +11,7 @@
     Copyright 2004-2009 iDB Support - http://idb.berlios.de/
     Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: main.php - Last Update: 6/16/2009 SVN 264 - Author: cooldude2k $
+    $FileInfo: main.php - Last Update: 7/17/2009 SVN 273 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="main.php"||$File3Name=="/main.php") {
@@ -127,7 +127,7 @@ $admincptitle = " ".$ThemeSet['TitleDivider']." Deleting Board";
 <td class="TableMenuColumn3">
 <div style="text-align: center;">
 <br />Are you sure you want to delete this board?<br />
-<form style="text-align: center;" method="post" name="install" id="install" action="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=delete",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">
+<form style="text-align: center;" method="post" id="acptool" action="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=delete",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">
 <table style="width: 100%; text-align: center;">
 <tr style="width: 100%; text-align: center;">
 <td style="width: 100%; text-align: center;">
@@ -271,7 +271,7 @@ $tsa = array("offset" => $Settings['DefaultTimeZone'], "hour" => $ts_array[0], "
 </tr>
 <tr class="TableMenuRow3">
 <td class="TableMenuColumn3">
-<form style="display: inline;" method="post" name="install" id="install" action="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=settings",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">
+<form style="display: inline;" method="post" id="acptool" action="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=settings",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">
 <table style="text-align: left;">
 <tr style="text-align: left;">
 <?php if($_GET['board']==$Settings['root_board']) { ?>
@@ -494,7 +494,7 @@ require($_GET['board'].'_settings.php'); $admincptitle = " ".$ThemeSet['TitleDiv
 </tr>
 <tr class="TableMenuRow3">
 <td class="TableMenuColumn3">
-<form style="display: inline;" method="post" name="install" id="install" action="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=mysql",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">
+<form style="display: inline;" method="post" id="acptool" action="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=mysql",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">
 <table style="text-align: left;">
 <tr style="text-align: left;">
 	<td style="width: 50%;"><label class="TextBoxLabel" for="DatabaseUserName">Insert Database User Name:</label></td>
@@ -561,7 +561,7 @@ require($_GET['board'].'_settings.php'); $admincptitle = " ".$ThemeSet['TitleDiv
 </tr>
 <tr class="TableMenuRow3">
 <td class="TableMenuColumn3">
-<form style="display: inline;" method="post" name="install" id="install" action="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=info",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">
+<form style="display: inline;" method="post" id="acptool" action="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=info",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">
 <table style="text-align: left;">
 <tr style="text-align: left;">
 	<td style="width: 50%;"><label class="TextBoxLabel" for="board_name">Insert board name:</label></td>

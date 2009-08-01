@@ -11,7 +11,7 @@
     Copyright 2004-2009 iDB Support - http://idb.berlios.de/
     Copyright 2004-2008 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: rssfeed.php - Last Update: 6/26/2009 SVN 269 - Author: cooldude2k $
+    $FileInfo: rssfeed.php - Last Update: 8/1/2009 SVN 285 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="rssfeed.php"||$File3Name=="/rssfeed.php") {
@@ -47,7 +47,7 @@ if($_SERVER['HTTPS']!="on") { $prehost = "http://"; }
 if($Settings['idburl']=="localhost"||$Settings['idburl']==null) {
 	$BoardURL = $prehost.$_SERVER["HTTP_HOST"].$BaseURL; }
 if($Settings['idburl']!="localhost"&&$Settings['idburl']!=null) {
-	$BoardURL = $Settings['idburl'].$_GET['board']."/"; }
+	$BoardURL =  = preg_replace("/\/$/","",$Settings['idburl']).$_GET['board']."/"; }
 if ($_GET['id']==null) { $_GET['id']="1"; }
 if($rssurlon=="on") { $BoardURL =  $rssurl; }
 $feedsname = basename($_SERVER['SCRIPT_NAME']);

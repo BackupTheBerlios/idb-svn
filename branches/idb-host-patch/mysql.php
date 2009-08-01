@@ -11,7 +11,7 @@
     Copyright 2004-2009 iDB Support - http://idb.berlios.de/
     Copyright 2004-2008 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: mysql.php - Last Update: 6/23/2009 SVN 268 - Author: cooldude2k $
+    $FileInfo: mysql.php - Last Update: 8/1/2009 SVN 285 - Author: cooldude2k $
 */
 //@ini_set("display_errors", true); 
 //@ini_set("display_startup_errors", true);
@@ -92,12 +92,14 @@ if($Settings['idburl']=="localhost") { @header("Content-Type: text/plain; charse
 echo "500 Error: URL is malformed. Try reinstalling iDB."; die(); }
 if($Settings['fixbasedir']=="on") {
 if($Settings['idburl']!=null&&$Settings['idburl']!="localhost") {
-$PathsTest = parse_url($Settings['idburl']);
+$iHostURL = preg_replace("/\/$/","",$Settings['idburl']);
+$PathsTest = parse_url($iHostURL);
 $Settings['fixbasedir'] = $PathsTest['path']."/"; 
 $Settings['fixbasedir'] = str_replace("//", "/", $Settings['fixbasedir']); } }
 if($Settings['fixcookiedir']=="on") {
 if($Settings['idburl']!=null&&$Settings['idburl']!="localhost") {
-$PathsTest = parse_url($Settings['idburl']);
+$iHostURL = preg_replace("/\/$/","",$Settings['idburl']);
+$PathsTest = parse_url($iHostURL);
 $Settings['fixcookiedir'] = $PathsTest['path']."/"; 
 $Settings['fixcookiedir'] = str_replace("//", "/", $Settings['fixcookiedir']); } }
 $Settings['fixcookiedir'] = "/".$_GET['board']."/";

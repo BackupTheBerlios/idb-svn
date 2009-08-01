@@ -11,7 +11,7 @@
     Copyright 2004-2009 iDB Support - http://idb.berlios.de/
     Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: xhtml10.php - Last Update: 6/16/2009 SVN 264 - Author: cooldude2k $
+    $FileInfo: xhtml10.php - Last Update: 8/1/2009 SVN 285 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="xhtml10.php"||$File3Name=="/xhtml10.php") {
@@ -86,7 +86,7 @@ if($_SERVER['HTTPS']!="on") { $prehost = "http://"; }
 if($Settings['idburl']=="localhost"||$Settings['idburl']==null) {
 	$BoardURL = $prehost.$_SERVER["HTTP_HOST"].$basedir; }
 if($Settings['idburl']!="localhost"&&$Settings['idburl']!=null) {
-	$BoardURL = $Settings['idburl']; }
+	$BoardURL = preg_replace("/\/$/","",$Settings['idburl']); }
 // Get the html level
 if($Settings['html_level']!="Strict") {
 	if($Settings['html_level']!="Transitional") {

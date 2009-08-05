@@ -11,7 +11,7 @@
     Copyright 2004-2009 iDB Support - http://idb.berlios.de/
     Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: admin.php - Last Update: 8/3/2009 SVN 288 - Author: cooldude2k $
+    $FileInfo: admin.php - Last Update: 8/5/2009 SVN 291 - Author: cooldude2k $
 */
 if(@ini_get("register_globals")) {
 require_once('inc/misc/killglobals.php'); }
@@ -25,6 +25,9 @@ $filewpath = $exfile['admin'].$usefileext.$_SERVER['PATH_INFO'];
 </head>
 <body>
 <?php
+$_SESSION['ViewingPage'] = url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']);
+$_SESSION['PreViewingTitle'] = "Viewing";
+$_SESSION['ViewingTitle'] = "Board index";
 if(!isset($_GET['subact'])) { $_GET['subact'] = null; }
 if(!isset($_POST['subact'])) { $_POST['subact'] = null; }
 require($SettDir['inc'].'navbar.php');
@@ -34,14 +37,13 @@ ob_clean(); @header("Content-Type: text/plain; charset=".$Settings['charset']);
 gzip_page($Settings['use_gzip'],$GZipEncode['Type']); @mysql_close(); die(); }
 if($_GET['act']==null) {
 	$_GET['act']="view"; }
-if($_GET['act']=="view"&&($GroupInfo['ViewDBInfo']!="yes"||$_GET['board']!=$Settings['root_board'])) {
+if($_GET['act']=="view"&&$GroupInfo['ViewDBInfo']!="yes") {
 	$_GET['act']="view"; }
-if($_GET['act']=="vercheck"&&$GroupInfo['ViewDBInfo']=="yes"&&$_GET['board']==$Settings['root_board']) {
+if($_GET['act']=="vercheck"&&$GroupInfo['ViewDBInfo']=="yes") {
 	@header("Location: ".$VerCheckURL."&bid=".$Settings['bid']); }
 if($_GET['act']=="view"||
 	$_GET['act']=="settings"||
 	$_GET['act']=="mysql"||
-	$_GET['act']=="delete"||
 	$_GET['act']=="info"||
 	$_GET['act']=="delsessions")
 { require($SettDir['admin'].'main.php'); }

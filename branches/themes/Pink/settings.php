@@ -11,7 +11,7 @@
     Copyright 2004-2008 Cool Dude 2k - http://intdb.sourceforge.net/
     Copyright 2004-2008 Game Maker 2k - http://upload.idb.s1.jcink.com/
     $ThemeInfo - Name: iDB Theme - Author: cooldude2k $
-    $FileInfo: settings.php - Last Update: 12/21/2008 SVN 222 - Author: cooldude2k $
+    $FileInfo: settings.php - Last Update: 6/16/2009 SVN 264 - Author: cooldude2k $
 */
 $ThemeSet = array();
 $ThemeSet['ThemeName'] = "iDB Pink Theme";
@@ -61,7 +61,7 @@ $ThemeSet['RedirectIcon'] = "<div style=\"text-align: center; font-size: 11px;\"
 $ThemeSet['TitleIcon'] = null;
 $ThemeSet['NavLinkIcon'] = null;
 $ThemeSet['NavLinkDivider'] = " -&gt; ";
-$ThemeSet['StatsIcon'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"Board Stats\"><br />(S)<br /></div> ";
+$ThemeSet['StatsIcon'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"Board Stats\">(S)</div> ";
 $ThemeSet['NoAvatar'] = "themes/Pink/noavatar.png";
 $ThemeSet['NoAvatarSize'] = "100x100";
 ?>

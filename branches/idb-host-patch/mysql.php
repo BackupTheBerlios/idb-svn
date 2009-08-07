@@ -9,7 +9,7 @@
     Revised BSD License for more details.
 
     Copyright 2004-2009 iDB Support - http://idb.berlios.de/
-    Copyright 2004-2008 Game Maker 2k - http://gamemaker2k.org/
+    Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/
 
     $FileInfo: mysql.php - Last Update: 8/6/2009 SVN 293 - Author: cooldude2k $
 */
@@ -27,16 +27,6 @@ $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="mysql.php"||$File3Name=="/mysql.php") {
 	@header('Location: index.php');
 	exit(); }
-// Some webhost need next line to work.
-if(!isset($_SERVER['PATH_INFO'])) {
-	$_SERVER['PATH_INFO'] = null; }
-if(!isset($_SERVER["ORIG_PATH_INFO"])) {
-	$_SERVER["ORIG_PATH_INFO"] = null; }
-if($_SERVER['PATH_INFO']==null&&$_SERVER["ORIG_PATH_INFO"]!=null) {
-	$_SERVER['PATH_INFO'] = $_SERVER["ORIG_PATH_INFO"]; }
-$idbehvar = explode('/',$_SERVER['PATH_INFO'],3);
-if(isset($_SERVER['PATH_INFO'])) {
-$_GET['board'] = $idbehvar[1]; }
 $_GET['board'] = strtolower($_GET['board']);
 $_GET['board'] = preg_replace("/[^A-Za-z0-9_$]/", "", $_GET['board']);
 $_GET['board'] = preg_replace("/(.*?)\.\/(.*?)/", "", $_GET['board']);
@@ -44,11 +34,11 @@ $_GET['board'] = preg_replace("/(.*?)\/(.*?)/", "", $_GET['board']);
 $_GET['board'] = preg_replace("/(.*?)\.(.*?)/", "", $_GET['board']);
 if(!isset($_GET['board'])) { require('settings.php');
 if(!isset($Settings['sqldb'])) {
-@header("Content-Type: text/plain; charset=UTF-8");
+@header("Content-Type: text/plain; charset=UTF8");
 @header('Location: install.php'); }
 if(isset($Settings['sqldb'])) {
-@header("Content-Type: text/plain; charset=UTF-8");
-@header('Location: '.$Settings['idburl'].$Settings['root_board'].'/index.php?act=view'); }
+@header("Content-Type: text/plain; charset=UTF8");
+@header('Location: '.$Settings['idburl'].'index.php?board='.$Settings['root_board']); }
 die(); }
 if(!file_exists($_GET['board']."_settings.php")) { 
 require('settings.php');
@@ -76,11 +66,11 @@ if(!isset($Settings['sqldb'])) {
 @header('Location: install.php'); }
 if(isset($Settings['sqldb'])) {
 @header("Content-Type: text/plain; charset=UTF-8");
-@header('Location: '.$Settings['idburl'].$Settings['root_board'].'/index.php?act=view'); }
+@header('Location: '.$Settings['idburl'].'index.php?board='.$Settings['root_board']); }
 die(); }
 require($_GET['board'].'_settings.php');
 $Settings['bid'] = base64_encode(urlencode($Settings['idburl']));
-$Settings['ubid'] = base64_encode(urlencode($Settings['idburl']).$_GET['board']."/");
+$Settings['ubid'] = base64_encode(urlencode($Settings['idburl'])."?board=".$_GET['board']);
 if(!isset($Settings['showverinfo'])) { 
 	$Settings['showverinfo'] = "on"; }
 if(!isset($Settings['sqldb'])) {
@@ -96,17 +86,14 @@ if($Settings['idburl']=="localhost") { @header("Content-Type: text/plain; charse
 echo "500 Error: URL is malformed. Try reinstalling iDB."; die(); }
 if($Settings['fixbasedir']=="on") {
 if($Settings['idburl']!=null&&$Settings['idburl']!="localhost") {
-$iHostURL = preg_replace("/\/$/","",$Settings['idburl']);
-$PathsTest = parse_url($iHostURL);
+$PathsTest = parse_url($Settings['idburl']);
 $Settings['fixbasedir'] = $PathsTest['path']."/"; 
 $Settings['fixbasedir'] = str_replace("//", "/", $Settings['fixbasedir']); } }
 if($Settings['fixcookiedir']=="on") {
 if($Settings['idburl']!=null&&$Settings['idburl']!="localhost") {
-$iHostURL = preg_replace("/\/$/","",$Settings['idburl']);
-$PathsTest = parse_url($iHostURL);
+$PathsTest = parse_url($Settings['idburl']);
 $Settings['fixcookiedir'] = $PathsTest['path']."/"; 
 $Settings['fixcookiedir'] = str_replace("//", "/", $Settings['fixcookiedir']); } }
-$Settings['fixcookiedir'] = "/".$_GET['board']."/";
 //@session_save_path($SettDir['inc']."temp/");
 if(!isset($Settings['sqldb'])) { 
 if(file_exists("install.php")) { @header('Location: install.php'); die(); } 
@@ -125,7 +112,7 @@ if(!isset($SettDir['admin'])) { $SettDir['admin'] = "inc/admin/"; }
 if(!isset($SettDir['mod'])) { $SettDir['mod'] = "inc/mod/"; }
 if(!isset($SettDir['themes'])) { $SettDir['themes'] = "themes/"; }
 if(!isset($Settings['use_iniset'])) { $Settings['use_iniset'] = null; }
-if(!isset($Settings['clean_ob'])) { $Settings['clean_ob'] = false; }
+if(!isset($Settings['clean_ob'])) { $Settings['clean_ob'] = "off"; }
 if(!isset($_SERVER['PATH_INFO'])) { $_SERVER['PATH_INFO'] = null; }
 if(!isset($_SERVER['HTTP_ACCEPT_ENCODING'])) { 
 	$_SERVER['HTTP_ACCEPT_ENCODING'] = null; }

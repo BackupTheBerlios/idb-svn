@@ -8,8 +8,8 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     Revised BSD License for more details.
 
-    Copyright 2004-2009 iDB Support - http://idb.berlios.de/
-    Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/
+Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/
+    Copyright 2004-2008 Game Maker 2k - http://gamemaker2k.org/
     iDB Installer made by Game Maker 2k - http://idb.berlios.net/
 
     $FileInfo: mkconfig.php - Last Update: 7/21/2009 SVN 276 - Author: cooldude2k $
@@ -47,14 +47,9 @@ $_POST['tableprefix'] = preg_replace("/[^A-Za-z0-9_$]/", "", $_POST['tableprefix
 if($_POST['tableprefix']==null||$_POST['tableprefix']=="_") { $_POST['tableprefix']="idb_"; }
 if($_POST['sessprefix']==null||$_POST['sessprefix']=="_") { $_POST['sessprefix']="idb_"; }
 $checkfile="settings.php";
-if (!is_writable($checkfile)) {
-   echo "<br />Settings is not writable.";
-   @chmod("settings.php",0755); $Error="Yes";
-   @chmod("settingsbak.php",0755);
-} else { /* settings.php is writable install iDB. ^_^ */ }
 @session_name($_POST['tableprefix']."sess");
 $HTTPsTest = parse_url($Settings['idburl']);
-@session_set_cookie_params(0, $cookie_dir, $URLsTest['host']);
+@session_set_cookie_params(0, "/".$_POST['unixname']."/");
 @session_cache_limiter("private, must-revalidate");
 @header("Cache-Control: private, must-revalidate"); // IE 6 Fix
 @header("Pragma: private, must-revalidate");
@@ -89,7 +84,7 @@ $GSalt = salt_hmac(); $YourSalt = salt_hmac();
 $_POST['NewBoardName'] = htmlspecialchars($_POST['NewBoardName'], ENT_QUOTES, $Settings['charset']);
 $_POST['NewBoardName'] = fixbamps($_POST['NewBoardName']);
 $_POST['NewBoardName'] = @remove_spaces($_POST['NewBoardName']);
-$_POST['NewBoardName'] = str_replace("\&#039;", "&#039;", $_POST['NewBoardName']);
+$_POST['NewBoardName'] = str_replace("\'", "'", $_POST['NewBoardName']);
 //$_POST['AdminPassword'] = stripcslashes(htmlspecialchars($_POST['AdminPassword'], ENT_QUOTES, $Settings['charset']));
 //$_POST['AdminPassword'] = preg_replace("/\&amp;#(.*?);/is", "&#$1;", $_POST['AdminPassword']);
 $_POST['AdminUser'] = stripcslashes(htmlspecialchars($_POST['AdminUser'], ENT_QUOTES, $Settings['charset']));
@@ -142,7 +137,7 @@ $query = query("INSERT INTO `".$_POST['tableprefix']."posts` VALUES (1,1,1,1,-1,
 mysql_query($query);
 $NewPassword = b64e_hmac($_POST['AdminPasswords'],$YourDate,$YourSalt,"sha1");
 //$Name = stripcslashes(htmlspecialchars($AdminUser, ENT_QUOTES, $Settings['charset']));
-//$YourWebsite = "http://".$_SERVER['HTTP_HOST'].$this_dir."index.php?act=view";
+//$YourWebsite = "http://".$_SERVER['HTTP_HOST']."/".$_POST['unixname']."/"."index.php?act=view";
 $YourWebsite = $_POST['WebURL'];
 $UserIP = $_SERVER['REMOTE_ADDR'];
 $PostCount = 2;
@@ -157,7 +152,7 @@ if($csrand==1) { $gpass .= chr(rand(48,57)); }
 if($csrand==2) { $gpass .= chr(rand(65,90)); }
 if($csrand==3) { $gpass .= chr(rand(97,122)); }
 ++$i; } $GuestPassword = b64e_hmac($gpass,$YourDate,$GSalt,"sha1");
-$url_this_dir = "http://".$_SERVER['HTTP_HOST'].$this_dir."index.php?act=view";
+$url_this_dir = "http://".$_SERVER['HTTP_HOST']."/".$_POST['unixname']."/"."index.php?act=view";
 $YourIP = $_SERVER['REMOTE_ADDR'];
 $query = query("INSERT INTO `".$_POST['tableprefix']."members` VALUES (-1,'Guest','%s','iDBH','%s',4,'no','yes',0,'Guest Account','Guest',%i,%i,'0','0','0','0','0','[B]Test[/B] :)','Your Notes','http://','100x100','%s','UnKnow',1,0,0,10,10,10,'%s','%s','iDB','127.0.0.1','%s')", array($GuestPassword,$GEmail,$YourDate,$YourDate,$YourWebsite,$AdminTime,$AdminDST,$GSalt));
 mysql_query($query);
@@ -169,7 +164,7 @@ $CHMOD = $_SERVER['PHP_SELF'];
 $iDBRDate = $SVNDay[0]."/".$SVNDay[1]."/".$SVNDay[2];
 $iDBRSVN = $VER2[2]." ".$SubVerN;
 $LastUpdateS = "Last Update: ".$iDBRDate." ".$iDBRSVN;
-$pretext = "<?php\n/*\n    This program is free software; you can redistribute it and/or modify\n    it under the terms of the GNU General Public License as published by\n    the Free Software Foundation; either version 2 of the License, or\n    (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful,\n    but WITHOUT ANY WARRANTY; without even the implied warranty of\n    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    Revised BSD License for more details.\n\n    Copyright 2004-".$SVNDay[2]." iDB Support - http://idb.berlios.de/\n    Copyright 2004-".$SVNDay[2]." Game Maker 2k - http://gamemaker2k.org/\n    iDB Installer made by Game Maker 2k - http://idb.berlios.net/\n\n    \$FileInfo: settings.php & settingsbak.php - ".$LastUpdateS." - Author: cooldude2k \$\n*/\n";
+$pretext = "<?php\n/*\n    This program is free software; you can redistribute it and/or modify\n    it under the terms of the GNU General Public License as published by\n    the Free Software Foundation; either version 2 of the License, or\n    (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful,\n    but WITHOUT ANY WARRANTY; without even the implied warranty of\n    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    Revised BSD License for more details.\n\nCopyright 2004-".$SVNDay[2]." Game Maker 2k - http://gamemaker2k.org/\n    Copyright 2004-".$SVNDay[2]." Game Maker 2k - http://gamemaker2k.org/\n    iDB Installer made by Game Maker 2k - http://idb.berlios.net/\n\n    \$FileInfo: settings.php & settingsbak.php - ".$LastUpdateS." - Author: cooldude2k \$\n*/\n";
 $pretext2 = array("/*   Board Setting Section Begins   */\n\$Settings = array();","/*   Board Setting Section Ends  \n     Board Info Section Begins   */\n\$SettInfo = array();","/*   Board Setting Section Ends   \n     Board Dir Section Begins   */\n\$SettDir = array();","/*   Board Dir Section Ends   */");
 $settcheck = "\$File3Name = basename(\$_SERVER['SCRIPT_NAME']);\nif (\$File3Name==\"".$_POST['tableprefix']."settings.php\"||\$File3Name==\"/".$_POST['tableprefix']."settings.php\") {\n    @header('Location: index.php');\n    exit(); }\n";
 $BoardSettings=$pretext2[0]."\nrequire('settings.php');\n\$Settings['sqltable'] = '".$_POST['tableprefix']."';\n\$Settings['board_name'] = '".$_POST['NewBoardName']."';\n\$Settings['weburl'] = '".$_POST['WebURL']."';\n\$Settings['GuestGroup'] = 'Guest';\n\$Settings['MemberGroup'] = 'Member';\n\$Settings['ValidateGroup'] = 'Validate';\n\$Settings['AdminValidate'] = 'off';\n\$Settings['TestReferer'] = '".$_POST['TestReferer']."';\n\$Settings['DefaultTheme'] = 'iDB';\n\$Settings['DefaultTimeZone'] = '".$AdminTime."';\n\$Settings['DefaultDST'] = '".$AdminDST."';\n\$Settings['max_posts'] = '10';\n\$Settings['max_topics'] = '10';\n\$Settings['max_memlist'] = '10';\n\$Settings['max_pmlist'] = '10';\n\$Settings['hot_topic_num'] = '15';\n\$Settings['enable_rss'] = 'on';\n\$Settings['enable_search'] = 'on';\n\$Settings['board_offline'] = 'off';\n\$Settings['BoardUUID'] = '".$ServerUUID."';\n\$Settings['KarmaBoostDays'] = '".$KarmaBoostDay."';\n\$Settings['KBoostPercent'] = '6|10';\n".$pretext2[1]."\n\$SettInfo['board_name'] = '".$_POST['NewBoardName']."';\n\$SettInfo['Author'] = '".$_POST['AdminUser']."';\n\$SettInfo['Keywords'] = '".$_POST['NewBoardName'].",".$_POST['AdminUser']."';\n\$SettInfo['Description'] = '".$_POST['NewBoardName'].",".$_POST['AdminUser']."';\n?>";
@@ -181,13 +176,15 @@ fclose($fp);
 $fp = fopen($_POST['tableprefix']."settingsbak.php","w+");
 fwrite($fp, $BoardSettingsBak);
 fclose($fp);
-if($_POST['storecookie']=="true") {
-@setcookie("MemberName", $_POST['AdminUser'], time() + (7 * 86400), $cookie_dir, $URLsTest['host']);
-@setcookie("UserID", 1, time() + (7 * 86400), $cookie_dir, $URLsTest['host']);
-@setcookie("SessPass", $NewPassword, time() + (7 * 86400), $cookie_dir, $URLsTest['host']); }
+@chmod($_POST['tableprefix']."settings.php",0766);
+@chmod($_POST['tableprefix']."settingsbak.php",0766);
+if($_POST['storecookie']==true) {
+@setcookie("MemberName", $_POST['AdminUser'], time() + (7 * 86400), "/".$_POST['unixname']."/", $URLsTest['host']);
+@setcookie("UserID", 1, time() + (7 * 86400), "/".$_POST['unixname']."/", $URLsTest['host']);
+@setcookie("SessPass", $NewPassword, time() + (7 * 86400), "/".$_POST['unixname']."/", $URLsTest['host']); }
 @mysql_close(); $chdel = true;
 ?><span class="TableMessage">
-<br />Install Finish <a href="index.php?act=view&amp;board=<?php echo $_POST['unixname']; ?>">Click here</a> to goto board. ^_^</span>
+<br />Install Finish <a href="/<?php echo $_POST['unixname']; ?>/index.php?act=view">Click here</a> to goto board. ^_^</span>
 <?php if($chdel===false) { ?><span class="TableMessage">
 <br />Error: Cound not delete installer. Read readme.txt for more info.</span>
 <?php } ?><br /><br />

@@ -9,7 +9,7 @@
     Revised BSD License for more details.
 
     Copyright 2004-2009 iDB Support - http://idb.berlios.de/
-    Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/
+    Copyright 2004-2008 Game Maker 2k - http://gamemaker2k.org/
 
     $FileInfo: function.php - Last Update: 8/5/2009 SVN 290 - Author: cooldude2k $
 */

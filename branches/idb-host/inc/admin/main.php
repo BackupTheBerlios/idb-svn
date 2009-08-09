@@ -11,7 +11,7 @@
     Copyright 2004-2009 iDB Support - http://idb.berlios.de/
     Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: main.php - Last Update: 8/8/2009 SVN 299 - Author: cooldude2k $
+    $FileInfo: main.php - Last Update: 8/9/2009 SVN 301 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="main.php"||$File3Name=="/main.php") {
@@ -459,7 +459,7 @@ if ($handle = opendir($skindir)) { $dirnum = null;
 	$_SESSION['UserGroup']!=$Settings['GuestGroup']&&$GroupInfo['HasAdminCP']=="yes") {
 $_POST  = array_map("rsq", $_POST);
 if(!isset($Settings['BoardUUID'])||$Settings['BoardUUID']===null) {
-	$Settings['BoardUUID'] = uuid(false,true,false,null); }
+	$Settings['BoardUUID'] = uuid(false,true,false,$Settings['use_hashtype'],null); }
 $Settings['board_name'] = htmlspecialchars($Settings['board_name'], ENT_QUOTES, $Settings['charset']);
 $Settings['board_name'] = fixbamps($Settings['board_name']);
 $Settings['board_name'] = @remove_spaces($Settings['board_name']);
@@ -561,7 +561,7 @@ require($_GET['board'].'_settings.php'); $admincptitle = " ".$ThemeSet['TitleDiv
 	$_GET['board']==$Settings['root_board']&&$GroupInfo['ViewDBInfo']=="yes") {
 $_POST  = array_map("rsq", $_POST);
 if(!isset($Settings['BoardUUID'])||$Settings['BoardUUID']===null) {
-	$Settings['BoardUUID'] = uuid(false,true,false,null); }
+	$Settings['BoardUUID'] = uuid(false,true,false,$Settings['use_hashtype'],null); }
 $Settings['board_name'] = htmlspecialchars($Settings['board_name'], ENT_QUOTES, $Settings['charset']);
 $Settings['board_name'] = fixbamps($Settings['board_name']);
 $Settings['board_name'] = @remove_spaces($Settings['board_name']);
@@ -649,7 +649,7 @@ require($_GET['board'].'_settings.php'); $admincptitle = " ".$ThemeSet['TitleDiv
 	$_SESSION['UserGroup']!=$Settings['GuestGroup']&&$GroupInfo['HasAdminCP']=="yes") {
 $_POST  = array_map("rsq", $_POST);
 if(!isset($Settings['BoardUUID'])||$Settings['BoardUUID']===null) {
-	$Settings['BoardUUID'] = uuid(false,true,false,null); }
+	$Settings['BoardUUID'] = uuid(false,true,false,$Settings['use_hashtype'],null); }
 $_POST['board_name'] = htmlspecialchars($_POST['board_name'], ENT_QUOTES, $Settings['charset']);
 $_POST['board_name'] = fixbamps($_POST['board_name']);
 $_POST['board_name'] = @remove_spaces($_POST['board_name']);

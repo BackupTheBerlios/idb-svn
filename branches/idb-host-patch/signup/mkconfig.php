@@ -12,7 +12,7 @@ Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/
     Copyright 2004-2008 Game Maker 2k - http://gamemaker2k.org/
     iDB Installer made by Game Maker 2k - http://idb.berlios.net/
 
-    $FileInfo: mkconfig.php - Last Update: 7/21/2009 SVN 276 - Author: cooldude2k $
+    $FileInfo: mkconfig.php - Last Update: 8/8/2009 SVN 299 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="mkconfig.php"||$File3Name=="/mkconfig.php") {
@@ -135,7 +135,7 @@ $query = query("INSERT INTO `".$_POST['tableprefix']."topics` VALUES (1,1,1,0,-1
 mysql_query($query);
 $query = query("INSERT INTO `".$_POST['tableprefix']."posts` VALUES (1,1,1,1,-1,'".$iDB_Author."',%i,%i,1,'Welcome to Your Message Board. :) ','Install was successful','127.0.0.1','127.0.0.1')", array($YourDate,$YourEditDate)); 
 mysql_query($query);
-$NewPassword = b64e_hmac($_POST['AdminPasswords'],$YourDate,$YourSalt,"sha1");
+$NewPassword = b64e_hmac($_POST['AdminPasswords'],$YourDate,$YourSalt,"sha256");
 //$Name = stripcslashes(htmlspecialchars($AdminUser, ENT_QUOTES, $Settings['charset']));
 //$YourWebsite = "http://".$_SERVER['HTTP_HOST']."/".$_POST['unixname']."/"."index.php?act=view";
 $YourWebsite = $_POST['WebURL'];
@@ -151,12 +151,12 @@ if($csrand!=1&&$csrand!=2&&$csrand!=3) { $csrand=1; }
 if($csrand==1) { $gpass .= chr(rand(48,57)); }
 if($csrand==2) { $gpass .= chr(rand(65,90)); }
 if($csrand==3) { $gpass .= chr(rand(97,122)); }
-++$i; } $GuestPassword = b64e_hmac($gpass,$YourDate,$GSalt,"sha1");
+++$i; } $GuestPassword = b64e_hmac($gpass,$YourDate,$GSalt,"sha256");
 $url_this_dir = "http://".$_SERVER['HTTP_HOST']."/".$_POST['unixname']."/"."index.php?act=view";
 $YourIP = $_SERVER['REMOTE_ADDR'];
-$query = query("INSERT INTO `".$_POST['tableprefix']."members` VALUES (-1,'Guest','%s','iDBH','%s',4,'no','yes',0,'Guest Account','Guest',%i,%i,'0','0','0','0','0','[B]Test[/B] :)','Your Notes','http://','100x100','%s','UnKnow',1,0,0,10,10,10,'%s','%s','iDB','127.0.0.1','%s')", array($GuestPassword,$GEmail,$YourDate,$YourDate,$YourWebsite,$AdminTime,$AdminDST,$GSalt));
+$query = query("INSERT INTO `".$_POST['tableprefix']."members` VALUES (-1,'Guest','%s','iDBH256','%s',4,'no','yes',0,'Guest Account','Guest',%i,%i,'0','0','0','0','0','[B]Test[/B] :)','Your Notes','http://','100x100','%s','UnKnow',1,0,0,10,10,10,'%s','%s','iDB','127.0.0.1','%s')", array($GuestPassword,$GEmail,$YourDate,$YourDate,$YourWebsite,$AdminTime,$AdminDST,$GSalt));
 mysql_query($query);
-$query = query("INSERT INTO `".$_POST['tableprefix']."members` VALUES (1,'%s','%s','iDBH','%s',1,'yes','no',0,'%s','Admin',%i,%i,'0','0','0','0','0','%s','Your Notes','%s','100x100','%s','UnKnow',0,0,0,10,10,10,'%s','%s','iDB','%s','%s')", array($_POST['AdminUser'],$NewPassword,$Email,$Interests,$YourDate,$YourDate,$NewSignature,$Avatar,$YourWebsite,$AdminTime,$AdminDST,$UserIP,$YourSalt));
+$query = query("INSERT INTO `".$_POST['tableprefix']."members` VALUES (1,'%s','%s','iDBH256','%s',1,'yes','no',0,'%s','Admin',%i,%i,'0','0','0','0','0','%s','Your Notes','%s','100x100','%s','UnKnow',0,0,0,10,10,10,'%s','%s','iDB','%s','%s')", array($_POST['AdminUser'],$NewPassword,$Email,$Interests,$YourDate,$YourDate,$NewSignature,$Avatar,$YourWebsite,$AdminTime,$AdminDST,$UserIP,$YourSalt));
 mysql_query($query);
 $query = query("INSERT INTO `".$_POST['tableprefix']."messenger` VALUES (1,-1,1,'".$iDB_Author."','Test','Hello Welcome to your board.\r\nThis is a Test PM. :P ','Hello Welcome',%i,0)", array($YourDate));
 mysql_query($query);
@@ -167,7 +167,7 @@ $LastUpdateS = "Last Update: ".$iDBRDate." ".$iDBRSVN;
 $pretext = "<?php\n/*\n    This program is free software; you can redistribute it and/or modify\n    it under the terms of the GNU General Public License as published by\n    the Free Software Foundation; either version 2 of the License, or\n    (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful,\n    but WITHOUT ANY WARRANTY; without even the implied warranty of\n    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    Revised BSD License for more details.\n\nCopyright 2004-".$SVNDay[2]." Game Maker 2k - http://gamemaker2k.org/\n    Copyright 2004-".$SVNDay[2]." Game Maker 2k - http://gamemaker2k.org/\n    iDB Installer made by Game Maker 2k - http://idb.berlios.net/\n\n    \$FileInfo: settings.php & settingsbak.php - ".$LastUpdateS." - Author: cooldude2k \$\n*/\n";
 $pretext2 = array("/*   Board Setting Section Begins   */\n\$Settings = array();","/*   Board Setting Section Ends  \n     Board Info Section Begins   */\n\$SettInfo = array();","/*   Board Setting Section Ends   \n     Board Dir Section Begins   */\n\$SettDir = array();","/*   Board Dir Section Ends   */");
 $settcheck = "\$File3Name = basename(\$_SERVER['SCRIPT_NAME']);\nif (\$File3Name==\"".$_POST['tableprefix']."settings.php\"||\$File3Name==\"/".$_POST['tableprefix']."settings.php\") {\n    @header('Location: index.php');\n    exit(); }\n";
-$BoardSettings=$pretext2[0]."\nrequire('settings.php');\n\$Settings['sqltable'] = '".$_POST['tableprefix']."';\n\$Settings['board_name'] = '".$_POST['NewBoardName']."';\n\$Settings['weburl'] = '".$_POST['WebURL']."';\n\$Settings['GuestGroup'] = 'Guest';\n\$Settings['MemberGroup'] = 'Member';\n\$Settings['ValidateGroup'] = 'Validate';\n\$Settings['AdminValidate'] = 'off';\n\$Settings['TestReferer'] = '".$_POST['TestReferer']."';\n\$Settings['DefaultTheme'] = 'iDB';\n\$Settings['DefaultTimeZone'] = '".$AdminTime."';\n\$Settings['DefaultDST'] = '".$AdminDST."';\n\$Settings['max_posts'] = '10';\n\$Settings['max_topics'] = '10';\n\$Settings['max_memlist'] = '10';\n\$Settings['max_pmlist'] = '10';\n\$Settings['hot_topic_num'] = '15';\n\$Settings['enable_rss'] = 'on';\n\$Settings['enable_search'] = 'on';\n\$Settings['board_offline'] = 'off';\n\$Settings['BoardUUID'] = '".$ServerUUID."';\n\$Settings['KarmaBoostDays'] = '".$KarmaBoostDay."';\n\$Settings['KBoostPercent'] = '6|10';\n".$pretext2[1]."\n\$SettInfo['board_name'] = '".$_POST['NewBoardName']."';\n\$SettInfo['Author'] = '".$_POST['AdminUser']."';\n\$SettInfo['Keywords'] = '".$_POST['NewBoardName'].",".$_POST['AdminUser']."';\n\$SettInfo['Description'] = '".$_POST['NewBoardName'].",".$_POST['AdminUser']."';\n?>";
+$BoardSettings=$pretext2[0]."\nrequire('settings.php');\n\$Settings['sqltable'] = '".$_POST['tableprefix']."';\n\$Settings['board_name'] = '".$_POST['NewBoardName']."';\n\$Settings['weburl'] = '".$_POST['WebURL']."';\n\$Settings['GuestGroup'] = 'Guest';\n\$Settings['MemberGroup'] = 'Member';\n\$Settings['ValidateGroup'] = 'Validate';\n\$Settings['AdminValidate'] = 'off';\n\$Settings['TestReferer'] = '".$_POST['TestReferer']."';\n\$Settings['DefaultTheme'] = 'iDB';\n\$Settings['DefaultTimeZone'] = '".$AdminTime."';\n\$Settings['DefaultDST'] = '".$AdminDST."';\n\$Settings['use_hashtype'] = 'sha256';\n\$Settings['max_posts'] = '10';\n\$Settings['max_topics'] = '10';\n\$Settings['max_memlist'] = '10';\n\$Settings['max_pmlist'] = '10';\n\$Settings['hot_topic_num'] = '15';\n\$Settings['enable_rss'] = 'on';\n\$Settings['enable_search'] = 'on';\n\$Settings['board_offline'] = 'off';\n\$Settings['BoardUUID'] = '".$ServerUUID."';\n\$Settings['KarmaBoostDays'] = '".$KarmaBoostDay."';\n\$Settings['KBoostPercent'] = '6|10';\n".$pretext2[1]."\n\$SettInfo['board_name'] = '".$_POST['NewBoardName']."';\n\$SettInfo['Author'] = '".$_POST['AdminUser']."';\n\$SettInfo['Keywords'] = '".$_POST['NewBoardName'].",".$_POST['AdminUser']."';\n\$SettInfo['Description'] = '".$_POST['NewBoardName'].",".$_POST['AdminUser']."';\n?>";
 $BoardSettingsBak = $pretext.$settcheck.$BoardSettings;
 $BoardSettings = $pretext.$settcheck.$BoardSettings;
 $fp = fopen($_POST['tableprefix']."settings.php","w+");

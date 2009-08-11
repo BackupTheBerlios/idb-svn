@@ -12,7 +12,7 @@
     Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/
     iDB Installer made by Game Maker 2k - http://idb.berlios.net/
 
-    $FileInfo: mkconfig.php - Last Update: 8/10/2009 SVN 302 - Author: cooldude2k $
+    $FileInfo: mkconfig.php - Last Update: 8/11/2009 SVN 303 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="mkconfig.php"||$File3Name=="/mkconfig.php") {
@@ -77,10 +77,6 @@ echo "<br />Sorry board exists pick a new board url prefix."; }
 if ($_POST['AdminPasswords']!=$_POST['ReaPassword']) { $Error="Yes";
 echo "<br />Your passwords did not match."; }
 if($_POST['HTMLType']=="xhtml11") { $_POST['HTMLLevel']="Strict"; }
-if($_POST['WebURL']=="http://localhost/"||$_POST['WebURL']=="http://localhost") {
-	$_POST['WebURL'] = "localhost"; }
-if($_POST['WebURL']=="https://localhost/"||$_POST['WebURL']=="https://localhost") {
-	$_POST['WebURL'] = "localhost"; }
 $_POST['BoardURL'] = addslashes($_POST['BoardURL']);
 $YourDate = GMTimeStamp();
 $YourEditDate = $YourDate + $dayconv['minute'];

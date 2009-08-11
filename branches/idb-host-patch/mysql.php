@@ -11,7 +11,7 @@
     Copyright 2004-2009 iDB Support - http://idb.berlios.de/
     Copyright 2004-2008 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: mysql.php - Last Update: 8/8/2009 SVN 299 - Author: cooldude2k $
+    $FileInfo: mysql.php - Last Update: 8/11/2009 SVN 303 - Author: cooldude2k $
 */
 /* Some ini setting changes uncomment if you need them. */
 //@ini_set("display_errors", true); 
@@ -63,13 +63,6 @@ if($Settings['charset']!="ISO-8859-15"&&$Settings['charset']!="ISO-8859-1"&&
 	$Settings['charset']!="Shift_JIS"&&$Settings['charset']!="EUC-JP") {
 	$Settings['charset'] = "ISO-8859-15"; } }
 	$chkcharset = $Settings['charset'];
-$SQLCharset = "latin1"; 
-if($Settings['charset']=="ISO-8859-1") {
-	$SQLCharset = "latin1"; }
-if($Settings['charset']=="ISO-8859-15") {
-	$SQLCharset = "latin1"; }
-if($Settings['charset']=="UTF-8") {
-	$SQLCharset = "utf8"; }
 @ini_set('default_charset', $Settings['charset']);
 if(!isset($Settings['sqldb'])) {
 @header("Content-Type: text/plain; charset=UTF-8");
@@ -206,6 +199,13 @@ if($GZipEncode['Type']!="gzip") { if($GZipEncode['Type']!="deflate") { $GZipEnco
 @header('P3P: CP="NOI ADM DEV PSAi COM NAV OUR OTRo STP IND DEM"'); } */
 // Some http stuff
 $SQLStat = @ConnectMysql($Settings['sqlhost'],$Settings['sqluser'],$Settings['sqlpass'],$Settings['sqldb']);
+$SQLCharset = "latin1"; 
+if($Settings['charset']=="ISO-8859-1") {
+	$SQLCharset = "latin1"; }
+if($Settings['charset']=="ISO-8859-15") {
+	$SQLCharset = "latin1"; }
+if($Settings['charset']=="UTF-8") {
+	$SQLCharset = "utf8"; }
 @mysql_set_charset($SQLCharset);
 if($SQLStat===false) {
 @header("Content-Type: text/plain; charset=".$Settings['charset']); @mysql_free_result($peresult);

@@ -90,6 +90,9 @@ if($_POST['usehashtype']!="md5"&&
    $_POST['usehashtype']!="sha1"&&
    $_POST['usehashtype']!="sha256") {
 	$_POST['usehashtype'] = "sha256"; }
+if($_POST['usehashtype']=="md5") { $iDBHashType = "iDBH5"; }
+if($_POST['usehashtype']=="sha1") { $iDBHashType = "iDBH"; }
+if($_POST['usehashtype']=="sha256") { $iDBHashType = "iDBH256"; }
 if ($_POST['AdminUser']=="Guest") { $Error="Yes";
 echo "<br />You can not use Guest as your name."; }
 /* We are done now with fixing the info. ^_^ */

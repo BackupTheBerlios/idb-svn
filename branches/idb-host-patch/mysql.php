@@ -11,7 +11,7 @@
     Copyright 2004-2009 iDB Support - http://idb.berlios.de/
     Copyright 2004-2008 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: mysql.php - Last Update: 8/11/2009 SVN 303 - Author: cooldude2k $
+    $FileInfo: mysql.php - Last Update: 8/12/2009 SVN 306 - Author: cooldude2k $
 */
 /* Some ini setting changes uncomment if you need them. */
 //@ini_set("display_errors", true); 
@@ -136,6 +136,9 @@ if(!isset($_POST['License'])) { $_POST['License'] = null; }
 if(!isset($_SERVER['HTTPS'])) { $_SERVER['HTTPS'] = "off"; }
 require_once($SettDir['misc'].'utf8.php');
 require_once($SettDir['inc'].'filename.php');
+if($_GET['act']=="versioninfo") { @header("Content-Type: text/plain; charset=UTF-8"); ?>
+<title><?php echo $Settings['board_name']; ?></title> 
+<?php echo "<name>iDBEH-Mod|".$VER2[1]."|".$VER1[0].".".$VER1[1].".".$VER1[2]."|".$VER2[2]."|".$SubVerN."</name>"; die(); }
 if(!isset($Settings['use_hashtype'])) {
 	$Settings['use_hashtype'] = "sha256"; }
 if($Settings['use_hashtype']!="md5"&&

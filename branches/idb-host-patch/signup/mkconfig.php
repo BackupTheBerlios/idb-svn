@@ -12,7 +12,7 @@ Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/
     Copyright 2004-2008 Game Maker 2k - http://gamemaker2k.org/
     iDB Installer made by Game Maker 2k - http://idb.berlios.net/
 
-    $FileInfo: mkconfig.php - Last Update: 8/11/2009 SVN 303 - Author: cooldude2k $
+    $FileInfo: mkconfig.php - Last Update: 8/19/2009 SVN 313 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="mkconfig.php"||$File3Name=="/mkconfig.php") {
@@ -57,15 +57,15 @@ $HTTPsTest = parse_url($Settings['idburl']);
 @header("Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT");
 @header("Expires: ".gmdate("D, d M Y H:i:s")." GMT");
 @session_start();
-if (strlen($_POST['AdminPasswords'])<="3") { $Error="Yes";
+if (pre_strlen($_POST['AdminPasswords'])<"3") { $Error="Yes";
 echo "<br />Your password is too small."; }
 if (!isset($_POST['unixname'])) { $Error="Yes";
 echo "<br />You need a URL SubFix Name."; }
-if (strlen($_POST['AdminUser'])<="3") { $Error="Yes";
+if (pre_strlen($_POST['AdminUser'])<"3") { $Error="Yes";
 echo "<br />Your user name is too small."; }
-if (strlen($_POST['AdminPasswords'])>="30") { $Error="Yes";
+if (pre_strlen($_POST['AdminPasswords'])>"60") { $Error="Yes";
 echo "<br />Your password is too big."; }
-if (strlen($_POST['AdminUser'])>="20") { $Error="Yes";
+if (pre_strlen($_POST['AdminUser'])>"30") { $Error="Yes";
 echo "<br />Your user name is too big."; }
 if(file_exists($_POST['tableprefix']."_settings.php")) { $Error="Yes";
 echo "<br />Sorry board exists pick a new board url prefix."; }

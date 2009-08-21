@@ -12,7 +12,7 @@
     Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/
     iDB Installer made by Game Maker 2k - http://idb.berlios.de/support/category.php?act=view&id=2
 
-    $FileInfo: signup.php - Last Update: 6/16/2009 SVN 264 - Author: cooldude2k $
+    $FileInfo: signup.php - Last Update: 8/20/2009 SVN 314 - Author: cooldude2k $
 */
 if(@ini_get("register_globals")) {
 require_once('inc/misc/killglobals.php'); }
@@ -126,7 +126,7 @@ if ($Error=="Yes") { ?>
 </tr>
 <?php } ?>
 <tr class="TableRow4">
-<td class="TableColumn4">&nbsp;<a href="index.php?act=ReadMe">Readme.txt</a>&nbsp;</td>
+<td class="TableColumn4">&nbsp;<a href="<?php echo url_maker($exfile['index'],$Settings['file_ext'],"act=ReadMe",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index']); ?>">Readme.txt</a>&nbsp;</td>
 </tr>
 </table></div>
 <div>&nbsp;</div>

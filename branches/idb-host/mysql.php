@@ -131,7 +131,7 @@ require_once($SettDir['inc'].'filename.php');
 if($_GET['act']=="versioninfo") { @header("Content-Type: text/plain; charset=UTF-8"); ?>
 <charset><?php echo $Settings['charset']; ?></charset> 
 <title><?php echo $Settings['board_name']; ?></title> 
-<?php echo "<name>iDB|".$VER2[1]."|".$VER1[0].".".$VER1[1].".".$VER1[2]."|".$VER2[2]."|".$SubVerN."</name>"; die(); }
+<?php echo "<name>iDB-Host|".$VER2[1]."|".$VER1[0].".".$VER1[1].".".$VER1[2]."|".$VER2[2]."|".$SubVerN."</name>"; die(); }
 if(!isset($Settings['use_hashtype'])) {
 	$Settings['use_hashtype'] = "sha256"; }
 if($Settings['use_hashtype']!="md5"&&

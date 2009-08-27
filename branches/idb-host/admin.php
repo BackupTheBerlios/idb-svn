@@ -55,6 +55,7 @@ require($SettDir['admin'].'main.php'); }
 if($_GET['act']=="settings"||
 	$_GET['act']=="mysql"||
 	$_GET['act']=="info"||
+	$_GET['act']=="delete"||
 	$_GET['act']=="delsessions")
 { $AdminMenu = "main";
 require($SettDir['admin'].'main.php'); }

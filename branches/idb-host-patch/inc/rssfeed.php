@@ -9,9 +9,9 @@
     Revised BSD License for more details.
 
     Copyright 2004-2009 iDB Support - http://idb.berlios.de/
-    Copyright 2004-2008 Game Maker 2k - http://gamemaker2k.org/
+    Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: rssfeed.php - Last Update: 11/07/2009 SVN 334 - Author: cooldude2k $
+    $FileInfo: rssfeed.php - Last Update: 11/10/2009 SVN 337 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="rssfeed.php"||$File3Name=="/rssfeed.php") {
@@ -47,7 +47,11 @@ if($_SERVER['HTTPS']!="on") { $prehost = "http://"; }
 if($Settings['idburl']=="localhost"||$Settings['idburl']==null) {
 	$BoardURL = $prehost.$_SERVER["HTTP_HOST"].$BaseURL; }
 if($Settings['idburl']!="localhost"&&$Settings['idburl']!=null) {
-	$BoardURL = $Settings['idburl'].$_GET['board']."/"; }
+	$BoardURL = $Settings['idburl']; 
+	if($Settings['qstr']!="/") {
+	$AltBoardURL = $BoardURL; } 
+	if($Settings['qstr']=="/") { 
+	$AltBoardURL = preg_replace("/\/$/","",$BoardURL); } }
 if ($_GET['id']==null) { $_GET['id']="1"; }
 if($rssurlon=="on") { $BoardURL =  $rssurl; }
 $feedsname = basename($_SERVER['SCRIPT_NAME']);
@@ -125,6 +129,10 @@ $GuestsName=mysql_result($result,$i,"GuestName");
 $requery = query("SELECT * FROM `".$Settings['sqltable']."members` WHERE `id`=%i LIMIT 1", array($UsersID));
 $reresult=mysql_query($requery);
 $renum=mysql_num_rows($reresult);
+if($renum<1) { $UsersID = -1;
+$requery = query("SELECT * FROM `".$Settings['sqltable']."members` WHERE `id`=%i LIMIT 1", array($UsersID));
+$reresult=mysql_query($requery);
+$renum=mysql_num_rows($reresult); }
 $UsersName=mysql_result($reresult,0,"Name");
 $UsersGroupID=mysql_result($reresult,0,"GroupID");
 if($UsersName=="Guest") { $UsersName=$GuestsName;
@@ -172,12 +180,14 @@ if($Settings['showverinfo']=="on") { ?>
 <?php } echo "\n"; if($_GET['feedtype']=="oldrss") { ?>
 <rdf:RDF 
  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
- xmlns="http://purl.org/rss/1.0/">
+ xmlns="http://purl.org/rss/1.0/"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+>
 <channel rdf:about="<?php echo $BoardURL.$feedsname; ?>">
  <title><?php echo $boardsname." ".$ThemeSet['TitleDivider']; ?> Viewing Forum <?php echo $ForumName; ?></title>
   <link><?php echo $BoardURL.url_maker($exfile[$ForumType],$Settings['file_ext'],"act=view&id=".$ForumID,$Settings['qstr'],$Settings['qsep'],$prexqstr[$ForumType],$exqstr[$ForumType]); ?></link>
   <description>RSS Feed of the Topics in Forum <?php echo $ForumName; ?></description>
-  <image rdf:resource="<?php echo $BoardURL.$SettDir['inc']; ?>rss.gif" />
+  <image rdf:resource="<?php echo $AltBoardURL.$SettDir['inc']; ?>rss.gif" />
  
   <items>
     <rdf:Seq>
@@ -186,10 +196,10 @@ if($Settings['showverinfo']=="on") { ?>
   </items>
 </channel>
 
-<image rdf:about="<?php echo $BoardURL.$SettDir['inc']; ?>rss.gif">
+<image rdf:about="<?php echo $AltBoardURL.$SettDir['inc']; ?>rss.gif">
   <title><?php echo $boardsname; ?></title>
   <link><?php echo $BoardURL.url_maker($exfile[$ForumType],$Settings['file_ext'],"act=view&id=".$ForumID,$Settings['qstr'],$Settings['qsep'],$prexqstr[$ForumType],$exqstr[$ForumType]); ?></link>
-  <url><?php echo $BoardURL.$SettDir['inc']; ?>rss.gif</url>
+  <url><?php echo $AltBoardURL.$SettDir['inc']; ?>rss.gif</url>
 </image>
 <!-- Renee Sabonis ^_^ -->
 <?php echo "\n".$RSS."\n"; ?></rdf:RDF>
@@ -208,9 +218,9 @@ if($Settings['showverinfo']=="on") { ?>
    <copyright><?php echo $SettInfo['Author']; ?></copyright>
    <ttl>120</ttl>
    <image>
-	<url><?php echo $BoardURL.$SettDir['inc']; ?>rss.gif</url>
+	<url><?php echo $AltBoardURL.$SettDir['inc']; ?>rss.gif</url>
 	<title><?php echo $boardsname; ?></title>
-	<link><?php echo $BoardURL; ?></link>
+	<link><?php echo $AltBoardURL; ?></link>
    </image>
    <!-- Renee Sabonis ^_^ -->
  <?php echo "\n".$RSS."\n"; ?></channel>
@@ -227,7 +237,7 @@ if($Settings['showverinfo']=="on") { ?>
    <?php } if($Settings['showverinfo']!="on") { ?>
    <generator><?php echo $iDB; ?></generator>
    <?php } ?>
-  <icon><?php echo $BoardURL.$SettDir['inc']; ?>rss.gif</icon>
+  <icon><?php echo $AltBoardURL.$SettDir['inc']; ?>rss.gif</icon>
   <!-- Renee Sabonis ^_^ -->
  <?php echo "\n".$Atom."\n"; ?>
 </feed>
@@ -236,7 +246,7 @@ if($Settings['showverinfo']=="on") { ?>
 <ShortName><?php echo $boardsname." ".$ThemeSet['TitleDivider']; ?> Search</ShortName>
 <Description><?php echo $SettInfo['Description']; ?></Description>
 <InputEncoding><?php echo $Settings['charset']; ?></InputEncoding>
-<Image width="16" height="16" type="image/x-icon"><?php echo $BoardURL.$ThemeSet['FavIcon']; ?></Image>
+<Image width="16" height="16" type="image/x-icon"><?php echo $AltBoardURL.$ThemeSet['FavIcon']; ?></Image>
 <Url type="text/html" method="POST" template="<?php echo $BoardURL.url_maker("search",$Settings['file_ext'],null,"search","search"); ?>">
   <Param name="act" value="topics"/>
   <Param name="search" value="{searchTerms}"/>

@@ -115,13 +115,13 @@ $mydbtest = @ConnectMysql($Settings['sqlhost'],$Settings['sqluser'],$Settings['s
 $SQLCollate = "latin1_general_ci";
 $SQLCharset = "latin1"; 
 if($Settings['charset']=="ISO-8859-1") {
-	$SQLCollate = "latin1_general_ci"; }
+	$SQLCollate = "latin1_general_ci";
 	$SQLCharset = "latin1"; }
 if($Settings['charset']=="ISO-8859-15") {
-	$SQLCollate = "latin1_general_ci"; }
+	$SQLCollate = "latin1_general_ci";
 	$SQLCharset = "latin1"; }
 if($Settings['charset']=="UTF-8") {
-	$SQLCollate = "utf8_unicode_ci"; }
+	$SQLCollate = "utf8_unicode_ci";
 	$SQLCharset = "utf8"; }
 @mysql_set_charset($SQLCharset);
 if($mydbtest!==true) { $Error="Yes";

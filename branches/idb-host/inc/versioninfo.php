@@ -27,7 +27,7 @@ function version_info($proname,$subver,$ver,$supver,$reltype,$svnver,$showsvn) {
 	return $return_var; }
 // Version number and date stuff. :P
 $VER1[0] = 0; $VER1[1] = 3; $VER1[2] = 1; $VERFull[1] = $VER1[0].".".$VER1[1].".".$VER1[2];
-$VER2[0] = "Pre-Alpha"; $VER2[1] = "PA"; $VER2[2] = "SVN"; $SubVerN = 347; $RName = "iDB EH"; $SFName = "IntDB Easy Host";
+$VER2[0] = "Pre-Alpha"; $VER2[1] = "PA"; $VER2[2] = "SVN"; $SubVerN = 348; $RName = "iDB EH"; $SFName = "IntDB Easy Host";
 $SVNDay[0] = 11; $SVNDay[1] = 14; $SVNDay[2] = 2009; $SVNDay[3] = $SVNDay[0]."/".$SVNDay[1]."/".$SVNDay[2];
 $VerInfo['iDB_Ver'] = version_info($RName,$VER1[0],$VER1[1],$VER1[2],$VER2[1],$SubVerN,false);
 $VerInfo['iDB_Ver_SVN'] = version_info($RName,$VER1[0],$VER1[1],$VER1[2],$VER2[1],$SubVerN,true);

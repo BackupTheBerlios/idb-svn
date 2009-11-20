@@ -10,7 +10,7 @@
     Copyright 2004-2008 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2008 Game Maker 2k - http://intdb.sourceforge.net/
     $ThemeInfo - Name: Random iDB Theme - Author: cooldude2k $
-    $FileInfo: css.css - Last Update: 12/21/2008 SVN 223 - Author: cooldude2k $
+    $FileInfo: css.css - Last Update: 6/16/2009 SVN 264 - Author: cooldude2k $
 */
 
 html {
@@ -100,7 +100,7 @@ border: 1px solid #FFF;
 }
 
 .Table2 {
-background-color: #fff;
+background-color: #3300FF;
 font-size: 11px;
 font-family: Verdana, Tahoma, Arial, sans-serif;
 color: #000;

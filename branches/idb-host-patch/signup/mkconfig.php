@@ -12,7 +12,7 @@
     Copyright 2004-2008 Game Maker 2k - http://gamemaker2k.org/
     iDB Installer made by Game Maker 2k - http://idb.berlios.net/
 
-    $FileInfo: mkconfig.php - Last Update: 11/14/2009 SVN 344 - Author: cooldude2k $
+    $FileInfo: mkconfig.php - Last Update: 11/23/2009 SVN 357 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="mkconfig.php"||$File3Name=="/mkconfig.php") {
@@ -47,16 +47,16 @@ $_POST['tableprefix'] = preg_replace("/[^A-Za-z0-9_$]/", "", $_POST['tableprefix
 if($_POST['tableprefix']==null||$_POST['tableprefix']=="_") { $_POST['tableprefix']="idb_"; }
 if($_POST['sessprefix']==null||$_POST['sessprefix']=="_") { $_POST['sessprefix']="idb_"; }
 $checkfile="settings.php";
-@session_name($_POST['tableprefix']."sess");
+session_name($_POST['tableprefix']."sess");
 $HTTPsTest = parse_url($Settings['idburl']);
-@session_set_cookie_params(0, "/".$_POST['unixname']."/");
-@session_cache_limiter("private, must-revalidate");
-@header("Cache-Control: private, must-revalidate"); // IE 6 Fix
-@header("Pragma: private, must-revalidate");
-@header("Date: ".gmdate("D, d M Y H:i:s")." GMT");
-@header("Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT");
-@header("Expires: ".gmdate("D, d M Y H:i:s")." GMT");
-@session_start();
+session_set_cookie_params(0, "/".$_POST['unixname']."/");
+session_cache_limiter("private, must-revalidate");
+header("Cache-Control: private, must-revalidate"); // IE 6 Fix
+header("Pragma: private, must-revalidate");
+header("Date: ".gmdate("D, d M Y H:i:s")." GMT");
+header("Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT");
+header("Expires: ".gmdate("D, d M Y H:i:s")." GMT");
+session_start();
 if (pre_strlen($_POST['AdminPasswords'])<"3") { $Error="Yes";
 echo "<br />Your password is too small."; }
 if (!isset($_POST['unixname'])) { $Error="Yes";
@@ -81,13 +81,13 @@ $GSalt = salt_hmac(); $YourSalt = salt_hmac();
 /* Fix The User Info for iDB */
 $_POST['NewBoardName'] = stripcslashes(htmlspecialchars($_POST['NewBoardName'], ENT_QUOTES, $Settings['charset']));
 //$_POST['NewBoardName'] = preg_replace("/&amp;#(x[a-f0-9]+|[0-9]+);/i", "&#$1;", $_POST['NewBoardName']);
-$_POST['NewBoardName'] = @remove_spaces($_POST['NewBoardName']);
+$_POST['NewBoardName'] = remove_spaces($_POST['NewBoardName']);
 //$_POST['AdminPassword'] = stripcslashes(htmlspecialchars($_POST['AdminPassword'], ENT_QUOTES, $Settings['charset']));
 //$_POST['AdminPassword'] = preg_replace("/\&amp;#(.*?);/is", "&#$1;", $_POST['AdminPassword']);
 $_POST['AdminUser'] = stripcslashes(htmlspecialchars($_POST['AdminUser'], ENT_QUOTES, $Settings['charset']));
 //$_POST['AdminUser'] = preg_replace("/&amp;#(x[a-f0-9]+|[0-9]+);/i", "&#$1;", $_POST['AdminUser']);
-$_POST['AdminUser'] = @remove_spaces($_POST['AdminUser']);
-$_POST['AdminEmail'] = @remove_spaces($_POST['AdminEmail']);
+$_POST['AdminUser'] = remove_spaces($_POST['AdminUser']);
+$_POST['AdminEmail'] = remove_spaces($_POST['AdminEmail']);
 if(!function_exists('hash')||!function_exists('hash_algos')) {
 if($_POST['usehashtype']!="md5"&&
    $_POST['usehashtype']!="sha1"&&
@@ -114,7 +114,7 @@ if($_POST['usehashtype']=="sha512") { $iDBHashType = "iDBH512"; }
 if ($_POST['AdminUser']=="Guest") { $Error="Yes";
 echo "<br />You can not use Guest as your name."; }
 /* We are done now with fixing the info. ^_^ */
-$mydbtest = @ConnectMysql($Settings['sqlhost'],$Settings['sqluser'],$Settings['sqlpass'],$Settings['sqldb']);
+$mydbtest = ConnectMysql($Settings['sqlhost'],$Settings['sqluser'],$Settings['sqlpass'],$Settings['sqldb']);
 $SQLCollate = "latin1_general_ci";
 $SQLCharset = "latin1"; 
 if($Settings['charset']=="ISO-8859-1") {
@@ -126,7 +126,7 @@ if($Settings['charset']=="ISO-8859-15") {
 if($Settings['charset']=="UTF-8") {
 	$SQLCollate = "utf8_unicode_ci";
 	$SQLCharset = "utf8"; }
-@mysql_set_charset($SQLCharset);
+mysql_set_charset($SQLCharset);
 if($mydbtest!==true) { $Error="Yes";
 echo "<br />".mysql_errno().": ".mysql_error()."\n"; }
 if ($Error!="Yes") {
@@ -177,7 +177,7 @@ $iDBRSVN = $VER2[2]." ".$SubVerN;
 $LastUpdateS = "Last Update: ".$iDBRDate." ".$iDBRSVN;
 $pretext = "<?php\n/*\n    This program is free software; you can redistribute it and/or modify\n    it under the terms of the GNU General Public License as published by\n    the Free Software Foundation; either version 2 of the License, or\n    (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful,\n    but WITHOUT ANY WARRANTY; without even the implied warranty of\n    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    Revised BSD License for more details.\n\nCopyright 2004-".$SVNDay[2]." Game Maker 2k - http://gamemaker2k.org/\n    Copyright 2004-".$SVNDay[2]." Game Maker 2k - http://gamemaker2k.org/\n    iDB Installer made by Game Maker 2k - http://idb.berlios.net/\n\n    \$FileInfo: settings.php & settingsbak.php - ".$LastUpdateS." - Author: cooldude2k \$\n*/\n";
 $pretext2 = array("/*   Board Setting Section Begins   */\n\$Settings = array();","/*   Board Setting Section Ends  \n     Board Info Section Begins   */\n\$SettInfo = array();","/*   Board Setting Section Ends   \n     Board Dir Section Begins   */\n\$SettDir = array();","/*   Board Dir Section Ends   */");
-$settcheck = "\$File3Name = basename(\$_SERVER['SCRIPT_NAME']);\nif (\$File3Name==\"".$_POST['tableprefix']."settings.php\"||\$File3Name==\"/".$_POST['tableprefix']."settings.php\") {\n    @header('Location: index.php');\n    exit(); }\n";
+$settcheck = "\$File3Name = basename(\$_SERVER['SCRIPT_NAME']);\nif (\$File3Name==\"".$_POST['tableprefix']."settings.php\"||\$File3Name==\"/".$_POST['tableprefix']."settings.php\") {\n    header('Location: index.php');\n    exit(); }\n";
 $BoardSettings=$pretext2[0]."\nrequire('settings.php');\n\$Settings['sqltable'] = '".$_POST['tableprefix']."';\n\$Settings['board_name'] = '".$_POST['NewBoardName']."';\n\$Settings['weburl'] = '".$_POST['WebURL']."';\n\$Settings['GuestGroup'] = 'Guest';\n\$Settings['MemberGroup'] = 'Member';\n\$Settings['ValidateGroup'] = 'Validate';\n\$Settings['AdminValidate'] = 'off';\n\$Settings['TestReferer'] = '".$_POST['TestReferer']."';\n\$Settings['DefaultTheme'] = 'iDB';\n\$Settings['DefaultTimeZone'] = '".$AdminTime."';\n\$Settings['DefaultDST'] = '".$AdminDST."';\n\$Settings['use_hashtype'] = '".$_POST['usehashtype']."';\n\$Settings['max_posts'] = '10';\n\$Settings['max_topics'] = '10';\n\$Settings['max_memlist'] = '10';\n\$Settings['max_pmlist'] = '10';\n\$Settings['hot_topic_num'] = '15';\n\$Settings['enable_rss'] = 'on';\n\$Settings['enable_search'] = 'on';\n\$Settings['board_offline'] = 'off';\n\$Settings['BoardUUID'] = '".$ServerUUID."';\n\$Settings['KarmaBoostDays'] = '".$KarmaBoostDay."';\n\$Settings['KBoostPercent'] = '6|10';\n".$pretext2[1]."\n\$SettInfo['board_name'] = '".$_POST['NewBoardName']."';\n\$SettInfo['Author'] = '".$_POST['AdminUser']."';\n\$SettInfo['Keywords'] = '".$_POST['NewBoardName'].",".$_POST['AdminUser']."';\n\$SettInfo['Description'] = '".$_POST['NewBoardName'].",".$_POST['AdminUser']."';\n?>";
 $BoardSettingsBak = $pretext.$settcheck.$BoardSettings;
 $BoardSettings = $pretext.$settcheck.$BoardSettings;
@@ -187,13 +187,13 @@ fclose($fp);
 $fp = fopen($_POST['tableprefix']."settingsbak.php","w+");
 fwrite($fp, $BoardSettingsBak);
 fclose($fp);
-@chmod($_POST['tableprefix']."settings.php",0766);
-@chmod($_POST['tableprefix']."settingsbak.php",0766);
+chmod($_POST['tableprefix']."settings.php",0766);
+chmod($_POST['tableprefix']."settingsbak.php",0766);
 if($_POST['storecookie']==true) {
-@setcookie("MemberName", $_POST['AdminUser'], time() + (7 * 86400), "/".$_POST['unixname']."/", $URLsTest['host']);
-@setcookie("UserID", 1, time() + (7 * 86400), "/".$_POST['unixname']."/", $URLsTest['host']);
-@setcookie("SessPass", $NewPassword, time() + (7 * 86400), "/".$_POST['unixname']."/", $URLsTest['host']); }
-@mysql_close(); $chdel = true;
+setcookie("MemberName", $_POST['AdminUser'], time() + (7 * 86400), "/".$_POST['unixname']."/", $URLsTest['host']);
+setcookie("UserID", 1, time() + (7 * 86400), "/".$_POST['unixname']."/", $URLsTest['host']);
+setcookie("SessPass", $NewPassword, time() + (7 * 86400), "/".$_POST['unixname']."/", $URLsTest['host']); }
+mysql_close(); $chdel = true;
 ?><span class="TableMessage">
 <br />Install Finish <a href="/<?php echo $_POST['unixname']; ?>/index.php?act=view">Click here</a> to goto board. ^_^</span>
 <?php if($chdel===false) { ?><span class="TableMessage">

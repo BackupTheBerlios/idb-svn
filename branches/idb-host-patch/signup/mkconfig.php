@@ -12,7 +12,7 @@
     Copyright 2004-2008 Game Maker 2k - http://gamemaker2k.org/
     iDB Installer made by Game Maker 2k - http://idb.berlios.net/
 
-    $FileInfo: mkconfig.php - Last Update: 11/23/2009 SVN 359 - Author: cooldude2k $
+    $FileInfo: mkconfig.php - Last Update: 11/23/2009 SVN 360 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="mkconfig.php"||$File3Name=="/mkconfig.php") {
@@ -127,7 +127,7 @@ if($Settings['charset']=="UTF-8") {
 	$SQLCollate = "utf8_unicode_ci";
 	$SQLCharset = "utf8"; }
 sql_set_charset($SQLCharset);
-if($mydbtest!==true) { $Error="Yes";
+if($mydbtest===false) { $Error="Yes";
 echo "<br />".sql_errno().": ".sql_error()."\n"; }
 if ($Error!="Yes") {
 $ServerUUID = uuid(false,true,false,"sha256",null);
@@ -187,12 +187,13 @@ fclose($fp);
 $fp = fopen($_POST['tableprefix']."settingsbak.php","w+");
 fwrite($fp, $BoardSettingsBak);
 fclose($fp);
-chmod($_POST['tableprefix']."settings.php",0766);
-chmod($_POST['tableprefix']."settingsbak.php",0766);
+@chmod($_POST['tableprefix']."settings.php",0766);
+@chmod($_POST['tableprefix']."settingsbak.php",0766);
 if($_POST['storecookie']==true) {
-setcookie("MemberName", $_POST['AdminUser'], time() + (7 * 86400), "/".$_POST['unixname']."/", $URLsTest['host']);
-setcookie("UserID", 1, time() + (7 * 86400), "/".$_POST['unixname']."/", $URLsTest['host']);
-setcookie("SessPass", $NewPassword, time() + (7 * 86400), "/".$_POST['unixname']."/", $URLsTest['host']); }
+//setcookie("MemberName", $_POST['AdminUser'], time() + (7 * 86400), "/".$_POST['unixname']."/", $URLsTest['host']);
+//setcookie("UserID", 1, time() + (7 * 86400), "/".$_POST['unixname']."/", $URLsTest['host']);
+//setcookie("SessPass", $NewPassword, time() + (7 * 86400), "/".$_POST['unixname']."/", $URLsTest['host']); 
+}
 mysql_close(); $chdel = true;
 ?><span class="TableMessage">
 <br />Install Finish <a href="/<?php echo $_POST['unixname']; ?>/index.php?act=view">Click here</a> to goto board. ^_^</span>

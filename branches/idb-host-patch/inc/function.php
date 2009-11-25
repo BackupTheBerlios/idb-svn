@@ -11,7 +11,7 @@
     Copyright 2004-2009 iDB Support - http://idb.berlios.de/
     Copyright 2004-2008 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: function.php - Last Update: 11/23/2009 SVN 358 - Author: cooldude2k $
+    $FileInfo: function.php - Last Update: 11/24/2009 SVN 363 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="function.php"||$File3Name=="/function.php") {
@@ -54,6 +54,12 @@ if(!isset($REFERERurl['host'])) { $REFERERurl['host'] = null; }
 $URL['REFERER'] = $REFERERurl['host'];
 $URL['HOST'] = $basecheck['host'];
 $REFERERurl = null;
+// Function made by Howard Yeend
+// http://php.net/manual/en/function.trigger-error.php#92016
+// http://www.puremango.co.uk/
+function output_error($message, $level=E_USER_ERROR) {
+    $caller = next(debug_backtrace());
+    trigger_error($message.' in <strong>'.$caller['function'].'</strong> called from <strong>'.$caller['file'].'</strong> on line <strong>'.$caller['line'].'</strong>'."\n<br />error handler", $level); }
 // http://www.ajaxray.com/blog/2008/02/06/php-uuid-generator-function/
 /**
   * Generates an UUID

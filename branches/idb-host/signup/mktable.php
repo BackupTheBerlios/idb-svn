@@ -20,7 +20,7 @@ if ($File3Name=="mktable.php"||$File3Name=="/mktable.php") {
 	exit(); }
 if(!isset($SetupDir['setup'])) { $SetupDir['setup'] = "setup/"; }
 if(!isset($SetupDir['convert'])) { $SetupDir['convert'] = "setup/convert/"; }
-$query=sql_pre_query("ALTER DATABASE `".$_POST['DatabaseName']."` DEFAULT CHARACTER SET ".$SQLCharset." COLLATE ".$SQLCollate.";", array(null));
+$query=sql_pre_query("ALTER DATABASE `".$Settings['sqldb']."` DEFAULT CHARACTER SET ".$SQLCharset." COLLATE ".$SQLCollate.";", array(null));
 sql_query($query);
 $query=sql_pre_query("CREATE TABLE IF NOT EXISTS `".$_POST['tableprefix']."categories` (\n".
 "  `id` int(15) NOT NULL auto_increment,\n".

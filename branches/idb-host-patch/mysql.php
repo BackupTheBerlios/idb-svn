@@ -249,7 +249,7 @@ global $sqltable;
 $data = "";
 $time = GMTimeStamp();
 $sqlr = sql_pre_query("SELECT `session_data` FROM `".$sqltable."sessions` WHERE `session_id` = '%s'", array($id,$time));
-$rs = mysql_sql_pre_query($sqlr);
+$rs = sql_query($sqlr);
 $a = sql_num_rows($rs);
 if($a > 0) {
 $row = sql_fetch_assoc($rs);
@@ -259,19 +259,19 @@ function sqlsession_write($id,$data) {
 global $sqltable;              
 $time = GMTimeStamp();
 $sqlw = sql_pre_query("REPLACE `".$sqltable."sessions` VALUES('$id','$data', $time)", array($id,$data,$time));
-$rs = mysql_sql_pre_query($sqlw);
+$rs = sql_query($sqlw);
 return true; }
 function sqlsession_destroy($id) {
 global $sqltable;
 $sqld = sql_pre_query("DELETE FROM `".$sqltable."sessions` WHERE `session_id` = '$id'", array($id));
-mysql_sql_pre_query($sqld);
+sql_query($sqld);
 return true; }
 function sqlsession_gc($maxlifetime) {
 global $sqltable;
 $time = GMTimeStamp() - $maxlifetime;
 //$sqlg = sql_pre_query('DELETE FROM `'.$sqltable.'sessions` WHERE `expires` < UNIX_TIMESTAMP();', array(null));
 $sqlg = sql_pre_query('DELETE FROM `'.$sqltable.'sessions` WHERE `expires` < %i', array($time));
-mysql_sql_pre_query($sqlg);
+sql_query($sqlg);
 return true; }
 session_set_save_handler("sqlsession_open", "sqlsession_close", "sqlsession_read", "sqlsession_write", "sqlsession_destroy", "sqlsession_gc");
 if($cookieDomain==null) {
@@ -401,7 +401,7 @@ $_SESSION['Theme'] = $_GET['theme'];
 if($_SESSION['UserGroup']!=$Settings['GuestGroup']) {
 $NewDay=GMTimeStamp();
 $qnewskin = sql_pre_query("UPDATE `".$Settings['sqltable']."members` SET `UseTheme`='%s',`LastActive`='%s' WHERE `id`=%i", array($_GET['theme'],$NewDay,$_SESSION['UserID']));
-mysql_sql_pre_query($qnewskin); }
+sql_query($qnewskin); }
 /* The file Theme Exists */ }
 else { $_GET['theme'] = $Settings['DefaultTheme']; 
 $_SESSION['Theme'] = $Settings['DefaultTheme'];
@@ -413,7 +413,7 @@ $_SESSION['Theme'] = chack_themes($_SESSION['Theme']);
 if($OldTheme!=$_SESSION['Theme']) { 
 $NewDay=GMTimeStamp();
 $qnewskin = sql_pre_query("UPDATE `".$Settings['sqltable']."members` SET `UseTheme`='%s',`LastActive`='%s' WHERE `id`=%i", array($_SESSION['Theme'],$NewDay,$_SESSION['UserID']));
-mysql_sql_pre_query($qnewskin); }
+sql_query($qnewskin); }
 $_GET['theme']=$_SESSION['Theme']; }
 if($_SESSION['Theme']==null) {
 $_SESSION['Theme']=$Settings['DefaultTheme'];

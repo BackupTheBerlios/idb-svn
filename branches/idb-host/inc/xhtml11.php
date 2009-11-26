@@ -134,7 +134,7 @@ if($Settings['idburl']!="localhost"&&$Settings['idburl']!=null) {
 <?php if($ThemeSet['CSSType']=="import") { ?>
 <style type="text/css">
 /* Import the theme css file */
-<?php echo "\n@@import url(\"".$ThemeSet['CSS']."\");\n"; ?>
+<?php echo "\n@import url(\"".$ThemeSet['CSS']."\");\n"; ?>
 </style><?php } if($ThemeSet['CSSType']=="link") { ?>
 <link rel="prefetch alternate stylesheet" href="<?php echo $ThemeSet['CSS']; ?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo $ThemeSet['CSS']; ?>" />

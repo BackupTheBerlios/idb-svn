@@ -249,14 +249,14 @@ if($Settings['showverinfo']=="on") { ?>
 <Description><?php echo $SettInfo['Description']; ?></Description>
 <InputEncoding><?php echo $Settings['charset']; ?></InputEncoding>
 <Image width="16" height="16" type="image/x-icon"><?php echo $AltBoardURL.$ThemeSet['FavIcon']; ?></Image>
-<Url type="text/html" method="POST" template="<?php echo $BoardURL.url_maker("search",$Settings['file_ext'],null,"search","search"); ?>">
+<Url type="text/html" method="POST" template="<?php echo $BoardURL.$_GET['board']."/".url_maker("search",$Settings['file_ext'],null,"search","search"); ?>">
   <Param name="act" value="topics"/>
   <Param name="search" value="{searchTerms}"/>
   <Param name="type" value="wildcard"/>
   <Param name="page" value="1"/>
 </Url>
   <!-- Renee Sabonis ^_^ -->
-<moz:SearchForm><?php echo $BoardURL.url_maker("search",$Settings['file_ext'],null,"search","search"); ?></moz:SearchForm>
+<moz:SearchForm><?php echo $BoardURL.$_GET['board']."/".url_maker("search",$Settings['file_ext'],null,"search","search"); ?></moz:SearchForm>
 </OpenSearchDescription>
 <?php } if($_GET['debug']=="true"||$_GET['debug']=="on") {
 function execution_time($starttime) {

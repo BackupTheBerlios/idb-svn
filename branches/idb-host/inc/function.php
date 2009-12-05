@@ -245,6 +245,32 @@ $outlink = "<a href=\"".$outurl."\">".$outurl."</a>"; }
 return $outlink; }
 function url2link($string) {
 return preg_replace_callback("/([a-zA-Z]+)\:\/\/([a-z0-9\-\.]+)(\:[0-9]+)?\/([A-Za-z0-9\.\/%\?\-_;]+)?(\?)?([A-Za-z0-9\.\/%&=\?\-_;]+)?(\#)?([A-Za-z0-9\.\/%&=\?\-_;]+)?/is", "pre_url2link", $string); }
+function urlcheck($string) {
+global $BoardURL;
+$retnum = preg_match_all("/([a-zA-Z]+)\:\/\/([a-z0-9\-\.]+)(\:[0-9]+)?\/([A-Za-z0-9\.\/%\?\-_;]+)?(\?)?([A-Za-z0-9\.\/%&=\?\-_;]+)?(\#)?([A-Za-z0-9\.\/%&=\?\-_;]+)?/is", $string, $urlcheck); 
+if(isset($urlcheck[0][0])) { $url = $urlcheck[0][0]; }
+if(!isset($urlcheck[0][0])) { $url = $BoardURL; }
+return $url; }
+//Check to make sure theme exists
+function chack_themes($theme) {
+global $BoardTheme;
+if(!isset($theme)) { $theme = null; }
+if(preg_match("/([a-zA-Z]+)\:/isU",$theme)) {
+	$theme = $BoardTheme; }
+require('settings.php');
+$ckskindir = dirname(realpath("settings.php"))."/".$SettDir['themes'];
+if ($handle = opendir($ckskindir)) { $dirnum = null;
+   while (false !== ($ckfile = readdir($handle))) {
+	   if ($dirnum==null) { $dirnum = 0; }
+	   if (file_exists($ckskindir.$ckfile."/info.php")) {
+		   if ($ckfile != "." && $ckfile != "..") {
+	   //include($ckskindir.$ckfile."/info.php");
+       $cktheme[$dirnum] =  $ckfile;
+	   ++$dirnum; } } }
+   closedir($handle); asort($cktheme); }
+$theme=preg_replace("/(.*?)\.\/(.*?)/", $BoardTheme, $theme);
+if(!in_array($theme,$cktheme)||strlen($theme)>26) {
+	$theme = $BoardTheme; } return $theme; }
 // Make a url with query string
 function url_maker($file="index",$ext=".php",$qvarstr=null,$qstr=";",$qsep="=",$prexqstr=null,$exqstr=null,$fixhtml=true) {
 global $sidurls, $icharset, $debug_on;

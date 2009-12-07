@@ -12,7 +12,7 @@
     Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/
     iDB Installer made by Game Maker 2k - http://idb.berlios.net/
 
-    $FileInfo: setup.php - Last Update: 12/06/2009 SVN 379 - Author: cooldude2k $
+    $FileInfo: setup.php - Last Update: 12/07/2009 SVN 380 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="setup.php"||$File3Name=="/setup.php") {
@@ -31,7 +31,7 @@ if($_POST['License']!="Agree") { echo "<span class=\"TableMessage\">";
 	echo "<br />You need to agree to the tos.<br />\n</span>\n"; $Error="Yes"; }
 $StatSQL = sql_connect_db($Settings['sqlhost'],$Settings['sqluser'],$Settings['sqlpass']);
 if(!$StatSQL) { $Error="Yes"; echo "<span class=\"TableMessage\">";
-echo "<br />".sql_errno().": ".sql_error()."<br />\n</span>\n"; }
+echo "<br />".sql_errorno($StatSQL)."<br />\n</span>\n"; }
 if ($Error!="Yes") {
 ?>
 <form style="display: inline;" method="post" id="install" action="signup.php?act=Part3">

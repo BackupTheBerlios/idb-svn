@@ -9,9 +9,9 @@
     Revised BSD License for more details.
 
     Copyright 2004-2009 iDB Support - http://idb.berlios.de/
-    Copyright 2004-2008 Game Maker 2k - http://gamemaker2k.org/
+    Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: mysql.php - Last Update: 12/07/2009 SVN 380 - Author: cooldude2k $
+    $FileInfo: sql.php - Last Update: 12/07/2009 SVN 381 - Author: cooldude2k $
 */
 /* Some ini setting changes uncomment if you need them. 
    Display PHP Errors */
@@ -29,19 +29,9 @@ set_time_limit(30); ignore_user_abort(true);
 //ini_set("session.gc_divisor", 100);
 //ini_set("session.gc_maxlifetime", 1440);
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
-if ($File3Name=="mysql.php"||$File3Name=="/mysql.php") {
+if ($File3Name=="sql.php"||$File3Name=="/sql.php") {
 	header('Location: index.php');
 	exit(); }
-// Some webhost need next line to work.
-if(!isset($_SERVER['PATH_INFO'])) {
-	$_SERVER['PATH_INFO'] = null; }
-if(!isset($_SERVER["ORIG_PATH_INFO"])) {
-	$_SERVER["ORIG_PATH_INFO"] = null; }
-if($_SERVER['PATH_INFO']==null&&$_SERVER["ORIG_PATH_INFO"]!=null) {
-	$_SERVER['PATH_INFO'] = $_SERVER["ORIG_PATH_INFO"]; }
-$idbehvar = explode('/',$_SERVER['PATH_INFO'],3);
-if(isset($_SERVER['PATH_INFO'])) {
-$_GET['board'] = $idbehvar[1]; }
 $_GET['board'] = strtolower($_GET['board']);
 $_GET['board'] = preg_replace("/[^A-Za-z0-9_$]/", "", $_GET['board']);
 $_GET['board'] = preg_replace("/(.*?)\.\/(.*?)/", "", $_GET['board']);
@@ -49,11 +39,11 @@ $_GET['board'] = preg_replace("/(.*?)\/(.*?)/", "", $_GET['board']);
 $_GET['board'] = preg_replace("/(.*?)\.(.*?)/", "", $_GET['board']);
 if(!isset($_GET['board'])) { require('settings.php');
 if(!isset($Settings['sqldb'])) {
-header("Content-Type: text/plain; charset=UTF-8");
+header("Content-Type: text/plain; charset=UTF8");
 header('Location: install.php'); }
 if(isset($Settings['sqldb'])) {
-header("Content-Type: text/plain; charset=UTF-8");
-header('Location: '.$Settings['idburl'].$Settings['root_board'].'/index.php?act=view'); }
+header("Content-Type: text/plain; charset=UTF8");
+header('Location: '.$Settings['idburl'].'index.php?board='.$Settings['root_board']); }
 die(); }
 if(!file_exists($_GET['board']."_settings.php")) { 
 require('settings.php');
@@ -74,11 +64,11 @@ header("Content-Type: text/plain; charset=UTF-8");
 header('Location: install.php'); }
 if(isset($Settings['sqldb'])) {
 header("Content-Type: text/plain; charset=UTF-8");
-header('Location: '.$Settings['idburl'].$Settings['root_board'].'/index.php?act=view'); }
+header('Location: '.$Settings['idburl'].'index.php?board='.$Settings['root_board']); }
 die(); }
 require($_GET['board'].'_settings.php');
 $Settings['bid'] = base64_encode(urlencode($Settings['idburl']));
-$Settings['ubid'] = base64_encode(urlencode($Settings['idburl']).$_GET['board']."/");
+$Settings['ubid'] = base64_encode(urlencode($Settings['idburl'])."?board=".$_GET['board']);
 if(!isset($Settings['showverinfo'])) { 
 	$Settings['showverinfo'] = "on"; }
 if(!isset($Settings['sqldb'])) {
@@ -94,17 +84,14 @@ if($Settings['idburl']=="localhost") { header("Content-Type: text/plain; charset
 echo "500 Error: URL is malformed. Try reinstalling iDB."; die(); }
 if($Settings['fixbasedir']=="on") {
 if($Settings['idburl']!=null&&$Settings['idburl']!="localhost") {
-$iHostURL = preg_replace("/\/$/","",$Settings['idburl']);
-$PathsTest = parse_url($iHostURL);
+$PathsTest = parse_url($Settings['idburl']);
 $Settings['fixbasedir'] = $PathsTest['path']."/"; 
 $Settings['fixbasedir'] = str_replace("//", "/", $Settings['fixbasedir']); } }
 if($Settings['fixcookiedir']=="on") {
 if($Settings['idburl']!=null&&$Settings['idburl']!="localhost") {
-$iHostURL = preg_replace("/\/$/","",$Settings['idburl']);
-$PathsTest = parse_url($iHostURL);
+$PathsTest = parse_url($Settings['idburl']);
 $Settings['fixcookiedir'] = $PathsTest['path']."/"; 
 $Settings['fixcookiedir'] = str_replace("//", "/", $Settings['fixcookiedir']); } }
-$Settings['fixcookiedir'] = "/".$_GET['board']."/";
 //session_save_path($SettDir['inc']."temp/");
 if(!isset($Settings['sqldb'])) { 
 if(file_exists("install.php")) { header('Location: install.php'); die(); } 
@@ -123,7 +110,7 @@ if(!isset($SettDir['admin'])) { $SettDir['admin'] = "inc/admin/"; }
 if(!isset($SettDir['mod'])) { $SettDir['mod'] = "inc/mod/"; }
 if(!isset($SettDir['themes'])) { $SettDir['themes'] = "themes/"; }
 if(!isset($Settings['use_iniset'])) { $Settings['use_iniset'] = null; }
-if(!isset($Settings['clean_ob'])) { $Settings['clean_ob'] = false; }
+if(!isset($Settings['clean_ob'])) { $Settings['clean_ob'] = "off"; }
 if(!isset($_SERVER['PATH_INFO'])) { $_SERVER['PATH_INFO'] = null; }
 if(!isset($_SERVER['HTTP_ACCEPT_ENCODING'])) { 
 	$_SERVER['HTTP_ACCEPT_ENCODING'] = null; }
@@ -144,7 +131,7 @@ require_once($SettDir['inc'].'filename.php');
 if($_GET['act']=="versioninfo") { header("Content-Type: text/plain; charset=UTF-8"); ?>
 <charset><?php echo $Settings['charset']; ?></charset> 
 <title><?php echo $Settings['board_name']; ?></title> 
-<?php echo "<name>iDBEH-Mod|".$VER2[1]."|".$VER1[0].".".$VER1[1].".".$VER1[2]."|".$VER2[2]."|".$SubVerN."</name>"; die(); }
+<?php echo "<name>iDB-Host|".$VER2[1]."|".$VER1[0].".".$VER1[1].".".$VER1[2]."|".$VER2[2]."|".$SubVerN."</name>"; die(); }
 if(!isset($Settings['use_hashtype'])) {
 	$Settings['use_hashtype'] = "sha256"; }
 if(!function_exists('hash')||!function_exists('hash_algos')) {
@@ -184,7 +171,7 @@ ini_set("default_charset",$Settings['charset']);
 $File1Name = dirname($_SERVER['SCRIPT_NAME'])."/";
 $File2Name = $_SERVER['SCRIPT_NAME'];
 $File3Name=str_replace($File1Name, null, $File2Name);
-if ($File3Name=="mysql.php"||$File3Name=="/mysql.php") {
+if ($File3Name=="sql.php"||$File3Name=="/sql.php") {
 	require($SettDir['inc'].'forbidden.php');
 	exit(); }
 //error_reporting(E_ERROR);
@@ -235,7 +222,7 @@ sql_set_charset($SQLCharset,$SQLStat);
 if($SQLStat===false) {
 header("Content-Type: text/plain; charset=".$Settings['charset']); sql_free_result($peresult);
 ob_clean(); echo "Sorry could not connect to mysql database.\nContact the board admin about error. Error log below.";
-echo "\n".sql_errorno();
+echo "\n".sql_errorno($SQLStat);
 gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
 $sqltable = $Settings['sqltable'];
 function sqlsession_open( $save_path, $session_name ) {
@@ -331,7 +318,7 @@ header("Content-Type: text/plain; charset=".$Settings['charset']); sql_free_resu
 ob_clean(); if(!isset($Settings['offline_text'])) {
 echo "Sorry the board is off line.\nIf you are a admin you can login by the admin cp."; }
 if(isset($Settings['offline_text'])) { echo $Settings['offline_text']; }
-//echo "\n".sql_errorno();
+//echo "\n".sql_errorno($SQLStat);
 gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
 $dayconv = array('second' => 1, 'minute' => 60, 'hour' => 3600, 'day' => 86400, 'week' => 604800, 'month' => 2630880, 'year' => 31570560, 'decade' => 15705600);
 //Time Zone Set

@@ -12,7 +12,7 @@
     Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/
     iDB Installer made by Game Maker 2k - http://idb.berlios.net/
 
-    $FileInfo: mkconfig.php - Last Update: 12/12/2009 SVN 398 - Author: cooldude2k $
+    $FileInfo: mkconfig.php - Last Update: 12/12/2009 SVN 401 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="mkconfig.php"||$File3Name=="/mkconfig.php") {
@@ -29,6 +29,7 @@ if($Settings['fixcookiedir']!="on"||$Settings['fixcookiedir']=="off") {
 		$cookie_dir = $this_dir; }
 if(!isset($Settings['sqldb'])) { echo "Sorry you can not signup yet."; $Error="Yes"; die(); }
 if(!isset($SetupDir['setup'])) { $SetupDir['setup'] = "signup/"; }
+if(!isset($SetupDir['sql'])) { $SetupDir['sql'] = "signup/sql/"; }
 if(!isset($SetupDir['convert'])) { $SetupDir['convert'] = null; }
 $_POST['DatabaseHost'] = $Settings['sqlhost'];
 $_POST['DatabaseUserName'] = $Settings['sqluser'];
@@ -177,11 +178,11 @@ $url_this_dir = "http://".$_SERVER['HTTP_HOST'].$this_dir."index.php?act=view";
 $YourIP = $_SERVER['REMOTE_ADDR'];
 if($Settings['sqltype']=="mysql"||
 	$Settings['sqltype']=="mysqli") {
-require($SetupDir['setup'].'mysql.php'); }
+require($SetupDir['sql'].'mysql.php'); }
 if($Settings['sqltype']=="pgsql") {
-require($SetupDir['setup'].'pgsql.php'); }
+require($SetupDir['sql'].'pgsql.php'); }
 if($Settings['sqltype']=="sqlite") {
-require($SetupDir['setup'].'sqlite.php'); }
+require($SetupDir['sql'].'sqlite.php'); }
 $CHMOD = $_SERVER['PHP_SELF'];
 $iDBRDate = $SVNDay[0]."/".$SVNDay[1]."/".$SVNDay[2];
 $iDBRSVN = $VER2[2]." ".$SubVerN;

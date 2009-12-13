@@ -11,7 +11,7 @@
     Copyright 2004-2009 iDB Support - http://idb.berlios.de/
     Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: main.php - Last Update: 12/12/2009 SVN 401 - Author: cooldude2k $
+    $FileInfo: main.php - Last Update: 12/13/2009 SVN 403 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="main.php"||$File3Name=="/main.php") {
@@ -24,11 +24,11 @@ redirect("location",$basedir.url_maker($exfile['index'],$Settings['file_ext'],"a
 ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']);
 gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
 if(!isset($_POST['update'])) { $_POST['update'] = null; }
-if($_GET['act']=="mysql"&&$GroupInfo['ViewDBInfo']!="yes") {
+if($_GET['act']=="sql"&&$GroupInfo['ViewDBInfo']!="yes") {
 redirect("location",$basedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false));
 ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']);
 gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
-if($_GET['act']=="mysql"&&$_GET['board']!=$Settings['root_board']) {
+if($_GET['act']=="sql"&&$_GET['board']!=$Settings['root_board']) {
 redirect("location",$basedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false));
 ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']);
 gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
@@ -629,31 +629,31 @@ fclose($fp);
 //	cp("settings.php","settingsbak.php");
 $fp = fopen("settingsbak.php","w+");
 fwrite($fp, $BoardSettingsBak);
-fclose($fp); } } if($_GET['act']=="mysql"&&$_POST['update']!="now"&&
+fclose($fp); } } if($_GET['act']=="sql"&&$_POST['update']!="now"&&
 	$_GET['board']==$Settings['root_board']&&$GroupInfo['ViewDBInfo']=="yes") {
 require($_GET['board'].'_settings.php'); $admincptitle = " ".$ThemeSet['TitleDivider']." Database Manager";
 ?>
 <div class="TableMenuBorder">
 <?php if($ThemeSet['TableStyle']=="div") { ?>
 <div class="TableMenuRow1">
-<?php echo $ThemeSet['TitleIcon']; ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=mysql",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">iDB Database Manager</a></div>
+<?php echo $ThemeSet['TitleIcon']; ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=sql",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">iDB Database Manager</a></div>
 <?php } ?>
 <table class="TableMenu" style="width: 100%;">
 <?php if($ThemeSet['TableStyle']=="table") { ?>
 <tr class="TableMenuRow1">
 <td class="TableMenuColumn1"><span style="float: left;">
-<?php echo $ThemeSet['TitleIcon']; ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=mysql",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">iDB Database Manager</a>
+<?php echo $ThemeSet['TitleIcon']; ?><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=sql",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">iDB Database Manager</a>
 </span><span style="float: right;">&nbsp;</span></td>
 </tr><?php } ?>
 <tr class="TableMenuRow2">
 <th class="TableMenuColumn2" style="width: 100%; text-align: left;">
-<span style="float: left;">&nbsp;Editing MySQL Settings for iDB: </span>
+<span style="float: left;">&nbsp;Editing SQL Settings for iDB: </span>
 <span style="float: right;">&nbsp;</span>
 </th>
 </tr>
 <tr class="TableMenuRow3">
 <td class="TableMenuColumn3">
-<form style="display: inline;" method="post" id="acptool" action="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=mysql",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">
+<form style="display: inline;" method="post" id="acptool" action="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=sql",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">
 <table style="text-align: left;">
 <tr style="text-align: left;">
 	<td style="width: 50%;"><label class="TextBoxLabel" for="DatabaseUserName">Insert Database User Name:</label></td>
@@ -671,7 +671,7 @@ require($_GET['board'].'_settings.php'); $admincptitle = " ".$ThemeSet['TitleDiv
 <table style="text-align: left;">
 <tr style="text-align: left;">
 <td style="width: 100%;">
-<input type="hidden" name="act" value="mysql" style="display: none;" />
+<input type="hidden" name="act" value="sql" style="display: none;" />
 <input type="hidden" name="update" value="now" style="display: none;" />
 <input type="submit" class="Button" value="Apply" name="Apply_Changes" />
 <input type="reset" value="Reset Form" class="Button" name="Reset_Form" />
@@ -684,7 +684,7 @@ require($_GET['board'].'_settings.php'); $admincptitle = " ".$ThemeSet['TitleDiv
 </tr>
 </table>
 </div>
-<?php } if($_POST['act']=="mysql"&&$_POST['update']=="now"&&$_GET['act']=="mysql"&&
+<?php } if($_POST['act']=="sql"&&$_POST['update']=="now"&&$_GET['act']=="sql"&&
 	$_SESSION['UserGroup']!=$Settings['GuestGroup']&&$GroupInfo['HasAdminCP']=="yes"&&
 	$_GET['board']==$Settings['root_board']&&$GroupInfo['ViewDBInfo']=="yes") {
 $_POST  = array_map("rsq", $_POST);

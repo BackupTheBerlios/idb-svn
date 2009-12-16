@@ -45,7 +45,7 @@ $_GET['act'] = strtolower($_GET['act']); if(isset($_TEG['part'])) {
 if($_TEG['part']<=4&&$_TEG['part']>=1) { $_GET['act'] = "Part".$_TEG['part']; } }
 if ($_GET['act']!="Part4"&&$_POST['act']!="Part4") {
 	$preact['idb'] = "installing";	}
-$SetupDir['setup'] = "setup/"; $ConvertDir['setup'] = $SetupDir['setup']; $SetupDir['sql'] = "setup/sql/"; 
+$SetupDir['setup'] = "signup/"; $ConvertDir['setup'] = $SetupDir['setup']; $SetupDir['sql'] = "signup/sql/"; 
 $SetupDir['convert'] = null; $ConvertDir['convert'] = $SetupDir['convert']; $ConvertDir['sql'] = $SetupDir['sql']; 
 $Settings['output_type'] = "html"; $Settings['html_type'] = "xhtml10";
 $Settings['board_name'] = "iDB Easy Host";

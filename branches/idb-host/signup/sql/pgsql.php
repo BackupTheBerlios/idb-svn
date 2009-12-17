@@ -187,7 +187,7 @@ $query=sql_pre_query("CREATE TABLE \"".$_POST['tableprefix']."messenger\" (\n".
 ");", array(null));
 sql_query($query,$SQLStat);
 $query = sql_pre_query("INSERT INTO \"".$_POST['tableprefix']."messenger\" (\"SenderID\", \"ReciverID\", \"GuestName\", \"MessageTitle\", \"MessageText\", \"Description\", \"DateSend\", \"Read\") VALUES\n".
-"(-1, 1, '".$iDB_Author."', 'Test', 'Welcome to your new Internet Discussion Board! :)\r\nThis is a Test PM. :P ', 'Welcome %s', %i, 0);", array($YourDate,$_POST['AdminUser']));
+"(-1, 1, '".$iDB_Author."', 'Test', 'Welcome to your new Internet Discussion Board! :)\r\nThis is a Test PM. :P ', 'Welcome %s', %i, 0);", array($_POST['AdminUser'],$YourDate));
 sql_query($query,$SQLStat);
 $query=sql_pre_query("CREATE TABLE \"".$_POST['tableprefix']."permissions\" (\n".
 "  \"id\" SERIAL PRIMARY KEY NOT NULL,\n".

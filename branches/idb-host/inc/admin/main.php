@@ -353,9 +353,6 @@ sql_free_result($mgresults);
 <form style="display: inline;" method="post" id="acptool" action="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=settings",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">
 <table style="text-align: left;">
 <tr style="text-align: left;">
-	<td style="width: 50%;"><span class="TextBoxLabel">Forum Software Version:</span></td>
-	<td style="width: 50%;"><?php echo $VerInfo['iDB_Ver_Show']; ?></td>
-</tr><tr style="text-align: left;">
 <?php if($_GET['board']==$Settings['root_board']) { ?>
 	<td style="width: 50%;"><label class="TextBoxLabel" for="BoardURL">Insert The Board URL:</label></td>
 	<td style="width: 50%;"><input type="text" class="TextBox" name="BoardURL" size="20" id="BoardURL" value="<?php echo $Settings['idburl']; ?>" /></td>
@@ -669,6 +666,9 @@ require($_GET['board'].'_settings.php'); $admincptitle = " ".$ThemeSet['TitleDiv
 <form style="display: inline;" method="post" id="acptool" action="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=sql",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">
 <table style="text-align: left;">
 <tr style="text-align: left;">
+	<td style="width: 50%;"><span class="TextBoxLabel">Forum Software Version:</span></td>
+	<td style="width: 50%;"><?php echo $VerInfo['iDB_Ver_Show']; ?></td>
+</tr><tr style="text-align: left;">
 	<td style="width: 50%;"><span class="TextBoxLabel">Database Server:</span></td>
 	<td style="width: 50%;"><?php echo $DBType['Server']; ?></td>
 </tr><?php if($Settings['sqltype']=="mysql"||

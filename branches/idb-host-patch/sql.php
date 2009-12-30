@@ -11,7 +11,7 @@
     Copyright 2004-2009 iDB Support - http://idb.berlios.de/
     Copyright 2004-2008 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: sql.php - Last Update: 12/19/2009 SVN 427 - Author: cooldude2k $
+    $FileInfo: sql.php - Last Update: 12/29/2009 SVN 435 - Author: cooldude2k $
 */
 /* Some ini setting changes uncomment if you need them. 
    Display PHP Errors */
@@ -81,6 +81,10 @@ header("Content-Type: text/plain; charset=UTF-8");
 header('Location: '.$Settings['idburl'].$Settings['root_board'].'/index.php?act=view'); }
 die(); }
 require($_GET['board'].'_settings.php');
+if(!isset($Settings['idburl'])) { $Settings['idburl'] = null; }
+if(!isset($Settings['fixbasedir'])) { $Settings['fixbasedir'] = null; }
+if(!isset($Settings['fixpathinfo'])) { $Settings['fixpathinfo'] = null; }
+if(!isset($Settings['fixcookiedir'])) { $Settings['fixcookiedir'] = null; }
 $Settings['bid'] = base64_encode(urlencode($Settings['idburl']));
 $Settings['ubid'] = base64_encode(urlencode($Settings['idburl']).$_GET['board']."/");
 if(!isset($Settings['showverinfo'])) { 

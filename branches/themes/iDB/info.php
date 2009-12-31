@@ -16,9 +16,9 @@
 $ThemeInfo = array();
 $ThemeInfo['ThemeName'] = "iDB Theme";
 $ThemeInfo['ThemeMaker'] = "Kazuki";
-$ThemeInfo['ThemeVersion'] = "0.2.5";
+$ThemeInfo['ThemeVersion'] = "0.2.4";
 $ThemeInfo['ThemeVersionType'] = "Pre-Alpha";
-$ThemeInfo['ThemeSubVersion'] = "SVN 222";
+$ThemeInfo['ThemeSubVersion'] = "SVN 202";
 $ThemeInfo['MakerURL'] = "http://upload.idb.s1.jcink.com/";
 $ThemeInfo['CopyRight'] = $ThemeInfo['ThemeName']." was made by <a href=\"".$ThemeInfo['MakerURL']."\" title=\"".$ThemeInfo['ThemeMaker']."\">".$ThemeInfo['ThemeMaker']."</a>";
 ?>

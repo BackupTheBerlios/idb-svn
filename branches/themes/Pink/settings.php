@@ -55,6 +55,7 @@ $ThemeSet['LineDivider'] = " | ";
 $ThemeSet['ButtonDivider'] = " &nbsp; ";
 $ThemeSet['LineDividerTopic'] = " | ";
 $ThemeSet['TitleDivider'] = "-&gt;";
+$ThemeSet['ForumStyle'] = 1;
 $ThemeSet['ForumIcon'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"Forum\"> (F) </div>";
 $ThemeSet['SubForumIcon'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"SubForum\"> {SF} </div>";
 $ThemeSet['RedirectIcon'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"Redirect Forum\"> [RF] </div>";

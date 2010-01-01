@@ -8,11 +8,11 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     Revised BSD License for more details.
 
-    Copyright 2004-2009 iDB Support - http://idb.berlios.de/
-    Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/
+    Copyright 2004-2010 iDB Support - http://idb.berlios.de/
+    Copyright 2004-2010 Game Maker 2k - http://gamemaker2k.org/
     iDB Installer made by Game Maker 2k - http://idb.berlios.net/
 
-    $FileInfo: mkconfig.php - Last Update: 12/31/2009 SVN 437 - Author: cooldude2k $
+    $FileInfo: mkconfig.php - Last Update: 01/01/2010 SVN 438 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="mkconfig.php"||$File3Name=="/mkconfig.php") {
@@ -52,7 +52,10 @@ if (!is_writable($checkfile)) {
    @chmod("settingsbak.php",0766);
 } else { /* settings.php is writable install iDB. ^_^ */ }
 session_name($_POST['tableprefix']."sess");
+if(preg_match("/\/$/", $_POST['BoardURL'])<1) { 
+	$_POST['BoardURL'] = $_POST['BoardURL']."/"; } 
 $URLsTest = parse_url($_POST['BoardURL']);
+$this_dir = $URLsTest['path'];
 session_set_cookie_params(0, $this_dir, $URLsTest['host']);
 session_cache_limiter("private, must-revalidate");
 header("Cache-Control: private, must-revalidate"); // IE 6 Fix
@@ -196,7 +199,7 @@ fclose($fp);
 @chmod($_POST['tableprefix']."settings.php",0766);
 @chmod($_POST['tableprefix']."settingsbak.php",0766);
 unset($BoardSettings); unset($BoardSettingsBak);
-$pretext = "<?php\n/*\n    This program is free software; you can redistribute it and/or modify\n    it under the terms of the GNU General Public License as published by\n    the Free Software Foundation; either version 2 of the License, or\n    (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful,\n    but WITHOUT ANY WARRANTY; without even the implied warranty of\n    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    Revised BSD License for more details.\n\n    Copyright 2004-2009 iDB Support - http://idb.berlios.de/\n    Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/\n    iDB Installer made by Game Maker 2k - http://idb.berlios.net/\n\n    \$FileInfo: settings.php & settingsbak.php - Last Update: 12/31/2009 SVN 437 - Author: cooldude2k \$\n*/\n";
+$pretext = "<?php\n/*\n    This program is free software; you can redistribute it and/or modify\n    it under the terms of the GNU General Public License as published by\n    the Free Software Foundation; either version 2 of the License, or\n    (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful,\n    but WITHOUT ANY WARRANTY; without even the implied warranty of\n    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    Revised BSD License for more details.\n\n    Copyright 2004-2010 iDB Support - http://idb.berlios.de/\n    Copyright 2004-".$SVNDay[2]." Game Maker 2k - http://gamemaker2k.org/\n    iDB Installer made by Game Maker 2k - http://idb.berlios.net/\n\n    \$FileInfo: settings.php & settingsbak.php - ".$LastUpdateS." - Author: cooldude2k \$\n*/\n";
 $pretext2 = array("/*   Board Setting Section Begins   */\n\$Settings = array();","/*   Board Setting Section Ends  \n     Board Info Section Begins   */\n\$SettInfo = array();","/*   Board Setting Section Ends   \n     Board Dir Section Begins   */\n\$SettDir = array();","/*   Board Dir Section Ends   */");
 $settcheck = "\$File3Name = basename(\$_SERVER['SCRIPT_NAME']);\nif (\$File3Name==\"settings.php\"||\$File3Name==\"/settings.php\"||\n    \$File3Name==\"settingsbak.php\"||\$File3Name==\"/settingsbak.php\") {\n    header('Location: index.php');\n    exit(); }\n";
 $BoardSettings=$pretext2[0]."\n\$Settings['root_board'] = '".$_POST['unixname']."';\n\$Settings['sqlhost'] = '".$_POST['DatabaseHost']."';\n\$Settings['sqldb'] = '".$_POST['DatabaseName']."';\n\$Settings['sqluser'] = '".$_POST['DatabaseUserName']."';\n\$Settings['sqlpass'] = '".$_POST['DatabasePassword']."';\n\$Settings['sqltype'] = '".$_POST['DatabaseType']."';\n\$Settings['idbdir'] = '".$idbdir."';\n\$Settings['idburl'] = '".$_POST['BoardURL']."';\n\$Settings['enable_https'] = 'off';\n\$Settings['use_gzip'] = '".$_POST['GZip']."';\n\$Settings['html_type'] = '".$_POST['HTMLType']."';\n\$Settings['html_level'] = '".$_POST['HTMLLevel']."';\n\$Settings['output_type'] = '".$_POST['OutPutType']."';\n\$Settings['charset'] = '".$_POST['charset']."';\n\$Settings['add_power_by'] = 'off';\n\$Settings['send_pagesize'] = 'off';\n".$pretext2[2]."\n\$SettDir['maindir'] = '".$idbdir."';\n\$SettDir['inc'] = 'inc/';\n\$SettDir['misc'] = 'inc/misc/';\n\$SettDir['sql'] = 'inc/misc/sql/';\n\$SettDir['admin'] = 'inc/admin/';\n\$SettDir['sqldumper'] = 'inc/admin/sqldumper/';\n\$SettDir['mod'] = 'inc/mod/';\n\$SettDir['themes'] = 'themes/';\n\$Settings['qstr'] = '&';\n\$Settings['qsep'] = '=';\n\$Settings['file_ext'] = '.php';\n\$Settings['rss_ext'] = '.php';\n\$Settings['js_ext'] = '.js';\n\$Settings['showverinfo'] = 'on';\n\$Settings['vercheck'] = 2;\n\$Settings['fixpathinfo'] = 'off';\n\$Settings['fixbasedir'] = 'off';\n\$Settings['fixcookiedir'] = 'off';\n\$Settings['enable_pathinfo'] = 'off';\n\$Settings['sessionid_in_urls'] = 'off';\n\$Settings['rssurl'] = 'off';\n".$pretext2[1]."\n?>";
@@ -209,11 +212,15 @@ $fp = fopen("settingsbak.php","w+");
 fwrite($fp, $BoardSettingsBak);
 fclose($fp);
 if($_POST['storecookie']=="true") {
-//setcookie("MemberName", $_POST['AdminUser'], time() + (7 * 86400), $this_dir, $URLsTest['host']);
-//setcookie("UserID", 1, time() + (7 * 86400), $this_dir, $URLsTest['host']);
-//setcookie("SessPass", $NewPassword, time() + (7 * 86400), $this_dir, $URLsTest['host']); 
-}
-/*mysql_close();*/ $chdel = true;
+if($URLsTest['host']!="localhost") {
+setcookie("MemberName", $_POST['AdminUser'], time() + (7 * 86400), $this_dir, $URLsTest['host']);
+setcookie("UserID", 1, time() + (7 * 86400), $this_dir, $URLsTest['host']);
+setcookie("SessPass", $NewPassword, time() + (7 * 86400), $this_dir, $URLsTest['host']); }
+if($URLsTest['host']=="localhost") {
+setcookie("MemberName", $_POST['AdminUser'], time() + (7 * 86400), $this_dir, false);
+setcookie("UserID", 1, time() + (7 * 86400), $this_dir, false);
+setcookie("SessPass", $NewPassword, time() + (7 * 86400), $this_dir, false); } }
+$chdel = true;
 if($Error!="Yes") {
 if($_POST['unlink']=="true") {
 $chdel1 = @unlink($SetupDir['setup'].'presetup.php'); $chdel2 = @unlink($SetupDir['setup'].'setup.php');

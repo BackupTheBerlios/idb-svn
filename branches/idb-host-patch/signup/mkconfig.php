@@ -8,11 +8,11 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     Revised BSD License for more details.
 
-    Copyright 2004-2009 iDB Support - http://idb.berlios.de/
+    Copyright 2004-2010 iDB Support - http://idb.berlios.de/
     Copyright 2004-2008 Game Maker 2k - http://gamemaker2k.org/
     iDB Installer made by Game Maker 2k - http://idb.berlios.net/
 
-    $FileInfo: mkconfig.php - Last Update: 12/19/2009 SVN 431 - Author: cooldude2k $
+    $FileInfo: mkconfig.php - Last Update: 01/01/2010 SVN 438 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="mkconfig.php"||$File3Name=="/mkconfig.php") {
@@ -27,6 +27,10 @@ if($Settings['fixcookiedir']!=null&&$Settings['fixcookiedir']!="off") {
 		$cookie_dir = $Settings['fixcookiedir']; }
 if($Settings['fixcookiedir']!="on"||$Settings['fixcookiedir']=="off") {
 		$cookie_dir = $this_dir; }
+if(preg_match("/\/$/", $Settings['idburl'])<1) { 
+	$Settings['idburl'] = $Settings['idburl']."/"; } 
+$URLsTest = parse_url($Settings['idburl']);
+$this_dir = $URLsTest['path'].$_POST['unixname']."/";
 if(!isset($Settings['sqldb'])) { echo "Sorry you can not signup yet."; $Error="Yes"; die(); }
 if(!isset($SetupDir['setup'])) { $SetupDir['setup'] = "signup/"; }
 if(!isset($SetupDir['sql'])) { $SetupDir['sql'] = "signup/sql/"; }
@@ -54,7 +58,7 @@ if($_POST['sessprefix']==null||$_POST['sessprefix']=="_") { $_POST['sessprefix']
 $checkfile="settings.php";
 session_name($_POST['tableprefix']."sess");
 $HTTPsTest = parse_url($Settings['idburl']);
-session_set_cookie_params(0, "/".$_POST['unixname']."/");
+session_set_cookie_params(0, $this_dir);
 session_cache_limiter("private, must-revalidate");
 header("Cache-Control: private, must-revalidate"); // IE 6 Fix
 header("Pragma: private, must-revalidate");
@@ -158,7 +162,7 @@ $EventYearEnd = GMTimeChange("Y",$YourDateEnd,0,0,"off");
 $KarmaBoostDay = $EventMonth.$EventDay;
 $NewPassword = b64e_hmac($_POST['AdminPasswords'],$YourDate,$YourSalt,"sha256");
 //$Name = stripcslashes(htmlspecialchars($AdminUser, ENT_QUOTES, $Settings['charset']));
-//$YourWebsite = "http://".$_SERVER['HTTP_HOST']."/".$_POST['unixname']."/"."index.php?act=view";
+//$YourWebsite = "http://".$_SERVER['HTTP_HOST'].$this_dir."index.php?act=view";
 $YourWebsite = $_POST['WebURL'];
 $UserIP = $_SERVER['REMOTE_ADDR'];
 $PostCount = 2;
@@ -173,7 +177,7 @@ if($csrand==1) { $gpass .= chr(rand(48,57)); }
 if($csrand==2) { $gpass .= chr(rand(65,90)); }
 if($csrand==3) { $gpass .= chr(rand(97,122)); }
 ++$i; } $GuestPassword = b64e_hmac($gpass,$YourDate,$GSalt,"sha256");
-$url_this_dir = "http://".$_SERVER['HTTP_HOST']."/".$_POST['unixname']."/"."index.php?act=view";
+$url_this_dir = "http://".$_SERVER['HTTP_HOST'].$this_dir."index.php?act=view";
 $YourIP = $_SERVER['REMOTE_ADDR'];
 if($Settings['sqltype']=="mysql"||
 	$Settings['sqltype']=="mysqli") {
@@ -200,12 +204,16 @@ fwrite($fp, $BoardSettingsBak);
 fclose($fp);
 @chmod($_POST['tableprefix']."settings.php",0766);
 @chmod($_POST['tableprefix']."settingsbak.php",0766);
-if($_POST['storecookie']==true) {
-//setcookie("MemberName", $_POST['AdminUser'], time() + (7 * 86400), "/".$_POST['unixname']."/", $URLsTest['host']);
-//setcookie("UserID", 1, time() + (7 * 86400), "/".$_POST['unixname']."/", $URLsTest['host']);
-//setcookie("SessPass", $NewPassword, time() + (7 * 86400), "/".$_POST['unixname']."/", $URLsTest['host']); 
-}
-/*mysql_close();*/ $chdel = true;
+if($_POST['storecookie']=="true") {
+if($URLsTest['host']!="localhost") {
+setcookie("MemberName", $_POST['AdminUser'], time() + (7 * 86400), $this_dir, $URLsTest['host']);
+setcookie("UserID", 1, time() + (7 * 86400), $this_dir, $URLsTest['host']);
+setcookie("SessPass", $NewPassword, time() + (7 * 86400), $this_dir, $URLsTest['host']); }
+if($URLsTest['host']=="localhost") {
+setcookie("MemberName", $_POST['AdminUser'], time() + (7 * 86400), $this_dir, false);
+setcookie("UserID", 1, time() + (7 * 86400), $this_dir, false);
+setcookie("SessPass", $NewPassword, time() + (7 * 86400), $this_dir, false); } }
+$chdel = true;
 ?><span class="TableMessage">
 <br />Install Finish <a href="/<?php echo $_POST['unixname']; ?>/index.php?act=view">Click here</a> to goto board. ^_^</span>
 <?php if($chdel===false) { ?><span class="TableMessage">

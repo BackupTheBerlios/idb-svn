@@ -34,6 +34,7 @@ if(!isset($SetupDir['convert'])) { $SetupDir['convert'] = null; }
 $_POST['DatabaseHost'] = $Settings['sqlhost'];
 $_POST['DatabaseUserName'] = $Settings['sqluser'];
 $_POST['DatabasePassword'] = $Settings['sqlpass'];
+$_POST['DatabaseName'] = $Settings['sqldb'];
 if(!isset($_POST['DefaultTheme'])) { $_POST['DefaultTheme'] = "iDB"; }
 if(isset($_POST['DefaultTheme'])) { 
 	$_POST['DefaultTheme'] = chack_themes($_POST['DefaultTheme']); }
@@ -207,7 +208,7 @@ if($_POST['storecookie']=="true") {
 //setcookie("UserID", 1, time() + (7 * 86400), $cookie_dir, $URLsTest['host']);
 //setcookie("SessPass", $NewPassword, time() + (7 * 86400), $cookie_dir, $URLsTest['host']); 
 }
-mysql_close(); $chdel = true;
+/*mysql_close();*/ $chdel = true;
 ?><span class="TableMessage">
 <br />Install Finish <a href="index.php?act=view&amp;board=<?php echo $_POST['unixname']; ?>">Click here</a> to goto board. ^_^</span>
 <?php if($chdel===false) { ?><span class="TableMessage">

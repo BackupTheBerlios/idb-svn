@@ -253,6 +253,7 @@ if(!isset($urlcheck[0][0])) { $url = $BoardURL; }
 return $url; }
 //Check to make sure theme exists
 $BoardTheme = $Settings['DefaultTheme'];
+$ThemeDir = $SettDir['themes'];
 function chack_themes($theme) {
 global $BoardTheme,$ThemeDir;
 if(!isset($theme)) { $theme = null; }

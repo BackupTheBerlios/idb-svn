@@ -8,11 +8,11 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     Revised BSD License for more details.
 
-    Copyright 2004-2009 iDB Support - http://idb.berlios.de/
-    Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/
+    Copyright 2004-2010 iDB Support - http://idb.berlios.de/
+    Copyright 2004-2010 Game Maker 2k - http://gamemaker2k.org/
     iDB Installer made by Game Maker 2k - http://idb.berlios.net/
 
-    $FileInfo: setup.php - Last Update: 01/19/2010 SVN 439 - Author: cooldude2k $
+    $FileInfo: setup.php - Last Update: 01/26/2010 SVN 452 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="setup.php"||$File3Name=="/setup.php") {
@@ -128,7 +128,7 @@ echo "<option value=\"".$showmin."\">0:".$showmin." minutes</option>\n"; }
 <option selected="selected" value="on">on</option><?php echo "\n" ?><option value="off">off</option>
 <?php } echo "\n" ?></select></td>
 </tr><tr>
-	<td style="width: 50%;"><label class="TextBoxLabel" for="TestReferer">Test Referering URL with host name:</label></td>
+	<td style="width: 50%;"><label class="TextBoxLabel" for="TestReferer">Test Referering URL:</label></td>
 	<td style="width: 50%;"><select id="TestReferer" name="TestReferer" class="TextBox">
 <option selected="selected" value="off">off</option>
 <option value="on">on</option>

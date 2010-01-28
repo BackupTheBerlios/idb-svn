@@ -8,10 +8,10 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     Revised BSD License for more details.
 
-    Copyright 2004-2009 iDB Support - http://idb.berlios.de/
-    Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/
+    Copyright 2004-2010 iDB Support - http://idb.berlios.de/
+    Copyright 2004-2010 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: admin.php - Last Update: 12/19/2009 SVN 429 - Author: cooldude2k $
+    $FileInfo: admin.php - Last Update: 01/27/2010 SVN 454 - Author: cooldude2k $
 */
 if(ini_get("register_globals")) {
 require_once('inc/misc/killglobals.php'); }
@@ -49,8 +49,12 @@ if($_GET['act']=="vercheck"&&$GroupInfo['ViewDBInfo']=="yes") {
 	if($Settings['vercheck']!=1&&$Settings['vercheck']!=2) {
 	$Settings['vercheck'] = 1; }
 	if($Settings['vercheck']===1) {
+	$addredirect = null;
+	if(isset($_GET['redirect'])) { $addredirect = "&redirect=".urlencode($_GET['redirect']); }
 	header("Location: ".$VerCheckURL."&name=".urlencode($iDBVerName)); }
 	if($Settings['vercheck']===2) {
+	$addredirect = null;
+	if(isset($_GET['redirect'])) { $addredirect = "&redirect=".urlencode($_GET['redirect']); }
 	header("Location: ".$VerCheckURL."&bid=".$Settings['bid']."&vercheck=newtype"); } }
 if($_GET['act']=="view")
 { $AdminMenu = "menu";

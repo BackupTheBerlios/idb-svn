@@ -138,7 +138,7 @@ sql_set_charset($SQLCharset,$SQLStat);
 if($SQLStat===false) { $Error="Yes";
 echo "<br />".sql_errorno($SQLStat)."\n"; }
 if ($Error!="Yes") {
-$ServerUUID = uuid(false,true,false,"sha256",null);
+$ServerUUID = uuid(false,true,false,$_POST['usehashtype'],null);
 if(!is_numeric($_POST['YourOffSet'])) { $_POST['YourOffSet'] = "0"; }
 if($_POST['YourOffSet']>12) { $_POST['YourOffSet'] = "12"; }
 if($_POST['YourOffSet']<-12) { $_POST['YourOffSet'] = "-12"; }

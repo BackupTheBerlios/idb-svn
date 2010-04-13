@@ -11,7 +11,7 @@
     Copyright 2004-2010 iDB Support - http://idb.berlios.de/
     Copyright 2004-2010 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: sql.php - Last Update: 04/10/2010 SVN 465 - Author: cooldude2k $
+    $FileInfo: sql.php - Last Update: 04/12/2010 SVN 466 - Author: cooldude2k $
 */
 /* Some ini setting changes uncomment if you need them. 
    Display PHP Errors */
@@ -41,7 +41,9 @@ $_GET['board'] = preg_replace("/[^A-Za-z0-9_$]/", "", $_GET['board']);
 $_GET['board'] = preg_replace("/(.*?)\.\/(.*?)/", "", $_GET['board']);
 $_GET['board'] = preg_replace("/(.*?)\/(.*?)/", "", $_GET['board']);
 $_GET['board'] = preg_replace("/(.*?)\.(.*?)/", "", $_GET['board']);
-if(!isset($_GET['board'])) { require('settings.php');
+if(!isset($_GET['board'])) { 
+if(file_exists('settings.php')) {
+	require_once('settings.php'); }
 if(!isset($Settings['sqldb'])) {
 header("Content-Type: text/plain; charset=UTF8");
 header('Location: install.php'); }
@@ -50,7 +52,8 @@ header("Content-Type: text/plain; charset=UTF8");
 header('Location: '.$Settings['idburl'].'index.php?board='.$Settings['root_board']); }
 die(); }
 if(!file_exists($_GET['board']."_settings.php")) { 
-require('settings.php');
+if(file_exists('settings.php')) {
+	require_once('settings.php'); }
 if(!isset($Settings['charset'])) {
 	$Settings['charset'] = "ISO-8859-15"; }
 if(isset($Settings['charset'])) {
@@ -70,7 +73,7 @@ if(isset($Settings['sqldb'])) {
 header("Content-Type: text/plain; charset=UTF-8");
 header('Location: '.$Settings['idburl'].'index.php?board='.$Settings['root_board']); }
 die(); }
-require($_GET['board'].'_settings.php');
+require_once($_GET['board'].'_settings.php');
 if(!isset($Settings['idburl'])) { $Settings['idburl'] = null; }
 if(!isset($Settings['fixbasedir'])) { $Settings['fixbasedir'] = null; }
 if(!isset($Settings['fixpathinfo'])) { $Settings['fixpathinfo'] = null; }

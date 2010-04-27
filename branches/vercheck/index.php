@@ -13,8 +13,10 @@
 
     $FileInfo: index.php - Last Update: 4/27/2009 Ver 2.5 - Author: cooldude2k $
 */
+/* Change to your url. */
 @ob_start(); 
 require_once('inc/killglobals.php');
+$site_url = "http://localhost/vercheck/";
 if(!isset($_GET['redirect'])) { $_GET['redirect'] = "off"; }
     /**
      * Returns true if $string is valid UTF-8 and false otherwise.
@@ -581,11 +583,11 @@ $VersionXML .= "<relnum>".$vercheck['ver']."</relnum>\n";
 $VersionXML .= "<subtype>".$vercheck['subtype']."</subtype>\n";
 $VersionXML .= "<relsvnum>".$vercheck['subver']."</relsvnum>\n";
 if($FullRelNum<$MyFullRelNum) {
-$VersionXML .= "<results><![CDATA[\n<img src=\"http://idb.berlios.de/inc/logos/vercheck/old.png\" alt=\"You seem to be using a old version.\" title=\"You seem to be using a old version.\" />&nbsp;Warning: A new version is available. <a href=\"http://idb.berlios.de/?act=download\">Click Here</a>\n]]></results>\n"; }
+$VersionXML .= "<results><![CDATA[\n<img src=\"".$site_url."inc/pics/old.png\" alt=\"You seem to be using a old version.\" title=\"You seem to be using a old version.\" />&nbsp;Warning: A new version is available. <a href=\"http://idb.berlios.de/?act=download\">Click Here</a>\n]]></results>\n"; }
 if($FullRelNum==$MyFullRelNum) {
-$VersionXML .= "<results><![CDATA[\n<img src=\"http://idb.berlios.de/inc/logos/vercheck/new.png\" alt=\"Congratulations you have the newest version. ^_^ \" title=\"Congratulations you have the newest version. ^_^ \" />&nbsp;Congratulates: You have the latest version.\n]]></results>\n"; }
+$VersionXML .= "<results><![CDATA[\n<img src=\"".$site_url."inc/pics/new.png\" alt=\"Congratulations you have the newest version. ^_^ \" title=\"Congratulations you have the newest version. ^_^ \" />&nbsp;Congratulates: You have the latest version.\n]]></results>\n"; }
 if($FullRelNum>$MyFullRelNum) {
-$VersionXML .= "<results><![CDATA[\n<img src=\"http://idb.berlios.de/inc/logos/vercheck/beta.png\" alt=\"You seem to be using a nightly version.\" title=\"You seem to be using a nightly version.\" />&nbsp;Warning: You seem to be using a nightly version. <a href=\"http://idb.berlios.de/?act=download\">Click Here</a> for latest version.\n]]></results>\n"; }
+$VersionXML .= "<results><![CDATA[\n<img src=\"".$site_url."inc/pics/beta.png\" alt=\"You seem to be using a nightly version.\" title=\"You seem to be using a nightly version.\" />&nbsp;Warning: You seem to be using a nightly version. <a href=\"http://idb.berlios.de/?act=download\">Click Here</a> for latest version.\n]]></results>\n"; }
 $VersionXML .= "</version>\n\n";
 $VersionXML .= "</versioninfo>"; 
 echo $VersionXML; }
@@ -597,20 +599,20 @@ $VersionJS .= "var yourverinfo = 'Your Version: ".$_GET['name']." ".$_GET['relty
 $VersionJS .= "var myverinfo = 'Current Version: ".$vercheck['name']." ".$vercheck['reltype']." ".$vercheck['ver']." ".$vercheck['subtype']." ".$vercheck['subver']."<br />';\n";
 $VersionJS .= "var ourverinfo = yourverinfo+'<br />'+myverinfo;\n";
 if($FullRelNum<$MyFullRelNum) {
-$VersionJS .= "document.getElementById('iverinfo').innerHTML = vercheckinfo+'<img src=\"http://idb.berlios.de/inc/logos/vercheck/old.png\" alt=\"You seem to be using a old version.\" title=\"You seem to be using a old version.\" />&#160;Warning: A new version is available. <a href=\"http://idb.berlios.de/?act=download\">Click Here</a><br />'+ourverinfo+'<br />';"; }
+$VersionJS .= "document.getElementById('iverinfo').innerHTML = vercheckinfo+'<img src=\"".$site_url."inc/pics/old.png\" alt=\"You seem to be using a old version.\" title=\"You seem to be using a old version.\" />&#160;Warning: A new version is available. <a href=\"http://idb.berlios.de/?act=download\">Click Here</a><br />'+ourverinfo+'<br />';"; }
 if($FullRelNum==$MyFullRelNum) {
-$VersionJS .= "document.getElementById('iverinfo').innerHTML = vercheckinfo+'<img src=\"http://idb.berlios.de/inc/logos/vercheck/new.png\" alt=\"Congratulations you have the newest version. ^_^ \" title=\"Congratulations you have the newest version. ^_^ \" />&#160;Congratulates: You have the latest version.<br />'+ourverinfo+'<br />';"; }
+$VersionJS .= "document.getElementById('iverinfo').innerHTML = vercheckinfo+'<img src=\"".$site_url."inc/pics/new.png\" alt=\"Congratulations you have the newest version. ^_^ \" title=\"Congratulations you have the newest version. ^_^ \" />&#160;Congratulates: You have the latest version.<br />'+ourverinfo+'<br />';"; }
 if($FullRelNum>$MyFullRelNum) {
-$VersionJS .= "document.getElementById('iverinfo').innerHTML = vercheckinfo+'<img src=\"http://idb.berlios.de/inc/logos/vercheck/beta.png\" alt=\"You seem to be using a nightly version.\" title=\"You seem to be using a nightly version.\" />&#160;Warning: You seem to be using a nightly version. <br /><a href=\"http://idb.berlios.de/?act=download\">Click Here</a> for latest version.<br />'+ourverinfo+'<br />';"; }
+$VersionJS .= "document.getElementById('iverinfo').innerHTML = vercheckinfo+'<img src=\"".$site_url."inc/pics/beta.png\" alt=\"You seem to be using a nightly version.\" title=\"You seem to be using a nightly version.\" />&#160;Warning: You seem to be using a nightly version. <br /><a href=\"http://idb.berlios.de/?act=download\">Click Here</a> for latest version.<br />'+ourverinfo+'<br />';"; }
 $VersionJS .= "\n} ";
 echo $VersionJS; }
 if($_GET['redirect']=="on") { 
 if($FullRelNum<$MyFullRelNum) {
-redirect("location","old.png",FALSE,"http://idb.berlios.de/inc/logos/vercheck/",FALSE); }
+redirect("location","old.png",FALSE,$site_url."inc/pics/",FALSE); }
 if($FullRelNum==$MyFullRelNum) {
-redirect("location","new.png",FALSE,"http://idb.berlios.de/inc/logos/vercheck/",FALSE); }
+redirect("location","new.png",FALSE,$site_url."inc/pics/",FALSE); }
 if($FullRelNum>$MyFullRelNum) {
-redirect("location","beta.png",FALSE,"http://idb.berlios.de/inc/logos/vercheck/",FALSE); } }
+redirect("location","beta.png",FALSE,$site_url."inc/pics/",FALSE); } }
 if($_GET['redirect']!="on"&&$_GET['redirect']!="xml"&&$_GET['redirect']!="js") {
 if($FullRelNum<$MyFullRelNum) { echo "You seem to be using a old version.\n<br />Goto link below to download new version.\n<br />".$DownloadLink; }
 if($FullRelNum==$MyFullRelNum) { echo "Congratulations you have the newest version. ^_^ \n<br />You dont need to do anything for now."; }

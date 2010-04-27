@@ -93,22 +93,6 @@ if(!isset($_GET['name'])&&!isset($_GET['bid'])) {
 </div>
 </form>
 
-<div style="text-align: center; font-family: Sans-Serif;" id="berlioslogo">
-<a href="http://developer.berlios.de/" title="BerliOS Developer Logo" onclick="window.open(this.href); return false;">
-<img src="http://developer.berlios.de/bslogo.php?group_id=6135" alt="BerliOS Developer Logo" title="BerliOS Developer Logo" style="border: 0px; height: 32px; width: 124px;" /></a>
-<a href="http://sourceforge.net/" title="SourceForge.NET Logo" onclick="window.open(this.href); return false;">
-<img title="SourceForge.NET Logo" alt="SourceForge Logo" src="http://sourceforge.net/sflogo.php?group_id=195913&amp;type=2" style="border: 0px; height: 32px; width: 124px;" /></a><br />
-<a href="http://sourceforge.jp/" title="SourceForge.JP Logo" onclick="window.open(this.href); return false;">
-<img title="SourceForge.JP Logo" alt="SourceForge Logo" src="http://sourceforge.jp/sflogo.php?group_id=4684&amp;type=5" style="border: 0px; height: 32px; width: 124px;" /></a>
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-1754608-1");
-pageTracker._trackPageview();
-} catch(err) {}</script></div>
 <!-- Stephanie Braun o_O -->
 </body>
 </html>
@@ -641,22 +625,7 @@ echo "\n<br />Checking board: <a href=\"".$_GET['bid']."\" title=\"".$GetTitle."
 echo "</div>"; } }
 if($_GET['redirect']!="on"&&$_GET['redirect']!="xml"&&$_GET['redirect']!="js") {
 ?>
-<div style="text-align: center; font-family: Sans-Serif;" id="berlioslogo">
-<a href="http://developer.berlios.de/" title="BerliOS Developer Logo" onclick="window.open(this.href); return false;">
-<img src="http://developer.berlios.de/bslogo.php?group_id=6135" alt="BerliOS Developer Logo" title="BerliOS Developer Logo" style="border: 0px; height: 32px; width: 124px;" /></a>
-<a href="http://sourceforge.net/" title="SourceForge.NET Logo" onclick="window.open(this.href); return false;">
-<img title="SourceForge.NET Logo" alt="SourceForge Logo" src="http://sourceforge.net/sflogo.php?group_id=195913&amp;type=2" style="border: 0px; height: 32px; width: 124px;" /></a><br />
-<a href="http://sourceforge.jp/" title="SourceForge.JP Logo" onclick="window.open(this.href); return false;">
-<img title="SourceForge.JP Logo" alt="SourceForge Logo" src="http://sourceforge.jp/sflogo.php?group_id=4684&amp;type=5" style="border: 0px; height: 32px; width: 124px;" /></a>
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-1754608-1");
-pageTracker._trackPageview();
-} catch(err) {}</script></div>
+
 <!-- Stephanie Braun o_O -->
 </body>
 </html>

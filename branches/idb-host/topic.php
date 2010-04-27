@@ -8,8 +8,8 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     Revised BSD License for more details.
 
-    Copyright 2004-2009 iDB Support - http://idb.berlios.de/
-    Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/
+    Copyright 2004-2010 iDB Support - http://idb.berlios.de/
+    Copyright 2004-2010 Game Maker 2k - http://gamemaker2k.org/
 
     $FileInfo: topic.php - Last Update: 11/23/2009 SVN 357 - Author: cooldude2k $
 */
@@ -30,8 +30,7 @@ require($SettDir['inc'].'navbar.php'); }
 $ForumCheck = null;
 if($_GET['act']==null)
 { $_GET['act']="view"; }
-if(!is_numeric($_GET['id']))
-{ $_GET['id']="1"; }
+if(!is_numeric($_GET['id'])) { $_GET['id']="1"; }
 if($_GET['act']=="view"||$_GET['act']=="create"||$_GET['act']=="delete"||
 	$_GET['act']=="pin"||$_GET['act']=="unpin"||
 	$_GET['act']=="open"||$_GET['act']=="close")

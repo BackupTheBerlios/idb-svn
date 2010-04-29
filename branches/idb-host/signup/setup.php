@@ -66,8 +66,6 @@ if ($Error!="Yes") {
 </tr><tr>
 	<td style="width: 50%;"><label class="TextBoxLabel" for="usehashtype">Hash user passwords with?</label></td>
 	<td style="width: 50%;"><select id="usehashtype" name="usehashtype" class="TextBox">
-<option value="sha1">SHA1</option>
-<option value="md5">MD5</option>
 <?php // PHP 5 hash algorithms to functions :o 
 if(function_exists('hash')&&function_exists('hash_algos')) {
 if(in_array("md2",hash_algos())) { ?>

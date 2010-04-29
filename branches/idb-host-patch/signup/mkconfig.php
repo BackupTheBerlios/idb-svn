@@ -56,6 +56,11 @@ $_POST['tableprefix'] = preg_replace("/[^A-Za-z0-9_$]/", "", $_POST['tableprefix
 if($_POST['tableprefix']==null||$_POST['tableprefix']=="_") { $_POST['tableprefix']="idb_"; }
 if($_POST['sessprefix']==null||$_POST['sessprefix']=="_") { $_POST['sessprefix']="idb_"; }
 $checkfile="settings.php";
+if (!is_writable($checkfile)) {
+   echo "<br />Settings is not writable.";
+   @chmod("settings.php",0755); $Error="Yes";
+   @chmod("settingsbak.php",0755);
+} else { /* settings.php is writable install iDB. ^_^ */ }
 session_name($_POST['tableprefix']."sess");
 $HTTPsTest = parse_url($Settings['idburl']);
 session_set_cookie_params(0, $this_dir);
@@ -169,7 +174,7 @@ $EventDayEnd = GMTimeChange("d",$YourDateEnd,0,0,"off");
 $EventYear = GMTimeChange("Y",$YourDate,0,0,"off");
 $EventYearEnd = GMTimeChange("Y",$YourDateEnd,0,0,"off");
 $KarmaBoostDay = $EventMonth.$EventDay;
-$NewPassword = b64e_hmac($_POST['AdminPasswords'],$YourDate,$YourSalt,"sha256");
+$NewPassword = b64e_hmac($_POST['AdminPasswords'],$YourDate,$YourSalt,$_POST['usehashtype']);
 //$Name = stripcslashes(htmlspecialchars($AdminUser, ENT_QUOTES, $Settings['charset']));
 //$YourWebsite = "http://".$_SERVER['HTTP_HOST'].$this_dir."index.php?act=view";
 $YourWebsite = $_POST['WebURL'];
@@ -185,7 +190,7 @@ if($csrand!=1&&$csrand!=2&&$csrand!=3) { $csrand=1; }
 if($csrand==1) { $gpass .= chr(rand(48,57)); }
 if($csrand==2) { $gpass .= chr(rand(65,90)); }
 if($csrand==3) { $gpass .= chr(rand(97,122)); }
-++$i; } $GuestPassword = b64e_hmac($gpass,$YourDate,$GSalt,"sha256");
+++$i; } $GuestPassword = b64e_hmac($gpass,$YourDate,$GSalt,$_POST['usehashtype']);
 $url_this_dir = "http://".$_SERVER['HTTP_HOST'].$this_dir."index.php?act=view";
 $YourIP = $_SERVER['REMOTE_ADDR'];
 if($Settings['sqltype']=="mysql"||

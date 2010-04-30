@@ -12,7 +12,7 @@
     Copyright 2004-2010 Game Maker 2k - http://gamemaker2k.org/
     iDB Installer made by Game Maker 2k - http://idb.berlios.net/
 
-    $FileInfo: mkconfig.php - Last Update: 04/30/2010 SVN 471 - Author: cooldude2k $
+    $FileInfo: mkconfig.php - Last Update: 04/30/2010 SVN 472 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="mkconfig.php"||$File3Name=="/mkconfig.php") {
@@ -31,6 +31,9 @@ if(!isset($_POST['DefaultTheme'])) { $_POST['DefaultTheme'] = "iDB"; }
 if(isset($_POST['DefaultTheme'])) { 
 	$_POST['DefaultTheme'] = chack_themes($_POST['DefaultTheme']); }
 $Settings['vercheck'] = 2;
+if(!isset($_POST['SQLThemes'])) { $_POST['SQLThemes'] = "off"; }
+if($_POST['SQLThemes']!="on"&&$_POST['SQLThemes']!="off") { 
+	$_POST['SQLThemes'] = "off"; }
 ?>
 <tr class="TableRow3" style="text-align: center;">
 <td class="TableColumn3" colspan="2">
@@ -221,6 +224,7 @@ $BoardSettings=$pretext2[0]."\n".
 "\$Settings['sqltable'] = '".$_POST['tableprefix']."';\n".
 "\$Settings['board_name'] = '".$_POST['NewBoardName']."';\n".
 "\$Settings['weburl'] = '".$_POST['WebURL']."';\n".
+"\$Settings['SQLThemes'] = '".$_POST['SQLThemes']."';\n".
 "\$Settings['GuestGroup'] = 'Guest';\n".
 "\$Settings['MemberGroup'] = 'Member';\n".
 "\$Settings['ValidateGroup'] = 'Validate';\n".

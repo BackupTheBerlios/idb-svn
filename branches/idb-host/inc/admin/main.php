@@ -11,7 +11,7 @@
     Copyright 2004-2010 iDB Support - http://idb.berlios.de/
     Copyright 2004-2010 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: main.php - Last Update: 04/20/2010 SVN 468 - Author: cooldude2k $
+    $FileInfo: main.php - Last Update: 04/30/2010 SVN 472 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="main.php"||$File3Name=="/main.php") {
@@ -652,6 +652,7 @@ $BoardSettings=$pretext2[0]."\nrequire('settings.php');\n".
 "\$Settings['sqltable'] = ".null_string($Settings['sqltable']).";\n".
 "\$Settings['board_name'] = ".null_string($Settings['board_name']).";\n".
 "\$Settings['weburl'] = ".null_string($_POST['WebURL']).";\n".
+"\$Settings['SQLThemes'] = ".null_string($Settings['SQLThemes']).";\n".
 "\$Settings['GuestGroup'] = ".null_string($_POST['GuestGroup']).";\n".
 "\$Settings['MemberGroup'] = ".null_string($_POST['MemberGroup']).";\n".
 "\$Settings['ValidateGroup'] = ".null_string($_POST['ValidateGroup']).";\n".

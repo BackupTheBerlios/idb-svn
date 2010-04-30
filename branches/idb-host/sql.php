@@ -11,7 +11,7 @@
     Copyright 2004-2010 iDB Support - http://idb.berlios.de/
     Copyright 2004-2010 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: sql.php - Last Update: 04/30/2010 SVN 472 - Author: cooldude2k $
+    $FileInfo: sql.php - Last Update: 04/30/2010 SVN 473 - Author: cooldude2k $
 */
 /* Some ini setting changes uncomment if you need them. 
    Display PHP Errors */
@@ -489,7 +489,6 @@ $_GET['theme'] = chack_themes($_GET['theme']);
 if($_GET['theme']=="../"||$_GET['theme']=="./") {
 $_GET['theme']="iDB"; $_SESSION['Theme']="iDB"; }
 if (file_exists($SettDir['themes'].$_GET['theme']."/settings.php")) {
-$_SESSION['Theme'] = $_GET['theme'];
 if($_SESSION['UserGroup']!=$Settings['GuestGroup']) {
 $NewDay=GMTimeStamp();
 $qnewskin = sql_pre_query("UPDATE \"".$Settings['sqltable']."members\" SET \"UseTheme\"='%s',\"LastActive\"='%s' WHERE \"id\"=%i", array($_GET['theme'],$NewDay,$_SESSION['UserID']));
@@ -512,9 +511,8 @@ if($_SESSION['Theme']==null) {
 $_SESSION['Theme']=$Settings['DefaultTheme'];
 $_GET['theme']=$Settings['DefaultTheme']; } }
 $PreSkin['skindir1'] = $_SESSION['Theme'];
-$PreSkin['skindir2'] = $SettDir['themes'].$_SESSION['Theme'];
-require($SettDir['inc'].'sqlthemes.php');
-sql_free_result($themeresult); }
+$PreSkin['skindir2'] = $SettDir['themes'].$_SESSION['Theme']; 
+require($SettDir['themes'].$_GET['theme']."/settings.php"); }
 if($Settings['SQLThemes']=="on") {
 if($_GET['theme']!=null) {
 $themequery = sql_pre_query("SELECT * FROM \"".$Settings['sqltable']."themes\" WHERE \"Name\"='%s'", array($_GET['theme'])); }
@@ -541,7 +539,8 @@ if($_SESSION['UserGroup']!=$Settings['GuestGroup']) {
 $NewDay=GMTimeStamp();
 $qnewskin = sql_pre_query("UPDATE \"".$Settings['sqltable']."members\" SET \"UseTheme\"='%s',\"LastActive\"='%s' WHERE \"id\"=%i", array($_GET['theme'],$NewDay,$_SESSION['UserID']));
 sql_query($qnewskin,$SQLStat); } } 
-require($SettDir['themes'].$_GET['theme']."/settings.php"); }
+require($SettDir['inc'].'sqlthemes.php');
+sql_free_result($themeresult); }
 $_SESSION['Theme'] = $_GET['theme'];
 if(!isset($ThemeSet['TableStyle'])) {
 	$ThemeSet['TableStyle'] = "table"; }

@@ -45,6 +45,9 @@ if(isset($_POST['DefaultTheme'])) {
 if(!isset($_POST['SQLThemes'])) { $_POST['SQLThemes'] = "off"; }
 if($_POST['SQLThemes']!="on"&&$_POST['SQLThemes']!="off") { 
 	$_POST['SQLThemes'] = "off"; }
+if($Settings['SeparateDatabase']!="no"&&
+	$Settings['SeparateDatabase']!="yes") {
+	$Settings['SeparateDatabase'] = "no"; }
 //if($_POST['unlink']=="true") { $_POST['unlink'] = true; }
 ?>
 <tr class="TableRow3" style="text-align: center;">
@@ -140,7 +143,19 @@ if($_POST['usehashtype']=="ripemd320") { $iDBHashType = "iDBHRMD320"; }
 if ($_POST['AdminUser']=="Guest") { $Error="Yes";
 echo "<br />You can not use Guest as your name."; }
 /* We are done now with fixing the info. ^_^ */
-$SQLStat = sql_connect_db($Settings['sqlhost'],$Settings['sqluser'],$Settings['sqlpass'],$Settings['sqldb']);
+if($Settings['SeparateDatabase']=="no") {
+$SQLStat = sql_connect_db($Settings['sqlhost'],$Settings['sqluser'],$Settings['sqlpass'],$Settings['sqldb']); }
+if($Settings['SeparateDatabase']=="yes") {
+$SQLStat = sql_connect_db($Settings['sqlhost'],$Settings['sqluser'],$Settings['sqlpass']); 
+$Settings['sqldb'] = $_POST['unixname']; 
+if($Settings['sqltype']=="sqlite") {
+$Settings['sqldb'] = $_POST['unixname'].".sqlite"; }
+if($Settings['sqltype']=="mysql"||
+	$Settings['sqltype']=="mysqli"||
+	$Settings['sqltype']=="pgsql") {
+$query=sql_pre_query("CREATE DATABASE \"".$Settings['sqldb']."\";", array(null));
+sql_query($query,$SQLStat); }
+$SQLStat = sql_connect_db($Settings['sqlhost'],$Settings['sqluser'],$Settings['sqlpass'],$Settings['sqldb']); }
 $SQLCollate = "latin1_general_ci";
 $SQLCharset = "latin1"; 
 if($Settings['charset']=="ISO-8859-1") {

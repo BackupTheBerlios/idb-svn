@@ -58,6 +58,12 @@ if($Error!="Yes") {
 	<?php } ?>
 	</select></td>
 </tr><tr>
+	<td style="width: 50%;"><label class="TextBoxLabel" for="SeparateDatabase">Separate Database for boards:</label></td>
+	<td style="width: 50%;"><select size="1" class="TextBox" name="SeparateDatabase" id="SeparateDatabase">
+	<option selected="selected" value="no">off</option>
+	<option value="yes">on</option>
+	</select></td>
+</tr><tr>
 	<td style="width: 50%;"><label class="TextBoxLabel" for="charset">Select html charset:</label></td>
 	<td style="width: 50%;"><select size="1" class="TextBox" name="charset" id="charset">
 	<option value="ISO-8859-15">Latin-9 (ISO-8859-15)</option>

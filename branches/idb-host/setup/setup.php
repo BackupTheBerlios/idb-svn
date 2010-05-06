@@ -45,6 +45,9 @@ if (!is_writable($checkfile)) {
    chmod("settings.php",0755); $Error="Yes";
    chmod("settingsbak.php",0755);
 } else { /* settings.php is writable install iDB. ^_^ */ }
+if($_POST['SeparateDatabase']!="no"&&
+	$_POST['SeparateDatabase']!="yes") {
+	$_POST['SeparateDatabase'] = "no"; }
 if(!function_exists("mysql_connect")&&!function_exists("mysqli_connect")&&
 !function_exists("pg_connect")&&!function_exists("sqlite_open")) { $Error="Yes";
 echo "<span class=\"TableMessage\">You need to enbale a database php extension to install ".$VerInfo['iDB_Ver_Show']." on this server.<br />\n"; 
@@ -56,7 +59,7 @@ echo "<span class=\"TableMessage\">";
 echo "<br />".sql_errorno($StatSQL)."\n</span>\n"; } }
 if ($Error!="Yes") {
 $pretext = "<?php\n/*\n    This program is free software; you can redistribute it and/or modify\n    it under the terms of the Revised BSD License.\n\n    This program is distributed in the hope that it will be useful,\n    but WITHOUT ANY WARRANTY; without even the implied warranty of\n    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    Revised BSD License for more details.\n\n    Copyright 2004-2007 Cool Dude 2k - http://intdb.sourceforge.net/\n    Copyright 2004-2007 Game Maker 2k - http://idb.berlios.de/support/category.php?act=view&id=2\n    Emoticons made by Jcink http://tfbb.jcink.com/\n*/\n";
-$BoardSettings=$pretext."\$Settings = array();\n\$Settings['sqlhost'] = '".$_POST['DatabaseHost']."';\n\$Settings['sqluser'] = '".$_POST['DatabaseUserName']."';\n\$Settings['sqlpass'] = '".$_POST['DatabasePassword']."';\n?>";
+$BoardSettings=$pretext."\$Settings = array();\n\$Settings['sqlhost'] = '".$_POST['DatabaseHost']."';\n\$Settings['sqluser'] = '".$_POST['DatabaseUserName']."';\n\$Settings['sqlpass'] = '".$_POST['DatabasePassword']."';\n\$Settings['SeparateDatabase'] = '".$_POST['SeparateDatabase']."';\n?>";
 $fp = fopen("./settings.php","w+");
 fwrite($fp, $BoardSettings);
 fclose($fp);
@@ -70,7 +73,7 @@ fclose($fp);
 <tr style="text-align: left;">
 	<td style="width: 50%;"><label class="TextBoxLabel" for="NewBoardName">Insert Board Name:</label></td>
 	<td style="width: 50%;"><input type="text" name="NewBoardName" class="TextBox" id="NewBoardName" size="20" /></td>
-</tr><tr>
+</tr><?php if($_POST['SeparateDatabase']=="no") { ?><tr>
 	<td style="width: 50%;"><label class="TextBoxLabel" for="DatabaseName">Insert Database Name:</label></td>
 	<td style="width: 50%;"><input type="text" name="DatabaseName" class="TextBox" id="DatabaseName" size="20" />
 	<?php /*<select id="dblist" name="dblist" class="TextBox" onchange="document.install.DatabaseName.value=this.value">
@@ -82,7 +85,7 @@ fclose($fp);
 		echo $dblist[$i]."</option>\n";
 		++$i;
 	} ?></select><?php */ ?></td>
-</tr><tr>
+</tr><?php } ?><tr>
 	<td style="width: 50%;"><label class="TextBoxLabel" for="unixname">Insert Board URL PreFix:<br /></label></td>
 	<td style="width: 50%;"><input type="text" name="unixname" class="TextBox" id="unixname" value="support" size="20" /></td>
 </tr><tr>

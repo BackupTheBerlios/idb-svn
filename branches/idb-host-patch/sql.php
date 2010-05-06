@@ -88,6 +88,13 @@ header("Content-Type: text/plain; charset=UTF-8");
 header('Location: '.$Settings['idburl'].$Settings['root_board'].'/index.php?act=view'); }
 die(); }
 require_once($_GET['board'].'_settings.php');
+if($Settings['SeparateDatabase']!="no"&&
+	$Settings['SeparateDatabase']!="yes") {
+	$Settings['SeparateDatabase'] = "no"; }
+if($Settings['SeparateDatabase']=="yes") {
+$Settings['sqldb'] = $_GET['board']; 
+if($Settings['sqltype']=="sqlite") {
+$Settings['sqldb'] = $_GET['board'].".sqlite"; } }
 if(!isset($Settings['idburl'])) { $Settings['idburl'] = null; }
 if(!isset($Settings['fixbasedir'])) { $Settings['fixbasedir'] = null; }
 if(!isset($Settings['fixpathinfo'])) { $Settings['fixpathinfo'] = null; }

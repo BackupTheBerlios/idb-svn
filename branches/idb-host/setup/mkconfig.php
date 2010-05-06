@@ -34,6 +34,9 @@ $Settings['vercheck'] = 2;
 if(!isset($_POST['SQLThemes'])) { $_POST['SQLThemes'] = "off"; }
 if($_POST['SQLThemes']!="on"&&$_POST['SQLThemes']!="off") { 
 	$_POST['SQLThemes'] = "off"; }
+if($Settings['SeparateDatabase']!="no"&&
+	$Settings['SeparateDatabase']!="yes") {
+	$Settings['SeparateDatabase'] = "no"; }
 ?>
 <tr class="TableRow3" style="text-align: center;">
 <td class="TableColumn3" colspan="2">
@@ -128,7 +131,19 @@ if($_POST['usehashtype']=="ripemd320") { $iDBHashType = "iDBHRMD320"; }
 if ($_POST['AdminUser']=="Guest") { $Error="Yes";
 echo "<br />You can not use Guest as your name."; }
 /* We are done now with fixing the info. ^_^ */
-$SQLStat = sql_connect_db($_POST['DatabaseHost'],$_POST['DatabaseUserName'],$_POST['DatabasePassword'],$_POST['DatabaseName']);
+if($Settings['SeparateDatabase']=="no") {
+$SQLStat = sql_connect_db($_POST['DatabaseHost'],$_POST['DatabaseUserName'],$_POST['DatabasePassword'],$_POST['DatabaseName']); }
+if($Settings['SeparateDatabase']=="yes") {
+$_POST['DatabaseName'] = $_POST['unixname'];
+if($Settings['sqltype']=="sqlite") {
+$_POST['DatabaseName'] = $_POST['unixname'].".sqlite"; }
+$SQLStat = sql_connect_db($_POST['DatabaseHost'],$_POST['DatabaseUserName'],$_POST['DatabasePassword']);
+if($Settings['sqltype']=="mysql"||
+	$Settings['sqltype']=="mysqli"||
+	$Settings['sqltype']=="pgsql") {
+$query=sql_pre_query("CREATE DATABASE \"".$_POST['DatabaseName']."\";", array(null));
+sql_query($query,$SQLStat); }
+$SQLStat = sql_connect_db($_POST['DatabaseHost'],$_POST['DatabaseUserName'],$_POST['DatabasePassword'],$_POST['DatabaseName']); }
 $SQLCollate = "latin1_general_ci";
 $SQLCharset = "latin1"; 
 if($Settings['charset']=="ISO-8859-1") {
@@ -270,6 +285,7 @@ $BoardSettings=$pretext2[0]."\n".
 "\$Settings['sqluser'] = '".$_POST['DatabaseUserName']."';\n".
 "\$Settings['sqlpass'] = '".$_POST['DatabasePassword']."';\n".
 "\$Settings['sqltype'] = '".$_POST['DatabaseType']."';\n".
+"\$Settings['SeparateDatabase'] = '".$Settings['SeparateDatabase']."';\n".
 "\$Settings['idbdir'] = '".$idbdir."';\n".
 "\$Settings['idburl'] = '".$_POST['BoardURL']."';\n".
 "\$Settings['enable_https'] = 'off';\n".

@@ -248,7 +248,7 @@ unset($_COOKIE[session_name()]);
 $_SESSION = array();
 session_unset();
 session_destroy();
-$delboard = 'DROP TABLE \"'.$_GET['board'].'_categories\", \"'.$_GET['board'].'_catpermissions\", \"'.$_GET['board'].'_events\", \"'.$_GET['board'].'_forums\", \"'.$_GET['board'].'_groups\", \"'.$_GET['board'].'_members\", \"'.$_GET['board'].'_messenger\", \"'.$_GET['board'].'_permissions\", \"'.$_GET['board'].'_posts\", \"'.$_GET['board'].'_restrictedwords\", \"'.$_GET['board'].'_sessions\", \"'.$_GET['board'].'_smileys\", \"'.$_GET['board'].'_topics\", \"'.$_GET['board'].'_wordfilter\"';
+$delboard = 'DROP TABLE \"'.$_GET['board'].'_categories\", \"'.$_GET['board'].'_catpermissions\", \"'.$_GET['board'].'_events\", \"'.$_GET['board'].'_forums\", \"'.$_GET['board'].'_groups\", \"'.$_GET['board'].'_members\", \"'.$_GET['board'].'_messenger\", \"'.$_GET['board'].'_permissions\", \"'.$_GET['board'].'_posts\", \"'.$_GET['board'].'_restrictedwords\", \"'.$_GET['board'].'_sessions\", \"'.$_GET['board'].'_smileys\", \"'.$_GET['board'].'_themes\", \"'.$_GET['board'].'_topics\", \"'.$_GET['board'].'_wordfilter\"';
 sql_query($delboard,$SQLStat);
 redirect("refresh",$basedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],FALSE),"3");
 ?>

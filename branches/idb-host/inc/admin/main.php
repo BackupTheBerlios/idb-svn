@@ -365,7 +365,9 @@ $AdminCheckURL = url_maker($exfile['admin'],$Settings['file_ext'],"act=vercheck&
 <td class="TableMenuColumn3">
 <form style="display: inline;" method="post" id="acptool" action="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=settings",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">
 <table style="text-align: left;">
-<?php if($GroupInfo['ViewDBInfo']=="yes") { 
+<?php 
+if($_GET['board']==$Settings['root_board']) {
+if($GroupInfo['ViewDBInfo']=="yes") { 
 ?><tr style="text-align: left;">
 	<td style="width: 50%;"><span class="TextBoxLabel">Forum Software Version:</span></td>
 	<td style="width: 50%;"><?php echo $VerInfo['iDB_Ver_Show']; ?>&nbsp;<a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=vercheck",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>" onclick="window.open(this.href);return false;"><img src="<?php echo $AdminCheckURL; ?>" alt="Version Check: Click to see more info." title="Version Check: Click to see more info." /></a></td>
@@ -380,7 +382,6 @@ $AdminCheckURL = url_maker($exfile['admin'],$Settings['file_ext'],"act=vercheck&
 	<td style="width: 50%;"><span class="TextBoxLabel">Server Operating System:</span></td>
 	<td style="width: 50%;"><?php echo $OSType; ?></td>
 </tr><?php } } ?><tr style="text-align: left;">
-<?php if($_GET['board']==$Settings['root_board']) { ?>
 	<td style="width: 50%;"><label class="TextBoxLabel" for="BoardURL">Insert The Board URL:</label></td>
 	<td style="width: 50%;"><input type="text" class="TextBox" name="BoardURL" size="20" id="BoardURL" value="<?php echo $Settings['idburl']; ?>" /></td>
 </tr><tr style="text-align: left;">

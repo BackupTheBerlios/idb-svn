@@ -53,17 +53,18 @@ if($_GET['act']==null) {
 	$_GET['act']="view"; }
 if($_GET['act']=="view"&&$GroupInfo['ViewDBInfo']!="yes") {
 	$_GET['act']="view"; }
+if($_GET['board']==$Settings['root_board']) {
 if($_GET['act']=="vercheck"&&$GroupInfo['ViewDBInfo']=="yes") {
 	if($Settings['vercheck']!=1&&$Settings['vercheck']!=2) {
 	$Settings['vercheck'] = 1; }
 	if($Settings['vercheck']===1) {
 	$addredirect = null;
 	if(isset($_GET['redirect'])) { $addredirect = "&redirect=".urlencode($_GET['redirect']); }
-	header("Location: ".$VerCheckURL."&name=".urlencode($iDBVerName)); }
+	header("Location: ".$VerCheckURL."&name=".urlencode($iDBVerName).$addredirect); }
 	if($Settings['vercheck']===2) {
 	$addredirect = null;
 	if(isset($_GET['redirect'])) { $addredirect = "&redirect=".urlencode($_GET['redirect']); }
-	header("Location: ".$VerCheckURL."&bid=".$Settings['bid']."&vercheck=newtype"); } }
+	header("Location: ".$VerCheckURL."&bid=".$Settings['bid']."&vercheck=newtype".$addredirect); } } }
 if($_GET['act']=="view")
 { $AdminMenu = "menu";
 if($_GET['menu']==null) {

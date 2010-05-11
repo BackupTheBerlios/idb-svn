@@ -138,7 +138,7 @@ $SQLStat = sql_connect_db($_POST['DatabaseHost'],$_POST['DatabaseUserName'],$_PO
 if($Settings['SeparateDatabase']=="yes") {
 $_POST['DatabaseName'] = $_POST['unixname'];
 if($Settings['sqltype']=="sqlite") {
-$_POST['DatabaseName'] = $_POST['unixname'].".sqlite"; }
+$_POST['DatabaseName'] = $_POST['unixname'].".sdb"; }
 $SQLStat = sql_connect_db($_POST['DatabaseHost'],$_POST['DatabaseUserName'],$_POST['DatabasePassword']);
 if($Settings['sqltype']=="mysql"||
 	$Settings['sqltype']=="mysqli"||

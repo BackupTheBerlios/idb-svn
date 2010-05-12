@@ -12,7 +12,7 @@
     Copyright 2004-2010 Game Maker 2k - http://gamemaker2k.org/
     iDB Installer made by Game Maker 2k - http://idb.berlios.net/
 
-    $FileInfo: mkconfig.php - Last Update: 05/11/2010 SVN 485 - Author: cooldude2k $
+    $FileInfo: mkconfig.php - Last Update: 05/11/2010 SVN 487 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="mkconfig.php"||$File3Name=="/mkconfig.php") {
@@ -43,7 +43,7 @@ if(function_exists("date_default_timezone_set")) {
 <tr class="TableRow3" style="text-align: center;">
 <td class="TableColumn3" colspan="2">
 <?php
-$dayconv = array('second' => 1, 'minute' => 60, 'hour' => 3600, 'day' => 86400, 'week' => 604800, 'month' => 2630880, 'year' => 31570560, 'decade' => 15705600);
+$dayconv = array('second' => 1, 'minute' => 60, 'hour' => 3600, 'day' => 86400, 'week' => 604800, 'month' => 2630880, 'year' => 31570560, 'decade' => 315705600);
 $_POST['unixname'] = strtolower($_POST['unixname']);
 if($_POST['unixname']==null) { $_POST['unixname'] = null; }
 $_POST['tableprefix'] = $_POST['unixname']."_";

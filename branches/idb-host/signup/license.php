@@ -20,6 +20,14 @@ if ($File3Name=="presetup.php"||$File3Name=="/presetup.php") {
 	exit(); }
 if(!isset($SetupDir['setup'])) { $SetupDir['setup'] = "setup/"; }
 if(!isset($SetupDir['convert'])) { $SetupDir['convert'] = null; }
+if(isset($_GET['unixname'])&&
+	file_exists($_GET['unixname']."_settings.php")) {
+	$_GET['unixname'] = "idb"; }
+if(isset($_GET['unixname'])&&
+	!file_exists($_GET['unixname']."_settings.php")) {
+$_GET['unixname'] = preg_replace("/[^A-Za-z0-9_$]/", "", $_GET['unixname']); }
+if(!isset($_GET['unixname'])) {
+	$_GET['unixname'] = "idb"; }
 ?>
 <tr class="TableRow3">
 <td class="TableColumn3">
@@ -38,6 +46,7 @@ if(!isset($SetupDir['convert'])) { $SetupDir['convert'] = null; }
 <input type="hidden" name="SetupType" value="install" style="display: none;" />
 <?php } ?>
 <input type="hidden" name="act" value="Part2" style="display: none;" />
+<input type="hidden" name="unixname" value="<?php echo $_GET['unixname']; ?>" style="display: none;" />
 <input type="submit" class="Button" value="Next Page" name="Install_Board" />
 <input type="reset" value="Reset Form" class="Button" name="Reset_Form" />
 </td></tr></table>

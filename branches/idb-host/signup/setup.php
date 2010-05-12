@@ -32,6 +32,16 @@ if($_POST['License']!="Agree") { echo "<span class=\"TableMessage\">";
 $StatSQL = sql_connect_db($Settings['sqlhost'],$Settings['sqluser'],$Settings['sqlpass']);
 if(!$StatSQL) { $Error="Yes"; echo "<span class=\"TableMessage\">";
 echo "<br />".sql_errorno($StatSQL)."<br />\n</span>\n"; }
+if(!isset($_POST['unixname'])&&isset($_GET['unixname'])) {
+		$_POST['unixname'] = $_GET['unixname']; }
+if(isset($_POST['unixname'])&&
+	file_exists($_POST['unixname']."_settings.php")) {
+	$_POST['unixname'] = "idb"; }
+if(isset($_POST['unixname'])&&
+	!file_exists($_POST['unixname']."_settings.php")) {
+$_POST['unixname'] = preg_replace("/[^A-Za-z0-9_$]/", "", $_POST['unixname']); }
+if(!isset($_POST['unixname'])) {
+	$_POST['unixname'] = "idb"; }
 if ($Error!="Yes") {
 ?>
 <form style="display: inline;" method="post" id="install" action="signup.php?act=Part3">
@@ -41,7 +51,7 @@ if ($Error!="Yes") {
 	<td style="width: 50%;"><input type="text" name="NewBoardName" class="TextBox" id="NewBoardName" size="20" /></td>
 </tr><tr>
 	<td style="width: 50%;"><label class="TextBoxLabel" for="unixname">Insert Board URL PreFix:<br /></label></td>
-	<td style="width: 50%;"><input type="text" name="unixname" class="TextBox" id="unixname" value="cool" size="20" /></td>
+	<td style="width: 50%;"><input type="text" name="unixname" class="TextBox" id="unixname" value="<?php echo $_POST['unixname']; ?>" size="20" /></td>
 </tr><tr>
 	<td style="width: 50%;"><label class="TextBoxLabel" for="AdminUser">Insert Admin User Name:</label></td>
 	<td style="width: 50%;"><input type="text" name="AdminUser" class="TextBox" id="AdminUser" size="20" /></td>

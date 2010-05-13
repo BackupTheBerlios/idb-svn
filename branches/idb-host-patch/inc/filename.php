@@ -39,7 +39,7 @@ if($Settings['idburl']!="localhost"&&$Settings['idburl']!=null) {
 	$rssurlon = "on"; $rssurl = $Settings['idburl']; }
 if($Settings['rssurl']!=null&&$Settings['rssurl']!="") {
 	$rssurlon = "on"; $rssurl = $Settings['rssurl']; } $rssurlon = "on";
-$rssurl = $prehost.$_SERVER["HTTP_HOST"].$BaseURL."/".$_GET['board']."/";
+$rssurl = $prehost.$_SERVER["HTTP_HOST"].$BaseURL.$_GET['board']."/";
 /* In php 6 and up the function get_magic_quotes_gpc dose not exist. 
    here we make a fake version that always sends false out. :P */
 if(!function_exists('get_magic_quotes_gpc')) {

@@ -58,7 +58,7 @@ $_GET['board'] = preg_replace("/[^A-Za-z0-9_$]/", "", $_GET['board']);
 $_GET['board'] = preg_replace("/(.*?)\.\/(.*?)/", "", $_GET['board']);
 $_GET['board'] = preg_replace("/(.*?)\/(.*?)/", "", $_GET['board']);
 $_GET['board'] = preg_replace("/(.*?)\.(.*?)/", "", $_GET['board']);
-if(!isset($_GET['board'])) { 
+if(!isset($_GET['board'])||$_GET['board']=="") { 
 if(file_exists('settings.php')) {
 	require_once('settings.php'); }
 if(!isset($Settings['sqldb'])) {

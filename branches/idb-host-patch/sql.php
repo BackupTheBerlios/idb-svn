@@ -88,7 +88,7 @@ header("Content-Type: text/plain; charset=UTF-8");
 header('Location: install.php'); }
 if(isset($Settings['sqldb'])) {
 header("Content-Type: text/plain; charset=UTF-8");
-header('Location: '.$Settings['idburl'].$Settings['root_board'].'/index.php?act=view'); }
+header('Location: '.$Settings['idburl'].'signup.php?unixname='.$_GET['board']); }
 die(); }
 require_once($_GET['board'].'_settings.php');
 if($Settings['SeparateDatabase']!="no"&&

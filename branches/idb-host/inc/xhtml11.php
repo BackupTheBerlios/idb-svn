@@ -8,10 +8,10 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     Revised BSD License for more details.
 
-    Copyright 2004-2009 iDB Support - http://idb.berlios.de/
-    Copyright 2004-2009 Game Maker 2k - http://gamemaker2k.org/
+    Copyright 2004-2010 iDB Support - http://idb.berlios.de/
+    Copyright 2004-2010 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: xhtml11.php - Last Update: 11/26/2009 SVN 364 - Author: cooldude2k $
+    $FileInfo: xhtml11.php - Last Update: 05/15/2010 SVN 491 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="xhtml11.php"||$File3Name=="/xhtml11.php") {
@@ -100,6 +100,9 @@ if($Settings['idburl']!="localhost"&&$Settings['idburl']!=null) {
 <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $Settings['charset']; ?>" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Cache-Control" content="private, no-cache, must-revalidate" />
+<meta http-equiv="Pragma" content="private, no-cache, must-revalidate" />
+<meta http-equiv="Expires" content="<?php echo gmdate("D, d M Y H:i:s")." GMT"; ?>" />
 <base href="<?php echo $BoardURL; ?>" />
 <?php if($Settings['showverinfo']=="on") { ?>
 <meta name="Generator" content="<?php echo $VerInfo['iDB_Ver_Show']; ?>" />
@@ -109,9 +112,6 @@ if($Settings['idburl']!="localhost"&&$Settings['idburl']!=null) {
 <meta name="Author" content="<?php echo $SettInfo['Author']; ?>" />
 <meta name="Keywords" content="<?php echo $SettInfo['Keywords']; ?>" />
 <meta name="Description" content="<?php echo $SettInfo['Description']; ?>" />
-<meta http-equiv="Cache-Control" content="private, no-cache, must-revalidate" />
-<meta http-equiv="Pragma" content="private, no-cache, must-revalidate" />
-<meta http-equiv="Expires" content="<?php echo gmdate("D, d M Y H:i:s")." GMT"; ?>" />
 <meta name="ROBOTS" content="Index, FOLLOW" />
 <meta name="revisit-after" content="1 days" />
 <meta name="GOOGLEBOT" content="Index, FOLLOW" />
@@ -131,6 +131,7 @@ if($Settings['idburl']!="localhost"&&$Settings['idburl']!=null) {
 <?php } if($Settings['showverinfo']!="on") { ?>
 <link rel="Generator" href="<?php echo $iDBHome; ?>" title="<?php echo $iDB; ?>" />
 <?php } echo "\n"; ?>
+<!-- ^_^ Stephanie Braun -->
 <?php if($ThemeSet['CSSType']=="import") { ?>
 <style type="text/css">
 /* Import the theme css file */

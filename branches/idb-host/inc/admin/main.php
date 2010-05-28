@@ -11,7 +11,7 @@
     Copyright 2004-2010 iDB Support - http://idb.berlios.de/
     Copyright 2004-2010 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: main.php - Last Update: 05/15/2010 SVN 494 - Author: cooldude2k $
+    $FileInfo: main.php - Last Update: 05/27/2010 SVN 501 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="main.php"||$File3Name=="/main.php") {
@@ -366,7 +366,10 @@ if(isset($_GET['menu'])&&$_GET['menu']=="main") { $AddChkURL = "&menu=main"; }
 <td class="TableMenuColumn3">
 <form style="display: inline;" method="post" id="acptool" action="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=settings",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">
 <table style="text-align: left;">
-<?php 
+<tr>
+	<td style="width: 50%;"><span class="TextBoxLabel">Install Date:</span></td>
+	<td style="width: 50%;"><?php echo GMTimeChange("F j Y, g:i a",$Settings['DefaultDST'],$_SESSION['UserTimeZone'],0,$_SESSION['UserDST']); ?></td>
+</tr><?php 
 if($_GET['board']==$Settings['root_board']) {
 if($GroupInfo['ViewDBInfo']=="yes") { 
 ?><tr style="text-align: left;">
@@ -678,6 +681,7 @@ $BoardSettings=$pretext2[0]."\nrequire('settings.php');\n".
 "\$Settings['DefaultTheme'] = ".null_string($_POST['DefaultTheme']).";\n".
 "\$Settings['DefaultTimeZone'] = ".null_string($_POST['YourOffSet'].":".$_POST['MinOffSet']).";\n".
 "\$Settings['DefaultDST'] = ".null_string($_POST['DST']).";\n".
+"\$Settings['start_date'] = ".null_string($Settings['start_date']).";\n".
 "\$Settings['use_hashtype'] = ".null_string($Settings['use_hashtype']).";\n".
 "\$Settings['max_posts'] = ".null_string($_POST['max_posts']).";\n".
 "\$Settings['max_topics'] = ".null_string($_POST['max_topics']).";\n".
@@ -984,6 +988,7 @@ $BoardSettings=$pretext2[0]."\nrequire('settings.php');\n".
 "\$Settings['DefaultTheme'] = ".null_string($Settings['DefaultTheme']).";\n".
 "\$Settings['DefaultTimeZone'] = ".null_string($Settings['DefaultTimeZone']).";\n".
 "\$Settings['DefaultDST'] = ".null_string($Settings['DefaultDST']).";\n".
+"\$Settings['start_date'] = ".null_string($Settings['start_date']).";\n".
 "\$Settings['use_hashtype'] = ".null_string($Settings['use_hashtype']).";\n".
 "\$Settings['max_posts'] = ".null_string($Settings['max_posts']).";\n".
 "\$Settings['max_topics'] = ".null_string($Settings['max_topics']).";\n".

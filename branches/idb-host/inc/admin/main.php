@@ -11,7 +11,7 @@
     Copyright 2004-2010 iDB Support - http://idb.berlios.de/
     Copyright 2004-2010 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: main.php - Last Update: 06/05/2010 SVN 517 - Author: cooldude2k $
+    $FileInfo: main.php - Last Update: 06/07/2010 SVN 520 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="main.php"||$File3Name=="/main.php") {
@@ -20,20 +20,20 @@ if ($File3Name=="main.php"||$File3Name=="/main.php") {
 
 // Check if we can goto admin cp
 if($_SESSION['UserGroup']==$Settings['GuestGroup']||$GroupInfo['HasAdminCP']=="no") {
-redirect("location",$basedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false));
+redirect("location",$rbasedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false));
 ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']);
 gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
 if(!isset($_POST['update'])) { $_POST['update'] = null; }
 if($_GET['act']=="sql"&&$GroupInfo['ViewDBInfo']!="yes") {
-redirect("location",$basedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false));
+redirect("location",$rbasedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false));
 ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']);
 gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
 if($_GET['act']=="sql"&&$_GET['board']!=$Settings['root_board']) {
-redirect("location",$basedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false));
+redirect("location",$rbasedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false));
 ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']);
 gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
 if($_GET['act']=="delete"&&$_GET['board']==$Settings['root_board']) {
-redirect("location",$basedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false));
+redirect("location",$rbasedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false));
 ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']);
 gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
 if(!isset($_POST['update'])) { $_POST['update'] = null; }
@@ -170,7 +170,7 @@ $_POST['update'] = "now"; $_GET['act'] = "view"; }
 <?php if($_POST['update']=="now"&&$_GET['act']!=null&&$_GET['act']!="delete") {
 $updateact = url_maker($exfile['profile'],$Settings['file_ext'],"act=".$_GET['act'],$Settings['qstr'],$Settings['qsep'],$prexqstr['profile'],$exqstr['profile']);
 $admincptitle = " ".$ThemeSet['TitleDivider']." Updating Settings";
-redirect("refresh",$basedir.url_maker($exfile['admin'],$Settings['file_ext'],"act=".$_GET['act']."&menu=main",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin'],FALSE),"3");
+redirect("refresh",$rbasedir.url_maker($exfile['admin'],$Settings['file_ext'],"act=".$_GET['act']."&menu=main",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin'],FALSE),"3");
 ?>
 <div class="TableMenuBorder">
 <?php if($ThemeSet['TableStyle']=="div") { ?>
@@ -259,7 +259,7 @@ session_unset();
 session_destroy();
 $delboard = "DROP TABLE \"".$_GET['board']."_categories\", \"".$_GET['board']."_catpermissions\", \"".$_GET['board']."_events\", \"".$_GET['board']."_forums\", \"".$_GET['board']."_groups\", \"".$_GET['board']."_members\", \"".$_GET['board']."_messenger\", \"".$_GET['board']."_permissions\", \"".$_GET['board']."_posts\", \"".$_GET['board']."_restrictedwords\", \"".$_GET['board']."_sessions\", \"".$_GET['board']."_smileys\", \"".$_GET['board']."_themes\", \"".$_GET['board']."_topics\", \"".$_GET['board']."_wordfilter\"";
 sql_query($delboard,$SQLStat);
-redirect("refresh",$basedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],FALSE),"3");
+redirect("refresh",$rbasedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],FALSE),"3");
 ?>
 <div class="TableMenuBorder">
 <?php if($ThemeSet['TableStyle']=="div") { ?>
@@ -756,6 +756,7 @@ $BoardSettings=$pretext2[0]."\n".
 "\$Settings['fixpathinfo'] = ".null_string($Settings['fixpathinfo']).";\n".
 "\$Settings['fixbasedir'] = ".null_string($Settings['fixbasedir']).";\n".
 "\$Settings['fixcookiedir'] = ".null_string($Settings['fixcookiedir']).";\n".
+"\$Settings['fixredirectdir'] = ".null_string($Settings['fixredirectdir']).";\n".
 "\$Settings['enable_pathinfo'] = ".null_string($Settings['enable_pathinfo']).";\n".
 "\$Settings['sessionid_in_urls'] = ".null_string($Settings['sessionid_in_urls']).";\n".
 "\$Settings['rssurl'] = ".null_string($Settings['rssurl']).";\n".$pretext2[1]."\n?>";
@@ -897,6 +898,7 @@ $BoardSettings=$pretext2[0]."\n".
 "\$Settings['fixpathinfo'] = ".null_string($Settings['fixpathinfo']).";\n".
 "\$Settings['fixbasedir'] = ".null_string($Settings['fixbasedir']).";\n".
 "\$Settings['fixcookiedir'] = ".null_string($Settings['fixcookiedir']).";\n".
+"\$Settings['fixredirectdir'] = ".null_string($Settings['fixredirectdir']).";\n".
 "\$Settings['enable_pathinfo'] = ".null_string($Settings['enable_pathinfo']).";\n".
 "\$Settings['sessionid_in_urls'] = ".null_string($Settings['sessionid_in_urls']).";\n".
 "\$Settings['rssurl'] = ".null_string($Settings['rssurl']).";\n".$pretext2[1]."\n?>";

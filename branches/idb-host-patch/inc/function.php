@@ -11,7 +11,7 @@
     Copyright 2004-2010 iDB Support - http://idb.berlios.de/
     Copyright 2004-2010 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: function.php - Last Update: 06/13/2010 SVN 526 - Author: cooldude2k $
+    $FileInfo: function.php - Last Update: 06/13/2010 SVN 527 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="function.php"||$File3Name=="/function.php") {
@@ -150,7 +150,7 @@ if (preg_match("/".preg_quote("Exabot")."/i", $user_agent)) {
     return "Exabot"; }
 if (preg_match("/".preg_quote("Googlebot")."/i", $user_agent)) {
     return "Google"; }
-if (preg_match("/".preg_quote("HTML/XML Validator")."/i", $user_agent)) {
+if (preg_match("/".preg_quote("HTML")."\/".preg_quote("XML Validator")."/i", $user_agent)) {
     return "HTML/XML Validator"; }
 if (preg_match("/".preg_quote("Lycos")."/i", $user_agent)) {
     return "Lycos"; }

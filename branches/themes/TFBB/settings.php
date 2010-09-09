@@ -11,14 +11,14 @@
     Copyright 2004-2008 Jcink - https://launchpad.net/tfbb
     Copyright 2004-2008 Jcink - http://jcink.com/
     $ThemeInfo - Name: TFBB Theme - Author: jcink $
-    $FileInfo: settings.php - Last Update: 09/08/2010 SVN 531 - Author: jcink $
+    $FileInfo: settings.php - Last Update: 09/08/2010 SVN 532 - Author: jcink $
 */
 $ThemeSet = array();
 $ThemeSet['ThemeName'] = "TFBB Theme";
 $ThemeSet['ThemeMaker'] = "Jcink";
 $ThemeSet['ThemeVersion'] = "0.4.0";
 $ThemeSet['ThemeVersionType'] = "Alpha";
-$ThemeSet['ThemeSubVersion'] = "SVN 531";
+$ThemeSet['ThemeSubVersion'] = "SVN 532";
 $ThemeSet['MakerURL'] = "http://Jcink.com/";
 $ThemeSet['CopyRight'] = $ThemeSet['ThemeName']." was made by <a href=\"".$ThemeSet['MakerURL']."\" title=\"".$ThemeSet['ThemeMaker']."\">".$ThemeSet['ThemeMaker']."</a>";
 $ThemeSet['CSS'] = "themes/TFBB/css.css";
@@ -69,7 +69,7 @@ $ThemeSet['SubForumIcon'] = "<div style=\"text-align: center;\"><img src=\"theme
 $ThemeSet['RedirectIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/forum.gif\" alt=\"Redirect\" title=\"Redirect\" /></div>";
 $ThemeSet['TitleIcon'] = "<img src=\"themes/TFBB/nav.gif\" alt=\"-&gt;\" title=\"-&gt;\" /> ";
 $ThemeSet['NavLinkIcon'] = "&gt;&gt; ";
-$ThemeSet['NavLinkDivider'] = " -&gt; ";
+$ThemeSet['NavLinkDivider'] = "&nbsp;-&gt;&nbsp;";
 $ThemeSet['StatsIcon'] = "<img src=\"themes/TFBB/stats.gif\" alt=\"Board Stats\" title=\"Board Stats\" />";
 $ThemeSet['NoAvatar'] = "themes/TFBB/noavatar.png";
 $ThemeSet['NoAvatarSize'] = "100x100";

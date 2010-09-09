@@ -11,14 +11,14 @@
     Copyright 2004-2008 Cool Dude 2k - http://intdb.sourceforge.net/
     Copyright 2004-2008 Game Maker 2k - http://upload.idb.s1.jcink.com/
     $ThemeInfo - Name: iDB Theme - Author: cooldude2k $
-    $FileInfo: info.php - Last Update: 09/08/2010 SVN 531 - Author: cooldude2k $
+    $FileInfo: info.php - Last Update: 09/08/2010 SVN 532 - Author: cooldude2k $
 */
 $ThemeInfo = array();
 $ThemeInfo['ThemeName'] = "iDB Pink Theme";
 $ThemeInfo['ThemeMaker'] = "Ren&eacute; Johnson";
 $ThemeInfo['ThemeVersion'] = "0.4.0";
 $ThemeInfo['ThemeVersionType'] = "Alpha";
-$ThemeInfo['ThemeSubVersion'] = "SVN 531";
+$ThemeInfo['ThemeSubVersion'] = "SVN 532";
 $ThemeInfo['MakerURL'] = "http://idb.id.funpic.org/";
 $ThemeInfo['CopyRight'] = $ThemeInfo['ThemeName']." was made by <a href=\"".$ThemeInfo['MakerURL']."\" title=\"".$ThemeInfo['ThemeMaker']."\">".$ThemeInfo['ThemeMaker']."</a>";
 ?>

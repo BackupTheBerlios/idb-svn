@@ -1,14 +1,14 @@
 <?php
 /*
     $ThemeInfo - Name: IPB Alt Theme - Author: eternalSHADOW.com $
-	$FileInfo: settings.php - Last Update: 09/08/2010 SVN 531 - Author: cooldude2k $
+	$FileInfo: settings.php - Last Update: 09/08/2010 SVN 532 - Author: cooldude2k $
 */
 $ThemeSet = array();
 $ThemeSet['ThemeName'] = "IPB Alt Theme";
 $ThemeSet['ThemeMaker'] = "eternalSHADOW.com";
 $ThemeSet['ThemeVersion'] = "0.4.0";
 $ThemeSet['ThemeVersionType'] = "Alpha";
-$ThemeSet['ThemeSubVersion'] = "SVN 531";
+$ThemeSet['ThemeSubVersion'] = "SVN 532";
 $ThemeSet['MakerURL'] = "http://eternalshadow.com/";
 $ThemeSet['CopyRight'] = $ThemeSet['ThemeName']." was made by <a href=\"".$ThemeSet['MakerURL']."\" title=\"".$ThemeSet['ThemeMaker']."\">".$ThemeSet['ThemeMaker']."</a>";
 $ThemeSet['CSS'] = "themes/IPBAlt/css.css";
@@ -54,7 +54,7 @@ $ThemeSet['ButtonDivider'] = "&nbsp;";
 $ThemeSet['LineDividerTopic'] = "&nbsp;";
 $ThemeSet['TitleDivider'] = "-&gt;";
 $ThemeSet['NavLinkIcon'] = "<img src=\"themes/IPBAlt/navbar.gif\" alt=\"-&gt;\" title=\"-&gt;\" /> ";
-$ThemeSet['NavLinkDivider'] = " -&gt; ";
+$ThemeSet['NavLinkDivider'] = "&nbsp;-&gt;&nbsp;";
 $ThemeSet['ForumStyle'] = 2;
 $ThemeSet['ForumIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/IPBAlt/forum.gif\" alt=\"Forum\" title=\"Forum\" /></div>";
 $ThemeSet['SubForumIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/IPBAlt/subforum.gif\" alt=\"SubForum\" title=\"SubForum\" /></div>";

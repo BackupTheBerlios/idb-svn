@@ -11,14 +11,14 @@
     Copyright 2004-2008 Cool Dude 2k - http://intdb.sourceforge.net/
     Copyright 2004-2008 Game Maker 2k - http://upload.idb.s1.jcink.com/
     $ThemeInfo - Name: iDB Theme - Author: cooldude2k $
-    $FileInfo: settings.php - Last Update: 09/08/2010 SVN 530 - Author: cooldude2k $
+    $FileInfo: settings.php - Last Update: 09/08/2010 SVN 531 - Author: cooldude2k $
 */
 $ThemeSet = array();
 $ThemeSet['ThemeName'] = "iDB Pink Theme";
 $ThemeSet['ThemeMaker'] = "Ren&eacute; Johnson";
 $ThemeSet['ThemeVersion'] = "0.4.0";
 $ThemeSet['ThemeVersionType'] = "Alpha";
-$ThemeSet['ThemeSubVersion'] = "SVN 530";
+$ThemeSet['ThemeSubVersion'] = "SVN 531";
 $ThemeSet['MakerURL'] = "http://idb.id.funpic.org/";
 $ThemeSet['CopyRight'] = $ThemeSet['ThemeName']." was made by <a href=\"".$ThemeSet['MakerURL']."\" title=\"".$ThemeSet['ThemeMaker']."\">".$ThemeSet['ThemeMaker']."</a>";
 $ThemeSet['CSS'] = "themes/Pink/css.css";
@@ -59,9 +59,9 @@ $ThemeSet['QuoteReply'] = "Quote Reply";
 $ThemeSet['Report'] = "Report";
 $ThemeSet['EditReply'] = "Edit";
 $ThemeSet['DeleteReply'] = "Delete";
-$ThemeSet['LineDivider'] = " &nbsp;|&nbsp; ";
-$ThemeSet['ButtonDivider'] = " &nbsp; ";
-$ThemeSet['LineDividerTopic'] = " &nbsp;|&nbsp; ";
+$ThemeSet['LineDivider'] = "&nbsp;|&nbsp;";
+$ThemeSet['ButtonDivider'] = "&nbsp;";
+$ThemeSet['LineDividerTopic'] = "&nbsp;|&nbsp;";
 $ThemeSet['TitleDivider'] = "-&gt;";
 $ThemeSet['ForumStyle'] = 1;
 $ThemeSet['ForumIcon'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"Forum\"> (F) </div>";

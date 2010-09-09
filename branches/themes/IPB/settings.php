@@ -1,14 +1,14 @@
 <?php
 /*
     $ThemeInfo - Name: IPB Theme - Author: Matt Mecham $
-	$FileInfo: settings.php - Last Update: 09/08/2010 SVN 530 - Author: cooldude2k $
+	$FileInfo: settings.php - Last Update: 09/08/2010 SVN 531 - Author: cooldude2k $
 */
 $ThemeSet = array();
 $ThemeSet['ThemeName'] = "IPB Theme";
 $ThemeSet['ThemeMaker'] = "Matt Mecham";
 $ThemeSet['ThemeVersion'] = "0.4.0";
 $ThemeSet['ThemeVersionType'] = "Alpha";
-$ThemeSet['ThemeSubVersion'] = "SVN 530";
+$ThemeSet['ThemeSubVersion'] = "SVN 531";
 $ThemeSet['MakerURL'] = "http://invisionpower.com/";
 $ThemeSet['CopyRight'] = $ThemeSet['ThemeName']." was made by <a href=\"".$ThemeSet['MakerURL']."\" title=\"".$ThemeSet['ThemeMaker']."\">".$ThemeSet['ThemeMaker']."</a>";
 $ThemeSet['CSS'] = "themes/IPB/css.css";
@@ -49,9 +49,9 @@ $ThemeSet['QuoteReply'] = "<img src=\"themes/IPB/quote.gif\" alt=\"Quote Reply\"
 $ThemeSet['Report'] = "<img src=\"themes/IPB/report.gif\" alt=\"Report Reply\" title=\"Report Reply\" />";
 $ThemeSet['EditReply'] = "<img src=\"themes/IPB/edit.gif\" alt=\"Edit Reply\" title=\"Edit Reply\" />";
 $ThemeSet['DeleteReply'] = "<img src=\"themes/IPB/delete.gif\" alt=\"Delete Reply\" title=\"Delete Reply\" />";
-$ThemeSet['LineDivider'] = " &nbsp;|&nbsp; ";
-$ThemeSet['ButtonDivider'] = " &nbsp; ";
-$ThemeSet['LineDividerTopic'] = " &nbsp; ";
+$ThemeSet['LineDivider'] = "&nbsp;|&nbsp;";
+$ThemeSet['ButtonDivider'] = "&nbsp;";
+$ThemeSet['LineDividerTopic'] = "&nbsp;";
 $ThemeSet['TitleDivider'] = "-&gt;";
 $ThemeSet['ForumStyle'] = 2;
 $ThemeSet['ForumIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/IPB/forum.gif\" alt=\"Forum\" title=\"Forum\" /></div>";

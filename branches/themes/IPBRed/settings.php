@@ -1,14 +1,14 @@
 <?php
 /*
     $ThemeInfo - Name: IPB Alt Theme - Author: eternalSHADOW.com $
-	$FileInfo: settings.php - Last Update: 09/08/2010 SVN 530 - Author: cooldude2k $
+	$FileInfo: settings.php - Last Update: 09/08/2010 SVN 531 - Author: cooldude2k $
 */
 $ThemeSet = array();
 $ThemeSet['ThemeName'] = "IPB Red Theme";
 $ThemeSet['ThemeMaker'] = "eternalSHADOW.com";
 $ThemeSet['ThemeVersion'] = "0.4.0";
 $ThemeSet['ThemeVersionType'] = "Alpha";
-$ThemeSet['ThemeSubVersion'] = "SVN 530";
+$ThemeSet['ThemeSubVersion'] = "SVN 531";
 $ThemeSet['MakerURL'] = "http://eternalshadow.com/";
 $ThemeSet['CopyRight'] = $ThemeSet['ThemeName']." was made by <a href=\"".$ThemeSet['MakerURL']."\" title=\"".$ThemeSet['ThemeMaker']."\">".$ThemeSet['ThemeMaker']."</a>";
 $ThemeSet['CSS'] = "themes/IPBRed/css.css";
@@ -49,9 +49,9 @@ $ThemeSet['QuoteReply'] = "<img src=\"themes/IPBRed/quote.gif\" alt=\"Quote Repl
 $ThemeSet['Report'] = "<img src=\"themes/IPBRed/report.gif\" alt=\"Report Reply\" title=\"Report Reply\" />";
 $ThemeSet['EditReply'] = "<img src=\"themes/IPBRed/edit.gif\" alt=\"Edit Reply\" title=\"Edit Reply\" />";
 $ThemeSet['DeleteReply'] = "<img src=\"themes/IPBRed/delete.gif\" alt=\"Delete Reply\" title=\"Delete Reply\" />";
-$ThemeSet['LineDivider'] = " &nbsp;|&nbsp; ";
-$ThemeSet['ButtonDivider'] = " &nbsp; ";
-$ThemeSet['LineDividerTopic'] = " &nbsp; ";
+$ThemeSet['LineDivider'] = "&nbsp;|&nbsp;";
+$ThemeSet['ButtonDivider'] = "&nbsp;";
+$ThemeSet['LineDividerTopic'] = "&nbsp;";
 $ThemeSet['TitleDivider'] = "-&gt;";
 $ThemeSet['NavLinkIcon'] = "<img src=\"themes/IPBRed/navbar.gif\" alt=\"-&gt;\" title=\"-&gt;\" /> ";
 $ThemeSet['NavLinkDivider'] = " -&gt; ";

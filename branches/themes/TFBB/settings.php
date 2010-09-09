@@ -11,14 +11,14 @@
     Copyright 2004-2008 Jcink - https://launchpad.net/tfbb
     Copyright 2004-2008 Jcink - http://jcink.com/
     $ThemeInfo - Name: TFBB Theme - Author: jcink $
-    $FileInfo: settings.php - Last Update: 6/16/2009 SVN 264 - Author: jcink $
+    $FileInfo: settings.php - Last Update: 09/08/2010 SVN 530 - Author: jcink $
 */
 $ThemeSet = array();
 $ThemeSet['ThemeName'] = "TFBB Theme";
 $ThemeSet['ThemeMaker'] = "Jcink";
-$ThemeSet['ThemeVersion'] = "0.2.5";
-$ThemeSet['ThemeVersionType'] = "Pre-Alpha";
-$ThemeSet['ThemeSubVersion'] = "SVN 222";
+$ThemeSet['ThemeVersion'] = "0.4.0";
+$ThemeSet['ThemeVersionType'] = "Alpha";
+$ThemeSet['ThemeSubVersion'] = "SVN 530";
 $ThemeSet['MakerURL'] = "http://Jcink.com/";
 $ThemeSet['CopyRight'] = $ThemeSet['ThemeName']." was made by <a href=\"".$ThemeSet['MakerURL']."\" title=\"".$ThemeSet['ThemeMaker']."\">".$ThemeSet['ThemeMaker']."</a>";
 $ThemeSet['CSS'] = "themes/TFBB/css.css";
@@ -38,6 +38,14 @@ $ThemeSet['ClosedTopic'] = "<div style=\"text-align: center;\"><img src=\"themes
 $ThemeSet['HotClosedTopic'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/lock.png\" alt=\"Closed!\" title=\"Closed Topic!\" /></div>";
 $ThemeSet['PinClosedTopic'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/pinlock.png\" alt=\"Closed!\" title=\"Closed!\" /></div>";
 $ThemeSet['HotPinClosedTopic'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/pinlock.png\" alt=\"Closed!\" title=\"Closed!\" /></div>";
+$ThemeSet['MovedTopicIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/moved.png\" alt=\"Moved Topic\" title=\"Moved Topic\" /></div>";
+$ThemeSet['MovedHotTopic'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/moved.png\" alt=\"Moved Topic\" title=\"Moved Topic\" /></div>";
+$ThemeSet['MovedPinTopic'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/moved.png\" alt=\"Moved Pinned!\" title=\"Moved Pinned Topic!\" /></div>";
+$ThemeSet['MovedHotPinTopic'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/moved.png\" alt=\"Moved Pinned!\" title=\"Moved Pinned Topic!\" /></div>";
+$ThemeSet['MovedClosedTopic'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/moved.png\" alt=\"Moved Closed!\" title=\"Moved Closed Topic!\" /></div>";
+$ThemeSet['MovedHotClosedTopic'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/moved.png\" alt=\"Moved Closed!\" title=\"Moved Closed Topic!\" /></div>";
+$ThemeSet['MovedPinClosedTopic'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/moved.png\" alt=\"Moved Closed!\" title=\"Moved Closed!\" /></div>";
+$ThemeSet['MovedHotPinClosedTopic'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/moved.png\" alt=\"Moved Closed!\" title=\"Moved Closed!\" /></div>";
 $ThemeSet['MessageRead'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/topic.png\" alt=\"Message\" title=\"Message!\" /></div>";
 $ThemeSet['MessageUnread'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/pin.png\" alt=\"New Message\" title=\"New Message!\" /></div>";
 $ThemeSet['Profile'] = "Profile";
@@ -51,9 +59,9 @@ $ThemeSet['QuoteReply'] = "( Quote )";
 $ThemeSet['Report'] = "( Report )";
 $ThemeSet['EditReply'] = "( Edit )";
 $ThemeSet['DeleteReply'] = "( Delete )";
-$ThemeSet['LineDivider'] = " | ";
-$ThemeSet['ButtonDivider'] = " | ";
-$ThemeSet['LineDividerTopic'] = " | ";
+$ThemeSet['LineDivider'] = " &nbsp;|&nbsp; ";
+$ThemeSet['ButtonDivider'] = " &nbsp;|&nbsp; ";
+$ThemeSet['LineDividerTopic'] = " &nbsp;|&nbsp; ";
 $ThemeSet['TitleDivider'] = "-&gt;";
 $ThemeSet['ForumStyle'] = 1;
 $ThemeSet['ForumIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/forum.gif\" alt=\"Forum\" title=\"Forum\" /></div>";

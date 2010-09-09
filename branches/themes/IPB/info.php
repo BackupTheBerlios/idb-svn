@@ -1,13 +1,14 @@
 <?php
 /*
     $ThemeInfo - Name: IPB Theme - Author: Matt Mecham $
+	$FileInfo: info.php - Last Update: 09/08/2010 SVN 530 - Author: cooldude2k $
 */
 $ThemeInfo = array();
 $ThemeInfo['ThemeName'] = "IPB Theme";
 $ThemeInfo['ThemeMaker'] = "Matt Mecham";
-$ThemeInfo['ThemeVersion'] = "0.2.5";
-$ThemeInfo['ThemeVersionType'] = "Pre-Alpha";
-$ThemeInfo['ThemeSubVersion'] = "SVN 222";
+$ThemeInfo['ThemeVersion'] = "0.4.0";
+$ThemeInfo['ThemeVersionType'] = "Alpha";
+$ThemeInfo['ThemeSubVersion'] = "SVN 530";
 $ThemeInfo['MakerURL'] = "http://invisionpower.com/";
 $ThemeInfo['CopyRight'] = $ThemeInfo['ThemeName']." was made by <a href=\"".$ThemeInfo['MakerURL']."\" title=\"".$ThemeInfo['ThemeMaker']."\">".$ThemeInfo['ThemeMaker']."</a>";
 ?>

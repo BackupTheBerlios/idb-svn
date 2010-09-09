@@ -11,14 +11,14 @@
     Copyright 2004-2008 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2008 Game Maker 2k - http://intdb.sourceforge.net/
     $ThemeInfo - Name: iDB Theme - Author: cooldude2k $
-    $FileInfo: info.php - Last Update: 6/16/2009 SVN 264 - Author: cooldude2k $
+    $FileInfo: info.php - Last Update: 09/08/2010 SVN 530 - Author: cooldude2k $
 */
 $ThemeInfo = array();
 $ThemeInfo['ThemeName'] = "Random iDB Theme";
 $ThemeInfo['ThemeMaker'] = "Kazuki";
-$ThemeInfo['ThemeVersion'] = "0.2.5";
-$ThemeInfo['ThemeVersionType'] = "Pre-Alpha";
-$ThemeInfo['ThemeSubVersion'] = "SVN 222";
+$ThemeInfo['ThemeVersion'] = "0.4.0";
+$ThemeInfo['ThemeVersionType'] = "Alpha";
+$ThemeInfo['ThemeSubVersion'] = "SVN 530";
 $ThemeInfo['MakerURL'] = "http://kazuki.homelinux.org/bbs/category.php?act=view&amp;id=2";
 $ThemeInfo['CopyRight'] = $ThemeInfo['ThemeName']." was made by <a href=\"".$ThemeInfo['MakerURL']."\" title=\"".$ThemeInfo['ThemeMaker']."\">".$ThemeInfo['ThemeMaker']."</a>";
 ?>

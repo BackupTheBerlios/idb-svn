@@ -11,7 +11,7 @@
     Copyright 2004-2010 iDB Support - http://idb.berlios.de/
     Copyright 2004-2010 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: replies.php - Last Update: 09/09/2010 SVN 534 - Author: cooldude2k $
+    $FileInfo: replies.php - Last Update: 09/10/2010 SVN 535 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="replies.php"||$File3Name=="/replies.php") {
@@ -22,6 +22,10 @@ if(!is_numeric($_GET['id'])) { $_GET['id'] = null; }
 if(!is_numeric($_GET['post'])) { $_GET['post'] = null; }
 if(!is_numeric($_GET['page'])) { $_GET['page'] = 1; }
 if(!isset($_GET['modact'])) { $_GET['modact'] = null; }
+if(!isset($_GET['link'])) { $_GET['link'] = "no"; } 
+if(!isset($_GET['level'])) { $_GET['level'] = 1; } 
+if(!is_numeric($_GET['level'])) { $_GET['level'] = 1; }
+if($_GET['link']!="yes"&&$_GET['link']!="no") { $_GET['link'] = "no"; }
 if($_GET['modact']=="pin"||$_GET['modact']=="unpin"||$_GET['modact']=="open"||
 	$_GET['modact']=="move"||$_GET['modact']=="close"||$_GET['modact']=="edit"||$_GET['modact']=="delete")
 		{ $_GET['act'] = $_GET['modact']; }
@@ -37,6 +41,10 @@ $TopicID=sql_result($preresult,0,"id");
 $TopicForumID=sql_result($preresult,0,"ForumID");
 $TopicCatID=sql_result($preresult,0,"CategoryID");
 $TopicClosed=sql_result($preresult,0,"Closed");
+if($TopicClosed==3&&$PermissionInfo['CanModForum'][$TopicForumID]=="no") { 
+redirect("location",$rbasedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)); sql_free_result($preresult);
+ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']);
+gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
 if(!isset($_GET['post'])||$_GET['post']!==null) {
 $NumberReplies=sql_result($preresult,0,"NumReply"); }
 if(isset($_GET['post'])&&$_GET['post']!==null) {
@@ -914,7 +922,16 @@ $TTopicID=sql_result($gtsresult,0,"id");
 $TForumID=sql_result($gtsresult,0,"ForumID");
 $TUsersID=sql_result($gtsresult,0,"UserID");
 $TPinned=sql_result($gtsresult,0,"Pinned");
-if ($TPinned>1) { $TPinned = 1; } 
+$TClosed=sql_result($gtsresult,0,"Closed");
+if($TopicClosed==2&&$PermissionInfo['CanModForum'][$TForumID]=="no") { 
+redirect("location",$rbasedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)); sql_free_result($preresult);
+ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']);
+gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
+if($TopicClosed==3&&$PermissionInfo['CanModForum'][$TForumID]=="no") { 
+redirect("location",$rbasedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)); sql_free_result($preresult);
+ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']);
+gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
+if ($TPinned>2) { $TPinned = 1; } 
 if ($TPinned<0) { $TPinned = 0; }
 $CanPinTopics = false;
 if($_SESSION['UserGroup']!=$Settings['GuestGroup']) {
@@ -926,6 +943,10 @@ if($PermissionInfo['CanPinTopics'][$TForumID]=="yes"&&
 	if($PermissionInfo['CanPinTopics'][$TForumID]=="no"&&
 		$TopicClosed==1) { $CanPinTopics = false; } }
 if($_SESSION['UserID']==0) { $CanPinTopics = false; }
+if($_GET['level']<1) { $_GET['level'] = 1; }
+if($_GET['level']>2) { $_GET['level'] = 1; }
+if($PermissionInfo['CanModForum'][$UseThisFonum]=="no") {
+if($_GET['level']>1) { $_GET['level'] = 1; } }
 if($CanPinTopics===false) {
 redirect("location",$rbasedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)); sql_free_result($gtsresult);
 ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']);
@@ -933,7 +954,7 @@ gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die
 sql_free_result($gtsresult);
 if($CanPinTopics===true) {
 	if($_GET['act']=="pin") {
-$queryupd = sql_pre_query("UPDATE \"".$Settings['sqltable']."topics\" SET \"Pinned\"=1 WHERE \"id\"=%i", array($TTopicID)); }
+$queryupd = sql_pre_query("UPDATE \"".$Settings['sqltable']."topics\" SET \"Pinned\"=%i WHERE \"id\"=%i", array($_GET['level'],$TTopicID)); }
 	if($_GET['act']=="unpin") {
 $queryupd = sql_pre_query("UPDATE \"".$Settings['sqltable']."topics\" SET \"Pinned\"=0 WHERE \"id\"=%i", array($TTopicID)); } 
 sql_query($queryupd,$SQLStat); 
@@ -973,7 +994,15 @@ $TTopicID=sql_result($gtsresult,0,"id");
 $TForumID=sql_result($gtsresult,0,"ForumID");
 $TUsersID=sql_result($gtsresult,0,"UserID");
 $TClosed=sql_result($gtsresult,0,"Closed");
-if ($TClosed>1) { $TClosed = 1; } 
+if($TopicClosed==2&&$PermissionInfo['CanModForum'][$TForumID]=="no") { 
+redirect("location",$rbasedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)); sql_free_result($preresult);
+ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']);
+gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
+if($TopicClosed==3&&$PermissionInfo['CanModForum'][$TForumID]=="no") { 
+redirect("location",$rbasedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)); sql_free_result($preresult);
+ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']);
+gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
+if ($TClosed>3) { $TClosed = 3; } 
 if ($TClosed<0) { $TClosed = 0; }
 $CanCloseTopics = false;
 if($_SESSION['UserGroup']!=$Settings['GuestGroup']) {
@@ -982,6 +1011,10 @@ if($PermissionInfo['CanCloseTopics'][$TForumID]=="yes"&&
 if($PermissionInfo['CanCloseTopics'][$TForumID]=="yes"&&
 	$PermissionInfo['CanModForum'][$TForumID]=="yes") { 
 	$CanCloseTopics = true; } }
+if($_GET['level']<1) { $_GET['level'] = 1; }
+if($_GET['level']>3) { $_GET['level'] = 1; }
+if($PermissionInfo['CanModForum'][$UseThisFonum]=="no") {
+if($_GET['level']>1) { $_GET['level'] = 1; } }
 if($_SESSION['UserID']==0) { $CanCloseTopics = false; }
 if($CanCloseTopics===false) {
 redirect("location",$rbasedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)); sql_free_result($gtsresult);
@@ -990,7 +1023,7 @@ gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die
 sql_free_result($gtsresult);
 if($CanCloseTopics===true) {
 	if($_GET['act']=="close") {
-$queryupd = sql_pre_query("UPDATE \"".$Settings['sqltable']."topics\" SET \"Closed\"=1 WHERE \"id\"=%i", array($TTopicID)); }
+$queryupd = sql_pre_query("UPDATE \"".$Settings['sqltable']."topics\" SET \"Closed\"=%i WHERE \"id\"=%i", array($_GET['level'],$TTopicID)); }
 	if($_GET['act']=="open") {
 $queryupd = sql_pre_query("UPDATE \"".$Settings['sqltable']."topics\" SET \"Closed\"=0 WHERE \"id\"=%i", array($TTopicID)); } 
 sql_query($queryupd,$SQLStat); 
@@ -1037,6 +1070,15 @@ $gtsnum=sql_num_rows($gtsresult);
 $TTopicID=sql_result($gtsresult,0,"id");
 $OldForumID=sql_result($gtsresult,0,"ForumID");
 $OldCatID=sql_result($gtsresult,0,"CategoryID");
+$TClosed=sql_result($gtsresult,0,"Closed");
+if($TopicClosed==2&&$PermissionInfo['CanModForum'][$OldForumID]=="no") { 
+redirect("location",$rbasedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)); sql_free_result($preresult);
+ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']);
+gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
+if($TopicClosed==3&&$PermissionInfo['CanModForum'][$OldForumID]=="no") { 
+redirect("location",$rbasedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)); sql_free_result($preresult);
+ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']);
+gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
 $CanMoveTopics = false;
 if($_SESSION['UserGroup']!=$Settings['GuestGroup']) {
 if($PermissionInfo['CanCloseTopics'][$OldForumID]=="yes"&&
@@ -1079,7 +1121,10 @@ $NumberTopics = $NumberTopics - 1;
 sql_free_result($mvresult);
 $recountq = sql_pre_query("UPDATE \"".$Settings['sqltable']."forums\" SET \"NumPosts\"=%i,\"NumTopics\"=%i WHERE \"id\"=%i", array($NumberPosts,$NumberTopics,$OldForumID));
 sql_query($recountq,$SQLStat);
-$queryupd = sql_pre_query("UPDATE \"".$Settings['sqltable']."topics\" SET \"ForumID\"=%i,\"CategoryID\"=%i,\"OldForumID\"=%i,\"OldCategoryID\"=%i WHERE \"id\"=%i", array($_GET['newid'],$NewCatID,$OldForumID,$OldCatID,$TTopicID)); 
+if($_GET['link']=="no") {
+$queryupd = sql_pre_query("UPDATE \"".$Settings['sqltable']."topics\" SET \"ForumID\"=%i,\"CategoryID\"=%i,\"OldForumID\"=%i,\"OldCategoryID\"=%i WHERE \"id\"=%i", array($_GET['newid'],$NewCatID,$_GET['newid'],$NewCatID,$TTopicID)); }
+if($_GET['link']=="yes") {
+$queryupd = sql_pre_query("UPDATE \"".$Settings['sqltable']."topics\" SET \"ForumID\"=%i,\"CategoryID\"=%i,\"OldForumID\"=%i,\"OldCategoryID\"=%i WHERE \"id\"=%i", array($_GET['newid'],$NewCatID,$OldForumID,$OldCatID,$TTopicID)); }
 sql_query($queryupd,$SQLStat);
 $queryupd = sql_pre_query("UPDATE \"".$Settings['sqltable']."posts\" SET \"ForumID\"=%i,\"CategoryID\"=%i WHERE \"TopicID\"=%i", array($_GET['newid'],$NewCatID,$TTopicID)); 
 sql_query($queryupd,$SQLStat);
@@ -1150,6 +1195,16 @@ $gtsquery = sql_pre_query("SELECT * FROM \"".$Settings['sqltable']."topics\" WHE
 $gtsresult=sql_query($gtsquery,$SQLStat);
 $gtsnum=sql_num_rows($gtsresult);
 $TUsersID=sql_result($gtsresult,0,"UserID");
+$TForumID=sql_result($gtsresult,0,"ForumID");
+$TClosed=sql_result($gtsresult,0,"Closed");
+if($TopicClosed==2&&$PermissionInfo['CanModForum'][$TForumID]=="no") { 
+redirect("location",$rbasedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)); sql_free_result($preresult);
+ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']);
+gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
+if($TopicClosed==3&&$PermissionInfo['CanModForum'][$TForumID]=="no") { 
+redirect("location",$rbasedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)); sql_free_result($preresult);
+ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']);
+gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
 $CanDeleteTopics = false;
 if($_SESSION['UserGroup']!=$Settings['GuestGroup']) {
 if($PermissionInfo['CanDeleteTopics'][$ReplyForumID]=="yes"&&
@@ -1265,6 +1320,16 @@ $gtsquery = sql_pre_query("SELECT * FROM \"".$Settings['sqltable']."topics\" WHE
 $gtsresult=sql_query($gtsquery,$SQLStat);
 $gtsnum=sql_num_rows($gtsresult);
 $TUsersID=sql_result($gtsresult,0,"UserID");
+$TForumID=sql_result($gtsresult,0,"ForumID");
+$TClosed=sql_result($gtsresult,0,"Closed");
+if($TopicClosed==2&&$PermissionInfo['CanModForum'][$TForumID]=="no") { 
+redirect("location",$rbasedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)); sql_free_result($preresult);
+ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']);
+gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
+if($TopicClosed==3&&$PermissionInfo['CanModForum'][$TForumID]=="no") { 
+redirect("location",$rbasedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)); sql_free_result($preresult);
+ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']);
+gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
 if($_SESSION['UserID']!=$TUsersID) { $ShowEditTopic = null; }
 if($PermissionInfo['CanModForum'][$TopicForumID]=="yes"&&
 	$PermissionInfo['CanEditTopics'][$TopicForumID]=="yes") { 
@@ -1405,6 +1470,16 @@ if($PermissionInfo['CanModForum'][$TopicForumID]=="yes"&&
 	$ShowEditTopic = true; } 
 if($PermissionInfo['CanEditTopicsClose'][$TopicForumID]=="no"&&$TopicClosed==1) {
 	$ShowEditTopic = null; } }
+$TForumID=sql_result($gtsresult,0,"ForumID");
+$TClosed=sql_result($gtsresult,0,"Closed");
+if($TopicClosed==2&&$PermissionInfo['CanModForum'][$TForumID]=="no") { 
+redirect("location",$rbasedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)); sql_free_result($preresult);
+ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']);
+gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
+if($TopicClosed==3&&$PermissionInfo['CanModForum'][$TForumID]=="no") { 
+redirect("location",$rbasedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)); sql_free_result($preresult);
+ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']);
+gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
 ?>
 <div class="Table1Border">
 <?php if($ThemeSet['TableStyle']=="div") { ?>

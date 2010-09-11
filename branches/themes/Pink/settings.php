@@ -11,14 +11,14 @@
     Copyright 2004-2008 Cool Dude 2k - http://intdb.sourceforge.net/
     Copyright 2004-2008 Game Maker 2k - http://upload.idb.s1.jcink.com/
     $ThemeInfo - Name: iDB Theme - Author: cooldude2k $
-    $FileInfo: settings.php - Last Update: 09/08/2010 SVN 532 - Author: cooldude2k $
+    $FileInfo: settings.php - Last Update: 09/11/2010 SVN 538 - Author: cooldude2k $
 */
 $ThemeSet = array();
 $ThemeSet['ThemeName'] = "iDB Pink Theme";
 $ThemeSet['ThemeMaker'] = "Ren&eacute; Johnson";
 $ThemeSet['ThemeVersion'] = "0.4.0";
 $ThemeSet['ThemeVersionType'] = "Alpha";
-$ThemeSet['ThemeSubVersion'] = "SVN 532";
+$ThemeSet['ThemeSubVersion'] = "SVN 538";
 $ThemeSet['MakerURL'] = "http://idb.id.funpic.org/";
 $ThemeSet['CopyRight'] = $ThemeSet['ThemeName']." was made by <a href=\"".$ThemeSet['MakerURL']."\" title=\"".$ThemeSet['ThemeMaker']."\">".$ThemeSet['ThemeMaker']."</a>";
 $ThemeSet['CSS'] = "themes/Pink/css.css";
@@ -33,6 +33,7 @@ $ThemeSet['SubLogo'] = "</div>";
 $ThemeSet['TopicIcon'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"Topic!\"> (T) </div>";
 $ThemeSet['HotTopic'] = "<div style=\"text-align: center; font-size: 11px; font-weight: bold;\" title=\"Hot Topic!\"> (T) </div>";
 $ThemeSet['PinTopic'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"Pinned Topic!\"> {P} </div>";
+$ThemeSet['AnnouncementTopic'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"Pinned Topic!\"> {A} </div>";
 $ThemeSet['HotPinTopic'] = "<div style=\"text-align: center; font-size: 11px; font-weight: bold;\" title=\"Hot Pinned Topic!\"> {P} </div>";
 $ThemeSet['ClosedTopic'] = "<div style=\"text-align: center; font-size: 11px; text-decoration: line-through;\" title=\"Closed Topic!\"> [T] </div>";
 $ThemeSet['HotClosedTopic'] = "<div style=\"text-align: center; font-size: 11px; text-decoration: line-through; font-weight: bold;\" title=\"Hot Closed Topic!\"> [T] </div>";

@@ -11,14 +11,14 @@
     Copyright 2004-2008 Jcink - https://launchpad.net/tfbb
     Copyright 2004-2008 Jcink - http://jcink.com/
     $ThemeInfo - Name: TFBB Theme - Author: jcink $
-    $FileInfo: settings.php - Last Update: 09/08/2010 SVN 532 - Author: jcink $
+    $FileInfo: settings.php - Last Update: 09/11/2010 SVN 538 - Author: jcink $
 */
 $ThemeSet = array();
 $ThemeSet['ThemeName'] = "TFBB Theme";
 $ThemeSet['ThemeMaker'] = "Jcink";
 $ThemeSet['ThemeVersion'] = "0.4.0";
 $ThemeSet['ThemeVersionType'] = "Alpha";
-$ThemeSet['ThemeSubVersion'] = "SVN 532";
+$ThemeSet['ThemeSubVersion'] = "SVN 538";
 $ThemeSet['MakerURL'] = "http://Jcink.com/";
 $ThemeSet['CopyRight'] = $ThemeSet['ThemeName']." was made by <a href=\"".$ThemeSet['MakerURL']."\" title=\"".$ThemeSet['ThemeMaker']."\">".$ThemeSet['ThemeMaker']."</a>";
 $ThemeSet['CSS'] = "themes/TFBB/css.css";
@@ -33,6 +33,7 @@ $ThemeSet['SubLogo'] = null;
 $ThemeSet['TopicIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/topic.png\" alt=\"Topic\" title=\"Topic\" /></div>";
 $ThemeSet['HotTopic'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/topic.png\" alt=\"Topic\" title=\"Topic\" /></div>";
 $ThemeSet['PinTopic'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/pin.png\" alt=\"Pinned!\" title=\"Pinned Topic!\" /></div>";
+$ThemeSet['AnnouncementTopic'] =  "<div style=\"text-align: center;\"><img src=\"themes/TFBB/pin.png\" alt=\"Announcement!\" title=\"Announcement Topic!\" /></div>";
 $ThemeSet['HotPinTopic'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/pin.png\" alt=\"Pinned!\" title=\"Pinned Topic!\" /></div>";
 $ThemeSet['ClosedTopic'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/lock.png\" alt=\"Closed!\" title=\"Closed Topic!\" /></div>";
 $ThemeSet['HotClosedTopic'] = "<div style=\"text-align: center;\"><img src=\"themes/TFBB/lock.png\" alt=\"Closed!\" title=\"Closed Topic!\" /></div>";

@@ -11,7 +11,7 @@
     Copyright 2004-2010 iDB Support - http://idb.berlios.de/
     Copyright 2004-2010 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: main.php - Last Update: 09/12/2010 SVN 542 - Author: cooldude2k $
+    $FileInfo: main.php - Last Update: 09/13/2010 SVN 543 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="main.php"||$File3Name=="/main.php") {
@@ -37,7 +37,8 @@ redirect("location",$rbasedir.url_maker($exfile['index'],$Settings['file_ext'],"
 ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']);
 gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
 if(!isset($_POST['update'])) { $_POST['update'] = null; }
-if($_GET['act']=="resyncthemes"&&$Settings['SQLThemes']!="on") { $_GET['act'] = "view"; }
+if($_GET['act']=="resyncthemes"&&$Settings['SQLThemes']!="on") { $_GET['act'] = "enablesthemes"; }
+if($_GET['act']=="enablesthemes"&&$Settings['SQLThemes']!="off") { $_GET['act'] = "resyncthemes"; }
 $iDBRDate = $SVNDay[0]."/".$SVNDay[1]."/".$SVNDay[2];
 $iDBRSVN = $VER2[2]." ".$SubVerN;
 $OutPutLog = null;
@@ -129,8 +130,69 @@ $time = GMTimeStamp() - ini_get("session.gc_maxlifetime");
 //$sqlg = sql_pre_query('DELETE FROM \"'.$Settings['sqltable'].'sessions\" WHERE \"expires\" < UNIX_TIMESTAMP();', array(null));
 $sqlgc = sql_pre_query("DELETE FROM \"".$Settings['sqltable']."sessions\" WHERE \"expires\" < %i", array($time));
 sql_query($sqlgc,$SQLStat);
-$_GET['act'] = "optimize";
-$_POST['update'] = "now"; $_GET['act'] = "view"; }
+$_POST['update'] = "now"; $_GET['act'] = "optimize"; }
+if($_GET['act']=="enablesthemes"&&$GroupInfo['ViewDBInfo']=="yes"&&$Settings['SQLThemes']=="off") {
+$Settings['board_name'] = htmlspecialchars($Settings['board_name'], ENT_QUOTES, $Settings['charset']);
+$Settings['board_name'] = fixbamps($Settings['board_name']);
+$Settings['board_name'] = remove_spaces($Settings['board_name']);
+$Settings['board_name'] = str_replace("\&#039;", "&#039;", $Settings['board_name']);
+$SettInfo['board_name'] = htmlspecialchars($SettInfo['board_name'], ENT_QUOTES, $Settings['charset']);
+$SettInfo['board_name'] = fixbamps($SettInfo['board_name']);
+$SettInfo['board_name'] = remove_spaces($SettInfo['board_name']);
+$SettInfo['board_name'] = str_replace("\&#039;", "&#039;", $SettInfo['board_name']);
+$SettInfo['Author'] = htmlspecialchars($SettInfo['Author'], ENT_QUOTES, $Settings['charset']);
+$SettInfo['Author'] = fixbamps($SettInfo['Author']);
+$SettInfo['Author'] = remove_spaces($SettInfo['Author']);
+$SettInfo['Author'] = str_replace("\&#039;", "&#039;", $SettInfo['Author']);
+$SettInfo['Keywords'] = htmlspecialchars($SettInfo['Keywords'], ENT_QUOTES, $Settings['charset']);
+$SettInfo['Keywords'] = fixbamps($SettInfo['Keywords']);
+$SettInfo['Keywords'] = remove_spaces($SettInfo['Keywords']);
+$SettInfo['Keywords'] = str_replace("\&#039;", "&#039;", $SettInfo['Keywords']);
+$SettInfo['Description'] = htmlspecialchars($SettInfo['Description'], ENT_QUOTES, $Settings['charset']);
+$SettInfo['Description'] = fixbamps($SettInfo['Description']);
+$SettInfo['Description'] = remove_spaces($SettInfo['Description']);
+$SettInfo['Description'] = str_replace("\&#039;", "&#039;", $SettInfo['Description']);
+$BoardSettings=$pretext2[0]."\nrequire('settings.php');\n".
+"\$Settings['sqltable'] = ".null_string($Settings['sqltable']).";\n".
+"\$Settings['board_name'] = ".null_string($_POST['board_name']).";\n".
+"\$Settings['weburl'] = ".null_string($Settings['weburl']).";\n".
+"\$Settings['SQLThemes'] = 'on';\n".
+"\$Settings['GuestGroup'] = ".null_string($Settings['GuestGroup']).";\n".
+"\$Settings['MemberGroup'] = ".null_string($Settings['MemberGroup']).";\n".
+"\$Settings['ValidateGroup'] = ".null_string($Settings['ValidateGroup']).";\n".
+"\$Settings['AdminValidate'] = ".null_string($Settings['AdminValidate']).";\n".
+"\$Settings['TestReferer'] = ".null_string($Settings['TestReferer']).";\n".
+"\$Settings['DefaultTheme'] = ".null_string($Settings['DefaultTheme']).";\n".
+"\$Settings['DefaultTimeZone'] = ".null_string($Settings['DefaultTimeZone']).";\n".
+"\$Settings['DefaultDST'] = ".null_string($Settings['DefaultDST']).";\n".
+"\$Settings['start_date'] = ".null_string($Settings['start_date']).";\n".
+"\$Settings['use_hashtype'] = ".null_string($Settings['use_hashtype']).";\n".
+"\$Settings['max_posts'] = ".null_string($Settings['max_posts']).";\n".
+"\$Settings['max_topics'] = ".null_string($Settings['max_topics']).";\n".
+"\$Settings['max_memlist'] = ".null_string($Settings['max_memlist']).";\n".
+"\$Settings['max_pmlist'] = ".null_string($Settings['max_pmlist']).";\n".
+"\$Settings['hot_topic_num'] = ".null_string($Settings['hot_topic_num']).";\n".
+"\$Settings['enable_rss'] = ".null_string($Settings['enable_rss']).";\n".
+"\$Settings['enable_search'] = ".null_string($Settings['enable_search']).";\n".
+"\$Settings['board_offline'] = ".null_string($Settings['board_offline']).";\n".
+"\$Settings['BoardUUID'] = ".null_string($Settings['BoardUUID']).";\n".
+"\$Settings['KarmaBoostDays'] = ".null_string($Settings['KarmaBoostDays']).";\n".
+"\$Settings['KBoostPercent'] = ".null_string($Settings['KBoostPercent']).";\n".$pretext2[1]."\n".
+"\$SettInfo['board_name'] = ".null_string($SettInfo['board_name']).";\n".
+"\$SettInfo['Author'] = ".null_string($SettInfo['Author']).";\n".
+"\$SettInfo['Keywords'] = ".null_string($SettInfo['Keywords']).";\n".
+"\$SettInfo['Description'] = ".null_string($SettInfo['Description']).";\n?>";
+$BoardSettingsBak = $pretext.$settcheck.$BoardSettings;
+$BoardSettings = $pretext.$settcheck.$BoardSettings;
+$fp = fopen($_GET['board']."_settings.php","w+");
+fwrite($fp, $BoardSettings);
+fclose($fp);
+//	cp("settings.php","settingsbak.php");
+$fp = fopen($_GET['board']."_settingsbak.php","w+");
+fwrite($fp, $BoardSettingsBak);
+fclose($fp);
+$Settings['SQLThemes'] = "on";
+$_POST['update'] = "now"; $_GET['act'] = "resyncthemes"; }
 if($_GET['act']=="resyncthemes"&&$GroupInfo['ViewDBInfo']=="yes"&&$Settings['SQLThemes']=="on") {
 $time = GMTimeStamp() - ini_get("session.gc_maxlifetime");
 //$sqlg = sql_pre_query('DELETE FROM \"'.$Settings['sqltable'].'sessions\" WHERE \"expires\" < UNIX_TIMESTAMP();', array(null));
@@ -169,8 +231,7 @@ $themequery = sql_pre_query("SELECT * FROM \"".$Settings['sqltable']."themes\" W
 $themeresult=sql_query($themequery,$SQLStat);
 $themenum=sql_num_rows($themeresult);
 require($SettDir['inc'].'sqlthemes.php');
-$_GET['act'] = "optimize";
-$_POST['update'] = "now"; $_GET['act'] = "view"; }
+$_POST['update'] = "now"; $_GET['act'] = "optimize"; }
 if($_GET['act']=="optimize"&&$GroupInfo['ViewDBInfo']=="yes") {
 $TablePreFix = $Settings['sqltable'];
 function add_prefix($tarray) {

@@ -178,7 +178,7 @@ $RSS .= '<item rdf:about="'.$BoardURL.url_maker($exfilerss['topic'],$Settings['f
 if($_GET['feedtype']=="rss") {
 $CDataDescription = "<![CDATA[\n".$MyDescription."\n]]>";
 $RSS .= '<item>'."\n".'<pubDate>'.$TheTime.'</pubDate>'."\n".'<author>'.$UsersName.'</author>'."\n".'<title>'.$TopicName.'</title>'."\n".'<description>'.$CDataDescription.'</description>'."\n".'<link>'.$BoardURL.url_maker($exfilerss['topic'],$Settings['file_ext'],"act=view&id=".$TopicID."&page=1",$Settings['qstr'],$Settings['qsep'],$prexqstrrss['topic'],$exqstrrss['topic']).'</link>'."\n".'<guid>'.$BoardURL.url_maker($exfilerss['topic'],$Settings['file_ext'],"act=view&id=".$TopicID."&page=1",$Settings['qstr'],$Settings['qsep'],$prexqstrrss['topic'],$exqstrrss['topic']).'</guid>'."\n".'</item>'."\n"; } }
-++$i; sql_free_result($result); }
+++$i; sql_free_result($presult); }
 sql_free_result($result);
 ++$glti; }
 $endtag = "  <!-- Renee Sabonis ^_^ -->\n";

@@ -11,7 +11,7 @@
     Copyright 2004-2010 iDB Support - http://idb.berlios.de/
     Copyright 2004-2010 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: main.php - Last Update: 09/13/2010 SVN 543 - Author: cooldude2k $
+    $FileInfo: main.php - Last Update: 09/15/2010 SVN 546 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="main.php"||$File3Name=="/main.php") {
@@ -781,6 +781,8 @@ $SettInfo['Description'] = htmlspecialchars($SettInfo['Description'], ENT_QUOTES
 $SettInfo['Description'] = fixbamps($SettInfo['Description']);
 $SettInfo['Description'] = remove_spaces($SettInfo['Description']);
 $SettInfo['Description'] = str_replace("\&#039;", "&#039;", $SettInfo['Description']);
+$_POST['WebURL'] = htmlentities($_POST['WebURL'], ENT_QUOTES, $Settings['charset']);
+$_POST['WebURL'] = remove_spaces($_POST['WebURL']);
 $BoardSettings=$pretext2[0]."\nrequire('settings.php');\n".
 "\$Settings['sqltable'] = ".null_string($Settings['sqltable']).";\n".
 "\$Settings['board_name'] = ".null_string($Settings['board_name']).";\n".
@@ -821,6 +823,8 @@ $fp = fopen($_GET['board']."_settingsbak.php","w+");
 fwrite($fp, $BoardSettingsBak);
 fclose($fp); 
 if($_GET['board']==$Settings['root_board']) {
+$_POST['BoardURL'] = htmlentities($_POST['BoardURL'], ENT_QUOTES, $Settings['charset']);
+$_POST['BoardURL'] = remove_spaces($_POST['BoardURL']);
 $BoardSettings = null; $BoardSettingsBak = null;
 $BoardSettings=$pretext2[0]."\n".
 "\$Settings['root_board'] = ".null_string($Settings['root_board']).";\n".

@@ -17,6 +17,7 @@
 @ob_start(); 
 require_once('inc/killglobals.php');
 $site_url = "http://localhost/vercheck/";
+@ini_set("user_agent", "Mozilla/5.0 (compatible; iDB-VerCheck/2.5; +".$site_url.")");
 if(!isset($_GET['redirect'])) { $_GET['redirect'] = "off"; }
     /**
      * Returns true if $string is valid UTF-8 and false otherwise.

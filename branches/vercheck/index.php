@@ -11,13 +11,14 @@
     Copyright 2009-2010 iDB Support - http://idb.berlios.de/
     Copyright 2009-2010 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: index.php - Last Update: 4/27/2009 Ver 2.5 - Author: cooldude2k $
+    $FileInfo: index.php - Last Update: 4/27/2009 Ver 2.7 - Author: cooldude2k $
 */
 /* Change to your url. */
 @ob_start(); 
 require_once('inc/killglobals.php');
 $site_url = "http://localhost/vercheck/";
-@ini_set("user_agent", "Mozilla/5.0 (compatible; iDB-VerCheck/2.5; +".$site_url.")");
+$download_url = "http://idb.berlios.de/?act=download";
+@ini_set("user_agent", "Mozilla/5.0 (compatible; iDB-VerCheck/2.7; +".$site_url.")");
 if(!isset($_GET['redirect'])) { $_GET['redirect'] = "off"; }
     /**
      * Returns true if $string is valid UTF-8 and false otherwise.
@@ -562,7 +563,7 @@ $prepreg2 = preg_quote("</relsvnum>","/");
 preg_match_all("/".$prepreg1."(.*)".$prepreg2."{1}/isU", $VersionPart, $RelSVNumPart);
 $vercheck['subver'] = $RelSVNumPart[1][0];
 $MyFullRelNum = $MyVerSplit[0].$MyVerSplit[1].$MyVerSplit[2].".".$vercheck['reltypenum'].$vercheck['subver'];
-$DownloadLink = "<a href=\"http://idb.gamemaker2k.org/?act=download\">http://idb.gamemaker2k.org/?act=download</a>";
+$DownloadLink = "<a href=\"".$download_url."\">".$download_url."</a>";
 if($_GET['redirect']!="on"&&$_GET['redirect']!="xml"&&$_GET['redirect']!="js") {
 echo "<div>"; }
 if($_GET['redirect']=="xml") {
@@ -584,11 +585,11 @@ $VersionXML .= "<relnum>".$vercheck['ver']."</relnum>\n";
 $VersionXML .= "<subtype>".$vercheck['subtype']."</subtype>\n";
 $VersionXML .= "<relsvnum>".$vercheck['subver']."</relsvnum>\n";
 if($FullRelNum<$MyFullRelNum) {
-$VersionXML .= "<results><![CDATA[\n<img src=\"".$site_url."inc/pics/old.png\" alt=\"You seem to be using a old version.\" title=\"You seem to be using a old version.\" />&nbsp;Warning: A new version is available. <a href=\"http://idb.berlios.de/?act=download\">Click Here</a>\n]]></results>\n"; }
+$VersionXML .= "<results><![CDATA[\n<img src=\"".$site_url."inc/pics/old.png\" alt=\"You seem to be using a old version.\" title=\"You seem to be using a old version.\" />&nbsp;Warning: A new version is available. <a href=\"".$download_url."\">Click Here</a>\n]]></results>\n"; }
 if($FullRelNum==$MyFullRelNum) {
 $VersionXML .= "<results><![CDATA[\n<img src=\"".$site_url."inc/pics/new.png\" alt=\"Congratulations you have the newest version. ^_^ \" title=\"Congratulations you have the newest version. ^_^ \" />&nbsp;Congratulates: You have the latest version.\n]]></results>\n"; }
 if($FullRelNum>$MyFullRelNum) {
-$VersionXML .= "<results><![CDATA[\n<img src=\"".$site_url."inc/pics/beta.png\" alt=\"You seem to be using a nightly version.\" title=\"You seem to be using a nightly version.\" />&nbsp;Warning: You seem to be using a nightly version. <a href=\"http://idb.berlios.de/?act=download\">Click Here</a> for latest version.\n]]></results>\n"; }
+$VersionXML .= "<results><![CDATA[\n<img src=\"".$site_url."inc/pics/beta.png\" alt=\"You seem to be using a nightly version.\" title=\"You seem to be using a nightly version.\" />&nbsp;Warning: You seem to be using a nightly version. <a href=\"".$download_url."\">Click Here</a> for latest version.\n]]></results>\n"; }
 $VersionXML .= "</version>\n\n";
 $VersionXML .= "</versioninfo>"; 
 echo $VersionXML; }
@@ -600,11 +601,11 @@ $VersionJS .= "var yourverinfo = 'Your Version: ".$_GET['name']." ".$_GET['relty
 $VersionJS .= "var myverinfo = 'Current Version: ".$vercheck['name']." ".$vercheck['reltype']." ".$vercheck['ver']." ".$vercheck['subtype']." ".$vercheck['subver']."<br />';\n";
 $VersionJS .= "var ourverinfo = yourverinfo+'<br />'+myverinfo;\n";
 if($FullRelNum<$MyFullRelNum) {
-$VersionJS .= "document.getElementById('iverinfo').innerHTML = vercheckinfo+'<img src=\"".$site_url."inc/pics/old.png\" alt=\"You seem to be using a old version.\" title=\"You seem to be using a old version.\" />&#160;Warning: A new version is available. <a href=\"http://idb.berlios.de/?act=download\">Click Here</a><br />'+ourverinfo+'<br />';"; }
+$VersionJS .= "document.getElementById('iverinfo').innerHTML = vercheckinfo+'<img src=\"".$site_url."inc/pics/old.png\" alt=\"You seem to be using a old version.\" title=\"You seem to be using a old version.\" />&#160;Warning: A new version is available. <a href=\"".$download_url."\">Click Here</a><br />'+ourverinfo+'<br />';"; }
 if($FullRelNum==$MyFullRelNum) {
 $VersionJS .= "document.getElementById('iverinfo').innerHTML = vercheckinfo+'<img src=\"".$site_url."inc/pics/new.png\" alt=\"Congratulations you have the newest version. ^_^ \" title=\"Congratulations you have the newest version. ^_^ \" />&#160;Congratulates: You have the latest version.<br />'+ourverinfo+'<br />';"; }
 if($FullRelNum>$MyFullRelNum) {
-$VersionJS .= "document.getElementById('iverinfo').innerHTML = vercheckinfo+'<img src=\"".$site_url."inc/pics/beta.png\" alt=\"You seem to be using a nightly version.\" title=\"You seem to be using a nightly version.\" />&#160;Warning: You seem to be using a nightly version. <br /><a href=\"http://idb.berlios.de/?act=download\">Click Here</a> for latest version.<br />'+ourverinfo+'<br />';"; }
+$VersionJS .= "document.getElementById('iverinfo').innerHTML = vercheckinfo+'<img src=\"".$site_url."inc/pics/beta.png\" alt=\"You seem to be using a nightly version.\" title=\"You seem to be using a nightly version.\" />&#160;Warning: You seem to be using a nightly version. <br /><a href=\"".$download_url."\">Click Here</a> for latest version.<br />'+ourverinfo+'<br />';"; }
 $VersionJS .= "\n} ";
 echo $VersionJS; }
 if($_GET['redirect']=="on") { 

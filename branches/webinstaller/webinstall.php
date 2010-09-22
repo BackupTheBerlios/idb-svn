@@ -31,7 +31,7 @@ while (ftell($thandle)<$TarSizeEnd) {
 	$FileName = $outdir.trim(fread($thandle,100));
 	$FileMode = trim(fread($thandle,8));
 	if($chmod===null) {
-		$FileCHMOD = $FileMode; }
+		$FileCHMOD = "0".substr($FileMode,-3); }
 	if($chmod!==null) {
 		$FileCHMOD = $chmod; }
 	$OwnerID = trim(fread($thandle,8));

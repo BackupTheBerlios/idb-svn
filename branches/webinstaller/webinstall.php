@@ -11,10 +11,15 @@
     Copyright 2004-2010 iDB Support - http://idb.berlios.de/
     Copyright 2004-2010 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: webinstall.php - Last Update: 09/22/2010 Ver 1 - Author: cooldude2k $
+    $FileInfo: webinstall.php - Last Update: 09/22/2010 Ver 2.8 - Author: cooldude2k $
 */
 @ob_start();
-// PHP iUnTAR Version 2.7
+$FTPURL = "ftp.berlios.de";
+$FTPUSER = "anonymous";
+$FTPPASS = "";
+$FTPPATH = "/pub/idb/nighty-ver/";
+$HTTPURL = "http://download.berlios.de/idb/";
+// PHP iUnTAR Version 2.8
 function untar($tarfile,$outdir="./",$chmod=null) {
 $TarSize = filesize($tarfile);
 $TarSizeEnd = $TarSize - 1024;
@@ -26,7 +31,7 @@ while (ftell($thandle)<$TarSizeEnd) {
 	$FileName = $outdir.trim(fread($thandle,100));
 	$FileMode = trim(fread($thandle,8));
 	if($chmod===null) {
-		$FileCHMOD = "0".substr($FileMode,-3); }
+		$FileCHMOD = $FileMode; }
 	if($chmod!==null) {
 		$FileCHMOD = $chmod; }
 	$OwnerID = trim(fread($thandle,8));
@@ -76,12 +81,18 @@ function gunzip2($infile, $outfile) {
  fclose($fp);
 } }
 $mydir = addslashes(str_replace("\\","/",dirname(__FILE__)."/"));
-$conn_id = ftp_connect("ftp.berlios.de",21,90);
-ftp_login($conn_id, "anonymous", "");
+$conn_id = ftp_connect($FTPURL,21,90);
+$login_result = ftp_login($conn_id, $FTPUSER, $FTPPASS);
+if((!$conn_id)||(!$login_result)) { 
+$tarhandle = fopen("./iDB.tar.gz", "a+");
+fwrite($tarhandle,file_get_contents($HTTPURL."iDB.tar.gz"));
+fclose($tarhandle);
+chmod("./iDB.tar.gz",0777);
+} else {
 ftp_pasv($conn_id, true);
-ftp_chdir($conn_id, "/pub/idb/nighty-ver/");
+ftp_chdir($conn_id, $FTPPATH);
 ftp_get($conn_id, "./iDB.tar.gz", "./iDB.tar.gz", FTP_BINARY);
-ftp_close($conn_id);
+ftp_close($conn_id); }
 gunzip("iDB.tar.gz","iDB.tar");
 unlink("iDB.tar.gz");
 untar("./iDB.tar","./"); 

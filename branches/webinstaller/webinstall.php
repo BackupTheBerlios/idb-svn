@@ -24,8 +24,7 @@ function untar($tarfile,$outdir="./",$chmod=null) {
 $TarSize = filesize($tarfile);
 $TarSizeEnd = $TarSize - 1024;
 if($outdir!=""&&!file_exists($outdir)) {
-	mkdir($outdir); 
-	chmod($outdir,0777); }
+	mkdir($outdir,0777,true); }
 $thandle = fopen($tarfile, "r");
 while (ftell($thandle)<$TarSizeEnd) {
 	$FileName = $outdir.trim(fread($thandle,100));
@@ -48,10 +47,10 @@ while (ftell($thandle)<$TarSizeEnd) {
 	if($FileType=="0") {
 		$subhandle = fopen($FileName, "a+");
 		fwrite($subhandle,$FileContent,$FileSize);
-		fclose($subhandle); }
+		fclose($subhandle); 
+		chmod($FileName,$FileCHMOD); }
 	if($FileType=="5") {
-		mkdir($FileName); }
-	chmod($FileName,$FileCHMOD);
+		mkdir($FileName,$FileCHMOD,true); }
 	//touch($FileName,$LastEdit);
 	if($FileType=="0") {
 		$CheckSize = 512;

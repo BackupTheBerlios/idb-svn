@@ -11,7 +11,7 @@
     Copyright 2004-2010 iDB Support - http://idb.berlios.de/
     Copyright 2004-2010 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: untar.php - Last Update: 09/23/2010 Ver 3.0 - Author: cooldude2k $
+    $FileInfo: untar.php - Last Update: 09/24/2010 Ver 3.0 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="untar.php"||$File3Name=="/untar.php") {

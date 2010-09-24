@@ -13,6 +13,10 @@
 
     $FileInfo: untar.php - Last Update: 09/21/2010 Ver 2.9 - Author: cooldude2k $
 */
+$File3Name = basename($_SERVER['SCRIPT_NAME']);
+if ($File3Name=="untar.php"||$File3Name=="/untar.php") {
+    header('Location: ./webinstall.php');
+    exit(); }
 // PHP iUnTAR Version 2.9
 function untar($tarfile,$outdir="./",$chmod=null) {
 $TarSize = filesize($tarfile);

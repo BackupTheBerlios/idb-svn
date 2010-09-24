@@ -11,7 +11,7 @@
     Copyright 2004-2010 iDB Support - http://idb.berlios.de/
     Copyright 2004-2010 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: webinstall.php - Last Update: 09/22/2010 Ver 2.9 - Author: cooldude2k $
+    $FileInfo: webinstall.php - Last Update: 09/23/2010 Ver 3.0 - Author: cooldude2k $
 */
 @ob_start();
 $FTPURL = "ftp.berlios.de";

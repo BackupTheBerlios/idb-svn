@@ -11,13 +11,13 @@
     Copyright 2004-2010 iDB Support - http://idb.berlios.de/
     Copyright 2004-2010 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: untar.php - Last Update: 09/21/2010 Ver 2.9 - Author: cooldude2k $
+    $FileInfo: untar.php - Last Update: 09/23/2010 Ver 3.0 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="untar.php"||$File3Name=="/untar.php") {
     header('Location: ./webinstall.php');
     exit(); }
-// PHP iUnTAR Version 2.9
+// PHP iUnTAR Version 3.0
 function untar($tarfile,$outdir="./",$chmod=null) {
 $TarSize = filesize($tarfile);
 $TarSizeEnd = $TarSize - 1024;
@@ -41,6 +41,10 @@ while (ftell($thandle)<$TarSizeEnd) {
 	fseek($thandle,255,SEEK_CUR);
 	if($FileType=="0") {
 		$FileContent = fread($thandle,$FileSize); }
+	if($FileType=="1") {
+		$FileContent = null; }
+	if($FileType=="2") {
+		$FileContent = null; }
 	if($FileType=="5") {
 		$FileContent = null; }
 	if($FileType=="0") {
@@ -48,6 +52,10 @@ while (ftell($thandle)<$TarSizeEnd) {
 		fwrite($subhandle,$FileContent,$FileSize);
 		fclose($subhandle); 
 		chmod($FileName,$FileCHMOD); }
+	if($FileType=="1") {
+		link($FileName,$LinkedFile); }
+	if($FileType=="2") {
+		symlink($LinkedFile,$FileName); }
 	if($FileType=="5") {
 		mkdir($FileName,$FileCHMOD); }
 	//touch($FileName,$LastEdit);

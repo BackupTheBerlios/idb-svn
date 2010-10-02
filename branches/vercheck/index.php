@@ -11,14 +11,14 @@
     Copyright 2009-2010 iDB Support - http://idb.berlios.de/
     Copyright 2009-2010 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: index.php - Last Update: 4/27/2009 Ver 2.7 - Author: cooldude2k $
+    $FileInfo: index.php - Last Update: 10/02/2010 Ver 2.8 - Author: cooldude2k $
 */
 /* Change to your url. */
 @ob_start(); 
 require_once('inc/killglobals.php');
 $site_url = "http://localhost/vercheck/";
-$download_url = "http://idb.berlios.de/?act=download";
-@ini_set("user_agent", "Mozilla/5.0 (compatible; iDB-VerCheck/2.7; +".$site_url.")");
+$download_url = $site_url."download.php";
+@ini_set("user_agent", "Mozilla/5.0 (compatible; iDB-VerCheck/2.8; +".$site_url.")");
 if(!isset($_GET['redirect'])) { $_GET['redirect'] = "off"; }
     /**
      * Returns true if $string is valid UTF-8 and false otherwise.

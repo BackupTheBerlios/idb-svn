@@ -22,9 +22,9 @@
 <reltypename>Alpha</reltypename>
 <relnum>0.4.1</relnum>
 <subtype>SVN</subtype>
-<relsvnum>563</relsvnum>
+<relsvnum>582</relsvnum>
 <fullrel>iDB Al 0.4.1</fullrel>
-<fullname>iDB Al 0.4.1 SVN 563</fullname>
+<fullname>iDB Al 0.4.1 SVN 582</fullname>
 </version>
 
 <version>
@@ -33,9 +33,9 @@
 <reltypename>Alpha</reltypename>
 <relnum>0.4.1</relnum>
 <subtype>SVN</subtype>
-<relsvnum>563</relsvnum>
+<relsvnum>582</relsvnum>
 <fullrel>iDB-Host Al 0.4.1</fullrel>
-<fullname>iDB-Host Al 0.4.1 SVN 563</fullname>
+<fullname>iDB-Host Al 0.4.1 SVN 582</fullname>
 </version>
 
 <version>
@@ -44,9 +44,9 @@
 <reltypename>Alpha</reltypename>
 <relnum>0.4.1</relnum>
 <subtype>SVN</subtype>
-<relsvnum>563</relsvnum>
+<relsvnum>582</relsvnum>
 <fullrel>iDBEH-Mod Al 0.4.1</fullrel>
-<fullname>iDBEH-Mod Al 0.4.1 SVN 563</fullname>
+<fullname>iDBEH-Mod Al 0.4.1 SVN 582</fullname>
 </version>
 
 </versioninfo>

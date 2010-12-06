@@ -157,7 +157,7 @@ if($Settings['SeparateDatabase']=="yes") {
 $SQLStat = sql_connect_db($Settings['sqlhost'],$Settings['sqluser'],$Settings['sqlpass']); 
 $Settings['sqldb'] = $_POST['unixname']; 
 if($Settings['sqltype']=="sqlite") {
-$Settings['sqldb'] = $_POST['unixname'].".sqlite"; }
+$Settings['sqldb'] = $_POST['unixname'].".sdb"; }
 if($Settings['sqltype']=="mysql"||
 	$Settings['sqltype']=="mysqli"||
 	$Settings['sqltype']=="pgsql") {

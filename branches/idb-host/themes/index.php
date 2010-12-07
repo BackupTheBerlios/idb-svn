@@ -8,10 +8,10 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     Revised BSD License for more details.
 
-    Copyright 2004-2006 Cool Dude 2k - http://intdb.sourceforge.net/
-    Copyright 2004-2006 Game Maker 2k - http://cooldude2k.co.funpic.org/
+    Copyright 2004-2011 Cool Dude 2k - http://intdb.sourceforge.net/
+    Copyright 2004-2011 Game Maker 2k - http://cooldude2k.co.funpic.org/
 
-    $FileInfo: index.php - Last Update: 6/16/2009 SVN 264 - Author: cooldude2k $
+    $FileInfo: index.php - Last Update: 12/07/2010 SVN 600 - Author: cooldude2k $
 */
 header('Location: ../index.php');
 ?>

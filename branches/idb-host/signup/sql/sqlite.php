@@ -12,7 +12,7 @@
     Copyright 2004-2011 Game Maker 2k - http://gamemaker2k.org/
     iDB Installer made by Game Maker 2k - http://idb.berlios.net/
 
-    $FileInfo: sqlite.php - Last Update: 11/05/2010 SVN 596 - Author: cooldude2k $
+    $FileInfo: sqlite.php - Last Update: 12/07/2010 SVN 600 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="sqlite.php"||$File3Name=="/sqlite.php") {

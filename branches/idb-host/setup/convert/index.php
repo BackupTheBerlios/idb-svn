@@ -12,7 +12,7 @@
     Copyright 2004-2011 Game Maker 2k - http://gamemaker2k.org/
     iDB Installer made by Game Maker 2k - http://idb.berlios.net/
 
-    $FileInfo: index.php - Last Update: 6/16/2009 SVN 264 - Author: cooldude2k $
+    $FileInfo: index.php - Last Update: 12/07/2010 SVN 600 - Author: cooldude2k $
 */
 header('Location: ../../index.php');
 ?>

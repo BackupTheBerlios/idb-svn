@@ -8,66 +8,123 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     Revised BSD License for more details.
 
-    Copyright 2004-2010 iDB Support - http://idb.berlios.de/
-    Copyright 2004-2010 Game Maker 2k - http://gamemaker2k.org/
+    Copyright 2004-2011 iDB Support - http://idb.berlios.de/
+    Copyright 2004-2011 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: untar.php - Last Update: 09/24/2010 Ver 3.0 - Author: cooldude2k $
+    $FileInfo: untar.php - Last Update: 12/15/2010 Ver 4.0 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="untar.php"||$File3Name=="/untar.php") {
     header('Location: ./webinstall.php');
     exit(); }
-// PHP iUnTAR Version 3.0
-function untar($tarfile,$outdir="./",$chmod=null) {
+// PHP iUnTAR Version 4.0
+// license: Revised BSD license
+function untar($tarfile,$outdir="./",$chmod=null,$extract=true) {
 $TarSize = filesize($tarfile);
 $TarSizeEnd = $TarSize - 1024;
-if($outdir!=""&&!file_exists($outdir)) {
-	mkdir($outdir,0777); }
+if($extract!==true&&$extract!==false) {
+	$extract = false; }
+if($outdir!=""&&!file_exists($outdir)&&$extract===true) {
+        mkdir($outdir,0777); }
 $thandle = fopen($tarfile, "r");
+if($extract===false) {
+	$FileArray = null; $i = 0; }
 while (ftell($thandle)<$TarSizeEnd) {
-	$FileName = $outdir.str_replace("trunk/","",trim(fread($thandle,100)));
-	$FileMode = trim(fread($thandle,8));
-	if($chmod===null) {
-		$FileCHMOD = octdec("0".substr($FileMode,-3)); }
-	if($chmod!==null) {
-		$FileCHMOD = $chmod; }
-	$OwnerID = trim(fread($thandle,8));
-	$GroupID = trim(fread($thandle,8));
-	$FileSize = octdec(trim(fread($thandle,12)));
-	$LastEdit = trim(fread($thandle,12));
-	$Checksum = trim(fread($thandle,8));
-	$FileType = trim(fread($thandle,1));
-	$LinkedFile = trim(fread($thandle,100));
-	fseek($thandle,255,SEEK_CUR);
-	if($FileType=="0") {
-		$FileContent = fread($thandle,$FileSize); }
-	if($FileType=="1") {
-		$FileContent = null; }
-	if($FileType=="2") {
-		$FileContent = null; }
-	if($FileType=="5") {
-		$FileContent = null; }
-	if($FileType=="0") {
-		$subhandle = fopen($FileName, "a+");
-		fwrite($subhandle,$FileContent,$FileSize);
-		fclose($subhandle); 
-		chmod($FileName,$FileCHMOD); }
-	if($FileType=="1") {
-		link($FileName,$LinkedFile); }
-	if($FileType=="2") {
-		symlink($LinkedFile,$FileName); }
-	if($FileType=="5") {
-		mkdir($FileName,$FileCHMOD); }
-	//touch($FileName,$LastEdit);
-	if($FileType=="0") {
-		$CheckSize = 512;
-		while ($CheckSize<$FileSize) {
-			if($CheckSize<$FileSize) {
-			$CheckSize = $CheckSize + 512; } }
-		$SeekSize = $CheckSize - $FileSize;
-		fseek($thandle,$SeekSize,SEEK_CUR); } }
-	fclose($thandle); 
-	return true; }
+        $FileName = $outdir.trim(fread($thandle,100));
+        $FileMode = trim(fread($thandle,8));
+        if($chmod===null) {
+                $FileCHMOD = octdec("0".substr($FileMode,-3)); }
+        if($chmod!==null) {
+                $FileCHMOD = $chmod; }
+        $OwnerID = trim(fread($thandle,8));
+        $GroupID = trim(fread($thandle,8));
+        $FileSize = octdec(trim(fread($thandle,12)));
+        $LastEdit = trim(fread($thandle,12));
+        $Checksum = trim(fread($thandle,8));
+        $FileType = trim(fread($thandle,1));
+        $LinkedFile = trim(fread($thandle,100));
+        fseek($thandle,255,SEEK_CUR);
+        if($FileType=="0"||$FileType=="7") {
+				$FileContent = fread($thandle,$FileSize); }
+        if($FileType=="1") {
+                $FileContent = null; }
+        if($FileType=="2") {
+                $FileContent = null; }
+        if($FileType=="5") {
+                $FileContent = null; }
+        if($FileType=="0"||$FileType=="7") {
+			if($extract===true) {
+                $subhandle = fopen($FileName, "a+");
+                fwrite($subhandle,$FileContent,$FileSize);
+                fclose($subhandle);
+                chmod($FileName,$FileCHMOD); }
+			if($extract===false) { 
+				$FileArray[$i]['FileName'] = $FileName;
+				$FileArray[$i]['FileMode'] = $FileMode;
+				$FileArray[$i]['OwnerID'] = $OwnerID;
+				$FileArray[$i]['GroupID'] = $GroupID;
+				$FileArray[$i]['FileSize'] = $FileSize;
+				$FileArray[$i]['LastEdit'] = $LastEdit;
+				$FileArray[$i]['Checksum'] = $Checksum;
+				$FileArray[$i]['FileType'] = $FileType;
+				$FileArray[$i]['LinkedFile'] = $LinkedFile;
+				$FileArray[$i]['FileContent'] = $FileContent; } }
+        if($FileType=="1") {
+			if($extract===true) {
+                link($FileName,$LinkedFile); }
+			if($extract===false) { 
+				$FileArray[$i]['FileName'] = $FileName;
+				$FileArray[$i]['FileMode'] = $FileMode;
+				$FileArray[$i]['OwnerID'] = $OwnerID;
+				$FileArray[$i]['GroupID'] = $GroupID;
+				$FileArray[$i]['FileSize'] = $FileSize;
+				$FileArray[$i]['LastEdit'] = $LastEdit;
+				$FileArray[$i]['Checksum'] = $Checksum;
+				$FileArray[$i]['FileType'] = $FileType;
+				$FileArray[$i]['LinkedFile'] = $LinkedFile;
+				$FileArray[$i]['FileContent'] = $FileContent; } }
+        if($FileType=="2") {
+			if($extract===true) {
+                symlink($LinkedFile,$FileName); }
+			if($extract===false) { 
+				$FileArray[$i]['FileName'] = $FileName;
+				$FileArray[$i]['FileMode'] = $FileMode;
+				$FileArray[$i]['OwnerID'] = $OwnerID;
+				$FileArray[$i]['GroupID'] = $GroupID;
+				$FileArray[$i]['FileSize'] = $FileSize;
+				$FileArray[$i]['LastEdit'] = $LastEdit;
+				$FileArray[$i]['Checksum'] = $Checksum;
+				$FileArray[$i]['FileType'] = $FileType;
+				$FileArray[$i]['LinkedFile'] = $LinkedFile;
+				$FileArray[$i]['FileContent'] = $FileContent; } }
+        if($FileType=="5") {
+			if($extract===true) {
+                mkdir($FileName,$FileCHMOD); } 
+			if($extract===false) { 
+				$FileArray[$i]['FileName'] = $FileName;
+				$FileArray[$i]['FileMode'] = $FileMode;
+				$FileArray[$i]['OwnerID'] = $OwnerID;
+				$FileArray[$i]['GroupID'] = $GroupID;
+				$FileArray[$i]['FileSize'] = $FileSize;
+				$FileArray[$i]['LastEdit'] = $LastEdit;
+				$FileArray[$i]['Checksum'] = $Checksum;
+				$FileArray[$i]['FileType'] = $FileType;
+				$FileArray[$i]['LinkedFile'] = $LinkedFile;
+				$FileArray[$i]['FileContent'] = $FileContent; } }
+        //touch($FileName,$LastEdit);
+		if($extract===false) { ++$i; }
+        if($FileType=="0"||$FileType=="7") {
+                $CheckSize = 512;
+                while ($CheckSize<$FileSize) {
+                        if($CheckSize<$FileSize) {
+                        $CheckSize = $CheckSize + 512; } }
+                $SeekSize = $CheckSize - $FileSize;
+                fseek($thandle,$SeekSize,SEEK_CUR); } }
+        fclose($thandle);
+		if($extract===true) {
+			return true; }
+		if($extract===false) {
+			return $FileArray; } }
 //Check if zlib is loaded
 if(extension_loaded("zlib")) {
 function gunzip($infile, $outfile) {

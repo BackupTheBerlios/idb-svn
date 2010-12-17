@@ -33,7 +33,7 @@ $thandle = fopen($tarfile, "r");
 if($extract===false) {
 	$FileArray = null; $i = 0; }
 while (ftell($thandle)<$TarSizeEnd) {
-	$FileName = $outdir.trim(fread($thandle,100));
+	$FileName = $outdir.str_replace("trunk/","",trim(fread($thandle,100)));
 	$FileMode = trim(fread($thandle,8));
 	if($chmod===null) {
 		$FileCHMOD = octdec("0".substr($FileMode,-3)); }

@@ -27,11 +27,14 @@ if($extract!==true&&$extract!==false) {
 	$extract = false; }
 if($lsonly!==true&&$lsonly!==false) {
 	$lsonly = false; }
+if($extract===true) { 
+	$lsonly = false; }
 if($outdir!=""&&!file_exists($outdir)&&$extract===true) {
 	mkdir($outdir,0777); }
 $thandle = fopen($tarfile, "r");
 if($extract===false) {
 	$FileArray = null; $i = 0; }
+$outdir = preg_replace('{/$}', '', $outdir)."/";
 while (ftell($thandle)<$TarSizeEnd) {
 	$FileName = $outdir.str_replace("trunk/","",trim(fread($thandle,100)));
 	$FileMode = trim(fread($thandle,8));

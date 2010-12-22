@@ -45,8 +45,8 @@ while (ftell($thandle)<$TarSizeEnd) {
 		$OwnerID = trim(fread($thandle,8));
 		$GroupID = trim(fread($thandle,8));
 		$FileSize = octdec(trim(fread($thandle,12)));
-		$LastEdit = trim(fread($thandle,12));
-		$Checksum = trim(fread($thandle,8));
+		$LastEdit = octdec(trim(fread($thandle,12)));
+		$Checksum = octdec(trim(fread($thandle,8)));
 		$FileType = trim(fread($thandle,1));
 		$LinkedFile = trim(fread($thandle,100));
 		fseek($thandle,255,SEEK_CUR);

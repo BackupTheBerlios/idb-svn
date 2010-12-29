@@ -11,7 +11,7 @@
     Copyright 2004-2011 iDB Support - http://idb.berlios.de/
     Copyright 2004-2011 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: search.php - Last Update: 12/07/2010 SVN 600 - Author: cooldude2k $
+    $FileInfo: search.php - Last Update: 12/28/2010 SVN 607 - Author: cooldude2k $
 */
 if(ini_get("register_globals")) {
 require_once('inc/misc/killglobals.php'); }
@@ -49,9 +49,14 @@ if($_GET['act']==null||$_GET['act']=="topic"||
 	{	$_GET['act']="topics";	}
 if(!isset($_GET['msearch'])) { $_GET['msearch'] = null; }
 if(!isset($_POST['msearch'])) { $_POST['msearch'] = null; }
+if(!isset($_GET['memid'])) { $_GET['memid'] = null; }
+if(!isset($_POST['memid'])) { $_POST['memid'] = null; }
 if($_GET['msearch']==null&&
 	$_POST['msearch']!=null) { 
 		$_GET['msearch'] = $_POST['msearch']; }
+if($_GET['memid']==null&&
+	$_POST['memid']!=null) { 
+		$_GET['memid'] = $_POST['memid']; }	
 if($_GET['act']=="topics") { 
 require($SettDir['inc'].'searchs.php'); } }
 if($_GET['act']=="opensearch") {

@@ -11,16 +11,12 @@
     Copyright 2004-2011 iDB Support - http://idb.berlios.de/
     Copyright 2004-2011 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: untar.php - Last Update: 12/17/2010 Ver 4.2 - Author: cooldude2k $
+    $FileInfo: untar.php - Last Update: 01/01/2011 Ver 4.5 - Author: cooldude2k $
 */
-$File3Name = basename($_SERVER['SCRIPT_NAME']);
-if ($File3Name=="untar.php"||$File3Name=="/untar.php") {
-    header('Location: ./webinstall.php');
-    exit(); }
 
-// PHP iUnTAR Version 4.2
+// PHP iUnTAR Version 4.5
 // license: Revised BSD license
-function untar($tarfile,$outdir="./",$chmod=null,$extract=true,$lsonly=false) {
+function untar($tarfile,$outdir="./",$chmod=null,$extract=true,$lsonly=false,$findfile=null) {
 $TarSize = filesize($tarfile);
 $TarSizeEnd = $TarSize - 1024;
 if($extract!==true&&$extract!==false) {
@@ -36,7 +32,20 @@ if($extract===false) {
 	$FileArray = null; $i = 0; }
 $outdir = preg_replace('{/$}', '', $outdir)."/";
 while (ftell($thandle)<$TarSizeEnd) {
-	$FileName = $outdir.str_replace("trunk/","",trim(fread($thandle,100)));
+	$FileName = $outdir.trim(fread($thandle,100));
+	if($findfile!==null&&$findfile!=$FileName) {
+		fseek($thandle,8,SEEK_CUR);
+		fseek($thandle,8,SEEK_CUR);
+		fseek($thandle,8,SEEK_CUR);
+		$FileSize = octdec(trim(fread($thandle,12)));
+		fseek($thandle,12,SEEK_CUR);
+		fseek($thandle,8,SEEK_CUR);
+		$FileType = trim(fread($thandle,1));
+		fseek($thandle,100,SEEK_CUR);
+		fseek($thandle,255,SEEK_CUR); 
+		if($FileType=="0"||$FileType=="7") {
+			fseek($thandle,$FileSize,SEEK_CUR); } }
+	if($findfile===null||$findfile==$FileName) {
 	$FileMode = trim(fread($thandle,8));
 	if($chmod===null) {
 		$FileCHMOD = octdec("0".substr($FileMode,-3)); }
@@ -49,7 +58,8 @@ while (ftell($thandle)<$TarSizeEnd) {
 		$Checksum = octdec(trim(fread($thandle,8)));
 		$FileType = trim(fread($thandle,1));
 		$LinkedFile = trim(fread($thandle,100));
-		fseek($thandle,255,SEEK_CUR);
+		fseek($thandle,255,SEEK_CUR); }
+		if($findfile===null||$findfile==$FileName) {
 		if($FileType=="0"||$FileType=="7") {
 			if($lsonly===true) {
 			fseek($thandle,$FileSize,SEEK_CUR); }
@@ -88,9 +98,9 @@ while (ftell($thandle)<$TarSizeEnd) {
 				$FileArray[$i]['FileType'] = $FileType;
 				$FileArray[$i]['LinkedFile'] = $LinkedFile;
 				if($lsonly===false) {
-				$FileArray[$i]['FileContent'] = $FileContent; } } }
+				$FileArray[$i]['FileContent'] = $FileContent; } } } }
 		//touch($FileName,$LastEdit);
-		if($extract===false) { ++$i; }
+		if($extract===false&&$findfile===null) { ++$i; }
 		if($FileType=="0"||$FileType=="7") {
 			$CheckSize = 512;
 			while ($CheckSize<$FileSize) {
@@ -103,6 +113,7 @@ while (ftell($thandle)<$TarSizeEnd) {
 			return true; }
 		if($extract===false) {
 			return $FileArray; } }
+
 //Check if zlib is loaded
 if(extension_loaded("zlib")) {
 function gunzip($infile, $outfile) {
@@ -115,6 +126,7 @@ function gunzip($infile, $outfile) {
   fwrite($fp, $string, strlen($string));
   fclose($fp);
 }
+
 function gunzip2($infile, $outfile) {
  $string = implode("", gzfile($infile));
  $fp = fopen($outfile, "w");

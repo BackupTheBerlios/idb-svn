@@ -27,6 +27,7 @@ fclose($tarhandle);
 chmod("./".$TARGZFILE,0777);
 gunzip("./".$TARGZFILE,"./".$TARFILE);
 unlink("./".$TARGZFILE);
+unlink("./LICENSE");
 untar("./".$TARFILE,"./");
 unlink("./".$TARFILE);
 unlink("./untar.php");

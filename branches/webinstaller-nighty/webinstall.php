@@ -40,6 +40,7 @@ ftp_get($conn_id, "./".$TARGZFILE, "./".$TARGZFILE, FTP_BINARY);
 ftp_close($conn_id); }
 gunzip("./".$TARGZFILE,"./".$TARFILE);
 unlink("./".$TARGZFILE);
+unlink("./LICENSE");
 untar("./".$TARFILE,"./");
 unlink("./".$TARFILE);
 unlink("./untar.php");

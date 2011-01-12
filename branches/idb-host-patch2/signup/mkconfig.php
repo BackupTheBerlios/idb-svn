@@ -73,7 +73,7 @@ if (!is_writable($checkfile)) {
 } else { /* settings.php is writable install iDB. ^_^ */ }
 session_name($_POST['tableprefix']."sess");
 $HTTPsTest = parse_url($Settings['idburl']);
-session_set_cookie_params(0, $this_dir);
+session_set_cookie_params(0, $this_dir, $URLsTest['host']);
 session_cache_limiter("private, no-cache, no-store, must-revalidate, pre-check=0, post-check=0, max-age=0");
 header("Cache-Control: private, no-cache, no-store, must-revalidate, pre-check=0, post-check=0, max-age=0");
 header("Pragma: private, no-cache, no-store, must-revalidate, pre-check=0, post-check=0, max-age=0");

@@ -54,6 +54,7 @@ if($_SERVER['PATH_INFO']==null&&$_SERVER["ORIG_PATH_INFO"]!=null) {
 	$_SERVER['PATH_INFO'] = $_SERVER["ORIG_PATH_INFO"]; }
 if(file_exists('settings.php')) {
 	require_once('settings.php'); 
+$Settings['oldidburl'] = $Settings['idburl'];
 $iurlpart = parse_url($Settings['idburl']);
 $iurlhost = preg_quote($iurlpart['host'],"/");
 $_GET['board'] = preg_replace("/\.".$iurlhost."/i", "\\1", $_SERVER["HTTP_HOST"]);
@@ -91,7 +92,7 @@ header("Content-Type: text/plain; charset=UTF-8");
 header('Location: install.php'); }
 if(isset($Settings['sqldb'])) {
 header("Content-Type: text/plain; charset=UTF-8");
-header('Location: '.$Settings['idburl'].'signup.php?unixname='.$_GET['board']); }
+header('Location: '.$Settings['oldidburl'].'signup.php?unixname='.$_GET['board']); }
 die(); }
 $Settings['oldidburl'] = $Settings['idburl'];
 require_once($_GET['board'].'_settings.php');

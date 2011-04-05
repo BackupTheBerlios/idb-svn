@@ -11,7 +11,7 @@
     Copyright 2004-2011 iDB Support - http://idb.berlios.de/
     Copyright 2004-2011 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: main.php - Last Update: 12/07/2010 SVN 600 - Author: cooldude2k $
+    $FileInfo: main.php - Last Update: 04/05/2011 SVN 627 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="main.php"||$File3Name=="/main.php") {
@@ -911,6 +911,8 @@ $BoardSettings=$pretext2[0]."\n".
 "\$Settings['html_level'] = ".null_string($_POST['HTMLLevel']).";\n".
 "\$Settings['output_type'] = ".null_string($_POST['OutPutType']).";\n".
 "\$Settings['charset'] = ".null_string($Settings['charset']).";\n".
+"\$Settings['sql_collate'] = ".null_string($Settings['sql_collate']).";\n".
+"\$Settings['sql_charset'] = ".null_string($Settings['sql_charset']).";\n".
 "\$Settings['add_power_by'] = ".null_string($Settings['add_power_by']).";\n".
 "\$Settings['send_pagesize'] = ".null_string($Settings['send_pagesize']).";\n".$pretext2[2]."\n".
 "\$SettDir['maindir'] = ".null_string($SettDir['maindir']).";\n".
@@ -1054,6 +1056,8 @@ $BoardSettings=$pretext2[0]."\n".
 "\$Settings['html_level'] = ".null_string($Settings['html_level']).";\n".
 "\$Settings['output_type'] = ".null_string($Settings['output_type']).";\n".
 "\$Settings['charset'] = ".null_string($Settings['charset']).";\n".
+"\$Settings['sql_collate'] = ".null_string($Settings['sql_collate']).";\n".
+"\$Settings['sql_charset'] = ".null_string($Settings['sql_charset']).";\n".
 "\$Settings['add_power_by'] = ".null_string($Settings['add_power_by']).";\n".
 "\$Settings['send_pagesize'] = ".null_string($Settings['send_pagesize']).";\n".$pretext2[2]."\n".
 "\$SettDir['maindir'] = ".null_string($SettDir['maindir']).";\n".

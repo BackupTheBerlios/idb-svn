@@ -11,7 +11,7 @@
     Copyright 2004-2011 iDB Support - http://idb.berlios.de/
     Copyright 2004-2011 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: xhtml10.php - Last Update: 12/07/2010 SVN 600 - Author: cooldude2k $
+    $FileInfo: xhtml10.php - Last Update: 04/05/2011 SVN 628 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="xhtml10.php"||$File3Name=="/xhtml10.php") {
@@ -88,7 +88,10 @@ if($Settings['idburl']=="localhost"||$Settings['idburl']==null) {
 	$BoardURL = $prehost.$_SERVER["HTTP_HOST"].$basedir; }
 if($Settings['idburl']!="localhost"&&$Settings['idburl']!=null) {
 	$BoardURL = $Settings['idburl']; 
-	$AltBoardURL = preg_replace("/\/$/","",$BoardURL); }
+	if($Settings['qstr']!="/") {
+	$AltBoardURL = $BoardURL; } 
+	if($Settings['qstr']=="/") { 
+	$AltBoardURL = preg_replace("/\/$/","",$BoardURL); } }
 // Get the html level
 if($Settings['html_level']!="Strict") {
 	if($Settings['html_level']!="Transitional") {
@@ -113,6 +116,15 @@ if($Settings['html_level']=="Strict") { ?>
 <meta http-equiv="Cache-Control" content="private, no-cache, must-revalidate" />
 <meta http-equiv="Pragma" content="private, no-cache, must-revalidate" />
 <meta http-equiv="Expires" content="<?php echo gmdate("D, d M Y H:i:s")." GMT"; ?>" />
+<?php 
+if(!isset($_SERVER['HTTP_USER_AGENT'])) {
+	$_SERVER['HTTP_USER_AGENT'] = ""; }
+if(strpos($_SERVER['HTTP_USER_AGENT'], "msie") && 
+	!strpos($_SERVER['HTTP_USER_AGENT'], "opera")){ ?>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<?php } if(strpos($_SERVER['HTTP_USER_AGENT'], "chromeframe")) { ?>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<?php } ?>
 <base href="<?php echo $BoardURL; ?>" />
 <?php if($Settings['showverinfo']=="on") { ?>
 <meta name="Generator" content="<?php echo $VerInfo['iDB_Ver_Show']; ?>" />

@@ -10,15 +10,11 @@
 
     Copyright 2004-2011 iDB Support - http://idb.berlios.de/
     Copyright 2004-2011 Game Maker 2k - http://gamemaker2k.org/
-	iUnTar ver. 4.6.2 by Kazuki Przyborowski - http://idb.berlios.net/
 
-    $FileInfo: iuntar.php - Last Update: 05/02/2011 SVN 641 - Author: cooldude2k $
+    $FileInfo: untar.php - Last Update: 01/16/2011 Ver 4.6 - Author: cooldude2k $
 */
-$File3Name = basename($_SERVER['SCRIPT_NAME']);
-if ($File3Name=="iuntar.php"||$File3Name=="/iuntar.php") {
-	require('index.php');
-	exit(); }
-// PHP iUnTAR Version 4.6.2
+
+// PHP iUnTAR Version 4.6
 // license: Revised BSD license
 function untar($tarfile,$outdir="./",$chmod=null,$extract=true,$lsonly=false,$findfile=null) {
 $TarSize = filesize($tarfile);
@@ -29,9 +25,8 @@ if($lsonly!==true&&$lsonly!==false) {
 	$lsonly = false; }
 if($extract===true) { 
 	$lsonly = false; }
-if($extract===true) {
-if($outdir!=""&&!file_exists($outdir)) {
-	mkdir($outdir,0777); } }
+if($outdir!=""&&!file_exists($outdir)&&$extract===true) {
+	mkdir($outdir,0777); }
 $thandle = fopen($tarfile, "r");
 if($extract===false) {
 	$FileArray = null; $i = 0; }

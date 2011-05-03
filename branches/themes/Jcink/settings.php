@@ -72,6 +72,6 @@ $ThemeSet['TitleIcon'] = "<img src=\"themes/Jcink/nav.gif\" alt=\"-&gt;\" title=
 $ThemeSet['NavLinkIcon'] = "&gt;&gt; ";
 $ThemeSet['NavLinkDivider'] = "&nbsp;-&gt;&nbsp;";
 $ThemeSet['StatsIcon'] = "<img src=\"themes/Jcink/stats.gif\" alt=\"Board Stats\" title=\"Board Stats\" />";
-$ThemeSet['NoAvatar'] = "themes/Jcink/noavatar.gif";
+$ThemeSet['NoAvatar'] = "themes/Jcink/noavatar.png";
 $ThemeSet['NoAvatarSize'] = "100x100";
 ?>

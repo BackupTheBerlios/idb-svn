@@ -10,6 +10,7 @@
 
     Copyright 2004-2011 iDB Support - http://idb.berlios.de/
     Copyright 2004-2011 Game Maker 2k - http://gamemaker2k.org/
+	iUnTar ver. 4.6.2 by Kazuki Przyborowski - http://idb.berlios.net/
 
     $FileInfo: untar.php - Last Update: 01/16/2011 Ver 4.6.2 - Author: cooldude2k $
 */

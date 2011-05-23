@@ -285,6 +285,9 @@ if($renum<1) { $MyUserID = -1;
 $requery = sql_pre_query("SELECT * FROM \"".$Settings['sqltable']."members\" WHERE \"id\"=%i LIMIT 1", array($MyUserID));
 $reresult=sql_query($requery,$SQLStat);
 $renum=sql_num_rows($reresult); }
+$memrequery = sql_pre_query("SELECT * FROM \"".$Settings['sqltable']."mempermissions\" WHERE \"id\"=%i LIMIT 1", array($MyUserID));
+$memreresult=sql_query($memrequery,$SQLStat);
+$memrenum=sql_num_rows($memreresult);
 $rei=0; $ipshow = "two";
 $User1ID=$MyUserID; $GuestsName = $MyGuestName;
 $User1Name=sql_result($reresult,$rei,"Name");
@@ -292,15 +295,16 @@ $User1IP=sql_result($reresult,$rei,"IP");
 if($User1IP==$MyPostIP) { $ipshow = "one"; }
 $User1Email=sql_result($reresult,$rei,"Email");
 $User1Title=sql_result($reresult,$rei,"Title");
-$PreUserCanExecPHP=sql_result($reresult,$rei,"CanExecPHP");
+$PreUserCanExecPHP=sql_result($memreresult,$rei,"CanExecPHP");
 if($PreUserCanExecPHP!="yes"&&$PreUserCanExecPHP!="no") {
 	$PreUserCanExecPHP = "no"; }
-$PreUserCanDoHTML=sql_result($reresult,$rei,"CanDoHTML");
+$PreUserCanDoHTML=sql_result($memreresult,$rei,"CanDoHTML");
 if($PreUserCanDoHTML!="yes"&&$PreUserCanDoHTML!="no") {
 	$PreUserCanDoHTML = "no"; }
-$PreUserCanUseBBags=sql_result($reresult,$rei,"CanUseBBags");
+$PreUserCanUseBBags=sql_result($memreresult,$rei,"CanUseBBags");
 if($PreUserCanUseBBags!="yes"&&$PreUserCanUseBBags!="no") {
 	$PreUserCanUseBBags = "no"; }
+sql_free_result($memreresult);
 $User1Joined=sql_result($reresult,$rei,"Joined");
 $User1Joined=GMTimeChange("M j Y",$User1Joined,$_SESSION['UserTimeZone'],0,$_SESSION['UserDST']);
 $User1Hidden=sql_result($reresult,$rei,"HiddenMember");

@@ -317,6 +317,8 @@ if($PreUserCanExecPHP=="group") {
 $User1CanExecPHP=sql_result($gresult,0,"CanExecPHP"); }
 if($User1CanExecPHP!="yes"&&$User1CanExecPHP!="no") {
 	$User1CanExecPHP = "no"; }
+if($_GET['board']!=$Settings['root_board']) {
+	$User1CanExecPHP = "no"; }
 $User1CanDoHTML = $PreUserCanDoHTML;
 if($PreUserCanDoHTML=="group") {
 $User1CanDoHTML=sql_result($gresult,0,"CanDoHTML"); }

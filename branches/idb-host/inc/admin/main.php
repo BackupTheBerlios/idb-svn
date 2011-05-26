@@ -11,7 +11,7 @@
     Copyright 2004-2011 iDB Support - http://idb.berlios.de/
     Copyright 2004-2011 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: main.php - Last Update: 05/02/2011 SVN 641 - Author: cooldude2k $
+    $FileInfo: main.php - Last Update: 05/26/2011 SVN 659 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="main.php"||$File3Name=="/main.php") {
@@ -308,7 +308,7 @@ $TablePreFix = $Settings['sqltable'];
 function add_prefix($tarray) {
 global $TablePreFix;
 return $TablePreFix.$tarray; }
-$TableChCk = array("categories", "catpermissions", "events", "forums", "groups", "members", "messenger", "permissions", "posts", "restrictedwords", "sessions", "smileys", "topics", "wordfilter");
+$TableChCk = array("categories", "catpermissions", "events", "forums", "groups", "members", "mempermissions", "messenger", "permissions", "posts", "restrictedwords", "sessions", "smileys", "topics", "wordfilter");
 $TableChCk = array_map("add_prefix",$TableChCk);
 $tcount = count($TableChCk); $ti = 0;
 $TblOptimized = 0;
@@ -431,7 +431,7 @@ unset($_COOKIE[session_name()]);
 $_SESSION = array();
 session_unset();
 session_destroy();
-$delboard = "DROP TABLE \"".$_GET['board']."_categories\", \"".$_GET['board']."_catpermissions\", \"".$_GET['board']."_events\", \"".$_GET['board']."_forums\", \"".$_GET['board']."_groups\", \"".$_GET['board']."_members\", \"".$_GET['board']."_messenger\", \"".$_GET['board']."_permissions\", \"".$_GET['board']."_posts\", \"".$_GET['board']."_restrictedwords\", \"".$_GET['board']."_sessions\", \"".$_GET['board']."_smileys\", \"".$_GET['board']."_themes\", \"".$_GET['board']."_topics\", \"".$_GET['board']."_wordfilter\"";
+$delboard = "DROP TABLE \"".$_GET['board']."_categories\", \"".$_GET['board']."_catpermissions\", \"".$_GET['board']."_events\", \"".$_GET['board']."_forums\", \"".$_GET['board']."_groups\", \"".$_GET['board']."_members\", \"".$_GET['board']."_mempermissions\", \"".$_GET['board']."_messenger\", \"".$_GET['board']."_permissions\", \"".$_GET['board']."_posts\", \"".$_GET['board']."_restrictedwords\", \"".$_GET['board']."_sessions\", \"".$_GET['board']."_smileys\", \"".$_GET['board']."_themes\", \"".$_GET['board']."_topics\", \"".$_GET['board']."_wordfilter\"";
 sql_query($delboard,$SQLStat);
 redirect("refresh",$rbasedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],FALSE),"3");
 ?>

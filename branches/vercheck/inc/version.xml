@@ -20,33 +20,33 @@
 <relname>iDB</relname>
 <reltype>Al</reltype>
 <reltypename>Alpha</reltypename>
-<relnum>0.4.3</relnum>
+<relnum>0.4.4</relnum>
 <subtype>SVN</subtype>
-<relsvnum>621</relsvnum>
-<fullrel>iDB Al 0.4.3</fullrel>
-<fullname>iDB Al 0.4.3 SVN 621</fullname>
+<relsvnum>661</relsvnum>
+<fullrel>iDB Al 0.4.4</fullrel>
+<fullname>iDB Al 0.4.4 SVN 661</fullname>
 </version>
 
 <version>
 <relname>iDB-Host</relname>
 <reltype>Al</reltype>
 <reltypename>Alpha</reltypename>
-<relnum>0.4.3</relnum>
+<relnum>0.4.4</relnum>
 <subtype>SVN</subtype>
-<relsvnum>621</relsvnum>
-<fullrel>iDB-Host Al 0.4.3</fullrel>
-<fullname>iDB-Host Al 0.4.3 SVN 621</fullname>
+<relsvnum>661</relsvnum>
+<fullrel>iDB-Host Al 0.4.4</fullrel>
+<fullname>iDB-Host Al 0.4.4 SVN 661</fullname>
 </version>
 
 <version>
 <relname>iDBEH-Mod</relname>
 <reltype>Al</reltype>
 <reltypename>Alpha</reltypename>
-<relnum>0.4.3</relnum>
+<relnum>0.4.4</relnum>
 <subtype>SVN</subtype>
-<relsvnum>621</relsvnum>
-<fullrel>iDBEH-Mod Al 0.4.3</fullrel>
-<fullname>iDBEH-Mod Al 0.4.3 SVN 621</fullname>
+<relsvnum>661</relsvnum>
+<fullrel>iDBEH-Mod Al 0.4.4</fullrel>
+<fullname>iDBEH-Mod Al 0.4.4 SVN 661</fullname>
 </version>
 
 </versioninfo>

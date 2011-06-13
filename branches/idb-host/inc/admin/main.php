@@ -11,7 +11,7 @@
     Copyright 2004-2011 iDB Support - http://idb.berlios.de/
     Copyright 2004-2011 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: main.php - Last Update: 06/11/2011 SVN 666 - Author: cooldude2k $
+    $FileInfo: main.php - Last Update: 06/13/2011 SVN 669 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="main.php"||$File3Name=="/main.php") {
@@ -181,6 +181,7 @@ $BoardSettings=$pretext2[0]."\nrequire('settings.php');\n".
 "\$Settings['enable_rss'] = ".null_string($Settings['enable_rss']).";\n".
 "\$Settings['enable_search'] = ".null_string($Settings['enable_search']).";\n".
 "\$Settings['board_offline'] = ".null_string($Settings['board_offline']).";\n".
+"\$Settings['log_http_request'] = ".null_string($Settings['log_http_request']).";\n".
 "\$Settings['BoardUUID'] = ".null_string($Settings['BoardUUID']).";\n".
 "\$Settings['KarmaBoostDays'] = ".null_string($Settings['KarmaBoostDays']).";\n".
 "\$Settings['KBoostPercent'] = ".null_string($Settings['KBoostPercent']).";\n".$pretext2[1]."\n".
@@ -878,6 +879,7 @@ $BoardSettings=$pretext2[0]."\nrequire('settings.php');\n".
 "\$Settings['enable_rss'] = ".null_string($_POST['enable_rss']).";\n".
 "\$Settings['enable_search'] = ".null_string($_POST['enable_search']).";\n".
 "\$Settings['board_offline'] = ".null_string($Settings['board_offline']).";\n".
+"\$Settings['log_http_request'] = ".null_string($Settings['log_http_request']).";\n".
 "\$Settings['BoardUUID'] = ".null_string($Settings['BoardUUID']).";\n".
 "\$Settings['KarmaBoostDays'] = ".null_string($Settings['KarmaBoostDays']).";\n".
 "\$Settings['KBoostPercent'] = ".null_string($Settings['KBoostPercent']).";\n".$pretext2[1]."\n".
@@ -923,6 +925,7 @@ $BoardSettings=$pretext2[0]."\n".
 "\$Settings['send_pagesize'] = ".null_string($Settings['send_pagesize']).";\n".$pretext2[2]."\n".
 "\$SettDir['maindir'] = ".null_string($SettDir['maindir']).";\n".
 "\$SettDir['inc'] = ".null_string($SettDir['inc']).";\n".
+"\$SettDir['logs'] = ".null_string($SettDir['logs']).";\n".
 "\$SettDir['archive'] = ".null_string($SettDir['archive']).";\n".
 "\$SettDir['misc'] = ".null_string($SettDir['misc']).";\n".
 "\$SettDir['sql'] = ".null_string($SettDir['sql']).";\n".
@@ -1068,6 +1071,7 @@ $BoardSettings=$pretext2[0]."\n".
 "\$Settings['send_pagesize'] = ".null_string($Settings['send_pagesize']).";\n".$pretext2[2]."\n".
 "\$SettDir['maindir'] = ".null_string($SettDir['maindir']).";\n".
 "\$SettDir['inc'] = ".null_string($SettDir['inc']).";\n".
+"\$SettDir['logs'] = ".null_string($SettDir['logs']).";\n".
 "\$SettDir['archive'] = ".null_string($SettDir['archive']).";\n".
 "\$SettDir['misc'] = ".null_string($SettDir['misc']).";\n".
 "\$SettDir['sql'] = ".null_string($SettDir['sql']).";\n".
@@ -1199,6 +1203,7 @@ $BoardSettings=$pretext2[0]."\nrequire('settings.php');\n".
 "\$Settings['enable_rss'] = ".null_string($Settings['enable_rss']).";\n".
 "\$Settings['enable_search'] = ".null_string($Settings['enable_search']).";\n".
 "\$Settings['board_offline'] = ".null_string($Settings['board_offline']).";\n".
+"\$Settings['log_http_request'] = ".null_string($Settings['log_http_request']).";\n".
 "\$Settings['BoardUUID'] = ".null_string($Settings['BoardUUID']).";\n".
 "\$Settings['KarmaBoostDays'] = ".null_string($Settings['KarmaBoostDays']).";\n".
 "\$Settings['KBoostPercent'] = ".null_string($Settings['KBoostPercent']).";\n".$pretext2[1]."\n".

@@ -123,9 +123,12 @@ if($grunum<=0) { $GruError = true; sql_free_result($gruresult);
 header("Content-Type: text/plain; charset=".$Settings['charset']); $urlstatus = 503;
 ob_clean(); echo "Sorry could not find group data in database.\nContact the board admin about error."; 
 gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
-$memrequery = sql_pre_query("SELECT * FROM \"".$Settings['sqltable']."mempermissions\" WHERE \"id\"=%i LIMIT 1", array($MyUserID));
-$memreresult=sql_query($memrequery,$SQLStat);
-$memrenum=sql_num_rows($memreresult);
+if($_SESSION['UserID']!=0) {
+$memprequery = sql_pre_query("SELECT * FROM \"".$Settings['sqltable']."mempermissions\" WHERE \"id\"=%i LIMIT 1", array($_SESSION['UserID'])); }
+if($_SESSION['UserID']==0) {
+$memprequery = sql_pre_query("SELECT * FROM \"".$Settings['sqltable']."mempermissions\" WHERE \"id\"=%i LIMIT 1", array(-1)); }
+$mempreresult=sql_query($memprequery,$SQLStat);
+$memprenum=sql_num_rows($mempreresult);
 if($grunum>=1) {
 $GroupInfo['ID']=sql_result($gruresult,0,"id");
 if(!is_numeric($GroupInfo['ID'])) { $GruError = true; }

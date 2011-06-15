@@ -43,13 +43,13 @@ $iHostURL = preg_replace("/\/$/","",$Settings['idburl']);
 $basecheck = parse_url($iHostURL);
 $basedir = $basecheck['path'];
 $cbasedir = $basedir;
-$rbasedir = $basedir;
+$rbasedir = null;//$rbasedir = $basedir;
 if($Settings['fixbasedir']!=null&&$Settings['fixbasedir']!="off") {
 		$basedir = $Settings['fixbasedir']; }
 if($Settings['fixcookiedir']!=null&&$Settings['fixcookiedir']!="") {
 		$cbasedir = $Settings['fixcookiedir']; }
-if($Settings['fixredirectdir']!=null) {
-		$rbasedir = $Settings['fixredirectdir']; }
+/*if($Settings['fixredirectdir']!=null) {
+		$rbasedir = $Settings['fixredirectdir']; }*/
 $BaseURL = $basedir;
 // Get our Host Name and Referer URL's Host Name
 if(!isset($_SERVER['HTTP_REFERER'])) { $_SERVER['HTTP_REFERER'] = null; }

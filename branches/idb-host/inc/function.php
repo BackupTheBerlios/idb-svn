@@ -39,7 +39,7 @@ if(dirname($_SERVER['SCRIPT_NAME'])=="."||
 $basedir = dirname($_SERVER['PHP_SELF'])."/"; } }
 if($basedir=="\/") { $basedir="/"; }
 $basedir = str_replace("//", "/", $basedir);*/
-$iHostURL = preg_replace("/\/$/","",$Settings['idburl']);
+$iHostURL = preg_replace("/\/$/","/",$Settings['idburl']);
 $basecheck = parse_url($iHostURL);
 $basedir = $basecheck['path'];
 $cbasedir = $basedir;

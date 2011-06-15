@@ -133,9 +133,9 @@ $query=sql_pre_query("CREATE TABLE IF NOT EXISTS \"".$_POST['tableprefix']."grou
 "  \"CanEditProfile\" varchar(5) COLLATE ".$Settings['sql_collate']." NOT NULL default '',\n".
 "  \"CanAddEvents\" varchar(5) COLLATE ".$Settings['sql_collate']." NOT NULL default '',\n".
 "  \"CanPM\" varchar(5) COLLATE ".$Settings['sql_collate']." NOT NULL default '',\n".
+"  \"CanSearch\" varchar(5) COLLATE ".$Settings['sql_collate']." NOT NULL default '',\n".
 "  \"CanExecPHP\" varchar(5) COLLATE ".$Settings['sql_collate']." NOT NULL default '',\n".
 "  \"CanDoHTML\" varchar(5) COLLATE ".$Settings['sql_collate']." NOT NULL default '',\n".
-"  \"CanSearch\" varchar(5) COLLATE ".$Settings['sql_collate']." NOT NULL default '',\n".
 "  \"CanUseBBags\" varchar(5) COLLATE ".$Settings['sql_collate']." NOT NULL default '',\n".
 "  \"CanModForum\" varchar(5) COLLATE ".$Settings['sql_collate']." NOT NULL default '',\n".
 "  \"FloodControl\" int(5) NOT NULL default '0',\n".

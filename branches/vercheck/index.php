@@ -11,14 +11,14 @@
     Copyright 2009-2010 iDB Support - http://idb.berlios.de/
     Copyright 2009-2010 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: index.php - Last Update: 10/02/2010 Ver 2.8 - Author: cooldude2k $
+    $FileInfo: index.php - Last Update: 10/02/2010 Ver 2.8.5 - Author: cooldude2k $
 */
 /* Change to your url. */
 @ob_start(); 
 require_once('inc/killglobals.php');
 $site_url = "http://localhost/vercheck/";
 $download_url = $site_url."download.php";
-@ini_set("user_agent", "Mozilla/5.0 (compatible; iDB-VerCheck/2.8; +".$site_url.")");
+@ini_set("user_agent", "Mozilla/5.0 (compatible; iDB-VerCheck/2.8.5; +".$site_url.")");
 if(!isset($_GET['redirect'])) { $_GET['redirect'] = "off"; }
     /**
      * Returns true if $string is valid UTF-8 and false otherwise.
@@ -42,6 +42,48 @@ if(!isset($_GET['redirect'])) { $_GET['redirect'] = "off"; }
         )*$%xs', $string);
       
     } 
+  # Original PHP code by Chirp Internet: www.chirp.com.au
+  # Please acknowledge use of this code by including this header.
+
+  function robots_allowed($url, $useragent=false)
+  {
+    # parse url to retrieve host and path
+    $parsed = parse_url($url);
+
+    $agents = array(preg_quote('*'));
+    if($useragent) $agents[] = preg_quote($useragent);
+    $agents = implode('|', $agents);
+
+    # location of robots.txt file
+    $robotstxt = @file("http://{$parsed['host']}/robots.txt");
+    if(!$robotstxt) return true;
+
+    $rules = array();
+    $ruleapplies = false;
+    foreach($robotstxt as $line) {
+      # skip blank lines
+      if(!$line = trim($line)) continue;
+
+      # following rules only apply if User-agent matches $useragent or '*'
+      if(preg_match('/User-agent: (.*)/i', $line, $match)) {
+        $ruleapplies = preg_match("/($agents)/i", $match[1]);
+      }
+      if($ruleapplies && preg_match('/Disallow:(.*)/i', $line, $regs)) {
+        # an empty rule implies full access - no further tests required
+        if(!$regs[1]) return true;
+        # add rules that apply to array for testing
+        $rules[] = preg_quote(trim($regs[1]), '/');
+      }
+    }
+
+    foreach($rules as $rule) {
+      # check if page is disallowed to us
+      if(preg_match("/^$rule/", $parsed['path'])) return false;
+    }
+
+    # page is not disallowed
+    return true;
+  }
 if(!isset($_SERVER['HTTP_USER_AGENT'])) {
 	$_SERVER['HTTP_USER_AGENT'] = null; }
 if (stristr($_SERVER["HTTP_USER_AGENT"],"W3C_Validator")) {
@@ -108,13 +150,16 @@ if(isset($_GET['bid'])) {
 	$_GET['bid'] = @base64_decode($_GET['bid']); }
 	$_GET['bid'] = @urldecode($_GET['bid']);
 	$_GET['bid'] = @strip_tags($_GET['bid']);
+	if(robots_allowed($_GET['bid'],"iDB-VerCheck")===false) {
+		echo "Error cannot prase this site. :P ";
+		/* Then we cant prase this site now*/ exit(); die(); }
 	$ChkURL = parse_url($_GET['bid']);
 	$HostIP = gethostbyname($ChkURL['host']);
 	if($HostIP=="127.0.0.1") {
 	$_GET['bid'] = null; }
 	if($HostIP!="127.0.0.1") {
 	if($_GET['vercheck']=="newtype") {
-	$GetTitle = @file_get_contents($_GET['bid']."?act=versioninfo"); }
+	$GetTitle = @file_get_contents($_GET['bid']."?&act=versioninfo"); }
 	if($_GET['vercheck']!="newtype") {
 	$GetTitle = @file_get_contents($_GET['bid']); }
 	$_GET['bid'] = htmlspecialchars($_GET['bid']);

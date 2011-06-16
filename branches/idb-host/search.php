@@ -58,7 +58,7 @@ if($_GET['memid']==null&&
 	$_POST['memid']!=null) { 
 		$_GET['memid'] = $_POST['memid']; }	
 if($_GET['act']=="topics") { 
-require($SettDir['inc'].'searchs.php'); } }
+require($SettDir['inc'].'searches.php'); } }
 if($_GET['act']=="opensearch") {
 redirect("location",$rbasedir.url_maker($exfile['rss'],$Settings['file_ext'],"act=".$_GET['act'],$Settings['qstr'],$Settings['qsep'],$prexqstr['rss'],$exqstr['rss'],FALSE));
 ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']); $urlstatus = 302;

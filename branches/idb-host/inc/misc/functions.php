@@ -51,9 +51,6 @@ if ($_GET['act']=="phpcredits") { phpcredits(); exit(); }
 // Renee Marilyn Sabonis is the best ever. ^_^
 	$Names['RS'] = "Renee Sabonis";
 define("_renee_", $Names['RS']);
-// Renee Marilyn Sabonis is the best ever. ^_^
-	$Names['RS'] = "Renee Sabonis";
-define("_renee_", $Names['RS']);
 $CD2k_Loves="Renee Sabonis"; $I_Love="Renee Sabonis";
 // Change the title and gzip page
 function change_title($new_title,$use_gzip="off",$gzip_type="gzip") {

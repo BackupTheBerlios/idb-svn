@@ -11,7 +11,7 @@
     Copyright 2004-2011 iDB Support - http://idb.berlios.de/
     Copyright 2004-2011 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: main.php - Last Update: 06/14/2011 SVN 672 - Author: cooldude2k $
+    $FileInfo: main.php - Last Update: 06/18/2011 SVN 678 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="main.php"||$File3Name=="/main.php") {
@@ -125,6 +125,12 @@ if(!isset($SettInfo['board_name'])&&isset($Settings['board_name'])) {
 	$SettInfo['board_name'] = $Settings['board_name']; }
 if($Settings['board_name']!=$SettInfo['board_name']) {
 	$SettInfo['board_name'] = $Settings['board_name']; }
+if(!isset($Settings['VerCheckURL'])) {
+	$Settings['VerCheckURL'] = ""; }
+if(!isset($Settings['IPCheckURL'])) {
+	$Settings['IPCheckURL'] = ""; }
+if(!isset($Settings['log_config_format'])) {
+	$Settings['log_config_format'] = "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\""; }
 ?>
 <table class="Table3">
 <tr style="width: 100%; vertical-align: top;">
@@ -181,7 +187,10 @@ $BoardSettings=$pretext2[0]."\nrequire('settings.php');\n".
 "\$Settings['enable_rss'] = ".null_string($Settings['enable_rss']).";\n".
 "\$Settings['enable_search'] = ".null_string($Settings['enable_search']).";\n".
 "\$Settings['board_offline'] = ".null_string($Settings['board_offline']).";\n".
+"\$Settings['VerCheckURL'] = ".null_string($Settings['VerCheckURL']).";\n".
+"\$Settings['IPCheckURL'] = ".null_string($Settings['IPCheckURL']).";\n".
 "\$Settings['log_http_request'] = ".null_string($Settings['log_http_request']).";\n".
+"\$Settings['log_config_format'] = ".null_string($Settings['log_config_format']).";\n".
 "\$Settings['BoardUUID'] = ".null_string($Settings['BoardUUID']).";\n".
 "\$Settings['KarmaBoostDays'] = ".null_string($Settings['KarmaBoostDays']).";\n".
 "\$Settings['KBoostPercent'] = ".null_string($Settings['KBoostPercent']).";\n".$pretext2[1]."\n".
@@ -879,7 +888,10 @@ $BoardSettings=$pretext2[0]."\nrequire('settings.php');\n".
 "\$Settings['enable_rss'] = ".null_string($_POST['enable_rss']).";\n".
 "\$Settings['enable_search'] = ".null_string($_POST['enable_search']).";\n".
 "\$Settings['board_offline'] = ".null_string($Settings['board_offline']).";\n".
+"\$Settings['VerCheckURL'] = ".null_string($Settings['VerCheckURL']).";\n".
+"\$Settings['IPCheckURL'] = ".null_string($Settings['IPCheckURL']).";\n".
 "\$Settings['log_http_request'] = ".null_string($Settings['log_http_request']).";\n".
+"\$Settings['log_config_format'] = ".null_string($Settings['log_config_format']).";\n".
 "\$Settings['BoardUUID'] = ".null_string($Settings['BoardUUID']).";\n".
 "\$Settings['KarmaBoostDays'] = ".null_string($Settings['KarmaBoostDays']).";\n".
 "\$Settings['KBoostPercent'] = ".null_string($Settings['KBoostPercent']).";\n".$pretext2[1]."\n".
@@ -1203,7 +1215,10 @@ $BoardSettings=$pretext2[0]."\nrequire('settings.php');\n".
 "\$Settings['enable_rss'] = ".null_string($Settings['enable_rss']).";\n".
 "\$Settings['enable_search'] = ".null_string($Settings['enable_search']).";\n".
 "\$Settings['board_offline'] = ".null_string($Settings['board_offline']).";\n".
+"\$Settings['VerCheckURL'] = ".null_string($Settings['VerCheckURL']).";\n".
+"\$Settings['IPCheckURL'] = ".null_string($Settings['IPCheckURL']).";\n".
 "\$Settings['log_http_request'] = ".null_string($Settings['log_http_request']).";\n".
+"\$Settings['log_config_format'] = ".null_string($Settings['log_config_format']).";\n".
 "\$Settings['BoardUUID'] = ".null_string($Settings['BoardUUID']).";\n".
 "\$Settings['KarmaBoostDays'] = ".null_string($Settings['KarmaBoostDays']).";\n".
 "\$Settings['KBoostPercent'] = ".null_string($Settings['KBoostPercent']).";\n".$pretext2[1]."\n".

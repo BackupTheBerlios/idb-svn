@@ -159,7 +159,9 @@ if(isset($_GET['bid'])) {
 	$_GET['bid'] = null; }
 	if($HostIP!="127.0.0.1") {
 	if($_GET['vercheck']=="newtype") {
-	$GetTitle = @file_get_contents($_GET['bid']."?&act=versioninfo"); }
+	$actchange = preg_quote("act=view", '/');
+	$_GET['bid'] = preg_replace("/".$actchange."/i", "act=versioninfo", $_GET['bid']);
+	$GetTitle = @file_get_contents($_GET['bid']); }
 	if($_GET['vercheck']!="newtype") {
 	$GetTitle = @file_get_contents($_GET['bid']); }
 	$_GET['bid'] = htmlspecialchars($_GET['bid']);

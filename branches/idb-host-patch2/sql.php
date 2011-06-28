@@ -11,7 +11,7 @@
     Copyright 2004-2011 iDB Support - http://idb.berlios.de/
     Copyright 2004-2011 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: sql.php - Last Update: 06/24/2011 SVN 682 - Author: cooldude2k $
+    $FileInfo: sql.php - Last Update: 06/28/2011 SVN 684 - Author: cooldude2k $
 */
 /* Some ini setting changes uncomment if you need them. 
    Display PHP Errors */
@@ -55,6 +55,10 @@ if($_SERVER['PATH_INFO']==null&&$_SERVER["ORIG_PATH_INFO"]!=null) {
 	$_SERVER['PATH_INFO'] = $_SERVER["ORIG_PATH_INFO"]; }
 if(file_exists('settings.php')) {
 	require_once('settings.php'); 
+	if(file_exists('extrasettings.php')) {
+		require_once('extrasettings.php'); }
+	if(file_exists('extendsettings.php')) {
+		require_once('extendsettings.php'); }
 $Settings['oldidburl'] = $Settings['idburl'];
 $iurlpart = parse_url($Settings['idburl']);
 $iurlhost = preg_quote($iurlpart['host'],"/");

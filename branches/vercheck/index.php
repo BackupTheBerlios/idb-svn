@@ -11,14 +11,18 @@
     Copyright 2009-2010 iDB Support - http://idb.berlios.de/
     Copyright 2009-2010 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: index.php - Last Update: 10/02/2010 Ver 2.8.5 - Author: cooldude2k $
+    $FileInfo: index.php - Last Update: 06/29/2011 Ver 2.9.0 - Author: cooldude2k $
 */
 /* Change to your url. */
 @ob_start(); 
 require_once('inc/killglobals.php');
 $site_url = "http://localhost/vercheck/";
+$site_name = "iDB Version checker";
 $download_url = $site_url."download.php";
-@ini_set("user_agent", "Mozilla/5.0 (compatible; iDB-VerCheck/2.8.5; +".$site_url.")");
+// Programs to check for add to array.
+// $iDBArray = array("RDB", "iDB", "iDB-Host", "iDBEH-Mod");//ReneeDB
+$iDBArray = array("iDB", "iDB-Host", "iDBEH-Mod");
+@ini_set("user_agent", "Mozilla/5.0 (compatible; iDB-VerCheck/2.9.0; +".$site_url.")");
 if(!isset($_GET['redirect'])) { $_GET['redirect'] = "off"; }
     /**
      * Returns true if $string is valid UTF-8 and false otherwise.
@@ -109,13 +113,13 @@ if(!isset($_GET['name'])&&!isset($_GET['bid'])) {
    "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-<title> iDB Version checker </title>
+<title> <?php echo $site_name; ?> </title>
 <meta http-equiv="content-language" content="en-US">
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-15">
 <meta name="Generator" content="EditPlus">
 <meta name="Author" content="Cool Dude 2k">
-<meta name="Keywords" content="iDB Version checker">
-<meta name="Description" content="iDB Version checker">
+<meta name="Keywords" content="<?php echo $site_name; ?>">
+<meta name="Description" content="<?php echo $site_name; ?>">
 <meta name="ROBOTS" content="Index, FOLLOW">
 <meta name="revisit-after" content="1 days">
 <meta name="GOOGLEBOT" content="Index, FOLLOW">
@@ -313,9 +317,9 @@ if($_GET['redirect']!="on"&&$_GET['redirect']!="xml"&&$_GET['redirect']!="js") {
 <html>
 <head>
 <?php if(isset($GetFullTitle)) { ?>
-<title> iDB Version checker - Checking <?php echo $GetFullTitle; ?> </title>
+<title> <?php echo $site_name; ?> - Checking <?php echo $GetFullTitle; ?> </title>
 <?php } if(!isset($GetFullTitle)) { ?>
-<title> iDB Version checker </title>
+<title> <?php echo $site_name; ?> </title>
 <?php } ?>
 <meta http-equiv="content-language" content="en-US">
 <?php if(isset($BoardLang)) { ?>
@@ -325,8 +329,8 @@ if($_GET['redirect']!="on"&&$_GET['redirect']!="xml"&&$_GET['redirect']!="js") {
 <?php } ?>
 <meta name="Generator" content="EditPlus">
 <meta name="Author" content="Cool Dude 2k">
-<meta name="Keywords" content="iDB Version checker">
-<meta name="Description" content="iDB Version checker">
+<meta name="Keywords" content="<?php echo $site_name; ?>">
+<meta name="Description" content="<?php echo $site_name; ?>">
 <meta name="ROBOTS" content="Index, FOLLOW">
 <meta name="revisit-after" content="1 days">
 <meta name="GOOGLEBOT" content="Index, FOLLOW">
@@ -431,7 +435,8 @@ fclose($fp); }
 
 if($_GET['act']!="update") {
 $VersionFile = file_get_contents("inc/version.xml");
-$iDBArray = array("iDB", "iDB-Host", "iDBEH-Mod");
+if(!isset($iDBArray)) {
+$iDBArray = array("iDB", "iDB-Host", "iDBEH-Mod"); }
 $NamePart = explode("|", $_GET['name']);
 if(count($NamePart)>=5) { 
 $_GET['name'] = $NamePart[0];

@@ -11,23 +11,23 @@
     Copyright 2004-2008 Jcink - https://launchpad.net/tfbb
     Copyright 2004-2008 Jcink - http://jcink.com/
     $ThemeInfo - Name: TFBB Theme - Author: jcink $
-    $FileInfo: settings.php - Last Update: 12/07/2010 SVN 600 - Author: jcink $
+    $FileInfo: settings.php - Last Update: 07/01/2011 SVN 690 - Author: jcink $
 */
 $ThemeSet = array();
 $ThemeSet['ThemeName'] = "Jcink Classic Skin";
 $ThemeSet['ThemeMaker'] = "Jcink";
-$ThemeSet['ThemeVersion'] = "0.4.2";
+$ThemeSet['ThemeVersion'] = "0.4.6";
 $ThemeSet['ThemeVersionType'] = "Alpha";
-$ThemeSet['ThemeSubVersion'] = "SVN 600";
+$ThemeSet['ThemeSubVersion'] = "SVN 690";
 $ThemeSet['MakerURL'] = "http://Jcink.com/";
-$ThemeSet['CopyRight'] = $ThemeSet['ThemeName']." was made by <a href=\"".$ThemeSet['MakerURL']."\" title=\"".$ThemeSet['ThemeMaker']."\">".$ThemeSet['ThemeMaker']."</a>";
+$ThemeSet['CopyRight'] = "%{ThemeName}T was made by <a href=\"%{MakerURL}T\" title=\"%{ThemeMaker}T\">%{ThemeMaker}T</a>";
 $ThemeSet['CSS'] = "themes/Jcink/css.css";
 $ThemeSet['CSSType'] = "include";
 $ThemeSet['FavIcon'] = "themes/Jcink/favicon.ico";
 $ThemeSet['TableStyle'] = "div";
 $ThemeSet['MiniPageAltStyle'] = "off";
 $ThemeSet['PreLogo'] = null;
-$ThemeSet['Logo'] = $Settings['board_name'];
+$ThemeSet['Logo'] = "%{board_name}s";
 $ThemeSet['LogoStyle'] = "font-size: 40px; font-family: verdana, arial, sans-serif; color: white;";
 $ThemeSet['SubLogo'] = null;
 $ThemeSet['TopicIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/Jcink/topic.gif\" alt=\"Topic\" title=\"Topic\" /></div>";
@@ -72,6 +72,6 @@ $ThemeSet['TitleIcon'] = "<img src=\"themes/Jcink/nav.gif\" alt=\"-&gt;\" title=
 $ThemeSet['NavLinkIcon'] = "&gt;&gt; ";
 $ThemeSet['NavLinkDivider'] = "&nbsp;-&gt;&nbsp;";
 $ThemeSet['StatsIcon'] = "<img src=\"themes/Jcink/stats.gif\" alt=\"Board Stats\" title=\"Board Stats\" />";
-$ThemeSet['NoAvatar'] = "themes/Jcink/noavatar.png";
+$ThemeSet['NoAvatar'] = "themes/Jcink/noavatar.gif";
 $ThemeSet['NoAvatarSize'] = "100x100";
 ?>

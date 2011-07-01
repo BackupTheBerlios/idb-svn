@@ -11,23 +11,23 @@
     Copyright 2004-2008 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2008 Game Maker 2k - http://intdb.sourceforge.net/
     $ThemeInfo - Name: Random iDB Theme - Author: cooldude2k $
-    $FileInfo: settings.php - Last Update: 12/07/2010 SVN 600 - Author: cooldude2k $
+    $FileInfo: settings.php - Last Update: 07/01/2011 SVN 690 - Author: cooldude2k $
 */
 $ThemeSet = array();
 $ThemeSet['ThemeName'] = "Random iDB Theme";
 $ThemeSet['ThemeMaker'] = "Kazuki";
-$ThemeSet['ThemeVersion'] = "0.4.2";
+$ThemeSet['ThemeVersion'] = "0.4.6";
 $ThemeSet['ThemeVersionType'] = "Alpha";
-$ThemeSet['ThemeSubVersion'] = "SVN 600";
+$ThemeSet['ThemeSubVersion'] = "SVN 690";
 $ThemeSet['MakerURL'] = "http://kazuki.homelinux.org/bbs/category.php?act=view&amp;id=2";
-$ThemeSet['CopyRight'] = $ThemeSet['ThemeName']." was made by <a href=\"".$ThemeSet['MakerURL']."\" title=\"".$ThemeSet['ThemeMaker']."\">".$ThemeSet['ThemeMaker']."</a>";
+$ThemeSet['CopyRight'] = "%{ThemeName}T was made by <a href=\"%{MakerURL}T\" title=\"%{ThemeMaker}T\">%{ThemeMaker}T</a>";
 $ThemeSet['CSS'] = "themes/Rand/css.css";
 $ThemeSet['CSSType'] = "include";
 $ThemeSet['FavIcon'] = "themes/Rand/favicon.ico";
 $ThemeSet['TableStyle'] = "div";
 $ThemeSet['MiniPageAltStyle'] = "off";
 $ThemeSet['PreLogo'] = null;
-$ThemeSet['Logo'] = $Settings['board_name'];
+$ThemeSet['Logo'] = "%{board_name}s";
 $ThemeSet['LogoStyle'] = "text-decoration: none;";
 $ThemeSet['SubLogo'] = null;
 $ThemeSet['TopicIcon'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"Topic!\"> (T) </div>";

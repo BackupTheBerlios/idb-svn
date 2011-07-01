@@ -1,23 +1,23 @@
 <?php
 /*
     $ThemeInfo - Name: IPB Alt Theme - Author: eternalSHADOW.com $
-	$FileInfo: settings.php - Last Update: 12/07/2010 SVN 600 - Author: cooldude2k $
+	$FileInfo: settings.php - Last Update: 07/01/2011 SVN 690 - Author: cooldude2k $
 */
 $ThemeSet = array();
 $ThemeSet['ThemeName'] = "IPB Red Theme";
 $ThemeSet['ThemeMaker'] = "eternalSHADOW.com";
-$ThemeSet['ThemeVersion'] = "0.4.2";
+$ThemeSet['ThemeVersion'] = "0.4.6";
 $ThemeSet['ThemeVersionType'] = "Alpha";
-$ThemeSet['ThemeSubVersion'] = "SVN 600";
+$ThemeSet['ThemeSubVersion'] = "SVN 690";
 $ThemeSet['MakerURL'] = "http://eternalshadow.com/";
-$ThemeSet['CopyRight'] = $ThemeSet['ThemeName']." was made by <a href=\"".$ThemeSet['MakerURL']."\" title=\"".$ThemeSet['ThemeMaker']."\">".$ThemeSet['ThemeMaker']."</a>";
+$ThemeSet['CopyRight'] = "%{ThemeName}T was made by <a href=\"%{MakerURL}T\" title=\"%{ThemeMaker}T\">%{ThemeMaker}T</a>";
 $ThemeSet['CSS'] = "themes/IPBRed/css.css";
 $ThemeSet['CSSType'] = "include";
 $ThemeSet['FavIcon'] = "themes/IPBRed/favicon.ico";
 $ThemeSet['TableStyle'] = "div";
 $ThemeSet['MiniPageAltStyle'] = "on";
 $ThemeSet['PreLogo'] = null;
-$ThemeSet['Logo'] = $Settings['board_name'];
+$ThemeSet['Logo'] = "%{board_name}s";
 $ThemeSet['LogoStyle'] = "font-size: 40px; font-family: verdana, arial, sans-serif; color: black; text-decoration: none;";
 $ThemeSet['SubLogo'] = null;
 $ThemeSet['TopicIcon'] = "<div style=\"text-align: center;\"><img src=\"themes/IPBRed/topic.gif\" alt=\"Topic\" title=\"Topic\" /></div>";

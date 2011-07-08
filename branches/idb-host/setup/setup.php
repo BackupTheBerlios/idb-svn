@@ -12,7 +12,7 @@
     Copyright 2004-2011 Game Maker 2k - http://gamemaker2k.org/
     iDB Installer made by Game Maker 2k - http://idb.berlios.net/
 
-    $FileInfo: setup.php - Last Update: 04/05/2011 SVN 627 - Author: cooldude2k $
+    $FileInfo: setup.php - Last Update: 07/08/2011 SVN 697 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="setup.php"||$File3Name=="/setup.php") {
@@ -49,7 +49,8 @@ if($_POST['SeparateDatabase']!="no"&&
 	$_POST['SeparateDatabase']!="yes") {
 	$_POST['SeparateDatabase'] = "no"; }
 if(!function_exists("mysql_connect")&&!function_exists("mysqli_connect")&&
-!function_exists("pg_connect")&&!function_exists("sqlite_open")) { $Error="Yes";
+!function_exists("pg_connect")&&!function_exists("sqlite_open")&&
+!function_exists("cubrid_connect")) { $Error="Yes";
 echo "<span class=\"TableMessage\">You need to enbale a database php extension to install ".$VerInfo['iDB_Ver_Show']." on this server.<br />\n"; 
 echo "You can use MySQL, MySQLi, PostgreSQL, or SQLite</span>"; }
 if ($Error!="Yes") {

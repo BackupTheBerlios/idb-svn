@@ -8,12 +8,20 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     Revised BSD License for more details.
 
-    Copyright 2009-2010 iDB Support - http://idb.berlios.de/
-    Copyright 2009-2010 Game Maker 2k - http://gamemaker2k.org/
+    Copyright 2009-2011 iDB Support - http://idb.berlios.de/
+    Copyright 2009-2011 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: index.php - Last Update: 06/29/2011 Ver 2.9.0 - Author: cooldude2k $
+    $FileInfo: index.php - Last Update: 07/15/2011 Ver 3.0.0 - Author: cooldude2k $
 */
-@ob_start(); 
+function idb_output_handler($buffer) { return $buffer; }
+@ob_start("idb_output_handler");
+header("Cache-Control: private, no-cache, no-store, must-revalidate, pre-check=0, post-check=0, max-age=0");
+header("Pragma: private, no-cache, no-store, must-revalidate, pre-check=0, post-check=0, max-age=0");
+header("P3P: CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\"");
+header("Date: ".gmdate("D, d M Y H:i:s")." GMT");
+header("Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT");
+header("Expires: ".gmdate("D, d M Y H:i:s")." GMT");
+output_reset_rewrite_vars();
 $_GET['file'] = null;
 if($_GET['file']==null) {
 $mirrors['mirror'] = array("prdownload.berlios.de","downloads.sourceforge.net","get.idb.s1.jcink.com","ihost.net46.net","idb.gamemaker2k.org","of.openfoundry.org"); 

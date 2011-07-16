@@ -8,21 +8,44 @@
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     Revised BSD License for more details.
 
-    Copyright 2009-2010 iDB Support - http://idb.berlios.de/
-    Copyright 2009-2010 Game Maker 2k - http://gamemaker2k.org/
+    Copyright 2009-2011 iDB Support - http://idb.berlios.de/
+    Copyright 2009-2011 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: index.php - Last Update: 06/29/2011 Ver 2.9.0 - Author: cooldude2k $
+    $FileInfo: index.php - Last Update: 07/15/2011 Ver 3.0.0 - Author: cooldude2k $
 */
 /* Change to your url. */
-@ob_start(); 
+function idb_output_handler($buffer) { return $buffer; }
+@ob_start("idb_output_handler");
+header("Cache-Control: private, no-cache, no-store, must-revalidate, pre-check=0, post-check=0, max-age=0");
+header("Pragma: private, no-cache, no-store, must-revalidate, pre-check=0, post-check=0, max-age=0");
+header("P3P: CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\"");
+header("Date: ".gmdate("D, d M Y H:i:s")." GMT");
+header("Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT");
+header("Expires: ".gmdate("D, d M Y H:i:s")." GMT");
+output_reset_rewrite_vars();
 require_once('inc/killglobals.php');
 $site_url = "http://localhost/vercheck/";
 $site_name = "iDB Version checker";
 $download_url = $site_url."download.php";
+$site_version = "3.0.0";
+$site_useragent = "Mozilla/5.0 (compatible; iDB-VerCheck/".$site_version."; +".$site_url.")";
 // Programs to check for add to array.
 // $iDBArray = array("RDB", "iDB", "iDB-Host", "iDBEH-Mod");//ReneeDB
 $iDBArray = array("iDB", "iDB-Host", "iDBEH-Mod");
-@ini_set("user_agent", "Mozilla/5.0 (compatible; iDB-VerCheck/2.9.0; +".$site_url.")");
+@ini_set("user_agent", $site_useragent);
+if (function_exists("stream_context_create")) {
+$opts = array(
+  'http' => array(
+    'method' => "GET",
+    'header' => "Accept-Language: *\r\n".
+                "User-Agent: ".$site_useragent."\r\n".
+                "Accept: */*\r\n".
+                "Connection: keep-alive\r\n".
+                "Referer: ".$site_url."\r\n".
+                "From: ".$site_url."\r\n"
+  )
+);
+$context = stream_context_create($opts); }
 if(!isset($_GET['redirect'])) { $_GET['redirect'] = "off"; }
     /**
      * Returns true if $string is valid UTF-8 and false otherwise.
@@ -59,7 +82,11 @@ if(!isset($_GET['redirect'])) { $_GET['redirect'] = "off"; }
     $agents = implode('|', $agents);
 
     # location of robots.txt file
-    $robotstxt = @file("http://{$parsed['host']}/robots.txt");
+    if (function_exists("stream_context_create")) {
+        $robotstxt = file_get_contents("http://{$parsed['host']}/robots.txt",false,$opts);
+    } else {
+        $robotstxt = file_get_contents("http://{$parsed['host']}/robots.txt");
+    }
     if(!$robotstxt) return true;
 
     $rules = array();
@@ -165,9 +192,17 @@ if(isset($_GET['bid'])) {
 	if($_GET['vercheck']=="newtype") {
 	$actchange = preg_quote("act=view", '/');
 	$_GET['bid'] = preg_replace("/".$actchange."/i", "act=versioninfo", $_GET['bid']);
-	$GetTitle = @file_get_contents($_GET['bid']); }
+    if (function_exists("stream_context_create")) {
+    	$GetTitle = file_get_contents($_GET['bid'],false,$opts);
+    } else {
+    	$GetTitle = file_get_contents($_GET['bid']);
+    } }
 	if($_GET['vercheck']!="newtype") {
-	$GetTitle = @file_get_contents($_GET['bid']); }
+    if (function_exists("stream_context_create")) {
+    	$GetTitle = file_get_contents($_GET['bid'],false,$opts);
+    } else {
+    	$GetTitle = file_get_contents($_GET['bid']);
+    } }
 	$_GET['bid'] = htmlspecialchars($_GET['bid']);
 	preg_match_all("/<title>(.*?)<\/title>/i", $GetTitle, $GetFullTitle);
 	$GetConType = $GetTitle;
@@ -347,7 +382,11 @@ if($_GET['redirect']!="on"&&$_GET['redirect']!="xml"&&$_GET['redirect']!="js") {
 if(!isset($_GET['act'])) { $_GET['act'] = null; }
 if(!isset($_GET['redirect'])) { $_GET['redirect'] = null; }
 if(isset($_GET['act'])&&$_GET['act']=="update") {
-$GetNewVersion = file_get_contents("http://developer.berlios.de/project/showfiles.php?group_id=6135");
+if (function_exists("stream_context_create")) {
+    $GetNewVersion = file_get_contents("http://developer.berlios.de/project/showfiles.php?group_id=6135",false,$opts);
+} else {
+    $GetNewVersion = file_get_contents("http://developer.berlios.de/project/showfiles.php?group_id=6135");
+}
 $prepreg1 = preg_quote("<TD colspan=\"3\"><h3>iDB</h3></TD>","/"); 
 $prepreg2 = preg_quote("</A></B></TD>","/");
 preg_match_all("/".$prepreg1."(.*)".$prepreg2."{1}/isU", $GetNewVersion, $NewVersionPart);
@@ -355,7 +394,11 @@ $prepreg1 = preg_quote("SVN ","/");
 $prepreg2 = preg_quote("</A>","/");
 preg_match_all("/".$prepreg1."(.*)".$prepreg2."{1}/isU", $NewVersionPart[0][0], $NewVersionPart);
 $NewSVNPart = $NewVersionPart[1][0];
-$GetSVNVersion = file_get_contents("http://intdb.svn.sourceforge.net/viewvc/intdb/trunk/inc/versioninfo.php?revision=".$NewSVNPart); 
+if (function_exists("stream_context_create")) {
+    $GetSVNVersion = file_get_contents("http://intdb.svn.sourceforge.net/viewvc/intdb/trunk/inc/versioninfo.php?revision=".$NewSVNPart,false,$opts);
+} else {
+    $GetSVNVersion = file_get_contents("http://intdb.svn.sourceforge.net/viewvc/intdb/trunk/inc/versioninfo.php?revision=".$NewSVNPart);
+} 
 $newver['subver'] = $NewSVNPart;
 $prepreg1 = preg_quote("\$VER1[0] = ","/"); 
 $prepreg2 = preg_quote(";","/");

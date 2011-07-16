@@ -83,7 +83,7 @@ if(!isset($_GET['redirect'])) { $_GET['redirect'] = "off"; }
 
     # location of robots.txt file
     if (function_exists("stream_context_create")) {
-        $robotstxt = file_get_contents("http://{$parsed['host']}/robots.txt",false,$opts);
+        $robotstxt = file_get_contents("http://{$parsed['host']}/robots.txt",false,$context);
     } else {
         $robotstxt = file_get_contents("http://{$parsed['host']}/robots.txt");
     }
@@ -193,13 +193,13 @@ if(isset($_GET['bid'])) {
 	$actchange = preg_quote("act=view", '/');
 	$_GET['bid'] = preg_replace("/".$actchange."/i", "act=versioninfo", $_GET['bid']);
     if (function_exists("stream_context_create")) {
-    	$GetTitle = file_get_contents($_GET['bid'],false,$opts);
+    	$GetTitle = file_get_contents($_GET['bid'],false,$context);
     } else {
     	$GetTitle = file_get_contents($_GET['bid']);
     } }
 	if($_GET['vercheck']!="newtype") {
     if (function_exists("stream_context_create")) {
-    	$GetTitle = file_get_contents($_GET['bid'],false,$opts);
+    	$GetTitle = file_get_contents($_GET['bid'],false,$context);
     } else {
     	$GetTitle = file_get_contents($_GET['bid']);
     } }
@@ -383,7 +383,7 @@ if(!isset($_GET['act'])) { $_GET['act'] = null; }
 if(!isset($_GET['redirect'])) { $_GET['redirect'] = null; }
 if(isset($_GET['act'])&&$_GET['act']=="update") {
 if (function_exists("stream_context_create")) {
-    $GetNewVersion = file_get_contents("http://developer.berlios.de/project/showfiles.php?group_id=6135",false,$opts);
+    $GetNewVersion = file_get_contents("http://developer.berlios.de/project/showfiles.php?group_id=6135",false,$context);
 } else {
     $GetNewVersion = file_get_contents("http://developer.berlios.de/project/showfiles.php?group_id=6135");
 }
@@ -395,7 +395,7 @@ $prepreg2 = preg_quote("</A>","/");
 preg_match_all("/".$prepreg1."(.*)".$prepreg2."{1}/isU", $NewVersionPart[0][0], $NewVersionPart);
 $NewSVNPart = $NewVersionPart[1][0];
 if (function_exists("stream_context_create")) {
-    $GetSVNVersion = file_get_contents("http://intdb.svn.sourceforge.net/viewvc/intdb/trunk/inc/versioninfo.php?revision=".$NewSVNPart,false,$opts);
+    $GetSVNVersion = file_get_contents("http://intdb.svn.sourceforge.net/viewvc/intdb/trunk/inc/versioninfo.php?revision=".$NewSVNPart,false,$context);
 } else {
     $GetSVNVersion = file_get_contents("http://intdb.svn.sourceforge.net/viewvc/intdb/trunk/inc/versioninfo.php?revision=".$NewSVNPart);
 } 

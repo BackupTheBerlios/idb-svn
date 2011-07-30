@@ -11,7 +11,7 @@
     Copyright 2004-2011 iDB Support - http://idb.berlios.de/
     Copyright 2004-2011 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: search.php - Last Update: 07/21/2011 SVN 725 - Author: cooldude2k $
+    $FileInfo: search.php - Last Update: 07/30/2011 SVN 729 - Author: cooldude2k $
 */
 if(ini_get("register_globals")) {
 require_once('inc/misc/killglobals.php'); }
@@ -20,18 +20,26 @@ $usefileext = $Settings['file_ext'];
 if($ext=="noext"||$ext=="no ext"||$ext=="no+ext") { $usefileext = ""; }
 $filewpath = $exfile['search'].$usefileext.$_SERVER['PATH_INFO'];
 $idbactcheck = array("topic", "topics");
+ob_start("idb_suboutput_handler");
 ?>
-
 <link rel="search" type="application/opensearchdescription+xml" title="<?php echo $Settings['board_name']." ".$ThemeSet['TitleDivider']; ?> Search" href="<?php echo url_maker($exfile['rss'],$Settings['rss_ext'],"act=opensearch",$Settings['qstr'],$Settings['qsep'],$prexqstr['rss'],$exqstr['rss']); ?>" />
+<?php $iWrappers['EXTRALINKS'] = ob_get_clean(); 
+ob_start("idb_suboutput_handler"); ?>
 <title> <?php echo $Settings['board_name'].$idbpowertitle; ?> </title>
+<?php $iWrappers['TITLETAG'] = ob_get_clean(); 
+ob_start("idb_suboutput_handler"); ?>
 </head>
 <body>
-<?php require($SettDir['inc'].'navbar.php');
+<?php $iWrappers['BODYTAG'] = ob_get_clean();
+ob_start("idb_suboutput_handler");
+require($SettDir['inc'].'navbar.php');
+$iWrappers['NAVBAR'] = ob_get_clean();
+ob_start("idb_suboutput_handler");
 if($Settings['enable_search']=="off"||
 	$GroupInfo['CanSearch']=="no") {
 redirect("location",$rbasedir.url_maker($exfile['index'],$Settings['file_ext'],"act=view",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false));
 header("Content-Type: text/plain; charset=".$Settings['charset']);
-ob_clean(); echo "Sorry you do not have permission to do a search."; $urlstatus = 503;
+ob_clean(); echo "Sorry you do not have permission to do a search."; $urlstatus = 302;
 gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
 if($Settings['enable_search']=="on"||$GroupInfo['CanSearch']=="yes") {
 if(!isset($_GET['search'])) { $_GET['search'] = null; }
@@ -52,22 +60,27 @@ if(!in_array($_GET['act'], $idbactcheck))
 { $_GET['act']="topics"; }
 if(!isset($_GET['msearch'])) { $_GET['msearch'] = null; }
 if(!isset($_POST['msearch'])) { $_POST['msearch'] = null; }
-if(!isset($_GET['memid'])) { $_GET['memid'] = null; }
-if(!isset($_POST['memid'])) { $_POST['memid'] = null; }
 if($_GET['msearch']==null&&
 	$_POST['msearch']!=null) { 
 		$_GET['msearch'] = $_POST['msearch']; }
-if($_GET['memid']==null&&
-	$_POST['memid']!=null) { 
-		$_GET['memid'] = $_POST['memid']; }	
 if($_GET['act']=="topics") { 
 require($SettDir['inc'].'searches.php'); } }
 if($_GET['act']=="opensearch") {
 redirect("location",$rbasedir.url_maker($exfile['rss'],$Settings['file_ext'],"act=".$_GET['act'],$Settings['qstr'],$Settings['qsep'],$prexqstr['rss'],$exqstr['rss'],FALSE));
 ob_clean(); header("Content-Type: text/plain; charset=".$Settings['charset']); $urlstatus = 302;
 gzip_page($Settings['use_gzip'],$GZipEncode['Type']); session_write_close(); die(); }
+$iWrappers['CONTENT'] = ob_get_clean();
+ob_start("idb_suboutput_handler");
 require($SettDir['inc'].'endpage.php');
-if(!isset($_GET['search'])) { $_GET['search'] = null; } 
+$iWrappers['COPYRIGHT'] = ob_get_clean();
+ob_start("idb_suboutput_handler");
+if(!isset($_GET['search'])) { $_GET['search'] = null; }
+?>
+</body>
+</html>
+<?php 
+$iWrappers['HTMLEND'] = ob_get_clean();
+require($SettDir['inc'].'iwrapper.php');
 if($_GET['search']==null&&$_GET['type']==null) {
 change_title($Settings['board_name']." ".$ThemeSet['TitleDivider']." Searching",$Settings['use_gzip'],$GZipEncode['Type']); }
 if($_GET['search']!=null&&$_GET['type']!=null) {

@@ -11,7 +11,7 @@
     Copyright 2004-2011 iDB Support - http://idb.berlios.de/
     Copyright 2004-2011 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: main.php - Last Update: 07/09/2011 SVN 703 - Author: cooldude2k $
+    $FileInfo: main.php - Last Update: 07/30/2011 SVN 729 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="main.php"||$File3Name=="/main.php") {
@@ -129,6 +129,8 @@ if(!isset($Settings['IPCheckURL'])) {
 	$Settings['IPCheckURL'] = ""; }
 if(!isset($Settings['log_config_format'])) {
 	$Settings['log_config_format'] = "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\""; }
+if(!isset($Settings['idb_time_format'])) { 
+	$Settings['idb_time_format'] = "g:i A"; }
 ?>
 <table class="Table3">
 <tr style="width: 100%; vertical-align: top;">
@@ -188,6 +190,7 @@ $BoardSettings=$pretext2[0]."\n".
 "\$Settings['DefaultTimeZone'] = ".null_string($Settings['DefaultTimeZone']).";\n".
 "\$Settings['DefaultDST'] = ".null_string($Settings['DefaultDST']).";\n".
 "\$Settings['start_date'] = ".null_string($Settings['start_date']).";\n".
+"\$Settings['idb_time_format'] = ".null_string($Settings['idb_time_format']).";\n".
 "\$Settings['use_hashtype'] = ".null_string($Settings['use_hashtype']).";\n".
 "\$Settings['charset'] = ".null_string($Settings['charset']).";\n".
 "\$Settings['sql_collate'] = ".null_string($Settings['sql_collate']).";\n".
@@ -345,8 +348,8 @@ if ($handle = opendir($skindir)) { $dirnum = null;
    $themenum=count($themelist); $themei=0; 
    while ($themei < $themenum) {
    include($skindir.$themelist[$themei]."/settings.php");
-   $query = sql_pre_query("INSERT INTO \"".$Settings['sqltable']."themes\" (\"Name\", \"ThemeName\", \"ThemeMaker\", \"ThemeVersion\", \"ThemeVersionType\", \"ThemeSubVersion\", \"MakerURL\", \"CopyRight\", \"CSS\", \"CSSType\", \"FavIcon\", \"TableStyle\", \"MiniPageAltStyle\", \"PreLogo\", \"Logo\", \"LogoStyle\", \"SubLogo\", \"TopicIcon\", \"MovedTopicIcon\", \"HotTopic\", \"MovedHotTopic\", \"PinTopic\", \"AnnouncementTopic\", \"MovedPinTopic\", \"HotPinTopic\", \"MovedHotPinTopic\", \"ClosedTopic\", \"MovedClosedTopic\", \"HotClosedTopic\", \"MovedHotClosedTopic\", \"PinClosedTopic\", \"MovedPinClosedTopic\", \"HotPinClosedTopic\", \"MovedHotPinClosedTopic\", \"MessageRead\", \"MessageUnread\", \"Profile\", \"WWW\", \"PM\", \"TopicLayout\", \"AddReply\", \"FastReply\", \"NewTopic\", \"QuoteReply\", \"EditReply\", \"DeleteReply\", \"Report\", \"LineDivider\", \"ButtonDivider\", \"LineDividerTopic\", \"TitleDivider\", \"ForumStyle\", \"ForumIcon\", \"SubForumIcon\", \"RedirectIcon\", \"TitleIcon\", \"NavLinkIcon\", \"NavLinkDivider\", \"StatsIcon\", \"NoAvatar\", \"NoAvatarSize\") VALUES\n".
-   "('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');", array($themelist[$themei], $ThemeSet['ThemeName'], $ThemeSet['ThemeMaker'], $ThemeSet['ThemeVersion'], $ThemeSet['ThemeVersionType'], $ThemeSet['ThemeSubVersion'], $ThemeSet['MakerURL'], $ThemeSet['CopyRight'], $ThemeSet['CSS'], $ThemeSet['CSSType'], $ThemeSet['FavIcon'], $ThemeSet['TableStyle'], $ThemeSet['MiniPageAltStyle'], $ThemeSet['PreLogo'], $ThemeSet['Logo'], $ThemeSet['LogoStyle'], $ThemeSet['SubLogo'], $ThemeSet['TopicIcon'], $ThemeSet['MovedTopicIcon'], $ThemeSet['HotTopic'], $ThemeSet['MovedHotTopic'], $ThemeSet['PinTopic'], $ThemeSet['AnnouncementTopic'], $ThemeSet['MovedPinTopic'], $ThemeSet['HotPinTopic'], $ThemeSet['MovedHotPinTopic'], $ThemeSet['ClosedTopic'], $ThemeSet['MovedClosedTopic'], $ThemeSet['HotClosedTopic'], $ThemeSet['MovedHotClosedTopic'], $ThemeSet['PinClosedTopic'], $ThemeSet['MovedPinClosedTopic'], $ThemeSet['HotPinClosedTopic'], $ThemeSet['MovedHotPinClosedTopic'], $ThemeSet['MessageRead'], $ThemeSet['MessageUnread'], $ThemeSet['Profile'], $ThemeSet['WWW'], $ThemeSet['PM'], $ThemeSet['TopicLayout'], $ThemeSet['AddReply'], $ThemeSet['FastReply'], $ThemeSet['NewTopic'], $ThemeSet['QuoteReply'], $ThemeSet['EditReply'], $ThemeSet['DeleteReply'], $ThemeSet['Report'], $ThemeSet['LineDivider'], $ThemeSet['ButtonDivider'], $ThemeSet['LineDividerTopic'], $ThemeSet['TitleDivider'], $ThemeSet['ForumStyle'], $ThemeSet['ForumIcon'], $ThemeSet['SubForumIcon'], $ThemeSet['RedirectIcon'], $ThemeSet['TitleIcon'], $ThemeSet['NavLinkIcon'], $ThemeSet['NavLinkDivider'], $ThemeSet['StatsIcon'], $ThemeSet['NoAvatar'], $ThemeSet['NoAvatarSize']));
+   $query = sql_pre_query("INSERT INTO \"".$Settings['sqltable']."themes\" (\"Name\", \"ThemeName\", \"ThemeMaker\", \"ThemeVersion\", \"ThemeVersionType\", \"ThemeSubVersion\", \"MakerURL\", \"CopyRight\", \"WrapperString\", \"CSS\", \"CSSType\", \"FavIcon\", \"TableStyle\", \"MiniPageAltStyle\", \"PreLogo\", \"Logo\", \"LogoStyle\", \"SubLogo\", \"TopicIcon\", \"MovedTopicIcon\", \"HotTopic\", \"MovedHotTopic\", \"PinTopic\", \"AnnouncementTopic\", \"MovedPinTopic\", \"HotPinTopic\", \"MovedHotPinTopic\", \"ClosedTopic\", \"MovedClosedTopic\", \"HotClosedTopic\", \"MovedHotClosedTopic\", \"PinClosedTopic\", \"MovedPinClosedTopic\", \"HotPinClosedTopic\", \"MovedHotPinClosedTopic\", \"MessageRead\", \"MessageUnread\", \"Profile\", \"WWW\", \"PM\", \"TopicLayout\", \"AddReply\", \"FastReply\", \"NewTopic\", \"QuoteReply\", \"EditReply\", \"DeleteReply\", \"Report\", \"LineDivider\", \"ButtonDivider\", \"LineDividerTopic\", \"TitleDivider\", \"ForumStyle\", \"ForumIcon\", \"SubForumIcon\", \"RedirectIcon\", \"TitleIcon\", \"NavLinkIcon\", \"NavLinkDivider\", \"StatsIcon\", \"NoAvatar\", \"NoAvatarSize\") VALUES\n".
+   "('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');", array($themelist[$themei], $ThemeSet['ThemeName'], $ThemeSet['ThemeMaker'], $ThemeSet['ThemeVersion'], $ThemeSet['ThemeVersionType'], $ThemeSet['ThemeSubVersion'], $ThemeSet['MakerURL'], $ThemeSet['CopyRight'], $ThemeSet['WrapperString'], $ThemeSet['CSS'], $ThemeSet['CSSType'], $ThemeSet['FavIcon'], $ThemeSet['TableStyle'], $ThemeSet['MiniPageAltStyle'], $ThemeSet['PreLogo'], $ThemeSet['Logo'], $ThemeSet['LogoStyle'], $ThemeSet['SubLogo'], $ThemeSet['TopicIcon'], $ThemeSet['MovedTopicIcon'], $ThemeSet['HotTopic'], $ThemeSet['MovedHotTopic'], $ThemeSet['PinTopic'], $ThemeSet['AnnouncementTopic'], $ThemeSet['MovedPinTopic'], $ThemeSet['HotPinTopic'], $ThemeSet['MovedHotPinTopic'], $ThemeSet['ClosedTopic'], $ThemeSet['MovedClosedTopic'], $ThemeSet['HotClosedTopic'], $ThemeSet['MovedHotClosedTopic'], $ThemeSet['PinClosedTopic'], $ThemeSet['MovedPinClosedTopic'], $ThemeSet['HotPinClosedTopic'], $ThemeSet['MovedHotPinClosedTopic'], $ThemeSet['MessageRead'], $ThemeSet['MessageUnread'], $ThemeSet['Profile'], $ThemeSet['WWW'], $ThemeSet['PM'], $ThemeSet['TopicLayout'], $ThemeSet['AddReply'], $ThemeSet['FastReply'], $ThemeSet['NewTopic'], $ThemeSet['QuoteReply'], $ThemeSet['EditReply'], $ThemeSet['DeleteReply'], $ThemeSet['Report'], $ThemeSet['LineDivider'], $ThemeSet['ButtonDivider'], $ThemeSet['LineDividerTopic'], $ThemeSet['TitleDivider'], $ThemeSet['ForumStyle'], $ThemeSet['ForumIcon'], $ThemeSet['SubForumIcon'], $ThemeSet['RedirectIcon'], $ThemeSet['TitleIcon'], $ThemeSet['NavLinkIcon'], $ThemeSet['NavLinkDivider'], $ThemeSet['StatsIcon'], $ThemeSet['NoAvatar'], $ThemeSet['NoAvatarSize']));
    sql_query($query,$SQLStat);
    ++$themei; } }
 $themequery = sql_pre_query("SELECT * FROM \"".$Settings['sqltable']."themes\" WHERE \"Name\"='%s'", array($_GET['theme']));
@@ -716,7 +719,7 @@ $skindir = dirname(realpath("settings.php"))."/".$SettDir['themes'];
 if ($handle = opendir($skindir)) { $dirnum = null;
    while (false !== ($file = readdir($handle))) {
 	   if ($dirnum==null) { $dirnum = 0; }
-	   if (file_exists($skindir.$file."/info.php")) {
+	   if (is_dir($skindir.$file)&&file_exists($skindir.$file."/info.php")) {
 		   if ($file != "." && $file != "..") {
 	   include($skindir.$file."/info.php");
 	   if($Settings['DefaultTheme']==$file) {
@@ -767,6 +770,18 @@ echo "<option value=\"".$ThemeInfo['Name']."\">".$ThemeInfo['ThemeName']."</opti
 <option<?php if($Settings['TestReferer']=="on") { echo " selected=\"selected\""; } ?> value="on">on</option>
 <option<?php if($Settings['TestReferer']=="off") { echo " selected=\"selected\""; } ?> value="off">off</option>
 </select></td>
+</tr><tr style="text-align: left;">
+	<td style="width: 50%;"><label class="TextBoxLabel" for="iDBTimeFormat">Insert the time format to be used for iDB:</label></td>
+	<td style="width: 50%;"><input type="text" class="TextBox" name="iDBTimeFormat" size="20" id="iDBTimeFormat" value="<?php echo htmlentities($Settings['idb_time_format'], ENT_QUOTES, $Settings['charset']); ?>" /></td>
+</tr><tr style="text-align: left;">
+	<td style="width: 50%;"><label class="TextBoxLabel" for="iDBHTTPLogger">Log Every HTTP Requests:</label></td>
+	<td style="width: 50%;"><select id="iDBHTTPLogger" name="iDBHTTPLogger" class="TextBox">
+<option<?php if($Settings['log_http_request']=="on") { echo " selected=\"selected\""; } ?> value="on">on</option>
+<option<?php if($Settings['log_http_request']=="off") { echo " selected=\"selected\""; } ?> value="off">off</option>
+</select></td>
+</tr><tr style="text-align: left;">
+	<td style="width: 50%;"><label class="TextBoxLabel" for="iDBLoggerFormat">Insert The Format for HTTP Logger:</label></td>
+	<td style="width: 50%;"><input type="text" class="TextBox" name="iDBLoggerFormat" size="20" id="iDBLoggerFormat" value="<?php echo htmlentities($Settings['log_config_format'], ENT_QUOTES, $Settings['charset']); ?>" /></td>
 </tr></table>
 <table style="text-align: left;">
 <tr style="text-align: left;">
@@ -816,6 +831,10 @@ $_POST['BoardURL'] = htmlentities($_POST['BoardURL'], ENT_QUOTES, $Settings['cha
 $_POST['BoardURL'] = remove_spaces($_POST['BoardURL']);
 $_POST['WebURL'] = htmlentities($_POST['WebURL'], ENT_QUOTES, $Settings['charset']);
 $_POST['WebURL'] = remove_spaces($_POST['WebURL']);
+$_POST['iDBTimeFormat'] = convert_strftime($_POST['iDBTimeFormat']);
+$Settings['idb_time_format'] = $_POST['iDBTimeFormat'];
+$Settings['log_http_request'] = $_POST['iDBHTTPLogger'];
+$Settings['log_config_format'] = $_POST['iDBLoggerFormat'];
 if($_POST['HTMLType']=="xhtml11") { $_POST['HTMLLevel'] = "Strict"; }
 if($_POST['HTMLType']=="html5") { $_POST['OutPutType'] = "html"; }
 if($_POST['HTMLType']=="xhtml5") { $_POST['OutPutType'] = "xhtml"; }
@@ -845,6 +864,7 @@ $BoardSettings=$pretext2[0]."\n".
 "\$Settings['DefaultTimeZone'] = ".null_string($_POST['YourOffSet'].":".$_POST['MinOffSet']).";\n".
 "\$Settings['DefaultDST'] = ".null_string($_POST['DST']).";\n".
 "\$Settings['start_date'] = ".null_string($Settings['start_date']).";\n".
+"\$Settings['idb_time_format'] = ".null_string($Settings['idb_time_format']).";\n".
 "\$Settings['use_hashtype'] = ".null_string($Settings['use_hashtype']).";\n".
 "\$Settings['charset'] = ".null_string($Settings['charset']).";\n".
 "\$Settings['sql_collate'] = ".null_string($Settings['sql_collate']).";\n".
@@ -1028,6 +1048,7 @@ $BoardSettings=$pretext2[0]."\n".
 "\$Settings['DefaultTimeZone'] = ".null_string($Settings['DefaultTimeZone']).";\n".
 "\$Settings['DefaultDST'] = ".null_string($Settings['DefaultDST']).";\n".
 "\$Settings['start_date'] = ".null_string($Settings['start_date']).";\n".
+"\$Settings['idb_time_format'] = ".null_string($Settings['idb_time_format']).";\n".
 "\$Settings['use_hashtype'] = ".null_string($Settings['use_hashtype']).";\n".
 "\$Settings['charset'] = ".null_string($Settings['charset']).";\n".
 "\$Settings['sql_collate'] = ".null_string($Settings['sql_collate']).";\n".
@@ -1190,6 +1211,7 @@ $BoardSettings=$pretext2[0]."\n".
 "\$Settings['DefaultTimeZone'] = ".null_string($Settings['DefaultTimeZone']).";\n".
 "\$Settings['DefaultDST'] = ".null_string($Settings['DefaultDST']).";\n".
 "\$Settings['start_date'] = ".null_string($Settings['start_date']).";\n".
+"\$Settings['idb_time_format'] = ".null_string($Settings['idb_time_format']).";\n".
 "\$Settings['use_hashtype'] = ".null_string($Settings['use_hashtype']).";\n".
 "\$Settings['charset'] = ".null_string($Settings['charset']).";\n".
 "\$Settings['sql_collate'] = ".null_string($Settings['sql_collate']).";\n".

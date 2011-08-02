@@ -11,8 +11,23 @@
     Copyright 2009-2011 iDB Support - http://idb.berlios.de/
     Copyright 2009-2011 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: index.php - Last Update: 07/15/2011 Ver 3.0.0 - Author: cooldude2k $
+    $FileInfo: index.php - Last Update: 08/02/2011 Ver 3.0.5 - Author: cooldude2k $
 */
+@ini_set("html_errors", false);
+@ini_set("track_errors", false);
+@ini_set("display_errors", false);
+@ini_set("report_memleaks", false);
+@ini_set("display_startup_errors", false);
+//@ini_set("error_log","logs/error.log"); 
+//@ini_set("log_errors","On"); 
+@ini_set("docref_ext", "");
+@ini_set("docref_root", "http://php.net/");
+@ini_set("date.timezone","UTC"); 
+@ini_set("default_mimetype","text/html");
+@error_reporting(E_ALL ^ E_NOTICE);
+@set_time_limit(30); @ignore_user_abort(true);
+if(function_exists("date_default_timezone_set")) { 
+	@date_default_timezone_set("UTC"); }
 function idb_output_handler($buffer) { return $buffer; }
 @ob_start("idb_output_handler");
 header("Cache-Control: private, no-cache, no-store, must-revalidate, pre-check=0, post-check=0, max-age=0");

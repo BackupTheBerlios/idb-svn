@@ -11,9 +11,24 @@
     Copyright 2009-2011 iDB Support - http://idb.berlios.de/
     Copyright 2009-2011 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: index.php - Last Update: 07/15/2011 Ver 3.0.0 - Author: cooldude2k $
+    $FileInfo: index.php - Last Update: 08/02/2011 Ver 3.0.5 - Author: cooldude2k $
 */
 /* Change to your url. */
+@ini_set("html_errors", false);
+@ini_set("track_errors", false);
+@ini_set("display_errors", false);
+@ini_set("report_memleaks", false);
+@ini_set("display_startup_errors", false);
+//@ini_set("error_log","logs/error.log"); 
+//@ini_set("log_errors","On"); 
+@ini_set("docref_ext", "");
+@ini_set("docref_root", "http://php.net/");
+@ini_set("date.timezone","UTC"); 
+@ini_set("default_mimetype","text/html");
+@error_reporting(E_ALL ^ E_NOTICE);
+@set_time_limit(30); @ignore_user_abort(true);
+if(function_exists("date_default_timezone_set")) { 
+	@date_default_timezone_set("UTC"); }
 function idb_output_handler($buffer) { return $buffer; }
 @ob_start("idb_output_handler");
 header("Cache-Control: private, no-cache, no-store, must-revalidate, pre-check=0, post-check=0, max-age=0");
@@ -27,7 +42,7 @@ require_once('inc/killglobals.php');
 $site_url = "http://localhost/vercheck/";
 $site_name = "iDB Version checker";
 $download_url = $site_url."download.php";
-$site_version = "3.0.0";
+$site_version = "3.0.5";
 $site_useragent = "Mozilla/5.0 (compatible; iDB-VerCheck/".$site_version."; +".$site_url.")";
 // Programs to check for add to array.
 // $iDBArray = array("RDB", "iDB", "iDB-Host", "iDBEH-Mod");//ReneeDB
@@ -42,7 +57,11 @@ $opts = array(
                 "Accept: */*\r\n".
                 "Connection: keep-alive\r\n".
                 "Referer: ".$site_url."\r\n".
-                "From: ".$site_url."\r\n"
+                "From: ".$site_url."\r\n".
+                "Via: ".$_SERVER['REMOTE_ADDR']."\r\n".
+                "Forwarded: ".$_SERVER['REMOTE_ADDR']."\r\n".
+                "X-Forwarded-For: ".$_SERVER['REMOTE_ADDR']."\r\n".
+                "Client-IP: ".$_SERVER['REMOTE_ADDR']."\r\n"
   )
 );
 $context = stream_context_create($opts); }
@@ -74,6 +93,7 @@ if(!isset($_GET['redirect'])) { $_GET['redirect'] = "off"; }
 
   function robots_allowed($url, $useragent=false)
   {
+	global $context;
     # parse url to retrieve host and path
     $parsed = parse_url($url);
 
@@ -87,7 +107,7 @@ if(!isset($_GET['redirect'])) { $_GET['redirect'] = "off"; }
     } else {
         $robotstxt = file_get_contents("http://{$parsed['host']}/robots.txt");
     }
-    if(!$robotstxt) return true;
+    if(!$robotstxt) { return true; }
 
     $rules = array();
     $ruleapplies = false;

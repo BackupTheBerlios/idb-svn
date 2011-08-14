@@ -11,7 +11,7 @@
     Copyright 2009-2011 iDB Support - http://idb.berlios.de/
     Copyright 2009-2011 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: index.php - Last Update: 08/02/2011 Ver 3.0.5 - Author: cooldude2k $
+    $FileInfo: index.php - Last Update: 08/02/2011 Ver 3.0.7 - Author: cooldude2k $
 */
 /* Change to your url. */
 @ini_set("html_errors", false);
@@ -42,7 +42,7 @@ require_once('inc/killglobals.php');
 $site_url = "http://localhost/vercheck/";
 $site_name = "iDB Version checker";
 $download_url = $site_url."download.php";
-$site_version = "3.0.5";
+$site_version = "3.0.7";
 $site_useragent = "Mozilla/5.0 (compatible; iDB-VerCheck/".$site_version."; +".$site_url.")";
 // Programs to check for add to array.
 // $iDBArray = array("RDB", "iDB", "iDB-Host", "iDBEH-Mod");//ReneeDB
@@ -715,12 +715,16 @@ $VersionJS .= "var vercheckinfo = 'Version Check info below: <br />';\n";
 $VersionJS .= "var yourverinfo = 'Your Version: ".$_GET['name']." ".$_GET['reltype']." ".$_GET['ver']." ".$_GET['subtype']." ".$_GET['subver']."';\n";
 $VersionJS .= "var myverinfo = 'Current Version: ".$vercheck['name']." ".$vercheck['reltype']." ".$vercheck['ver']." ".$vercheck['subtype']." ".$vercheck['subver']."<br />';\n";
 $VersionJS .= "var ourverinfo = yourverinfo+'<br />'+myverinfo;\n";
+if($_GET['bid']!==null) {
+$VersionJS .= "var checkingsite = 'Checking board: <a href=\"".$_GET['bid']."\" title=\"".$GetTitle."\">".$GetTitle."</a><br />';\n"; }
+if($_GET['bid']===null) {
+$VersionJS .= "var checkingsite = '';\n"; }
 if($FullRelNum<$MyFullRelNum) {
-$VersionJS .= "document.getElementById('iverinfo').innerHTML = vercheckinfo+'<img src=\"".$site_url."inc/pics/old.png\" alt=\"You seem to be using a old version.\" title=\"You seem to be using a old version.\" />&#160;Warning: A new version is available. <a href=\"".$download_url."\">Click Here</a><br />'+ourverinfo+'<br />';"; }
+$VersionJS .= "document.getElementById('iverinfo').innerHTML = vercheckinfo+'<img src=\"".$site_url."inc/pics/old.png\" alt=\"You seem to be using a old version.\" title=\"You seem to be using a old version.\" />&#160;Warning: A new version is available. <a href=\"".$download_url."\">Click Here</a><br />'+ourverinfo+checkingsite+'<br />';"; }
 if($FullRelNum==$MyFullRelNum) {
-$VersionJS .= "document.getElementById('iverinfo').innerHTML = vercheckinfo+'<img src=\"".$site_url."inc/pics/new.png\" alt=\"Congratulations you have the newest version. ^_^ \" title=\"Congratulations you have the newest version. ^_^ \" />&#160;Congratulates: You have the latest version.<br />'+ourverinfo+'<br />';"; }
+$VersionJS .= "document.getElementById('iverinfo').innerHTML = vercheckinfo+'<img src=\"".$site_url."inc/pics/new.png\" alt=\"Congratulations you have the newest version. ^_^ \" title=\"Congratulations you have the newest version. ^_^ \" />&#160;Congratulates: You have the latest version.<br />'+ourverinfo+checkingsite+'<br />';"; }
 if($FullRelNum>$MyFullRelNum) {
-$VersionJS .= "document.getElementById('iverinfo').innerHTML = vercheckinfo+'<img src=\"".$site_url."inc/pics/beta.png\" alt=\"You seem to be using a nightly version.\" title=\"You seem to be using a nightly version.\" />&#160;Warning: You seem to be using a nightly version. <br /><a href=\"".$download_url."\">Click Here</a> for latest version.<br />'+ourverinfo+'<br />';"; }
+$VersionJS .= "document.getElementById('iverinfo').innerHTML = vercheckinfo+'<img src=\"".$site_url."inc/pics/beta.png\" alt=\"You seem to be using a nightly version.\" title=\"You seem to be using a nightly version.\" />&#160;Warning: You seem to be using a nightly version. <br /><a href=\"".$download_url."\">Click Here</a> for latest version.<br />'+ourverinfo+checkingsite+'<br />';"; }
 $VersionJS .= "\n} ";
 echo $VersionJS; }
 if($_GET['redirect']=="on") { 

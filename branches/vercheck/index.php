@@ -678,6 +678,8 @@ $MyFullRelNum = $MyVerSplit[0].$MyVerSplit[1].$MyVerSplit[2].".".$vercheck['relt
 $DownloadLink = "<a href=\"".$download_url."\">".$download_url."</a>";
 if($_GET['redirect']!="on"&&$_GET['redirect']!="xml"&&$_GET['redirect']!="js") {
 echo "<div>"; }
+$actchange = preg_quote("act=versioninfo", '/');
+$_GET['bid'] = preg_replace("/".$actchange."/i", "act=view", $_GET['bid']);
 if($_GET['redirect']=="xml") {
 $VersionXML = xml_doc_start("1.0","UTF-8",true);
 $VersionXML .= "<!DOCTYPE versioninfo [\n";

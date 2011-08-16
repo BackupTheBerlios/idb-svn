@@ -11,7 +11,7 @@
     Copyright 2004-2011 iDB Support - http://idb.berlios.de/
     Copyright 2004-2011 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: sql.php - Last Update: 08/12/2011 SVN 748 - Author: cooldude2k $
+    $FileInfo: sql.php - Last Update: 08/16/2011 SVN 753 - Author: cooldude2k $
 */
 /* Some ini setting changes uncomment if you need them. 
    Display PHP Errors */
@@ -119,8 +119,6 @@ if(!isset($Settings['fixbasedir'])) { $Settings['fixbasedir'] = null; }
 if(!isset($Settings['fixpathinfo'])) { $Settings['fixpathinfo'] = null; }
 if(!isset($Settings['fixcookiedir'])) { $Settings['fixcookiedir'] = null; }
 if(!isset($Settings['fixredirectdir'])) { $Settings['fixcookiedir'] = null; }
-$Settings['bid'] = base64_encode(urlencode($Settings['idburl']));
-$Settings['ubid'] = base64_encode(urlencode($Settings['idburl'])."?board=".$_GET['board']);
 if(!isset($Settings['idb_time_format'])) { $Settings['idb_time_format'] = "g:i A"; }
 if(!isset($Settings['idb_date_format'])) { $Settings['idb_date_format'] = "F j Y"; }
 if(!isset($Settings['showverinfo'])) { 
@@ -244,6 +242,8 @@ if($Settings['use_hashtype']!="md2"&&
 require_once($SettDir['misc'].'setcheck.php');
 $dayconv = array("year" => 29030400, "month" => 2419200, "week" => 604800, "day" => 86400, "hour" => 3600, "minute" => 60, "second" => 1);
 require_once($SettDir['inc'].'function.php');
+$Settings['bid'] = base64_encode(urlencode($Settings['idburl'].url_maker($exfile['index'],$Settings['file_ext'],"act=versioninfo",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)));
+$Settings['ubid'] = base64_encode(urlencode($Settings['idburl'].url_maker($exfile['index'],$Settings['file_ext'],"act=versioninfo",$Settings['qstr'],$Settings['qsep'],$prexqstr['index'],$exqstr['index'],false)));
 if($Settings['enable_pathinfo']=="on") { 
 	mrstring(); /* Change Path info to Get Vars :P */ }
 $qstrhtml = htmlentities($Settings['qstr'], ENT_QUOTES, $Settings['charset']);

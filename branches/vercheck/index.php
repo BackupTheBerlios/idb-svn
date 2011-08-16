@@ -11,7 +11,7 @@
     Copyright 2009-2011 iDB Support - http://idb.berlios.de/
     Copyright 2009-2011 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: index.php - Last Update: 08/02/2011 Ver 3.0.7 - Author: cooldude2k $
+    $FileInfo: index.php - Last Update: 08/02/2011 Ver 3.0.8 - Author: cooldude2k $
 */
 /* Change to your url. */
 @ini_set("html_errors", false);
@@ -42,7 +42,7 @@ require_once('inc/killglobals.php');
 $site_url = "http://localhost/vercheck/";
 $site_name = "iDB Version checker";
 $download_url = $site_url."download.php";
-$site_version = "3.0.7";
+$site_version = "3.0.8";
 $site_useragent = "Mozilla/5.0 (compatible; iDB-VerCheck/".$site_version."; +".$site_url.")";
 // Programs to check for add to array.
 // $iDBArray = array("RDB", "iDB", "iDB-Host", "iDBEH-Mod");//ReneeDB
@@ -206,9 +206,6 @@ if(isset($_GET['bid'])) {
 		/* Then we cant prase this site now*/ exit(); die(); }
 	$ChkURL = parse_url($_GET['bid']);
 	$HostIP = gethostbyname($ChkURL['host']);
-	if($HostIP=="127.0.0.1") {
-	$_GET['bid'] = null; }
-	if($HostIP!="127.0.0.1") {
 	if($_GET['vercheck']=="newtype") {
 	$actchange = preg_quote("act=view", '/');
 	$_GET['bid'] = preg_replace("/".$actchange."/i", "act=versioninfo", $_GET['bid']);
@@ -258,7 +255,7 @@ if(isset($_GET['bid'])) {
 	if(!isset($GetCType[1][0])) {
 	if(is_utf8($GetTitle)==true) { $GetCType[1][0] = "UTF-8"; }
 	if(is_utf8($GetTitle)==false) { $GetCType[1][0] = "UTF-8"; 
-	$GetTitle = utf8_encode($GetTitle); } }
+	$GetTitle = utf8_encode($GetTitle); }
 	$preq1 = preg_quote("&amp;#", '/');
 	$GetTitle = preg_replace("/".$preq1."(.*?);/isU","&#\\1;",$GetTitle);
 	$preq2 = preg_quote("&amp;#x", '/');

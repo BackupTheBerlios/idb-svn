@@ -11,7 +11,7 @@
     Copyright 2009-2011 iDB Support - http://idb.berlios.de/
     Copyright 2009-2011 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: index.php - Last Update: 08/02/2011 Ver 3.0.8 - Author: cooldude2k $
+    $FileInfo: index.php - Last Update: 08/02/2011 Ver 3.1.0 - Author: cooldude2k $
 */
 @ini_set("html_errors", false);
 @ini_set("track_errors", false);
@@ -79,22 +79,7 @@ $l = 0; $nums = count($files); ?>
 echo "<!-- Renee Sabonis ^_^ -->"; ?>
 </ul></li></ul>
 <?php ++$i; } ?>
-<div style="text-align: center; font-family: Sans-Serif;" id="berlioslogo">
-<a href="http://developer.berlios.de/" title="BerliOS Developer Logo" onclick="window.open(this.href); return false;">
-<img src="http://developer.berlios.de/bslogo.php?group_id=6135" alt="BerliOS Developer Logo" title="BerliOS Developer Logo" style="border: 0px; height: 32px; width: 124px;" /></a>
-<a href="http://sourceforge.net/" title="SourceForge.NET Logo" onclick="window.open(this.href); return false;">
-<img title="SourceForge.NET Logo" alt="SourceForge Logo" src="http://sourceforge.net/sflogo.php?group_id=195913&amp;type=2" style="border: 0px; height: 32px; width: 124px;" /></a><br />
-<a href="http://sourceforge.jp/" title="SourceForge.JP Logo" onclick="window.open(this.href); return false;">
-<img title="SourceForge.JP Logo" alt="SourceForge Logo" src="http://sourceforge.jp/sflogo.php?group_id=4684&amp;type=5" style="border: 0px; height: 32px; width: 124px;" /></a>
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-1754608-1");
-pageTracker._trackPageview();
-} catch(err) {}</script></div>
+<div class="copyright">Powered by <a href="http://idb.berlios.de/" title="iDB Al 0.4.7 SVN 753" onclick="window.open(this.href);return false;">iDB VerCheck</a> &copy; <a href="http://idb.berlios.de/support/category.php?act=view&amp;id=2" title="Game Maker 2k" onclick="window.open(this.href);return false;">Game Maker 2k</a> @ 2004 - 2011</div>
 <?php echo "<!-- Dagmara O_o -->"; ?>
 </body>
 </html>

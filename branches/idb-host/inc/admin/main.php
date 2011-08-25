@@ -220,8 +220,8 @@ fwrite($fp, $BoardSettingsBak);
 fclose($fp);
 $Settings['SQLThemes'] = "on";
 $_POST['update'] = "now"; $_GET['act'] = "resyncthemes"; }
-if(($_GET['act']=="themelist"&&$GroupInfo['ViewDBInfo']=="yes")||
-	($_GET['act']=="gettheme"&&$_POST['act']=="gettheme"&&$GroupInfo['ViewDBInfo']=="yes")) {
+if(($_GET['act']=="themelist"&&$GroupInfo['ViewDBInfo']=="yes"&&$_GET['board']==$Settings['root_board'])||
+	($_GET['act']=="gettheme"&&$_POST['act']=="gettheme"&&$GroupInfo['ViewDBInfo']=="yes"&&$_GET['board']==$Settings['root_board'])) {
 if($_GET['act']=="gettheme"&&$_POST['act']=="gettheme"&&$_POST['GetTheme']==null) {
 $_GET['act'] = "themelist"; $_POST['act'] = ""; }
 if($_GET['act']=="gettheme"&&$_POST['act']=="gettheme"&&$_POST['GetTheme']=="None") {

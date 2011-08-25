@@ -77,10 +77,10 @@ if($Settings['sqltype']=="mysql"||
 <?php if($Settings['SQLThemes']=="off") { ?>
 </tr><tr class="TableSMenuRow3">
 <td class="TableSMenuColumn3"><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=enablesthemes",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Enable SQLThemes</a></td>
-<?php } ?>
+<?php } if($GroupInfo['ViewDBInfo']=="yes"&&$_GET['board']==$Settings['root_board']) { ?>
 </tr><tr class="TableSMenuRow3">
 <td class="TableSMenuColumn3"><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=themelist",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Download Themes</a></td>
-<?php if($Settings['SQLThemes']=="on") { ?>
+<?php } if($Settings['SQLThemes']=="on") { ?>
 </tr><tr class="TableSMenuRow3">
 <td class="TableSMenuColumn3"><a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=resyncthemes",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>">Resync Themes</a></td>
 <?php } ?>

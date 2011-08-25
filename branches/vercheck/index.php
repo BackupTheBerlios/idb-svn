@@ -40,11 +40,12 @@ header("Expires: ".gmdate("D, d M Y H:i:s")." GMT");
 output_reset_rewrite_vars();
 require_once('inc/killglobals.php');
 $site_url = "http://localhost/vercheck/";
+$agent_site_url = $site_url."?act=vercheck";
 $site_name = "iDB Version checker";
 $download_url = $site_url."download.php";
 $site_version = "3.1.0";
 $csryear = "2004"; $cryear = date("Y"); if($cryear<=2004) { $cryear = "2005"; }
-$site_useragent = "Mozilla/5.0 (compatible; iDB-VerCheck/".$site_version."; +".$site_url.")";
+$site_useragent = "Mozilla/5.0 (compatible; iDB-VerCheck/".$site_version."; +".$agent_site_url.")";
 // Programs to check for add to array.
 // $iDBArray = array("RDB", "iDB", "iDB-Host", "iDBEH-Mod");//ReneeDB
 $iDBArray = array("iDB", "iDB-Host", "iDBEH-Mod");
@@ -54,11 +55,11 @@ $opts = array(
   'http' => array(
     'method' => "GET",
     'header' => "Accept-Language: *\r\n".
-                "User-Agent: ".$site_useragent."\r\n".
+                "User-Agent: ".$agent_site_url."\r\n".
                 "Accept: */*\r\n".
                 "Connection: keep-alive\r\n".
-                "Referer: ".$site_url."\r\n".
-                "From: ".$site_url."\r\n".
+                "Referer: ".$agent_site_url."\r\n".
+                "From: ".$agent_site_url."\r\n".
                 "Via: ".$_SERVER['REMOTE_ADDR']."\r\n".
                 "Forwarded: ".$_SERVER['REMOTE_ADDR']."\r\n".
                 "X-Forwarded-For: ".$_SERVER['REMOTE_ADDR']."\r\n".

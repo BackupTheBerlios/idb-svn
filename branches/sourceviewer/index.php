@@ -11,19 +11,43 @@
     Copyright 2004-2011 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2011 Game Maker 2k - http://intdb.sourceforge.net/
 
-    $FileInfo: index.php - Last Update: 01/04/2011 Ver. 2.0.0 RC 4 - Author: cooldude2k $
+    $FileInfo: index.php - Last Update: 01/04/2011 Ver. 2.0.0 RC 5 - Author: cooldude2k $
 */
-/*@ob_clean();*/ @ob_start();
-$urltype = 2;//URL type to use can be 1 or 2
+/* Change to your url. */
+@ini_set("html_errors", false);
+@ini_set("track_errors", false);
+@ini_set("display_errors", false);
+@ini_set("report_memleaks", false);
+@ini_set("display_startup_errors", false);
+//@ini_set("error_log","logs/error.log"); 
+//@ini_set("log_errors","On"); 
+@ini_set("docref_ext", "");
+@ini_set("docref_root", "http://php.net/");
+@ini_set("date.timezone","UTC"); 
+@ini_set("default_mimetype","text/html");
+@error_reporting(E_ALL ^ E_NOTICE);
+@set_time_limit(30); @ignore_user_abort(true);
+if(function_exists("date_default_timezone_set")) { 
+	@date_default_timezone_set("UTC"); }
+function idb_output_handler($buffer) { return $buffer; }
+@ob_start("idb_output_handler");
+header("Cache-Control: private, no-cache, no-store, must-revalidate, pre-check=0, post-check=0, max-age=0");
+header("Pragma: private, no-cache, no-store, must-revalidate, pre-check=0, post-check=0, max-age=0");
+header("P3P: CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\"");
+header("Date: ".gmdate("D, d M Y H:i:s")." GMT");
+header("Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT");
+header("Expires: ".gmdate("D, d M Y H:i:s")." GMT");
+output_reset_rewrite_vars();
+$urltype = 1;//URL type to use can be 1 or 2
 $urlview = "html";//URL view type can be html or view
 $dirstyle = "old";//DIR list style can be old, new. :P
-$url = "http://ihost.x10.mx/srcview/";//Program url path
+$url = "http://localhost/srcview/";//Program url path
 $sourcedir = "./tarball";//Program url path
 $urlfname = "index.php";//Not used dont ask why its here. :P
 $appname = "TAR Source Viewer";//Name of program also not used. :P
 $dwntarlink = "dwntargz";
 $downloadlink = "downloadgz";
-$appver = array(2,0,0,"RC 4");//Version of program
+$appver = array(2,0,0,"RC 5");//Version of program
 $PathSep = ":";//You can set this to : ! @ ;
 //$PathSep = "!"; $PathSep = "@"; $PathSep = ";";
 $dir_image = "icnres/dir.gif";
@@ -40,6 +64,7 @@ $txt_mine_type = array(
 	"txt" => "text/plain",
 	"xml" => "text/plain",
 	"xsl" => "text/plain",
+	"js" => "text/plain",
 	"css" => "text/plain",
 	"htaccess" => "text/plain",
 	"null" => "text/plain",
@@ -52,6 +77,7 @@ $txt_highlight_type = array(
 	"txt" => "highlight_php_source",
 	"xml" => "highlight_php_source",
 	"xsl" => "highlight_php_source",
+	"js" => "highlight_php_source",
 	"css" => "highlight_php_source",
 	"htaccess" => "highlight_php_source",
 	"null" => "highlight_php_source",
@@ -64,6 +90,7 @@ $txt_image = array(
 	"txt" => "icnres/text.gif",
 	"xml" => "icnres/text.gif",
 	"xsl" => "icnres/text.gif",
+	"js" => "icnres/text.gif",
 	"css" => "icnres/text.gif",
 	"htaccess" => "icnres/text.gif",
 	"null" => "icnres/text.gif",
@@ -464,31 +491,31 @@ $_GET['tar'] = preg_replace("/(.*?)\.\/(.*?)/", "/iDB.tar", $_GET['tar']);
 if(isset($_GET['dir'])&&strlen($_GET['dir'])>1) { 
 	$_GET['dir'] = preg_replace('{/$}', '', $_GET['dir']); }
 if($dirstyle=="new") {
-echo "Reading dir ".$_GET['tar'].$filename.$PathSep.$_GET['dir']."<br />\n"; }
+echo "Reading dir ".$_GET['tar'].$PathSep.$_GET['dir']."<br />\n"; }
 if($dirstyle=="old") {
-echo "<h1>Index of ".$_GET['tar'].$filename.$PathSep.$_GET['dir']."</h1>\n"; 
+echo "<h1>Index of ".$_GET['tar'].$PathSep.$_GET['dir']."</h1>\n"; 
 echo "<hr /><table>\n<tbody>"; 
 if($urltype===1) {
 if(isset($_GET['dir'])&&strlen($_GET['dir'])>1) {
-echo "<tr><td style=\"text-align: left;\"><img src=\"".$back_image."\" alt=\"dir\" /> <a href=\"?act=list&amp;tar=".$_GET['tar'].$filename."&amp;dir=".preg_replace("/^\\\\/isU", "/",dirname($_GET['dir']))."\">Parent Directory</a></td></tr>"; }
+echo "<tr><td style=\"text-align: left;\"><img src=\"".$back_image."\" alt=\"dir\" /> <a href=\"?act=list&amp;tar=".$_GET['tar']."&amp;dir=".preg_replace("/^\\\\/isU", "/",dirname($_GET['dir']))."\">Parent Directory</a></td></tr>"; }
 if(isset($_GET['dir'])&&strlen($_GET['dir'])<=1) {
 echo "<tr><td style=\"text-align: left;\"><img src=\"".$back_image."\" alt=\"dir\" /> <a href=\"?act=list&amp;dir=".preg_replace("/^\\\\/isU", "/",preg_replace('{/$}', '', dirname($_GET['tar'])))."/\">Parent Directory</a></td></tr>"; } }
 if($urltype===2) {
 if(isset($_GET['dir'])&&strlen($_GET['dir'])>1) {
-echo "<tr><td style=\"text-align: left;\"><img src=\"".$back_image."\" alt=\"dir\" /> <a href=\"list".$_GET['tar'].$filename.$PathSep.preg_replace("/^\\\\/isU", "/",dirname($_GET['dir']))."\">Parent Directory</a></td></tr>"; }
+echo "<tr><td style=\"text-align: left;\"><img src=\"".$back_image."\" alt=\"dir\" /> <a href=\"list".$_GET['tar'].$PathSep.preg_replace("/^\\\\/isU", "/",dirname($_GET['dir']))."\">Parent Directory</a></td></tr>"; }
 if(isset($_GET['dir'])&&strlen($_GET['dir'])<=1) {
 echo "<tr><td style=\"text-align: left;\"><img src=\"".$back_image."\" alt=\"dir\" /> <a href=\"list".preg_replace("/^\\\\/isU", "/",preg_replace('{/$}', '', dirname($_GET['tar'])))."/\">Parent Directory</a></td></tr>"; } } }
 if($dirstyle=="new") {
 if($urltype===1) {
 echo "<img style=\"text-decoration: none;\" src=\"".$back_image."\" alt=\"dir\" /> <a href=\"?act=list&amp;tar=".$_GET['tar']."&amp;dir=".$_GET['dir']."\">./</a><br />\n";
 if(isset($_GET['dir'])&&strlen($_GET['dir'])>1) {
-echo "<img style=\"text-decoration: none;\" src=\"".$back_image."\" alt=\"dir\" /> <a href=\"?act=list&amp;tar=".$_GET['tar'].$filename."&amp;dir=".preg_replace("/^\\\\/isU", "/",dirname($_GET['dir']))."\">../</a><br />\n"; }
+echo "<img style=\"text-decoration: none;\" src=\"".$back_image."\" alt=\"dir\" /> <a href=\"?act=list&amp;tar=".$_GET['tar']."&amp;dir=".preg_replace("/^\\\\/isU", "/",dirname($_GET['dir']))."\">../</a><br />\n"; }
 if(isset($_GET['dir'])&&strlen($_GET['dir'])<=1) {
 echo "<img style=\"text-decoration: none;\" src=\"".$back_image."\" alt=\"dir\" /> <a href=\"?act=list&amp;dir=".preg_replace("/^\\\\/isU", "/",preg_replace('{/$}', '', dirname($_GET['tar'])))."/\">../</a><br />\n"; } }
 if($urltype===2) {
 echo "<img style=\"text-decoration: none;\" src=\"".$back_image."\" alt=\"dir\" /> <a href=\"list".$_GET['tar'].$PathSep.$_GET['dir']."\">./</a><br />\n";
 if(isset($_GET['dir'])&&strlen($_GET['dir'])>1) {
-echo "<img style=\"text-decoration: none;\" src=\"".$back_image."\" alt=\"dir\" /> <a href=\"list".$_GET['tar'].$filename.$PathSep.preg_replace("/^\\\\/isU", "/",dirname($_GET['dir']))."\">../</a><br />\n"; }
+echo "<img style=\"text-decoration: none;\" src=\"".$back_image."\" alt=\"dir\" /> <a href=\"list".$_GET['tar'].$PathSep.preg_replace("/^\\\\/isU", "/",dirname($_GET['dir']))."\">../</a><br />\n"; }
 if(isset($_GET['dir'])&&strlen($_GET['dir'])<=1) {
 echo "<img style=\"text-decoration: none;\" src=\"".$back_image."\" alt=\"dir\" /> <a href=\"list".preg_replace("/^\\\\/isU", "/",preg_replace('{/$}', '', dirname($_GET['tar'])))."/\">../</a><br />\n"; } } }
 $i = 0; $num = count($File);

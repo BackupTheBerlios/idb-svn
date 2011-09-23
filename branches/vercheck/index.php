@@ -11,7 +11,7 @@
     Copyright 2009-2011 iDB Support - http://idb.berlios.de/
     Copyright 2009-2011 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: index.php - Last Update: 08/02/2011 Ver 3.1.0 - Author: cooldude2k $
+    $FileInfo: index.php - Last Update: 08/02/2011 Ver 3.1.2 - Author: cooldude2k $
 */
 /* Change to your url. */
 @ini_set("html_errors", false);
@@ -42,8 +42,12 @@ require_once('inc/killglobals.php');
 $site_url = "http://localhost/vercheck/";
 $agent_site_url = $site_url."?act=vercheck";
 $site_name = "iDB Version checker";
+$appname = "iDB VerCheck";
 $download_url = $site_url."download.php";
-$site_version = "3.1.0";
+$site_version = "3.1.2";
+$ver_exp = explode(".",$site_version);
+if(!isset($ver_exp[3])) { $ver_exp[3] = null; }
+$appver = array($ver_exp[0],$ver_exp[1],$ver_exp[2],$ver_exp[3]);//Version of program
 $csryear = "2004"; $cryear = date("Y"); if($cryear<=2004) { $cryear = "2005"; }
 $site_useragent = "Mozilla/5.0 (compatible; iDB-VerCheck/".$site_version."; +".$agent_site_url.")";
 // Programs to check for add to array.
@@ -55,7 +59,7 @@ $opts = array(
   'http' => array(
     'method' => "GET",
     'header' => "Accept-Language: *\r\n".
-                "User-Agent: ".$agent_site_url."\r\n".
+                "User-Agent: ".$site_useragent."\r\n".
                 "Accept: */*\r\n".
                 "Connection: keep-alive\r\n".
                 "Referer: ".$agent_site_url."\r\n".
@@ -67,6 +71,13 @@ $opts = array(
   )
 );
 $context = stream_context_create($opts); }
+function version_info($proname,$subver,$ver,$supver,$reltype,$svnver,$showsvn) {
+	$return_var = $proname." ".$reltype." ".$subver.".".$ver.".".$supver;
+	if($showsvn==false) { $showsvn = null; }
+	if($showsvn==true) { $return_var .= " SVN ".$svnver; }
+	if($showsvn!=true&&$showsvn!=null) { $return_var .= " ".$showsvn." ".$svnver; }
+	return $return_var; }
+$appversion = version_info($appname,$appver[0],$appver[1],$appver[2],$appver[3]." Ver.",null,false);
 if(!isset($_GET['redirect'])) { $_GET['redirect'] = "off"; }
     /**
      * Returns true if $string is valid UTF-8 and false otherwise.

@@ -11,7 +11,7 @@
     Copyright 2004-2011 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2011 Game Maker 2k - http://intdb.sourceforge.net/
 
-    $FileInfo: index.php - Last Update: 01/04/2011 Ver. 2.0.0 RC 5 - Author: cooldude2k $
+    $FileInfo: index.php - Last Update: 01/04/2011 Ver. 2.0.0 RC 6 - Author: cooldude2k $
 */
 /* Change to your url. */
 @ini_set("html_errors", false);
@@ -47,7 +47,7 @@ $urlfname = "index.php";//Not used dont ask why its here. :P
 $appname = "TAR Source Viewer";//Name of program also not used. :P
 $dwntarlink = "dwntargz";
 $downloadlink = "downloadgz";
-$appver = array(2,0,0,"RC 5");//Version of program
+$appver = array(2,0,0,"RC 6");//Version of program
 $PathSep = ":";//You can set this to : ! @ ;
 //$PathSep = "!"; $PathSep = "@"; $PathSep = ";";
 $dir_image = "icnres/dir.gif";

@@ -11,7 +11,7 @@
     Copyright 2004-2011 iDB Support - http://idb.berlios.de/
     Copyright 2004-2011 Game Maker 2k - http://gamemaker2k.org/
 
-    $FileInfo: main.php - Last Update: 10/10/2011 SVN 762 - Author: cooldude2k $
+    $FileInfo: main.php - Last Update: 10/25/2011 SVN 764 - Author: cooldude2k $
 */
 $File3Name = basename($_SERVER['SCRIPT_NAME']);
 if ($File3Name=="main.php"||$File3Name=="/main.php") {
@@ -202,7 +202,7 @@ $BoardSettings=$pretext2[0]."\nrequire('settings.php');\n".
 "\$Settings['IPCheckURL'] = ".null_string($Settings['IPCheckURL']).";\n".
 "\$Settings['log_http_request'] = ".null_string($Settings['log_http_request']).";\n".
 "\$Settings['log_config_format'] = ".null_string($Settings['log_config_format']).";\n".
-"\$Settings['BoardUUID'] = ".null_string($Settings['BoardUUID']).";\n".
+"\$Settings['BoardUUID'] = ".null_string(base64_encode($Settings['BoardUUID'])).";\n".
 "\$Settings['KarmaBoostDays'] = ".null_string($Settings['KarmaBoostDays']).";\n".
 "\$Settings['KBoostPercent'] = ".null_string($Settings['KBoostPercent']).";\n".$pretext2[1]."\n".
 "\$SettInfo['board_name'] = ".null_string($SettInfo['board_name']).";\n".
@@ -529,7 +529,7 @@ $admincptitle = " ".$ThemeSet['TitleDivider']." Admin CP";
 </table>
 </div>
 <?php } if($_GET['act']=="settings"&&$_POST['update']!="now") {
-require($_GET['board'].'_settings.php'); $admincptitle = " ".$ThemeSet['TitleDivider']." Settings Manager";
+$admincptitle = " ".$ThemeSet['TitleDivider']." Settings Manager";
 $ts_array = explode(":",$Settings['DefaultTimeZone']);
 if(count($ts_array)!=2) {
 	if(!isset($ts_array[0])) { $ts_array[0] = "0"; }
@@ -588,7 +588,7 @@ if($_GET['board']==$Settings['root_board']) {
 if($GroupInfo['ViewDBInfo']=="yes") { 
 ?><tr style="text-align: left;">
 	<td style="width: 50%;"><span class="TextBoxLabel">Forum Software Version:</span></td>
-	<td style="width: 50%;"><?php echo $VerInfo['iDB_Ver_Show']; ?>&nbsp;<a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=vercheck",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>" onclick="window.open(this.href);return false;"><img src="<?php echo $AdminCheckURL; ?>" alt="Version Check: Click to see more info." title="Version Check: Click to see more info." /></a></td>
+	<td style="width: 50%;"><?php echo "<span title=\"".$VerInfo['iDB_Full_Ver_Show']."\">".$VerInfo['iDB_Ver_Show']."</span>"; ?><!--&nbsp;<a href="<?php echo url_maker($exfile['admin'],$Settings['file_ext'],"act=vercheck",$Settings['qstr'],$Settings['qsep'],$prexqstr['admin'],$exqstr['admin']); ?>" onclick="window.open(this.href);return false;"><img src="<?php echo $AdminCheckURL; ?>" alt="Version Check: Click to see more info." title="Version Check: Click to see more info." /></a>--></td>
 </tr><tr>
 	<td style="width: 50%;"><span class="TextBoxLabel">Forum UUID:</span></td>
 	<td style="width: 50%;"><?php echo $Settings['BoardUUID']; ?></td>
@@ -1016,7 +1016,7 @@ $BoardSettings=$pretext2[0]."\nrequire('settings.php');\n".
 "\$Settings['IPCheckURL'] = ".null_string($Settings['IPCheckURL']).";\n".
 "\$Settings['log_http_request'] = ".null_string($Settings['log_http_request']).";\n".
 "\$Settings['log_config_format'] = ".null_string($Settings['log_config_format']).";\n".
-"\$Settings['BoardUUID'] = ".null_string($Settings['BoardUUID']).";\n".
+"\$Settings['BoardUUID'] = ".null_string(base64_encode($Settings['BoardUUID'])).";\n".
 "\$Settings['KarmaBoostDays'] = ".null_string($Settings['KarmaBoostDays']).";\n".
 "\$Settings['KBoostPercent'] = ".null_string($Settings['KBoostPercent']).";\n".$pretext2[1]."\n".
 "\$SettInfo['board_name'] = ".null_string($SettInfo['board_name']).";\n".
@@ -1093,7 +1093,7 @@ $fp = fopen("settingsbak.php","w+");
 fwrite($fp, $BoardSettingsBak);
 fclose($fp); } } if($_GET['act']=="sql"&&$_POST['update']!="now"&&
 	$_GET['board']==$Settings['root_board']&&$GroupInfo['ViewDBInfo']=="yes") {
-require($_GET['board'].'_settings.php'); $admincptitle = " ".$ThemeSet['TitleDivider']." Database Manager";
+$admincptitle = " ".$ThemeSet['TitleDivider']." Database Manager";
 ?>
 <div class="TableMenuBorder">
 <?php if($ThemeSet['TableStyle']=="div") { ?>
@@ -1242,7 +1242,7 @@ fclose($fp);
 $fp = fopen("settingsbak.php","w+");
 fwrite($fp, $BoardSettingsBak);
 fclose($fp); } if($_GET['act']=="info"&&$_POST['update']!="now") {
-require($_GET['board'].'_settings.php'); $admincptitle = " ".$ThemeSet['TitleDivider']." Board Info Manager";
+$admincptitle = " ".$ThemeSet['TitleDivider']." Board Info Manager";
 ?>
 <div class="TableMenuBorder">
 <?php if($ThemeSet['TableStyle']=="div") { ?>
@@ -1349,7 +1349,7 @@ $BoardSettings=$pretext2[0]."\nrequire('settings.php');\n".
 "\$Settings['IPCheckURL'] = ".null_string($Settings['IPCheckURL']).";\n".
 "\$Settings['log_http_request'] = ".null_string($Settings['log_http_request']).";\n".
 "\$Settings['log_config_format'] = ".null_string($Settings['log_config_format']).";\n".
-"\$Settings['BoardUUID'] = ".null_string($Settings['BoardUUID']).";\n".
+"\$Settings['BoardUUID'] = ".null_string(base64_encode($Settings['BoardUUID'])).";\n".
 "\$Settings['KarmaBoostDays'] = ".null_string($Settings['KarmaBoostDays']).";\n".
 "\$Settings['KBoostPercent'] = ".null_string($Settings['KBoostPercent']).";\n".$pretext2[1]."\n".
 "\$SettInfo['board_name'] = ".null_string($_POST['board_name']).";\n".

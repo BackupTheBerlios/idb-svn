@@ -38,6 +38,36 @@ color: gray;
 text-decoration: none;
 }
 
+.TableRow1 a:link, .TableRow1 a:visited, .TableRow1 a:active {
+text-decoration: none;
+color: white;
+}
+
+.TableRow1 a:hover {
+text-decoration: underline;
+color: white;
+}
+
+.TableStatsRow1 a:link, .TableStatsRow1 a:visited, .TableStatsRow1 a:active {
+text-decoration: none;
+color: white;
+}
+
+.TableStatsRow1 a:hover {
+text-decoration: underline;
+color: white;
+}
+
+.TableMenuRow1 a:link, .TableMenuRow1 a:visited, .TableMenuRow1 a:active {
+text-decoration: none;
+color: white;
+}
+
+.TableMenuRow1 a:hover {
+text-decoration: underline;
+color: white;
+}
+
 .copyright {
 text-align: center;
 line-height: 11px;

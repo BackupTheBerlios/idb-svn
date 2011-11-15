@@ -61,7 +61,7 @@ $dir_image = "icnres/dir.gif";
 $unknown_image = "icnres/unknown.gif";
 $back_image = "icnres/back.gif";
 //List of text type files
-$txt_type = "htm,html,php,txt,xml,xsl,css,htaccess,null,";
+$txt_type = "htm,html,php,txt,xml,xsl,js,css,htaccess,null,";
 $txt_type = explode(",",$txt_type);
 //List of text mime types
 $txt_mine_type = array(

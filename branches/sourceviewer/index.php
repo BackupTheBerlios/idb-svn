@@ -11,7 +11,7 @@
     Copyright 2004-2011 Cool Dude 2k - http://idb.berlios.de/
     Copyright 2004-2011 Game Maker 2k - http://intdb.sourceforge.net/
 
-    $FileInfo: index.php - Last Update: 01/04/2011 Ver. 2.0.0 RC 7 - Author: cooldude2k $
+    $FileInfo: index.php - Last Update: 01/04/2011 Ver. 2.0.5 RC 1 - Author: cooldude2k $
 */
 $disfunc = @ini_get("disable_functions");
 $disfunc = @trim($disfunc);
@@ -54,7 +54,7 @@ $urlfname = "index.php";//Not used dont ask why its here. :P
 $appname = "TAR Source Viewer";//Name of program also not used. :P
 $dwntarlink = "dwntargz";
 $downloadlink = "downloadgz";
-$appver = array(2,0,0,"RC 7");//Version of program
+$appver = array(2,0,5,"RC 1");//Version of program
 $PathSep = ":";//You can set this to : ! @ ;
 //$PathSep = "!"; $PathSep = "@"; $PathSep = ";";
 $dir_image = "icnres/dir.gif";
@@ -144,6 +144,8 @@ $appversion = version_info($appname,$appver[0],$appver[1],$appver[2],$appver[3].
 function highlight_php_source($text)
 {
 $phpsrcs = highlight_string($text, true);
+$phpsrcs = str_replace("<br />", "<br />\n", $phpsrcs);
+$phpsrcs = str_replace("<br>", "<br />\n", $phpsrcs);
 $phpsrcs = preg_replace("/\<font color=\"(.*?)\"\>/i", "<span style=\"color: \\1;\">", $phpsrcs);
 $phpsrcs = preg_replace("/\<\/font>/i", "</span>", $phpsrcs);
 return $phpsrcs;
@@ -365,9 +367,7 @@ if($_GET['file']==$File[$i]['FileName']) {
 <html xmlns="http://www.w3.org/1999/xhtml">
  <head>
   <title> Source Viewer 2k </title>
-  <meta name="author" content="" />
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
+  <meta name="generator" content="<?php echo $appversion; ?>" />
   <base href="<?php echo $url; ?>" />
   <link rel="icon" href="favicon.ico" type="image/icon" />
   <link rel="shortcut icon" href="favicon.ico" type="image/icon" />
@@ -406,9 +406,7 @@ if($_GET['act']=="list") {
 <html xmlns="http://www.w3.org/1999/xhtml">
  <head>
   <title> Source Viewer 2k </title>
-  <meta name="author" content="" />
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
+  <meta name="generator" content="<?php echo $appversion; ?>" />
   <base href="<?php echo $url; ?>" />
   <link rel="icon" href="favicon.ico" type="image/icon" />
   <link rel="shortcut icon" href="favicon.ico" type="image/icon" />
@@ -438,11 +436,11 @@ echo "<img style=\"text-decoration: none;\" src=\"".$back_image."\" alt=\"dir\" 
 echo "<img style=\"text-decoration: none;\" src=\"".$back_image."\" alt=\"dir\" /> <a href=\"list".preg_replace("/^\\\\/isU", "",preg_replace('{/$}', '', dirname($_GET['dir'])))."/\">../</a><br />\n"; } }
 if($dirstyle=="old") {
 echo "<h1>Index of ".$_GET['dir']."</h1>\n"; 
-echo "<hr /><table>\n<tbody>";
+echo "<hr /><table><tbody>\n";
 if($urltype===1) {
-echo "<tr><td style=\"text-align: left;\"><img src=\"".$back_image."\" alt=\"dir\" /> <a href=\"?act=list&amp;dir=".preg_replace("/^\\\\/isU", "",preg_replace('{/$}', '', dirname($_GET['dir'])))."/\">Parent Directory</a></td></tr>"; }
+echo "<tr><td style=\"text-align: left;\"><img src=\"".$back_image."\" alt=\"dir\" /> <a href=\"?act=list&amp;dir=".preg_replace("/^\\\\/isU", "",preg_replace('{/$}', '', dirname($_GET['dir'])))."/\">Parent Directory</a></td></tr>\n"; }
 if($urltype===2) {
-echo "<tr><td style=\"text-align: left;\"><img src=\"".$back_image."\" alt=\"dir\" /> <a href=\"list".preg_replace("/^\\\\/isU", "",preg_replace('{/$}', '', dirname($_GET['dir'])))."/\">Parent Directory</a></td></tr>"; } }
+echo "<tr><td style=\"text-align: left;\"><img src=\"".$back_image."\" alt=\"dir\" /> <a href=\"list".preg_replace("/^\\\\/isU", "",preg_replace('{/$}', '', dirname($_GET['dir'])))."/\">Parent Directory</a></td></tr>\n"; } }
 	if (is_array(glob("*",GLOB_ONLYDIR))) {
 	foreach (glob("*",GLOB_ONLYDIR) as $filename) {
 	$FilePic = $dir_image;
@@ -456,7 +454,7 @@ echo "<tr><td style=\"text-align: left;\"><img src=\"".$back_image."\" alt=\"dir
 	echo "<td>&nbsp;</td>";
 	echo "<td>".GMTimeChange("n/j/Y",filemtime($filename),$TimeOffSet,null,$_GET['dst'])."</td>";
 	echo "<td>".GMTimeChange("g:i:s A",filemtime($filename),$TimeOffSet,null,$_GET['dst'])."</td>";
-	echo "</tr>"; } } 
+	echo "</tr>\n"; } } 
 	if($urltype===2) {
 	if($dirstyle=="new") {
 	echo "<img style=\"text-decoration: none;\" src=\"".$FilePic."\" alt=\"".$FileType."\" /> <a href=\"list".$_GET['dir'].$filename."/\">".$_GET['dir'].$filename."</a><br />\n"; } 
@@ -466,10 +464,10 @@ echo "<tr><td style=\"text-align: left;\"><img src=\"".$back_image."\" alt=\"dir
 	echo "<td>&nbsp;</td>";
 	echo "<td>".GMTimeChange("n/j/Y",filemtime($filename),$TimeOffSet,null,$_GET['dst'])."</td>";
 	echo "<td>".GMTimeChange("g:i:s A",filemtime($filename),$TimeOffSet,null,$_GET['dst'])."</td>";
-	echo "</tr>"; } } } }
+	echo "</tr>\n"; } } } }
 	if (is_array(glob("*.tar"))) {
 	foreach (glob("*.tar") as $filename) {
-	$FilePic = $bin_image["tar"];
+	$FilePic = $bin_image['tar'];
 	$FileType = "bin";
 	if($urltype===1) {
 	if($dirstyle=="new") {
@@ -480,7 +478,7 @@ echo "<tr><td style=\"text-align: left;\"><img src=\"".$back_image."\" alt=\"dir
 	echo "<td>".format_size(filesize($filename))."</td>";
 	echo "<td>".GMTimeChange("n/j/Y",filemtime($filename),$TimeOffSet,null,$_GET['dst'])."</td>";
 	echo "<td>".GMTimeChange("g:i:s A",filemtime($filename),$TimeOffSet,null,$_GET['dst'])."</td>";
-	echo "</tr>"; } } 
+	echo "</tr>\n"; } } 
 	if($urltype===2) {
 	if($dirstyle=="new") {
 	echo "<a href=\"".$dwntarlink.$_GET['dir'].$filename."\"><img style=\"text-decoration: none;\" src=\"".$FilePic."\" alt=\"".$FileType."\" /></a> <a href=\"list".$_GET['dir'].$filename.$PathSep."/\" title=\"".format_size(filesize($filename))."\">".$_GET['dir'].$filename."</a><br />\n"; } 
@@ -490,7 +488,7 @@ echo "<tr><td style=\"text-align: left;\"><img src=\"".$back_image."\" alt=\"dir
 	echo "<td>".format_size(filesize($filename))."</td>";
 	echo "<td>".GMTimeChange("n/j/Y",filemtime($filename),$TimeOffSet,null,$_GET['dst'])."</td>";
 	echo "<td>".GMTimeChange("g:i:s A",filemtime($filename),$TimeOffSet,null,$_GET['dst'])."</td>";
-	echo "</tr>"; } } } }
+	echo "</tr>\n"; } } } }
 if($dirstyle=="old") {
 echo "</tbody></table><hr />"; } }
 if(isset($_GET['tar'])) {
@@ -504,14 +502,14 @@ echo "<h1>Index of ".$_GET['tar'].$PathSep.$_GET['dir']."</h1>\n";
 echo "<hr /><table>\n<tbody>"; 
 if($urltype===1) {
 if(isset($_GET['dir'])&&strlen($_GET['dir'])>1) {
-echo "<tr><td style=\"text-align: left;\"><img src=\"".$back_image."\" alt=\"dir\" /> <a href=\"?act=list&amp;tar=".$_GET['tar']."&amp;dir=".preg_replace("/^\\\\/isU", "/",dirname($_GET['dir']))."\">Parent Directory</a></td></tr>"; }
+echo "<tr><td style=\"text-align: left;\"><img src=\"".$back_image."\" alt=\"dir\" /> <a href=\"?act=list&amp;tar=".$_GET['tar']."&amp;dir=".preg_replace("/^\\\\/isU", "/",dirname($_GET['dir']))."\">Parent Directory</a></td></tr>\n"; }
 if(isset($_GET['dir'])&&strlen($_GET['dir'])<=1) {
-echo "<tr><td style=\"text-align: left;\"><img src=\"".$back_image."\" alt=\"dir\" /> <a href=\"?act=list&amp;dir=".preg_replace("/^\\\\/isU", "/",preg_replace('{/$}', '', dirname($_GET['tar'])))."/\">Parent Directory</a></td></tr>"; } }
+echo "<tr><td style=\"text-align: left;\"><img src=\"".$back_image."\" alt=\"dir\" /> <a href=\"?act=list&amp;dir=".preg_replace("/^\\\\/isU", "/",preg_replace('{/$}', '', dirname($_GET['tar'])))."/\">Parent Directory</a></td></tr>\n"; } }
 if($urltype===2) {
 if(isset($_GET['dir'])&&strlen($_GET['dir'])>1) {
-echo "<tr><td style=\"text-align: left;\"><img src=\"".$back_image."\" alt=\"dir\" /> <a href=\"list".$_GET['tar'].$PathSep.preg_replace("/^\\\\/isU", "/",dirname($_GET['dir']))."\">Parent Directory</a></td></tr>"; }
+echo "<tr><td style=\"text-align: left;\"><img src=\"".$back_image."\" alt=\"dir\" /> <a href=\"list".$_GET['tar'].$PathSep.preg_replace("/^\\\\/isU", "/",dirname($_GET['dir']))."\">Parent Directory</a></td></tr>\n"; }
 if(isset($_GET['dir'])&&strlen($_GET['dir'])<=1) {
-echo "<tr><td style=\"text-align: left;\"><img src=\"".$back_image."\" alt=\"dir\" /> <a href=\"list".preg_replace("/^\\\\/isU", "/",preg_replace('{/$}', '', dirname($_GET['tar'])))."/\">Parent Directory</a></td></tr>"; } } }
+echo "<tr><td style=\"text-align: left;\"><img src=\"".$back_image."\" alt=\"dir\" /> <a href=\"list".preg_replace("/^\\\\/isU", "/",preg_replace('{/$}', '', dirname($_GET['tar'])))."/\">Parent Directory</a></td></tr>\n"; } } }
 if($dirstyle=="new") {
 if($urltype===1) {
 echo "<img style=\"text-decoration: none;\" src=\"".$back_image."\" alt=\"dir\" /> <a href=\"?act=list&amp;tar=".$_GET['tar']."&amp;dir=".$_GET['dir']."\">./</a><br />\n";
@@ -552,7 +550,7 @@ if($File[$i]['FileType']=="0"&&$_GET['dir']==preg_replace("/^\\\\/isU", "/",dirn
 	echo "<td>".format_size($File[$i]['FileSize'])."</td>";
 	echo "<td>".date("n/j/Y", $File[$i]['LastEdit'])."</td>";
 	echo "<td>".date("g:i:s A", $File[$i]['LastEdit'])."</td>";
-	echo "</tr>"; } } 
+	echo "</tr>\n"; } } 
 	if($urltype===2) {
 	if($dirstyle=="new") {
 	echo "<a href=\"".$downloadlink.$_GET['tar'].$PathSep.$File[$i]['FileName']."\"><img style=\"text-decoration: none;\" src=\"".$FilePic."\" alt=\"".$FileType."\" /></a> <a href=\"".$urlview.$_GET['tar'].$PathSep.$File[$i]['FileName']."\" title=\"".format_size($File[$i]['FileSize'])."\">".basename($File[$i]['FileName'])."</a><br />\n"; }
@@ -562,7 +560,7 @@ if($File[$i]['FileType']=="0"&&$_GET['dir']==preg_replace("/^\\\\/isU", "/",dirn
 	echo "<td>".format_size($File[$i]['FileSize'])."</td>";
 	echo "<td>".date("n/j/Y", $File[$i]['LastEdit'])."</td>";
 	echo "<td>".date("g:i:s A", $File[$i]['LastEdit'])."</td>";
-	echo "</tr>"; } } }
+	echo "</tr>\n"; } } }
 if($File[$i]['FileType']=="5"&&$_GET['dir']==preg_replace("/^\\\\/isU", "/",dirname($File[$i]['FileName']))) {
 	$FilePic = $dir_image;
 	$FileType = "dir";
@@ -575,7 +573,7 @@ if($File[$i]['FileType']=="5"&&$_GET['dir']==preg_replace("/^\\\\/isU", "/",dirn
 	echo "<td>&nbsp;</td>";
 	echo "<td>".date("n/j/Y", $File[$i]['LastEdit'])."</td>";
 	echo "<td>".date("g:i:s A", $File[$i]['LastEdit'])."</td>";
-	echo "</tr>"; } } 
+	echo "</tr>\n"; } } 
 	if($urltype===2) {
 	if($dirstyle=="new") {
 	echo "<img style=\"text-decoration: none;\" src=\"".$FilePic."\" alt=\"".$FileType."\" /> <a href=\"list".$_GET['tar'].$PathSep.preg_replace('{/$}', '', $File[$i]['FileName'])."\">".basename($File[$i]['FileName'])."</a><br />\n"; }
@@ -585,7 +583,7 @@ if($File[$i]['FileType']=="5"&&$_GET['dir']==preg_replace("/^\\\\/isU", "/",dirn
 	echo "<td>&nbsp;</td>";
 	echo "<td>".date("n/j/Y", $File[$i]['LastEdit'])."</td>";
 	echo "<td>".date("g:i:s A", $File[$i]['LastEdit'])."</td>";
-	echo "</tr>"; } } }
+	echo "</tr>\n"; } } }
 if($File[$i]['FileType']=="7"&&$_GET['dir']==preg_replace("/^\\\\/isU", "/",dirname($File[$i]['FileName']))) {
 	if(count(explode(".",$File[$i]['FileName']))>1) {
 	$FileExp = strtolower(end(explode(".",$File[$i]['FileName']))); }
@@ -608,7 +606,7 @@ if($File[$i]['FileType']=="7"&&$_GET['dir']==preg_replace("/^\\\\/isU", "/",dirn
 	echo "<td>&nbsp;</td>";
 	echo "<td>".date("n/j/Y", $File[$i]['LastEdit'])."</td>";
 	echo "<td>".date("g:i:s A", $File[$i]['LastEdit'])."</td>";
-	echo "</tr>"; } } 
+	echo "</tr>\n"; } } 
 	if($urltype===1) {
 	if($dirstyle=="new") {
 	echo "<a href=\"".$urlview.$_GET['tar'].$PathSep.$File[$i]['FileName']."\"><img style=\"text-decoration: none;\" src=\"".$FilePic."\" alt=\"".$FileType."\" /></a> <a href=\"view".$_GET['tar'].$PathSep.$File[$i]['FileName']."\" title=\"".format_size($File[$i]['FileSize'])."\">".basename($File[$i]['FileName'])."</a><br />\n"; } 
@@ -618,10 +616,12 @@ if($File[$i]['FileType']=="7"&&$_GET['dir']==preg_replace("/^\\\\/isU", "/",dirn
 	echo "<td>&nbsp;</td>";
 	echo "<td>".date("n/j/Y", $File[$i]['LastEdit'])."</td>";
 	echo "<td>".date("g:i:s A", $File[$i]['LastEdit'])."</td>";
-	echo "</tr>"; } } }
+	echo "</tr>\n"; } } }
 ++$i; } 
 if($dirstyle=="old") {
-echo "</tbody></table><hr />"; } } 
+echo "</tbody></table><hr />\n"; } }
+if($dirstyle=="old") {
+echo "<address>".$appversion."</address>\n"; }
 ?>
  </body>
 </html>

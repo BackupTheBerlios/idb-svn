@@ -27,6 +27,14 @@ color: #824746;
 text-decoration:underline;
 }
 
+.NavLinks {
+font-weight: bold;
+padding: 6px 0px 6px 0px;
+}
+
+.forumname {
+font-weight: bold;
+}
 
 .copyright {
 text-align: center;

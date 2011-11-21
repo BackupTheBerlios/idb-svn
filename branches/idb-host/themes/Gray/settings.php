@@ -28,7 +28,7 @@ $ThemeSet['FavIcon'] = "themes/Gray/favicon.ico";
 $ThemeSet['TableStyle'] = "table";
 $ThemeSet['MiniPageAltStyle'] = "off";
 $ThemeSet['PreLogo'] = "<div style=\"text-align: center;\">";
-$ThemeSet['Logo'] = $Settings['board_name'];
+$ThemeSet['Logo'] = "%{board_name}s";
 $ThemeSet['LogoStyle'] = "font-size: 40px; font-family: verdana, arial, sans-serif; color: black;";
 $ThemeSet['SubLogo'] = "</div>";
 $ThemeSet['TopicIcon'] = "<div style=\"text-align: center; font-size: 11px;\" title=\"Topic!\"> (T) </div>";

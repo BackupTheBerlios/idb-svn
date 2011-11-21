@@ -39,6 +39,15 @@ text-decoration: underline;
 color: #0F0;
 }
 
+.NavLinks {
+font-weight: bold;
+padding: 6px 0px 6px 0px;
+}
+
+.forumname {
+font-weight: bold;
+}
+
 .copyright {
 font-family: Verdana, Tahoma, Arial, Sans-Serif;
 font-size: 9px;

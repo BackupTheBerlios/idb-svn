@@ -20,5 +20,5 @@ $ThemeInfo['ThemeVersion'] = "0.4.7";
 $ThemeInfo['ThemeVersionType'] = "Alpha";
 $ThemeInfo['ThemeSubVersion'] = "SVN 729";
 $ThemeInfo['MakerURL'] = "http://upload.idb.s1.jcink.com/";
-$ThemeInfo['CopyRight'] = $ThemeInfo['ThemeName']." was made by <a href=\"".$ThemeInfo['MakerURL']."\" title=\"".$ThemeInfo['ThemeMaker']."\">".$ThemeInfo['ThemeMaker']."</a>";
+$ThemeInfo['CopyRight'] = "%{ThemeName}T was made by <a href=\"%{MakerURL}T\" title=\"%{ThemeMaker}T\">%{ThemeMaker}T</a>";
 ?>

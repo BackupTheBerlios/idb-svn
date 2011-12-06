@@ -198,7 +198,6 @@ background-color: #dfe6ef;
 
 .replypost { 
 font-size: 12px; 
-line-height: 160%;
 }
 
 .EditReply {
@@ -209,7 +208,6 @@ font-size: 9px;
 .signature {  
 font-size: 10px;
 color: #339;
-line-height:150%;
 }
 
 .CalDate, .CalDateCurrent { 

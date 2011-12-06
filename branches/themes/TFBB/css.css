@@ -79,7 +79,6 @@ font-weight: bold;
 
 .copyright {
 text-align: center;
-line-height: 11px;
 color: #FFF;
 font-family: Verdana, Tahoma, Arial, Sans-Serif;
 font-size: 9px;
@@ -184,7 +183,6 @@ background-color: #343434;
 
 .replypost { 
 font-size: 12px; 
-line-height: 160%;
 }
 
 .EditReply {

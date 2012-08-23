@@ -533,7 +533,6 @@ $strftime = str_replace("%t", "\t", $strftime);
 $strftime = preg_replace("/\{percent\}p/s", "%", $strftime);
 return $strftime; }
 function apache_log_maker($logtxt,$logfile=null,$status=200,$contentsize="-",$headersize=0) {
-function apache_log_maker($logtxt,$logfile=null,$status=200,$contentsize="-",$headersize=0) {
 global $Settings;
 if(!isset($_SERVER['HTTP_REFERER'])) { $LOG_URL_REFERER = "-"; }
 if(isset($_SERVER['HTTP_REFERER'])) { $LOG_URL_REFERER = $_SERVER['HTTP_REFERER']; }
